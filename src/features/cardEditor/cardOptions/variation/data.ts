@@ -1,6 +1,6 @@
 import { Variation } from '@cardEditor/cardOptions/variation';
 import { sunAndMoon, swordAndShield } from '../baseSet';
-import { fullArt, rainbow } from '../rarity';
+import { fullArt, rainbow, supporterFullArt } from '../rarity';
 import {
   basic,
   gxBasic,
@@ -210,7 +210,7 @@ export const tagTeam: Variation = {
     [sunAndMoon.id]: {
       types: {
         [supporter.id]: {
-          rarities: [fullArt.id],
+          rarities: [supporterFullArt.id],
         },
       },
       subtypes: {},

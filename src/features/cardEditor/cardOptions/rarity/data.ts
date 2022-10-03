@@ -33,6 +33,7 @@ export const fullArt: Rarity = {
     nameOutline: 'white',
     cardInfoTextColor: 'black',
     cardInfoOutline: 'white',
+    rarityIconColor: 'white',
   },
 };
 

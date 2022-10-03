@@ -383,6 +383,22 @@ export const gxStage2: Subtype = {
   },
 };
 
+export const gxTagTeam: Subtype = {
+  id: id++,
+  slug: 'gxTagTeam',
+  displayName: 'GX (Tag Team)',
+  logic: gxLogic,
+  styles: gxStyles,
+  baseSetDependencies: {
+    [sunAndMoon.id]: [
+      ...allPokemonTypes.map(t => ({
+        type: t,
+        rarities: [fullArt.id, rainbow.id],
+      })),
+    ],
+  },
+};
+
 export const subtypes: Subtype[] = [
   basic,
   stage1,
@@ -394,4 +410,5 @@ export const subtypes: Subtype[] = [
   gxBasic,
   gxStage1,
   gxStage2,
+  gxTagTeam,
 ];

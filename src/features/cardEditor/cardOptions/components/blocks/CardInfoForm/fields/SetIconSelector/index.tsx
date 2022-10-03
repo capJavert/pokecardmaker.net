@@ -64,19 +64,6 @@ const SetIconSelector: FC = () => {
         displayName="Set Icon"
         slug="setIcon"
         onChange={handleChange}
-        helpText={
-          <NewFeatureHelpText>
-            Try the new{' '}
-            <b>
-              <i>Sword & Shield</i>
-            </b>
-            &nbsp;and&nbsp;
-            <b>
-              <i>Sun & Moon</i>
-            </b>{' '}
-            set icons!
-          </NewFeatureHelpText>
-        }
       >
         <SelectorMenuItem value={0}>
           <SelectorListItemIcon>

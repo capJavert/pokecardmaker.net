@@ -6,6 +6,7 @@ import {
   gxBasic,
   gxStage1,
   gxStage2,
+  gxTagTeam,
   stage1,
   stage2,
   vmax,
@@ -155,6 +156,9 @@ export const ultraBeast: Variation = {
           rarities: [fullArt.id, rainbow.id],
         },
         [gxStage2.id]: {
+          rarities: [fullArt.id, rainbow.id],
+        },
+        [gxTagTeam.id]: {
           rarities: [fullArt.id, rainbow.id],
         },
       },

@@ -17,10 +17,16 @@ const useRarity = () => {
     [type, baseSet],
   );
 
+  const variationTypeRarities = useMemo(
+    () =>
+      variation?.baseSetDependencies[baseSet.id]?.types?.[type.id]?.rarities,
+    [variation, type, baseSet],
+  );
+
   const variationSubtypeRarities = useMemo(
     () =>
       subtype
-        ? variation?.baseSetDependencies[baseSet.id]?.subtypes[subtype.id]
+        ? variation?.baseSetDependencies[baseSet.id]?.subtypes?.[subtype.id]
             ?.rarities
         : undefined,
     [variation, subtype, baseSet],
@@ -33,19 +39,16 @@ const useRarity = () => {
     [subtype, baseSet, type],
   );
 
-  const typeHasVariation = useMemo(
-    () =>
-      !!variation?.baseSetDependencies[baseSet.id]?.types?.includes(type.id),
-    [baseSet, type, variation],
-  );
-
   const rarityIsAvailable = useCallback(
     (id: number) => {
       const typeIncludesRarity = typeRarities.includes(id);
+      const variationTypeIncludesRarity =
+        variation && variationTypeRarities?.includes(id);
       const variationSubtypeIncludesRarity =
         variation && subtype && variationSubtypeRarities?.includes(id);
       const subtypeIncludesRarity = subtypeRarities?.includes(id);
 
+      if (variationTypeIncludesRarity) return true;
       if (
         variation && subtype
           ? variationSubtypeIncludesRarity
@@ -57,6 +60,7 @@ const useRarity = () => {
     },
     [
       typeRarities,
+      variationTypeRarities,
       variationSubtypeRarities,
       subtypeRarities,
       variation,
@@ -66,11 +70,12 @@ const useRarity = () => {
 
   const anyRarityAvailable = useMemo<boolean>(() => {
     const typeHasRarities = !!typeRarities.length;
+    const variationTypeHasRarities = variation && variationTypeRarities?.length;
     const variationSubtypeHasRarities =
       variation && subtype && variationSubtypeRarities?.length;
     const subtypeHasRarities = !!subtypeRarities?.length;
 
-    if (typeHasVariation) return false;
+    if (variationTypeHasRarities) return true;
     if (!variation && !subtype && typeHasRarities) return true;
     if (
       variation && subtype
@@ -83,9 +88,9 @@ const useRarity = () => {
     typeRarities,
     variation,
     subtype,
+    variationTypeRarities,
     variationSubtypeRarities,
     subtypeRarities,
-    typeHasVariation,
   ]);
 
   useEffect(() => {

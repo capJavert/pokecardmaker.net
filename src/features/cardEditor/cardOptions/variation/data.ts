@@ -179,11 +179,48 @@ export const prismStar: Variation = {
   },
   baseSetDependencies: {
     [sunAndMoon.id]: {
-      types: [special.id, item.id, stadium.id, supporter.id],
+      types: {
+        [special.id]: {
+          rarities: [],
+        },
+        [item.id]: {
+          rarities: [],
+        },
+        [stadium.id]: {
+          rarities: [],
+        },
+        [supporter.id]: {
+          rarities: [],
+        },
+      },
       subtypes: {
         [basic.id]: {
           rarities: [],
         },
+      },
+    },
+  },
+};
+
+export const tagTeam: Variation = {
+  id: id++,
+  slug: 'tagTeam',
+  displayName: 'Tag Team',
+  baseSetDependencies: {
+    [sunAndMoon.id]: {
+      types: {
+        [supporter.id]: {
+          rarities: [fullArt.id],
+        },
+      },
+      subtypes: {},
+    },
+  },
+  styles: {
+    positions: {
+      name: {
+        width: '83.8%',
+        left: '7.2%',
       },
     },
   },
@@ -197,4 +234,5 @@ export const variations: Variation[] = [
   ex,
   ultraBeast,
   prismStar,
+  tagTeam,
 ];

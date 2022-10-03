@@ -15,7 +15,6 @@ import { QuestionMark as QuestionMarkIcon } from '@mui/icons-material';
 import FileUploader from '@components/inputs/FileUploader';
 import { useBaseSet } from '@cardEditor/cardOptions/baseSet';
 import findById from '@utils/findById';
-import NewFeatureHelpText from '@cardEditor/cardOptions/components/atoms/NewFeatureHelpText';
 
 const SetIconSelector: FC = () => {
   const { baseSets } = useBaseSet();

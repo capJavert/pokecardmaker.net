@@ -386,6 +386,8 @@ export default [
   'baseSets/sunAndMoon/supertypes/trainer/types/stadium/variations/prismStar',
   'baseSets/sunAndMoon/supertypes/trainer/types/stadium',
   'baseSets/sunAndMoon/supertypes/trainer/types/supporter/variations/prismStar',
+  'baseSets/sunAndMoon/supertypes/trainer/types/supporter/variations/tagTeam/rarities/fullArt',
+  'baseSets/sunAndMoon/supertypes/trainer/types/supporter/variations/tagTeam',
   'baseSets/sunAndMoon/supertypes/trainer/types/supporter',
   'baseSets/swordAndShield/supertypes/energy/types/base',
   'baseSets/swordAndShield/supertypes/energy/types/special',

@@ -33,14 +33,16 @@ const SubtypeSelector: FC = () => {
       displayName="Subtype"
       slug="subtype"
       onChange={handleChange}
-      helpText={baseSet.id === sunAndMoon.id && supertype.id === pokemon.id ?
-        <NewFeatureHelpText>
-          Try the new{' '}
-          <b>
-            <i>Tag Team</i>
-          </b>
-          {' '}subtype!
-        </NewFeatureHelpText> : undefined
+      helpText={
+        baseSet.id === sunAndMoon.id && supertype.id === pokemon.id ? (
+          <NewFeatureHelpText>
+            Try the new{' '}
+            <b>
+              <i>Tag Team</i>
+            </b>{' '}
+            subtype!
+          </NewFeatureHelpText>
+        ) : undefined
       }
     >
       {!isSubtypeRequired && (

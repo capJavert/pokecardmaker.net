@@ -45,8 +45,8 @@ const useVariation = () => {
       const baseSetVariation = v?.baseSetDependencies[baseSet.id];
       if (!baseSetVariation) return false;
       return tempSubtype
-        ? !!baseSetVariation.subtypes[tempSubtype.id]
-        : !!baseSetVariation.types?.includes(type.id);
+        ? !!baseSetVariation.subtypes?.[tempSubtype.id]
+        : !!baseSetVariation.types?.[type.id];
     },
     [baseSet, type, subtype],
   );

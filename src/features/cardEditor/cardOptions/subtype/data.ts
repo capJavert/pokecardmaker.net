@@ -388,7 +388,18 @@ export const gxTagTeam: Subtype = {
   slug: 'gxTagTeam',
   displayName: 'GX (Tag Team)',
   logic: gxLogic,
-  styles: gxStyles,
+  styles: {
+    ...gxStyles,
+    positions: {
+      ...gxStyles.positions,
+      name: {
+        top: '3.5%',
+      },
+      typeBar: {
+        bottom: '10.9%',
+      },
+    },
+  },
   baseSetDependencies: {
     [sunAndMoon.id]: [
       ...allPokemonTypes.map(t => ({

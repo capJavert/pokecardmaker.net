@@ -106,6 +106,7 @@ const Home: FC = () => {
                 <li>Pokémon GX (Basic)</li>
                 <li>Pokémon GX (Stage 1)</li>
                 <li>Pokémon GX (Stage 2)</li>
+                <li>Pokémon GX (Tag Team)</li>
                 <li>Ultra Beast variation</li>
                 <li>Prism Star variation</li>
                 <li>Full Art rarity</li>

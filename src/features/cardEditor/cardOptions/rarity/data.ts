@@ -65,6 +65,27 @@ export const rainbow: Rarity = {
   id: id++,
   slug: 'rainbow',
   displayName: 'Rainbow',
+  baseSetOverwrites: {
+    [sunAndMoon.id]: {
+      styles: {
+        positions: {
+          prevolveImg: {
+            top: '7.6%',
+            left: '4.7%',
+          },
+          prevolveName: {
+            top: '9.3%',
+          },
+          typeBar: {
+            bottom: '10.6%',
+          },
+          name: {
+            left: '18.2%',
+          },
+        },
+      },
+    },
+  },
 };
 
 export const supporterFullArt: Rarity = {

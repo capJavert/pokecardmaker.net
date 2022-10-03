@@ -90,6 +90,7 @@ export const sunAndMoon: BaseSet = {
     positions: {
       name: {
         height: '6%',
+        width: '52.2%',
         gap: '0.5em',
       },
       hitpoints: {

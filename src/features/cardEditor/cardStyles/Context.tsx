@@ -1,7 +1,9 @@
-import React, { createContext, useMemo } from 'react';
+import React, { createContext, useCallback, useMemo, useState } from 'react';
 import merge from 'lodash.merge';
 import {
   CardStyles,
+  baseEmphemeralUnit,
+  cardImgWidth,
   defaultCardStyles,
   getCardImagePath,
 } from '@cardEditor/cardStyles';
@@ -14,6 +16,8 @@ export type CardStylesState = RequiredIsh<CardStyles>;
 
 interface CardStylesContextInterface {
   state: CardStylesState;
+  emphemeralUnit: number;
+  setEmphemeralUnit: (width: number) => void;
   cardImgSrc: string | undefined;
 }
 
@@ -21,12 +25,21 @@ const initialState: CardStylesState = defaultCardStyles;
 
 export const CardStylesContext = createContext<CardStylesContextInterface>({
   state: initialState,
+  emphemeralUnit: baseEmphemeralUnit,
+  setEmphemeralUnit: () => null,
   cardImgSrc: fallbackCard.src,
 });
 
 export const CardStylesProvider: React.FC = ({ children }) => {
   const { baseSet, supertype, type, subtype, variation, rarity } =
     useCardRelations();
+  const [emphemeralUnit, setEm] = useState<number>(baseEmphemeralUnit);
+
+  const setEmphemeralUnit = useCallback(
+    (cardWidth: number) =>
+      setEm(cardWidth / (cardImgWidth / baseEmphemeralUnit)),
+    [],
+  );
 
   const { state, cardImgSrc } = useMemo(() => {
     // Create merged cardStyles
@@ -66,6 +79,8 @@ export const CardStylesProvider: React.FC = ({ children }) => {
     <CardStylesContext.Provider
       value={{
         state,
+        emphemeralUnit,
+        setEmphemeralUnit,
         cardImgSrc,
       }}
     >

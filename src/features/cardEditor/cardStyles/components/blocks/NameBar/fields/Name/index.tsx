@@ -1,32 +1,51 @@
 import { useCardOptions } from '@cardEditor/cardOptions';
-import { useCardStyles } from '@cardEditor/cardStyles';
+import { baseEmphemeralUnit, useCardStyles } from '@cardEditor/cardStyles';
+import { CSSProperties } from '@mui/styled-engine';
 import { Box } from '@mui/system';
 import { FC, useMemo, useRef } from 'react';
+// TODO: Remove duplicate constant files
+import { cardImgWidth } from 'src/constants';
+import { useElementSize } from 'usehooks-ts';
 import { getNameSymbolSize } from '../NameSymbol/utils';
 import { NameText } from './styles';
 
 const Name: FC = () => {
   const { name } = useCardOptions();
-  const { nameOutline, nameTextColor, nameSymbol } = useCardStyles();
+  const {
+    nameOutline,
+    nameTextColor,
+    nameSymbol,
+    emphemeralUnit,
+    positions: { name: namePosition },
+  } = useCardStyles();
   const ref = useRef<HTMLDivElement | null>(null);
-  const invisibleRef = useRef<HTMLDivElement | null>(null);
+  const [invisibleRef, { width }] = useElementSize();
 
-  const maxWidth = useMemo(() => {
-    // TODO: Calculate
-    return 215;
-  }, []);
-
-  const nameSymbolSize = useMemo(
-    () => getNameSymbolSize(nameSymbol)?.width || 0,
+  const nameSymbolSize = useMemo<string>(
+    () => getNameSymbolSize(nameSymbol)?.width || '0',
     [nameSymbol],
   );
 
-  const scale = useMemo<number>(() => {
-    // TODO: Only works for max size, not responsive. Calculate based of CardDisplay font size
-    const width = invisibleRef.current?.getBoundingClientRect().width || 0;
+  const maxWidth = useMemo(() => {
+    const maxWidthPercentile =
+      +(String((namePosition as CSSProperties)?.width) || '50%').split('%')[0] /
+      100;
+    const nameSymbolPx = nameSymbolSize
+      ? +nameSymbolSize.split('em')[0] * emphemeralUnit
+      : 0;
+    return (
+      cardImgWidth *
+        (emphemeralUnit / baseEmphemeralUnit) *
+        maxWidthPercentile -
+      nameSymbolPx
+    );
+  }, [emphemeralUnit, namePosition, nameSymbolSize]);
 
+  const scale = useMemo<number>(() => {
+    // TODO: This only updates every other change..
+    console.log('change', width);
     return Math.min(maxWidth / width, 1);
-  }, [maxWidth, name]);
+  }, [maxWidth, width, name]);
 
   if (!name) return null;
 
@@ -47,6 +66,7 @@ const Name: FC = () => {
       <Box
         ref={invisibleRef}
         sx={{
+          transition: 'none',
           position: 'absolute',
           top: 0,
           left: 0,

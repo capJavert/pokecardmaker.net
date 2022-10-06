@@ -34,6 +34,7 @@ const Name: FC = () => {
       ? +nameSymbolSize.split('em')[0] * emphemeralUnit
       : 0;
     // TODO: Subtract measured subname size
+    // TODO: And measured HP too?
     return (
       cardImgWidth *
         (emphemeralUnit / baseEmphemeralUnit) *

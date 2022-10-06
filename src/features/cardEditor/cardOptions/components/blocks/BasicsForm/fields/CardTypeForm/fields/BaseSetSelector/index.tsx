@@ -40,6 +40,10 @@ const BaseSetSelector: FC = () => {
           ,{' '}
           <b>
             <i>Ultra Beast</i>
+          </b>
+          ,{' '}
+          <b>
+            <i>Tag Team</i>
           </b>{' '}
           and{' '}
           <b>

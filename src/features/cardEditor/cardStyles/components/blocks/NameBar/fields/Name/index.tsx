@@ -3,9 +3,9 @@ import { baseEmphemeralUnit, useCardStyles } from '@cardEditor/cardStyles';
 import { CSSProperties } from '@mui/styled-engine';
 import { Box } from '@mui/system';
 import { FC, useMemo, useRef } from 'react';
+import { useMeasure } from 'react-use';
 // TODO: Remove duplicate constant files
 import { cardImgWidth } from 'src/constants';
-import { useElementSize } from 'usehooks-ts';
 import { getNameSymbolSize } from '../NameSymbol/utils';
 import { NameText } from './styles';
 
@@ -19,7 +19,7 @@ const Name: FC = () => {
     positions: { name: namePosition },
   } = useCardStyles();
   const ref = useRef<HTMLDivElement | null>(null);
-  const [invisibleRef, { width }] = useElementSize();
+  const [invisibleRef, { width }] = useMeasure<HTMLDivElement>();
 
   const nameSymbolSize = useMemo<string>(
     () => getNameSymbolSize(nameSymbol)?.width || '0',
@@ -33,6 +33,7 @@ const Name: FC = () => {
     const nameSymbolPx = nameSymbolSize
       ? +nameSymbolSize.split('em')[0] * emphemeralUnit
       : 0;
+    // TODO: Subtract measured subname size
     return (
       cardImgWidth *
         (emphemeralUnit / baseEmphemeralUnit) *
@@ -41,11 +42,10 @@ const Name: FC = () => {
     );
   }, [emphemeralUnit, namePosition, nameSymbolSize]);
 
-  const scale = useMemo<number>(() => {
-    // TODO: This only updates every other change..
-    console.log('change', width);
-    return Math.min(maxWidth / width, 1);
-  }, [maxWidth, width, name]);
+  const scale = useMemo<number>(
+    () => Math.min(maxWidth / width, 1),
+    [maxWidth, width],
+  );
 
   if (!name) return null;
 

@@ -1,7 +1,11 @@
-import { cardId, cardImgAspect } from '@cardEditor/cardStyles/constants';
+import {
+  cardId,
+  cardImgAspect,
+  cardImgHeight,
+} from '@cardEditor/cardStyles/constants';
 import { useCardStyles } from '@cardEditor/cardStyles/hooks';
-import { FC, useEffect, useMemo } from 'react';
-import { useDebounce, useElementSize } from 'usehooks-ts';
+import { FC, useState } from 'react';
+import { useDebounce, useMeasure } from 'react-use';
 import CardInfo from '../blocks/CardInfo';
 import Debug from '../blocks/Debug';
 import Moves from '../blocks/Moves';
@@ -22,17 +26,16 @@ import { CardContainer, CardContent } from './styles';
 
 const CardDisplay: FC = () => {
   const { emphemeralUnit, setEmphemeralUnit } = useCardStyles();
-  const [squareRef, { width }] = useElementSize();
-  const debouncedWidth = useDebounce<number>(width, 250);
+  const [squareRef, { width }] = useMeasure<HTMLDivElement>();
+  const [height, setHeight] = useState<number>(cardImgHeight);
 
-  useEffect(
-    () => setEmphemeralUnit(debouncedWidth),
-    [debouncedWidth, setEmphemeralUnit],
-  );
-
-  const height = useMemo<number>(
-    () => debouncedWidth * cardImgAspect,
-    [debouncedWidth],
+  useDebounce(
+    () => {
+      setEmphemeralUnit(width);
+      setHeight(width * cardImgAspect);
+    },
+    250,
+    [width],
   );
 
   return (

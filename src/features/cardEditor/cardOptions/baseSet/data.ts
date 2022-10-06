@@ -69,7 +69,7 @@ export const swordAndShield: BaseSet = {
         ml: '-0.35em',
       },
       dexEntry: {
-        textAlign: 'right',
+        justifyContent: 'flex-end',
         width: '58%',
       },
     },
@@ -165,7 +165,7 @@ export const sunAndMoon: BaseSet = {
         ml: '-0.15em',
       },
       dexEntry: {
-        textAlign: 'left',
+        justifyContent: 'flex-start',
         width: '48%',
       },
     },

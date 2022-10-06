@@ -1,9 +1,8 @@
 import { useCardLogic } from '@cardEditor/cardLogic';
 import { sunAndMoon, useBaseSet } from '@cardEditor/cardOptions/baseSet';
 import NewFeatureHelpText from '@cardEditor/cardOptions/components/atoms/NewFeatureHelpText';
-import { basic, useSubtype } from '@cardEditor/cardOptions/subtype';
-import { useType } from '@cardEditor/cardOptions/type';
-import { prismStar, useVariation } from '@cardEditor/cardOptions/variation';
+import { supporter, useType } from '@cardEditor/cardOptions/type';
+import { useVariation } from '@cardEditor/cardOptions/variation';
 import ControlledSelector from '@components/inputs/ControlledSelector';
 import { AnalyticsEvent, useAnalytics } from '@features/analytics';
 import { ListItemText, MenuItem, SelectChangeEvent } from '@mui/material';
@@ -14,7 +13,6 @@ const VariationSelector: FC = () => {
   const { hasVariations, isVariationRequired } = useCardLogic();
   const { baseSet } = useBaseSet();
   const { type } = useType();
-  const { subtype } = useSubtype();
   const { variations, variation, setVariation, variationIsAvailable } =
     useVariation();
 
@@ -35,13 +33,11 @@ const VariationSelector: FC = () => {
       slug="variation"
       onChange={handleChange}
       helpText={
-        baseSet.id === sunAndMoon.id &&
-        (subtype?.id === basic.id ||
-          !!prismStar.baseSetDependencies[sunAndMoon.id].types?.[type.id]) ? (
+        baseSet.id === sunAndMoon.id && type.id === supporter.id ? (
           <NewFeatureHelpText>
             Try the new{' '}
             <b>
-              <i>Prism Star</i>
+              <i>Tag Team</i>
             </b>{' '}
             variation!
           </NewFeatureHelpText>

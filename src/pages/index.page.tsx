@@ -66,6 +66,7 @@ const Home: FC = () => {
                 <Typography variant="h4">Trainer cards</Typography>
                 <List>
                   <li>Supporter</li>
+                  <li>Tag Team Supporter</li>
                   <li>Item</li>
                   <li>Tool Item</li>
                   <li>Full Art rarity</li>

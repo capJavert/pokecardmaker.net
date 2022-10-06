@@ -1,11 +1,11 @@
 import {
-  baseFontSize,
   cardId,
   cardImgAspect,
-  cardImgWidth,
+  cardImgHeight,
 } from '@cardEditor/cardStyles/constants';
-import { FC, useMemo } from 'react';
-import { useDebounce, useElementSize } from 'usehooks-ts';
+import { useCardStyles } from '@cardEditor/cardStyles/hooks';
+import { FC, useState } from 'react';
+import { useDebounce, useMeasure } from 'react-use';
 import CardInfo from '../blocks/CardInfo';
 import Debug from '../blocks/Debug';
 import Moves from '../blocks/Moves';
@@ -25,26 +25,23 @@ import TypeImg from '../fields/TypeImg';
 import { CardContainer, CardContent } from './styles';
 
 const CardDisplay: FC = () => {
-  const [squareRef, { width }] = useElementSize();
-  const debouncedWidth = useDebounce<number>(width, 250);
+  const { emphemeralUnit, setEmphemeralUnit } = useCardStyles();
+  const [squareRef, { width }] = useMeasure<HTMLDivElement>();
+  const [height, setHeight] = useState<number>(cardImgHeight);
 
-  const fontSize = useMemo<number>(
-    () =>
-      debouncedWidth
-        ? debouncedWidth / (cardImgWidth / baseFontSize)
-        : baseFontSize,
-    [debouncedWidth],
-  );
-
-  const height = useMemo<number>(
-    () => debouncedWidth * cardImgAspect,
-    [debouncedWidth],
+  useDebounce(
+    () => {
+      setEmphemeralUnit(width);
+      setHeight(width * cardImgAspect);
+    },
+    250,
+    [width],
   );
 
   return (
     <CardContainer
       id={cardId}
-      $fontSize={fontSize}
+      $fontSize={emphemeralUnit}
       $height={height}
       ref={squareRef}
     >

@@ -37,9 +37,7 @@ const VariationSelector: FC = () => {
       helpText={
         baseSet.id === sunAndMoon.id &&
         (subtype?.id === basic.id ||
-          prismStar.baseSetDependencies[sunAndMoon.id].types?.includes(
-            type.id,
-          )) ? (
+          !!prismStar.baseSetDependencies[sunAndMoon.id].types?.[type.id]) ? (
           <NewFeatureHelpText>
             Try the new{' '}
             <b>

@@ -1,11 +1,12 @@
 import { Variation } from '@cardEditor/cardOptions/variation';
 import { sunAndMoon, swordAndShield } from '../baseSet';
-import { fullArt, rainbow } from '../rarity';
+import { fullArt, rainbow, supporterFullArt } from '../rarity';
 import {
   basic,
   gxBasic,
   gxStage1,
   gxStage2,
+  gxTagTeam,
   stage1,
   stage2,
   vmax,
@@ -157,6 +158,9 @@ export const ultraBeast: Variation = {
         [gxStage2.id]: {
           rarities: [fullArt.id, rainbow.id],
         },
+        [gxTagTeam.id]: {
+          rarities: [fullArt.id, rainbow.id],
+        },
       },
     },
   },
@@ -175,11 +179,48 @@ export const prismStar: Variation = {
   },
   baseSetDependencies: {
     [sunAndMoon.id]: {
-      types: [special.id, item.id, stadium.id, supporter.id],
+      types: {
+        [special.id]: {
+          rarities: [],
+        },
+        [item.id]: {
+          rarities: [],
+        },
+        [stadium.id]: {
+          rarities: [],
+        },
+        [supporter.id]: {
+          rarities: [],
+        },
+      },
       subtypes: {
         [basic.id]: {
           rarities: [],
         },
+      },
+    },
+  },
+};
+
+export const tagTeam: Variation = {
+  id: id++,
+  slug: 'tagTeam',
+  displayName: 'Tag Team',
+  baseSetDependencies: {
+    [sunAndMoon.id]: {
+      types: {
+        [supporter.id]: {
+          rarities: [supporterFullArt.id],
+        },
+      },
+      subtypes: {},
+    },
+  },
+  styles: {
+    positions: {
+      name: {
+        width: '83.8%',
+        left: '7.2%',
       },
     },
   },
@@ -193,4 +234,5 @@ export const variations: Variation[] = [
   ex,
   ultraBeast,
   prismStar,
+  tagTeam,
 ];

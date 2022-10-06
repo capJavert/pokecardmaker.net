@@ -66,6 +66,7 @@ const Home: FC = () => {
                 <Typography variant="h4">Trainer cards</Typography>
                 <List>
                   <li>Supporter</li>
+                  <li>Tag Team Supporter</li>
                   <li>Item</li>
                   <li>Tool Item</li>
                   <li>Full Art rarity</li>
@@ -106,6 +107,7 @@ const Home: FC = () => {
                 <li>Pokémon GX (Basic)</li>
                 <li>Pokémon GX (Stage 1)</li>
                 <li>Pokémon GX (Stage 2)</li>
+                <li>Pokémon GX (Tag Team)</li>
                 <li>Ultra Beast variation</li>
                 <li>Prism Star variation</li>
                 <li>Full Art rarity</li>

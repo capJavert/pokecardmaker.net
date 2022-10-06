@@ -24,6 +24,7 @@ import {
   gxBasic,
   gxStage1,
   gxStage2,
+  gxTagTeam,
   stage1,
   stage2,
   tool,
@@ -166,5 +167,6 @@ export const defaultSubtypeVariations: {
   [gxBasic.id]: undefined,
   [gxStage1.id]: undefined,
   [gxStage2.id]: undefined,
+  [gxTagTeam.id]: undefined,
   [tool.id]: undefined,
 };

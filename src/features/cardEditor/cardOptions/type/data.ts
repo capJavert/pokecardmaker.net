@@ -1,6 +1,10 @@
 import { CardLogic } from '@cardEditor/cardLogic';
 import { Type } from '@cardEditor/cardOptions/type';
-import { goldenFullArtEnergy, supporterFullArt } from '../rarity';
+import {
+  fullArtNonPkm,
+  goldenFullArtEnergy,
+  goldenFullArtTrainer,
+} from '../rarity';
 import { energy, pokemon, trainer } from '../supertype';
 import { sunAndMoon, swordAndShield } from '../baseSet';
 
@@ -158,7 +162,7 @@ export const item: Type = {
     },
     [sunAndMoon.id]: {
       supertypes: [trainer.id],
-      rarities: [],
+      rarities: [fullArtNonPkm.id, goldenFullArtTrainer.id],
     },
   },
   baseSetOverwrites: {
@@ -182,11 +186,11 @@ export const supporter: Type = {
   baseSetDependencies: {
     [swordAndShield.id]: {
       supertypes: [trainer.id],
-      rarities: [supporterFullArt.id],
+      rarities: [fullArtNonPkm.id],
     },
     [sunAndMoon.id]: {
       supertypes: [trainer.id],
-      rarities: [],
+      rarities: [fullArtNonPkm.id],
     },
   },
   baseSetOverwrites: {

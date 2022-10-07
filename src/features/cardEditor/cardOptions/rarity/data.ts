@@ -89,9 +89,9 @@ export const rainbow: Rarity = {
   },
 };
 
-export const supporterFullArt: Rarity = {
+export const fullArtNonPkm: Rarity = {
   id: id++,
-  slug: 'supporterFullArt',
+  slug: 'fullArtNonPkm',
   displayName: 'Full Art',
   styles: {
     movesTextColor: 'black',
@@ -150,14 +150,22 @@ export const goldenFullArtEnergy: Rarity = {
   },
 };
 
+export const goldenFullArtTrainer: Rarity = {
+  id: id++,
+  slug: 'goldenFullArtTrainer',
+  displayName: 'Golden Full Art',
+  styles: fullArtNonPkm.styles,
+};
+
 export const rarities: Rarity[] = [
   promo,
   fullArt,
   goldenFullArtPokemon,
   rainbow,
-  supporterFullArt,
+  fullArtNonPkm,
   goldStar,
   goldenFullArtEnergy,
+  goldenFullArtTrainer,
   gilded,
   characterRare,
 ];

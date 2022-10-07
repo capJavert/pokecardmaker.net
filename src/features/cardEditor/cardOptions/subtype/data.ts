@@ -8,6 +8,7 @@ import {
   gilded,
   goldStar,
   goldenFullArtPokemon,
+  goldenFullArtTrainer,
   promo,
   rainbow,
 } from '../rarity';
@@ -280,7 +281,7 @@ export const tool: Subtype = {
     [sunAndMoon.id]: [
       {
         type: item.id,
-        rarities: [],
+        rarities: [goldenFullArtTrainer.id],
       },
     ],
   },

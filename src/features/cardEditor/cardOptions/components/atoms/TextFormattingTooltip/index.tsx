@@ -54,7 +54,7 @@ const TextFormattingTooltip: FC = () => {
               <s>~Strikethrough~</s>
             </li>
             <li>
-              <u>-Underlined-</u>
+              <u>--Underlined--</u>
             </li>
           </StyledList>
         </StyledFigure>

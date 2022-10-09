@@ -120,19 +120,19 @@ export const metal: Type = {
   baseSetOverwrites: pokemonTypeBaseSetOverwrites,
 };
 
-export const dragon: Type = {
+export const fairy: Type = {
   id: id++,
-  slug: 'dragon',
-  displayName: 'Dragon',
+  slug: 'fairy',
+  displayName: 'Fairy',
   logic: pokemonTypeLogic,
   baseSetDependencies: pokemonTypeBaseSetDependencies,
   baseSetOverwrites: pokemonTypeBaseSetOverwrites,
 };
 
-export const fairy: Type = {
+export const dragon: Type = {
   id: id++,
-  slug: 'fairy',
-  displayName: 'Fairy',
+  slug: 'dragon',
+  displayName: 'Dragon',
   logic: pokemonTypeLogic,
   baseSetDependencies: pokemonTypeBaseSetDependencies,
   baseSetOverwrites: pokemonTypeBaseSetOverwrites,
@@ -290,8 +290,8 @@ export const types: Type[] = [
   fighting,
   dark,
   metal,
-  dragon,
   fairy,
+  dragon,
   colorless,
   item,
   supporter,

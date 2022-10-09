@@ -14,7 +14,8 @@ export type NameSymbol =
   | 'ex'
   | 'gx'
   | 'gxUltraBeast'
-  | 'prismStar';
+  | 'prismStar'
+  | 'lvX';
 export type TextColor = 'white' | 'black' | 'gx' | 'ultraBeast';
 export type Size = 'sm' | 'lg';
 export type Move3Type = 'gx';
@@ -170,6 +171,10 @@ export interface CardStyles {
    * @default false
    */
   hasSubnameBeforeName?: boolean;
+  /**
+   * @default 'Evolves from'
+   */
+  prevolveText: string;
   move3: Partial<Move3CardLogic>;
   /**
    * Used to change position of items displayed on the card \

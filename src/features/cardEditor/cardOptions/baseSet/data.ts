@@ -39,7 +39,7 @@ export const swordAndShield: BaseSet = {
         ml: '-2%',
       },
       abilityName: {
-        lineheight: '1em',
+        lineHeight: '1em',
       },
       typeBar: {
         bottom: '11.2%',

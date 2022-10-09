@@ -94,6 +94,7 @@ const Home: FC = () => {
                 <li>Basic Pokémon</li>
                 <li>Stage 1 Pokémon</li>
                 <li>Stage 2 Pokémon</li>
+                <li>Lv. X Pokémon</li>
                 <li>Light variation</li>
                 <li>Dark variation</li>
                 <li>ex variation</li>

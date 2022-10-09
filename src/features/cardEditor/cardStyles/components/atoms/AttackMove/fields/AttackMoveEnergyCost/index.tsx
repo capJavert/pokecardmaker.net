@@ -1,5 +1,5 @@
 import { useBaseSet } from '@cardEditor/cardOptions/baseSet';
-import { colorless, useType } from '@cardEditor/cardOptions/type';
+import { useType } from '@cardEditor/cardOptions/type';
 import Routes from '@routes';
 import { FC } from 'react';
 import DisplayImg from '../../../DisplayImg';
@@ -31,8 +31,7 @@ const AttackMoveEnergyCost: FC<AttackMovePropsEnergyCostProps> = ({
       )}
       {move?.energyCost.length !== 0 &&
         [...(move?.energyCost ?? [])]
-          // Sort Colorless to the end
-          .sort(type => (type.typeId === colorless.id ? 1 : -1))
+          .sort((a, b) => a.typeId - b.typeId)
           .flatMap(energy =>
             new Array(energy.amount).fill(null).map((_, i) => (
               <TypeWrapper key={`${energy.typeId}-${i}`}>

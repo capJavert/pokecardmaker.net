@@ -65,7 +65,11 @@ export interface CardLogic {
   /**
    * @default false
    */
-  hasPrevolve: boolean;
+  hasPrevolveImg: boolean;
+  /**
+   * @default false
+   */
+  hasPrevolveName: boolean;
   /**
    * Whether the card has the dexStats bar in the middle of a Pokémon card
    * @default false

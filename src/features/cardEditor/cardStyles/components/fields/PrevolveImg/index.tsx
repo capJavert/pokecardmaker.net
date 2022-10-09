@@ -9,7 +9,7 @@ const PrevolveImg: FC = () => {
   const {
     positions: { prevolveImg: placement },
   } = useCardStyles();
-  const { hasPrevolve } = useCardLogic();
+  const { hasPrevolveImg } = useCardLogic();
   const { prevolveImgSrc } = useCardOptions();
   const { showDebug, prevolveImgSrc: debugImgSrc } = useCardDebug();
 
@@ -18,7 +18,7 @@ const PrevolveImg: FC = () => {
     [showDebug, prevolveImgSrc, debugImgSrc],
   );
 
-  if (!hasPrevolve || !imgSrc) return null;
+  if (!hasPrevolveImg || !imgSrc) return null;
 
   return <Img $url={imgSrc} placement={placement} />;
 };

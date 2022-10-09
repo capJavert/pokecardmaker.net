@@ -4,10 +4,10 @@ import { useCardOptions } from '@cardEditor/cardOptions';
 import { useCardLogic } from '@cardEditor/cardLogic';
 
 const PrevolveImgSrcFileUploader: FC = () => {
-  const { hasPrevolve } = useCardLogic();
+  const { hasPrevolveImg } = useCardLogic();
   const { setPrevolveImgSrc } = useCardOptions();
 
-  if (!hasPrevolve) return null;
+  if (!hasPrevolveImg) return null;
 
   return (
     <FileUploader

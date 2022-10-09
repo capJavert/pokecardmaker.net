@@ -5,7 +5,7 @@ import { useSubtype } from '@cardEditor/cardOptions/subtype';
 import { useType } from '@cardEditor/cardOptions/type';
 import { useCardLogic } from '@cardEditor/cardLogic';
 import { AnalyticsEvent, useAnalytics } from '@features/analytics';
-import { sunAndMoon, useBaseSet } from '@cardEditor/cardOptions/baseSet';
+import { swordAndShield, useBaseSet } from '@cardEditor/cardOptions/baseSet';
 import NewFeatureHelpText from '@cardEditor/cardOptions/components/atoms/NewFeatureHelpText';
 import { pokemon, useSupertype } from '@cardEditor/cardOptions/supertype';
 
@@ -34,11 +34,11 @@ const SubtypeSelector: FC = () => {
       slug="subtype"
       onChange={handleChange}
       helpText={
-        baseSet.id === sunAndMoon.id && supertype.id === pokemon.id ? (
+        baseSet.id === swordAndShield.id && supertype?.id === pokemon.id ? (
           <NewFeatureHelpText>
             Try the new{' '}
             <b>
-              <i>Tag Team</i>
+              <i>Lv. X</i>
             </b>{' '}
             subtype!
           </NewFeatureHelpText>

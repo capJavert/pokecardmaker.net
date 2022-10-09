@@ -80,7 +80,8 @@ export const stage1: Subtype = {
   slug: 'stage1',
   displayName: 'Stage 1',
   logic: {
-    hasPrevolve: true,
+    hasPrevolveImg: true,
+    hasPrevolveName: true,
     hasDexStats: true,
     hasDexEntry: true,
     hasVariations: true,
@@ -113,7 +114,8 @@ export const stage2: Subtype = {
   slug: 'stage2',
   displayName: 'Stage 2',
   logic: {
-    hasPrevolve: true,
+    hasPrevolveImg: true,
+    hasPrevolveName: true,
     hasDexStats: true,
     hasDexEntry: true,
     hasVariations: true,
@@ -188,7 +190,8 @@ export const vmax: Subtype = {
   logic: {
     hasNameSymbol: true,
     hasVariations: true,
-    hasPrevolve: true,
+    hasPrevolveImg: true,
+    hasPrevolveName: true,
     hasDexStats: false,
     hasCardInfo: true,
     hasDexEntry: false,
@@ -244,7 +247,8 @@ export const vstar: Subtype = {
     },
   },
   logic: {
-    hasPrevolve: true,
+    hasPrevolveImg: true,
+    hasPrevolveName: true,
     bonusMoveRequired: true,
     hasNameSymbol: true,
   },
@@ -352,7 +356,8 @@ export const gxStage1: Subtype = {
   displayName: 'GX (Stage 1)',
   logic: {
     ...gxLogic,
-    hasPrevolve: true,
+    hasPrevolveImg: true,
+    hasPrevolveName: true,
   },
   styles: gxStyles,
   baseSetDependencies: {
@@ -371,7 +376,8 @@ export const gxStage2: Subtype = {
   displayName: 'GX (Stage 2)',
   logic: {
     ...gxLogic,
-    hasPrevolve: true,
+    hasPrevolveImg: true,
+    hasPrevolveName: true,
   },
   styles: gxStyles,
   baseSetDependencies: {
@@ -411,10 +417,43 @@ export const gxTagTeam: Subtype = {
   },
 };
 
+export const lvX: Subtype = {
+  id: id++,
+  slug: 'lvX',
+  displayName: 'Lv. X',
+  logic: {
+    hasDexEntry: false,
+    hasDexStats: false,
+    hasNameSymbol: true,
+    hasPrevolveName: true,
+  },
+  styles: {
+    nameSymbol: 'lvX',
+    prevolveText: 'Put onto',
+    hpTextColor: 'black',
+    positions: {
+      prevolveName: {
+        top: '10.1%',
+        left: '7%',
+        width: '43.1%',
+      },
+    },
+  },
+  baseSetDependencies: {
+    [swordAndShield.id]: [
+      ...allPokemonTypes.map(t => ({
+        type: t,
+        rarities: [],
+      })),
+    ],
+  },
+};
+
 export const subtypes: Subtype[] = [
   basic,
   stage1,
   stage2,
+  lvX,
   v,
   vmax,
   tool,

@@ -4,10 +4,10 @@ import TextInput from '@components/inputs/TextInput';
 import { FC } from 'react';
 
 const PrevolveNameInput: FC = () => {
-  const { hasPrevolve } = useCardLogic();
+  const { hasPrevolveName } = useCardLogic();
   const { prevolveName, setPrevolveName } = useCardOptions();
 
-  if (!hasPrevolve) return null;
+  if (!hasPrevolveName) return null;
 
   return (
     <TextInput

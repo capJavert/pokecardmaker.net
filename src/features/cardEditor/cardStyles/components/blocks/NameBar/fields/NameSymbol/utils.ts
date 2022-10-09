@@ -47,6 +47,11 @@ export const getNameSymbolSize = (
         height: '3em',
         width: '2.3em',
       };
+    case 'lvX':
+      return {
+        height: '3em',
+        width: '4.5em',
+      };
     default:
       return undefined;
   }

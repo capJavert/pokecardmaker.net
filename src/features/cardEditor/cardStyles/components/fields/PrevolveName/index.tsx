@@ -6,15 +6,18 @@ import { StyledText } from './styles';
 
 const PrevolveName: FC = () => {
   const { prevolveName } = useCardOptions();
-  const { hasPrevolve } = useCardLogic();
+  const { hasPrevolveName } = useCardLogic();
   const {
+    prevolveText,
     positions: { prevolveName: placement },
   } = useCardStyles();
 
-  if (!hasPrevolve || !prevolveName) return null;
+  if (!hasPrevolveName || !prevolveName) return null;
 
   return (
-    <StyledText placement={placement}>Evolves from {prevolveName}</StyledText>
+    <StyledText placement={placement}>
+      {prevolveText} {prevolveName}
+    </StyledText>
   );
 };
 

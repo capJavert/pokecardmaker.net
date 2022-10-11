@@ -26,7 +26,10 @@ export const Text = styled(PlacementBlock)<{
   ${({ $outline }) =>
     !!$outline &&
     css`
-      filter: ${`url(#${$outline}OutlineEffect)`};
+      text-shadow: ${`${Array(100)
+        .fill(1)
+        .map(() => `0 0 1.5px ${$outline}`)
+        .join(', ')}`};
     `};
 `;
 

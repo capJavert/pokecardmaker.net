@@ -5,6 +5,9 @@ import { AttackMove } from '@cardEditor/types';
 import { FC, useMemo } from 'react';
 import { AttackMove3 } from './styles';
 
+const gxDescriptionAddition =
+  '_=(You can’t use more than 1 [X] attack in a game.)=_';
+
 const Move3: FC = () => {
   const {
     move3: {
@@ -27,7 +30,10 @@ const Move3: FC = () => {
         return move3
           ? {
               ...move3,
-              name: move3.name ? `_${move3?.name}_ [X]` : '[X]',
+              name: move3.name ? `_${move3.name}_ [X]` : '[X]',
+              description: move3.description
+                ? `${move3.description} ${gxDescriptionAddition}`
+                : gxDescriptionAddition,
             }
           : undefined;
     }

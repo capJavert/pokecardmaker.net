@@ -1,3 +1,4 @@
+import { SmallText } from '@cardEditor/cardStyles/components/atoms/CardText/styles';
 import {
   AssignmentTurnedIn as AssignmentTurnedInIcon,
   ContentPaste as ContentPasteIcon,
@@ -55,6 +56,9 @@ const TextFormattingTooltip: FC = () => {
             </li>
             <li>
               <u>--Underlined--</u>
+            </li>
+            <li>
+              <SmallText>=Small=</SmallText>
             </li>
           </StyledList>
         </StyledFigure>

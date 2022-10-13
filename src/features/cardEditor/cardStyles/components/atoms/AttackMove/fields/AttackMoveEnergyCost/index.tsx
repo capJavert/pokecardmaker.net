@@ -3,7 +3,12 @@ import { useType } from '@cardEditor/cardOptions/type';
 import Routes from '@routes';
 import { FC } from 'react';
 import DisplayImg from '../../../DisplayImg';
-import { EnergyCostPlus, TypeContainer, TypeWrapper, Wrapper } from './styles';
+import {
+  EnergyCostModifierText,
+  TypeContainer,
+  TypeWrapper,
+  Wrapper,
+} from './styles';
 import { AttackMovePropsEnergyCostProps } from './types';
 
 const AttackMoveEnergyCost: FC<AttackMovePropsEnergyCostProps> = ({
@@ -49,11 +54,15 @@ const AttackMoveEnergyCost: FC<AttackMovePropsEnergyCostProps> = ({
               </TypeWrapper>
             )),
           )}
-      {move?.energyCostPlus && (
+      {move?.energyCostModifier && (
         <TypeWrapper>
-          <EnergyCostPlus textColor={textColor} textOutline={textOutline}>
-            +
-          </EnergyCostPlus>
+          <EnergyCostModifierText
+            textColor={textColor}
+            textOutline={textOutline}
+            $symbol={move.energyCostModifier}
+          >
+            {move.energyCostModifier}
+          </EnergyCostModifierText>
         </TypeWrapper>
       )}
     </Wrapper>

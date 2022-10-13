@@ -85,7 +85,7 @@ export const defaultCardOptions: RequiredIsh<CardInterface> = {
     damageAmount: '',
     damageModifier: undefined,
     energyCost: [],
-    energyCostPlus: false,
+    energyCostModifier: undefined,
   },
   hasMove2: true,
   move2: {
@@ -94,7 +94,7 @@ export const defaultCardOptions: RequiredIsh<CardInterface> = {
     damageAmount: '',
     damageModifier: undefined,
     energyCost: [],
-    energyCostPlus: false,
+    energyCostModifier: undefined,
   },
   move3: {
     name: '',
@@ -102,7 +102,7 @@ export const defaultCardOptions: RequiredIsh<CardInterface> = {
     damageAmount: '',
     damageModifier: undefined,
     energyCost: [],
-    energyCostPlus: false,
+    energyCostModifier: undefined,
   },
   // Relations
   baseSetId: defaultRelations.baseSet.id,

@@ -1,7 +1,7 @@
 import { useBaseSet } from '@cardEditor/cardOptions/baseSet';
 import { useType } from '@cardEditor/cardOptions/type';
 import Label from '@components/inputs/Label';
-import { Add as PlusIcon } from '@mui/icons-material';
+import { Remove as MinusIcon, Add as PlusIcon } from '@mui/icons-material';
 import { Divider, FormControl, Typography } from '@mui/material';
 import Routes from '@routes';
 import Image from 'next/image';
@@ -46,11 +46,22 @@ const AttackMoveEnergyCostInput: FC<AttackMoveFieldProps> = ({
             onClick={() =>
               setMove({
                 ...move,
-                energyCostPlus: true,
+                energyCostModifier: '+',
               })
             }
           >
             <PlusIcon />
+          </EnergyTypeButton>
+          <EnergyTypeButton
+            label="add energy minus"
+            onClick={() =>
+              setMove({
+                ...move,
+                energyCostModifier: '-',
+              })
+            }
+          >
+            <MinusIcon />
           </EnergyTypeButton>
         </TypesContainer>
         <Divider />
@@ -82,18 +93,20 @@ const AttackMoveEnergyCostInput: FC<AttackMoveFieldProps> = ({
                   />
                 )),
             )}
-          {move.energyCostPlus && (
+          {move.energyCostModifier && (
             <EnergyTypeButton
-              label="remove energy plus"
+              label={`remove energy ${
+                move.energyCostModifier === '+' ? 'plus' : 'minus'
+              }`}
               onClick={() =>
                 setMove({
                   ...move,
-                  energyCostPlus: false,
+                  energyCostModifier: undefined,
                 })
               }
               small
             >
-              <PlusIcon />
+              {move.energyCostModifier === '+' ? <PlusIcon /> : <MinusIcon />}
             </EnergyTypeButton>
           )}
         </TypesContainer>

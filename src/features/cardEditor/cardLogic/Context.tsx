@@ -47,14 +47,14 @@ export const CardLogicProvider: React.FC = ({ children }) => {
       (acc, cost) => acc + cost.amount,
       0,
     );
-    move1Cost += Number(!!move1?.energyCostPlus);
+    move1Cost += Number(!!move1?.energyCostModifier);
     if ((!hasMove2 || !move2?.name) && !state.hasMove3) return move1Cost;
 
     let move2Cost = (move2?.energyCost ?? []).reduce(
       (acc, cost) => acc + cost.amount,
       0,
     );
-    move2Cost += Number(!!move2?.energyCostPlus);
+    move2Cost += Number(!!move2?.energyCostModifier);
     if (!move1?.name && !state.hasMove3) return move2Cost;
     if (!state.hasMove3) return Math.max(move1Cost, move2Cost);
 
@@ -62,7 +62,7 @@ export const CardLogicProvider: React.FC = ({ children }) => {
       (acc, cost) => acc + cost.amount,
       0,
     );
-    move3Cost += Number(!!move3?.energyCostPlus);
+    move3Cost += Number(!!move3?.energyCostModifier);
 
     return Math.max(move1Cost, move2Cost, move3Cost);
   }, [move1, move2, move3, hasMove2, state.hasMove3]);

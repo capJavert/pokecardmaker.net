@@ -1,4 +1,7 @@
-import { UploadFile as UploadFileIcon } from '@mui/icons-material';
+import {
+  ContentPasteSearch as ClipboardIcon,
+  UploadFile as UploadFileIcon,
+} from '@mui/icons-material';
 import {
   Button,
   CircularProgress,
@@ -7,6 +10,7 @@ import {
   InputAdornment,
   Typography,
 } from '@mui/material';
+import { Box } from '@mui/system';
 import {
   ChangeEvent,
   FC,
@@ -36,22 +40,51 @@ const FileUploader: FC<FileUploaderProps> = ({
     if (!file) setFileName(undefined);
   }, [file]);
 
-  const onUpload = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    setErrorMessage(undefined);
-
-    const upload = e.currentTarget.files?.[0];
-    if (!upload) return;
-    if (upload.size > maxFileSize) {
+  const upload = useCallback((uploadedFile: File) => {
+    if (uploadedFile.size > maxFileSize) {
       setErrorMessage('Please upload a file smaller than 5 MB');
       return;
     }
     setLoading(true);
 
     // Read as dataURL so we don't have to use local blobs, blobs don't work with html-to-canvas
-    fileReader.current?.readAsDataURL(upload);
-    setFileName(upload.name);
-    e.currentTarget.value = '';
+    fileReader.current?.readAsDataURL(uploadedFile);
+    setFileName(uploadedFile.name);
   }, []);
+
+  const onFileSystemUpload = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      setErrorMessage(undefined);
+
+      const uploadedFile = e.currentTarget.files?.[0];
+      if (!uploadedFile) return;
+      upload(uploadedFile);
+      e.currentTarget.value = '';
+    },
+    [upload],
+  );
+
+  const onClipboardUpload = useCallback(async () => {
+    setErrorMessage(undefined);
+
+    const permission = await navigator.permissions.query({
+      // @ts-expect-error - Types are wrong
+      name: 'clipboard-read',
+    });
+    if (permission.state === 'denied') {
+      return setErrorMessage('Permission to read your clipboard was denied');
+    }
+
+    const clipboardContents = await navigator.clipboard.read();
+    if (!clipboardContents?.[0]?.types?.includes('image/png')) {
+      return setErrorMessage(
+        'Please copy an image to your clipboard to upload it',
+      );
+    }
+
+    const blob = await clipboardContents[0].getType('image/png');
+    return upload(new File([blob], 'Clipboard.png'));
+  }, [upload]);
 
   // Subscribe to FileReader results and call the onChange when a result comes in
   useEffect(() => {
@@ -85,38 +118,50 @@ const FileUploader: FC<FileUploaderProps> = ({
       <Label slug={slug} tooltipProps={tooltipProps}>
         {label}
       </Label>
-      <Button
-        sx={{
-          borderColor: 'rgba(0, 0, 0, 0.25)',
-          textTransform: 'none',
-        }}
-        variant="outlined"
-        color="inherit"
-        component="label"
-        startIcon={
-          isLoading ? (
-            <CircularProgress color="inherit" size={20} />
-          ) : (
-            <UploadFileIcon />
-          )
-        }
-        endIcon={
-          !fileName ? (
-            <InputAdornment position="end">
-              <Typography variant="subtitle2">&lt; 5 MB</Typography>
-            </InputAdornment>
-          ) : undefined
-        }
-      >
-        <ButtonLabel>{fileName ?? <>&nbsp;</>}</ButtonLabel>
-        <input
-          id={`${slug}-input`}
-          accept="image/*"
-          type="file"
-          hidden
-          onChange={onUpload}
-        />
-      </Button>
+      <Box display="flex" gap={0.5}>
+        <Button
+          sx={{
+            borderColor: 'rgba(0, 0, 0, 0.25)',
+            textTransform: 'none',
+            flexGrow: 1,
+          }}
+          variant="outlined"
+          color="inherit"
+          component="label"
+          startIcon={
+            isLoading ? (
+              <CircularProgress color="inherit" size={20} />
+            ) : (
+              <UploadFileIcon />
+            )
+          }
+          endIcon={
+            !fileName ? (
+              <InputAdornment position="end">
+                <Typography variant="subtitle2">&lt; 5 MB</Typography>
+              </InputAdornment>
+            ) : undefined
+          }
+        >
+          <ButtonLabel>{fileName ?? <>&nbsp;</>}</ButtonLabel>
+          <input
+            id={`${slug}-input`}
+            accept="image/*"
+            type="file"
+            hidden
+            onChange={onFileSystemUpload}
+          />
+        </Button>
+        <Button
+          title="Paste image from clipboard"
+          onClick={onClipboardUpload}
+          variant="outlined"
+          color="inherit"
+          sx={{ borderColor: 'rgba(0, 0, 0, 0.25)', px: 2.5, minWidth: 0 }}
+        >
+          <ClipboardIcon fontSize="small" />
+        </Button>
+      </Box>
       {errorMessage && <FormHelperText>{errorMessage}</FormHelperText>}
     </FormControl>
   );

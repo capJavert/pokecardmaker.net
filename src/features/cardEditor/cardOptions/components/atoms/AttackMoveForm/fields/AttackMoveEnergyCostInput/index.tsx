@@ -2,17 +2,12 @@ import { useBaseSet } from '@cardEditor/cardOptions/baseSet';
 import { useType } from '@cardEditor/cardOptions/type';
 import Label from '@components/inputs/Label';
 import { Add as PlusIcon } from '@mui/icons-material';
-import {
-  Box,
-  Divider,
-  FormControl,
-  IconButton,
-  Typography,
-} from '@mui/material';
+import { Divider, FormControl, Typography } from '@mui/material';
 import Routes from '@routes';
 import Image from 'next/image';
 import { FC } from 'react';
 import { AttackMoveFieldProps } from '../../types';
+import EnergyTypeButton from './atoms/EnergyTypeButton';
 import EnergyCostAddField from './components/EnergyCostAddField';
 import { TypeContainer } from './components/EnergyCostAddField/styles';
 import EnergyCostRemoveField from './components/EnergyCostRemoveField';
@@ -46,17 +41,17 @@ const AttackMoveEnergyCostInput: FC<AttackMoveFieldProps> = ({
               setMove={setMove}
             />
           ))}
-          {/* TODO: Add this functionality */}
-          <Box
-            display="flex"
-            flexDirection="column"
-            width={30}
-            alignItems="center"
+          <EnergyTypeButton
+            label="add energy plus"
+            onClick={() =>
+              setMove({
+                ...move,
+                energyCostPlus: true,
+              })
+            }
           >
-            <IconButton size="small" aria-label="remove">
-              <PlusIcon />
-            </IconButton>
-          </Box>
+            <PlusIcon />
+          </EnergyTypeButton>
         </TypesContainer>
         <Divider />
         <TypesContainer $gap={0.5}>
@@ -87,6 +82,20 @@ const AttackMoveEnergyCostInput: FC<AttackMoveFieldProps> = ({
                   />
                 )),
             )}
+          {move.energyCostPlus && (
+            <EnergyTypeButton
+              label="remove energy plus"
+              onClick={() =>
+                setMove({
+                  ...move,
+                  energyCostPlus: false,
+                })
+              }
+              small
+            >
+              <PlusIcon />
+            </EnergyTypeButton>
+          )}
         </TypesContainer>
       </FieldWrapper>
     </FormControl>

@@ -1,11 +1,9 @@
 import { useBaseSet } from '@cardEditor/cardOptions/baseSet';
 
-import { IconButton } from '@mui/material';
-import { Box } from '@mui/system';
 import Routes from '@routes';
 import Image from 'next/image';
 import { FC, useCallback, useMemo } from 'react';
-import { TypeContainer } from './styles';
+import EnergyTypeButton from '../../atoms/EnergyTypeButton';
 import { EnergyCostAddFieldProps } from './types';
 
 const EnergyCostAddField: FC<EnergyCostAddFieldProps> = ({
@@ -47,22 +45,17 @@ const EnergyCostAddField: FC<EnergyCostAddFieldProps> = ({
   }, [energyCost, setMove, move, type.id]);
 
   return (
-    <Box display="flex" flexDirection="column" width={30} alignItems="center">
-      <IconButton
-        size="small"
-        aria-label={`add ${type.displayName} energy cost`}
-        onClick={add}
-      >
-        <TypeContainer>
-          <Image
-            alt={type.displayName}
-            layout="fill"
-            objectFit="contain"
-            src={Routes.Assets.Icons.Type(baseSet.slug, type.slug, true)}
-          />
-        </TypeContainer>
-      </IconButton>
-    </Box>
+    <EnergyTypeButton
+      label={`add ${type.displayName} energy cost`}
+      onClick={add}
+    >
+      <Image
+        alt={type.displayName}
+        layout="fill"
+        objectFit="contain"
+        src={Routes.Assets.Icons.Type(baseSet.slug, type.slug, true)}
+      />
+    </EnergyTypeButton>
   );
 };
 

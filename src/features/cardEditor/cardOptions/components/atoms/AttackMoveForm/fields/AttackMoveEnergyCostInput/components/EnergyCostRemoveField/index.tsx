@@ -1,13 +1,11 @@
 import { useBaseSet } from '@cardEditor/cardOptions/baseSet';
 import { useType } from '@cardEditor/cardOptions/type';
 
-import { IconButton } from '@mui/material';
-import { Box } from '@mui/system';
 import Routes from '@routes';
 import findById from '@utils/findById';
 import Image from 'next/image';
 import { FC, useCallback, useMemo } from 'react';
-import { TypeContainer } from './styles';
+import EnergyTypeButton from '../../atoms/EnergyTypeButton';
 import { EnergyCostRemoveFieldProps } from './types';
 
 const EnergyCostRemoveField: FC<EnergyCostRemoveFieldProps> = ({
@@ -52,24 +50,18 @@ const EnergyCostRemoveField: FC<EnergyCostRemoveFieldProps> = ({
   if (!type) return null;
 
   return (
-    // TODO: Generalize the buttons
-    <Box display="flex" flexDirection="column" width={30} alignItems="center">
-      <IconButton
-        size="small"
-        aria-label={`remove ${type.displayName} energy cost`}
-        onClick={remove}
-        sx={{ p: 0 }}
-      >
-        <TypeContainer>
-          <Image
-            alt={type.displayName}
-            layout="fill"
-            objectFit="contain"
-            src={Routes.Assets.Icons.Type(baseSet.slug, type.slug, true)}
-          />
-        </TypeContainer>
-      </IconButton>
-    </Box>
+    <EnergyTypeButton
+      label={`remove ${type.displayName} energy cost`}
+      small
+      onClick={remove}
+    >
+      <Image
+        alt={type.displayName}
+        layout="fill"
+        objectFit="contain"
+        src={Routes.Assets.Icons.Type(baseSet.slug, type.slug, true)}
+      />
+    </EnergyTypeButton>
   );
 };
 

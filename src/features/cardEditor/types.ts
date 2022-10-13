@@ -10,6 +10,7 @@ import { Supertype } from './cardOptions/supertype';
 import { Variation } from './cardOptions/variation';
 
 export type DamageModifier = '×' | '+' | '-';
+export type EnergyCostModifier = '+' | '-';
 
 export interface BaseMove {
   name: string;
@@ -25,7 +26,7 @@ export interface AttackMove extends BaseMove {
   damageAmount: number | '';
   damageModifier?: DamageModifier;
   energyCost: MoveType[];
-  energyCostPlus: boolean;
+  energyCostModifier?: EnergyCostModifier;
 }
 
 export type AbilityMove = BaseMove;

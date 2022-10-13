@@ -5,7 +5,7 @@ import parse, {
   domToReact,
 } from 'html-react-parser';
 import { CardTextProps } from './types';
-import { SpecialCharacter, Text } from './styles';
+import { SmallText, SpecialCharacter, Text } from './styles';
 
 const parseOptions: HTMLReactParserOptions = {
   replace: domNode => {
@@ -22,6 +22,8 @@ const parseOptions: HTMLReactParserOptions = {
           return <u>{children}</u>;
         case 'pkm':
           return <SpecialCharacter>{children}</SpecialCharacter>;
+        case 'small':
+          return <SmallText>{children}</SmallText>;
         default:
           return null;
       }
@@ -51,7 +53,12 @@ const CardText: FC<CardTextProps> = ({
           // Underline
           .replace(/(?:--)(?:(?!\s))((?:(?!\n|--).)+)(?:--)/g, '<u>$1</u>')
           // Special Character
-          .replace(/(?:\[)(?:(?!\s))((?:(?!\n|\[).)+)(?:\])/g, '<pkm>$1</pkm>');
+          .replace(/(?:\[)(?:(?!\s))((?:(?!\n|\[).)+)(?:\])/g, '<pkm>$1</pkm>')
+          // Small text
+          .replace(
+            /(?:=)(?:(?!\s))((?:(?!\n|=).)+)(?:=)/g,
+            '<small>$1</small>',
+          );
         return parse(contentString, parseOptions);
       }),
     [children],

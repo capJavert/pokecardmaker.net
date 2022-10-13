@@ -26,8 +26,16 @@ const AttackMoveDamageAmountInput: FC<AttackMoveFieldProps> = ({
           >
             ×
           </DamageModifierButton>
-          <DamageModifierButton move={move} setMove={setMove} modifier="+">
+          <DamageModifierButton
+            move={move}
+            setMove={setMove}
+            modifier="+"
+            sx={{ borderRadius: 0 }}
+          >
             +
+          </DamageModifierButton>
+          <DamageModifierButton move={move} setMove={setMove} modifier="-">
+            -
           </DamageModifierButton>
         </ButtonGroup>
       </InputAdornment>

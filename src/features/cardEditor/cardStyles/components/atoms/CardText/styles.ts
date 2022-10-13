@@ -37,3 +37,8 @@ export const SpecialCharacter = styled('span')`
   font-family: '${Font.PkmnTCGSpecialCharacters}', monospace;
   line-height: 0;
 `;
+
+export const SmallText = styled('span')`
+  font-size: 0.7em;
+  line-height: 1em;
+`;

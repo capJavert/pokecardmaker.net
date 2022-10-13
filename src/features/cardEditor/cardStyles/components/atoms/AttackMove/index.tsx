@@ -35,6 +35,8 @@ const AttackMove: FC<AttackMoveProps> = ({
         <AttackMoveEnergyCost
           move={move}
           hasAttackCostBorder={hasAttackCostBorder}
+          textOutline={nameOutline}
+          textColor={nameTextColor}
         />
         <AttackMoveName
           move={move}

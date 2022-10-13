@@ -3,12 +3,14 @@ import { useType } from '@cardEditor/cardOptions/type';
 import Routes from '@routes';
 import { FC } from 'react';
 import DisplayImg from '../../../DisplayImg';
-import { TypeContainer, TypeWrapper, Wrapper } from './styles';
+import { EnergyCostPlus, TypeContainer, TypeWrapper, Wrapper } from './styles';
 import { AttackMovePropsEnergyCostProps } from './types';
 
 const AttackMoveEnergyCost: FC<AttackMovePropsEnergyCostProps> = ({
   move,
   hasAttackCostBorder,
+  textColor,
+  textOutline,
 }) => {
   const { baseSet } = useBaseSet();
   const { getTypeById } = useType();
@@ -47,6 +49,13 @@ const AttackMoveEnergyCost: FC<AttackMovePropsEnergyCostProps> = ({
               </TypeWrapper>
             )),
           )}
+      {move?.energyCostPlus && (
+        <TypeWrapper>
+          <EnergyCostPlus textColor={textColor} textOutline={textOutline}>
+            +
+          </EnergyCostPlus>
+        </TypeWrapper>
+      )}
     </Wrapper>
   );
 };

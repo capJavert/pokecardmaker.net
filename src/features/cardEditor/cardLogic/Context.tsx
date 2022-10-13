@@ -43,26 +43,29 @@ export const CardLogicProvider: React.FC = ({ children }) => {
   );
 
   const greatestEnergyCost = useMemo<number>(() => {
-    const move1Cost = (move1?.energyCost ?? []).reduce(
+    let move1Cost = (move1?.energyCost ?? []).reduce(
       (acc, cost) => acc + cost.amount,
       0,
     );
+    move1Cost += Number(!!move1?.energyCostPlus);
     if ((!hasMove2 || !move2?.name) && !state.hasMove3) return move1Cost;
 
-    const move2Cost = (move2?.energyCost ?? []).reduce(
+    let move2Cost = (move2?.energyCost ?? []).reduce(
       (acc, cost) => acc + cost.amount,
       0,
     );
+    move2Cost += Number(!!move2?.energyCostPlus);
     if (!move1?.name && !state.hasMove3) return move2Cost;
     if (!state.hasMove3) return Math.max(move1Cost, move2Cost);
 
-    const move3Cost = (move3?.energyCost ?? []).reduce(
+    let move3Cost = (move3?.energyCost ?? []).reduce(
       (acc, cost) => acc + cost.amount,
       0,
     );
+    move3Cost += Number(!!move3?.energyCostPlus);
 
     return Math.max(move1Cost, move2Cost, move3Cost);
-  }, [move1, move2, move3?.energyCost, hasMove2, state.hasMove3]);
+  }, [move1, move2, move3, hasMove2, state.hasMove3]);
 
   return (
     <CardLogicContext.Provider

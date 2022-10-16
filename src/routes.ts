@@ -26,7 +26,7 @@ const Routes = {
       Ideas:
         'https://github.com/lvandernoll/pokecardmaker.net/discussions/categories/ideas',
       Questions:
-        'https://github.com/lvandernoll/pokecardmaker.net/discussions/new?category=q-a',
+        'https://github.com/lvandernoll/pokecardmaker.net/discussions/categories/q-a',
     },
   },
   Assets: {

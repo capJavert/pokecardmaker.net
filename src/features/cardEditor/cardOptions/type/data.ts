@@ -213,7 +213,7 @@ export const stadium: Type = {
   baseSetDependencies: {
     [swordAndShield.id]: {
       supertypes: [trainer.id],
-      rarities: [],
+      rarities: [fullArtNonPkm.id],
     },
     [sunAndMoon.id]: {
       supertypes: [trainer.id],

@@ -6,11 +6,10 @@ import { useRouter } from 'next/router';
 import { FC } from 'react';
 import { NavItems } from './styles';
 
-// TODO: Style this
 const DesktopHeader: FC = () => {
-  const { pathname } = useRouter();
+  const { asPath } = useRouter();
 
-  if (pathname !== Routes.Home) return null;
+  if (asPath === Routes.Creator) return null;
 
   return (
     <>

@@ -13,12 +13,20 @@ const Routes = {
   Creator: '/creator',
   PrivacyPolicy: '/privacy-policy',
   CookiePolicy: '/cookie-policy',
+  Contact: '/contact',
+  EMail: 'leonvdnoll@gmail.com',
   GitHub: {
     Home: 'https://github.com/lvandernoll/pokecardmaker.net',
+    ProjectBoard: 'https://github.com/users/lvandernoll/projects/3/',
+    Issues: {
+      New: 'https://github.com/lvandernoll/pokecardmaker.net/issues/new/choose',
+    },
     Discussions: {
       Home: 'https://github.com/lvandernoll/pokecardmaker.net/discussions',
       Ideas:
         'https://github.com/lvandernoll/pokecardmaker.net/discussions/categories/ideas',
+      Questions:
+        'https://github.com/lvandernoll/pokecardmaker.net/discussions/categories/q-a',
     },
   },
   Assets: {

@@ -5,14 +5,11 @@ import { useSubtype } from '@cardEditor/cardOptions/subtype';
 import { useType } from '@cardEditor/cardOptions/type';
 import { useCardLogic } from '@cardEditor/cardLogic';
 import { AnalyticsEvent, useAnalytics } from '@features/analytics';
-import { swordAndShield, useBaseSet } from '@cardEditor/cardOptions/baseSet';
-import NewFeatureHelpText from '@cardEditor/cardOptions/components/atoms/NewFeatureHelpText';
-import { pokemon, useSupertype } from '@cardEditor/cardOptions/supertype';
+import { useBaseSet } from '@cardEditor/cardOptions/baseSet';
 
 const SubtypeSelector: FC = () => {
   const { trackCardCreatorEvent } = useAnalytics();
   const { baseSet } = useBaseSet();
-  const { supertype } = useSupertype();
   const { type } = useType();
   const { hasSubtypes, isSubtypeRequired } = useCardLogic();
   const { subtypes, subtype, setSubtype } = useSubtype();
@@ -33,17 +30,6 @@ const SubtypeSelector: FC = () => {
       displayName="Subtype"
       slug="subtype"
       onChange={handleChange}
-      helpText={
-        baseSet.id === swordAndShield.id && supertype?.id === pokemon.id ? (
-          <NewFeatureHelpText>
-            Try the new{' '}
-            <b>
-              <i>Lv. X</i>
-            </b>{' '}
-            subtype!
-          </NewFeatureHelpText>
-        ) : undefined
-      }
     >
       {!isSubtypeRequired && (
         <MenuItem value="">

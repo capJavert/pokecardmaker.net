@@ -7,9 +7,9 @@ import { FC } from 'react';
 import { NavItems } from './styles';
 
 const DesktopHeader: FC = () => {
-  const { asPath } = useRouter();
+  const { pathname } = useRouter();
 
-  if (asPath === Routes.Creator) return null;
+  if (pathname === Routes.Creator) return null;
 
   return (
     <>

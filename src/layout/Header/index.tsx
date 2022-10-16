@@ -7,11 +7,11 @@ import DesktopHeader from './DesktopHeader';
 import { DefaultAppBar, InvisibleHeading } from './styles';
 
 const Header: FC = () => {
-  const { asPath } = useRouter();
+  const { pathname } = useRouter();
 
   return (
     <>
-      {(asPath === Routes.Home || asPath === Routes.Creator) && (
+      {(pathname === Routes.Home || pathname === Routes.Creator) && (
         <InvisibleHeading>Pokécardmaker.net</InvisibleHeading>
       )}
       <DefaultAppBar position="relative" color="primary">

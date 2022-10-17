@@ -18,4 +18,5 @@ export interface GeneralInputProps extends InputProps {
   multiline?: boolean;
   minRows?: number;
   inputProps?: InputBaseProps['inputProps'];
+  forceUpdate?: boolean;
 }

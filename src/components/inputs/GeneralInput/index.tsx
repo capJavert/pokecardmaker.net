@@ -1,5 +1,6 @@
 import { FormControl, TextField } from '@mui/material';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
+import { useDebounce } from 'react-use';
 import Label from '../Label';
 import { GeneralInputProps } from './types';
 
@@ -11,25 +12,44 @@ const GeneralInput: FC<GeneralInputProps> = ({
   disabled,
   onChange,
   tooltipProps,
+  value,
+  forceUpdate,
   ...rest
-}) => (
-  <FormControl>
-    <Label slug={slug} tooltipProps={tooltipProps}>
-      {label}
-    </Label>
-    <TextField
-      id={`${slug}-input`}
-      InputProps={{
-        startAdornment,
-        endAdornment,
-      }}
-      disabled={disabled}
+}) => {
+  const [tempValue, setTempValue] = useState(value);
+
+  useEffect(() => {
+    setTempValue(value);
+  }, [value, forceUpdate]);
+
+  useDebounce(
+    () => {
       // Components implementing this component will add typing
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      onChange={e => onChange(e.currentTarget.value as any)}
-      {...rest}
-    />
-  </FormControl>
-);
+      onChange(tempValue as any);
+    },
+    250,
+    [tempValue],
+  );
+
+  return (
+    <FormControl>
+      <Label slug={slug} tooltipProps={tooltipProps}>
+        {label}
+      </Label>
+      <TextField
+        id={`${slug}-input`}
+        InputProps={{
+          startAdornment,
+          endAdornment,
+        }}
+        disabled={disabled}
+        onChange={e => setTempValue(e.currentTarget.value)}
+        value={tempValue}
+        {...rest}
+      />
+    </FormControl>
+  );
+};
 
 export default GeneralInput;

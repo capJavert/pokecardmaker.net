@@ -120,11 +120,11 @@ const FileUploader: FC<FileUploaderProps> = ({
       </Label>
       <Box display="flex" gap={0.5}>
         <Button
-          sx={{
-            borderColor: 'rgba(0, 0, 0, 0.25)',
+          sx={theme => ({
+            borderColor: theme.custom.inputBorderColor,
             textTransform: 'none',
             flexGrow: 1,
-          }}
+          })}
           variant="outlined"
           color="inherit"
           component="label"
@@ -157,7 +157,11 @@ const FileUploader: FC<FileUploaderProps> = ({
           onClick={onClipboardUpload}
           variant="outlined"
           color="inherit"
-          sx={{ borderColor: 'rgba(0, 0, 0, 0.25)', px: 2.5, minWidth: 0 }}
+          sx={theme => ({
+            borderColor: theme.custom.inputBorderColor,
+            px: 2.5,
+            minWidth: 0,
+          })}
         >
           <ClipboardIcon fontSize="small" />
         </Button>

@@ -4,7 +4,7 @@ export const FieldWrapper = styled('div')`
   display: flex;
   flex-direction: column;
   width: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.25);
+  border: 1px solid ${({ theme }) => theme.custom.inputBorderColor};
   border-radius: ${({ theme }) => theme.shape.borderRadius}px;
   padding: ${({ theme }) => theme.spacing(1.5, 3)};
   gap: ${({ theme }) => theme.spacing(1.5)};

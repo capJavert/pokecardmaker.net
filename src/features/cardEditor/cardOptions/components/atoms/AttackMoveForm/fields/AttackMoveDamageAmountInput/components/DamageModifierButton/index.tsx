@@ -1,5 +1,5 @@
 import { DamageModifier } from '@cardEditor';
-import { Button, useTheme } from '@mui/material';
+import { Button } from '@mui/material';
 import { FC, useCallback, useMemo } from 'react';
 import { DamageModifierButtonProps } from './types';
 
@@ -10,8 +10,6 @@ const DamageModifierButton: FC<DamageModifierButtonProps> = ({
   sx,
   children,
 }) => {
-  const theme = useTheme();
-
   const isActive = useMemo<boolean>(
     () => move?.damageModifier === modifier,
     [modifier, move.damageModifier],
@@ -29,15 +27,15 @@ const DamageModifierButton: FC<DamageModifierButtonProps> = ({
 
   return (
     <Button
-      sx={{
+      sx={theme => ({
         fontSize: '0.9rem',
         borderColor: 'transparent',
-        borderLeftColor: 'rgba(0, 0, 0, 0.25)',
+        borderLeftColor: theme.custom.inputBorderColor,
         color: isActive
           ? theme.palette.primary.contrastText
           : theme.palette.text.primary,
         ...sx,
-      }}
+      })}
       variant={isActive ? 'contained' : 'outlined'}
       onClick={() => onDamageModifierChange(modifier)}
     >

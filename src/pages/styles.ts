@@ -12,7 +12,7 @@ export const Background = styled('div')`
 `;
 
 export const MainContainer = styled(Container)`
-  padding: ${({ theme }) => theme.spacing(5, 3, 3)};
+  padding: ${({ theme }) => theme.spacing(5, 3)};
   flex-grow: 1;
 `;
 

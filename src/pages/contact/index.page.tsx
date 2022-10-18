@@ -28,7 +28,7 @@ const ContactPage: FC = () => {
             <ContactItem>
               <span>💡</span>
               <Typography variant="h3">Have an idea?</Typography>
-              <Typography>
+              <Typography textAlign="center">
                 Check out what&apos;s already on the{' '}
                 <Link href={Routes.GitHub.ProjectBoard} target="_blank">
                   project board
@@ -45,7 +45,7 @@ const ContactPage: FC = () => {
             <ContactItem>
               <span>🙏</span>
               <Typography variant="h3">Have a question?</Typography>
-              <Typography>
+              <Typography textAlign="center">
                 For any questions, you can make a post{' '}
                 <Link
                   href={Routes.GitHub.Discussions.Questions}
@@ -58,7 +58,7 @@ const ContactPage: FC = () => {
             <ContactItem>
               <span>🐛</span>
               <Typography variant="h3">Found a bug?</Typography>
-              <Typography>
+              <Typography textAlign="center">
                 Please let me know by creating an issue{' '}
                 <Link href={Routes.GitHub.Issues.New} target="_blank">
                   here!
@@ -68,7 +68,7 @@ const ContactPage: FC = () => {
             <ContactItem>
               <span>💬</span>
               <Typography variant="h3">Just want to chat?</Typography>
-              <Typography>
+              <Typography textAlign="center">
                 Visit the{' '}
                 <Link href={Routes.GitHub.Discussions.Home} target="_blank">
                   GitHub discussions page

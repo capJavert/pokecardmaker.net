@@ -6,8 +6,10 @@ import ControlledSelector from '@components/inputs/ControlledSelector';
 import { useRarityIcon } from '@cardEditor/cardOptions/rarityIcon';
 import { SelectorListItemIcon } from '@components/SelectorListItemIcon';
 import { SelectorMenuItem } from '@components/SelectorMenuItem';
+import { useSettings } from '@features/settings';
 
 const RarityIconSelector: FC = () => {
+  const { themeMode } = useSettings();
   const { rarityIcons, rarityIcon, setRarityIcon } = useRarityIcon();
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -28,7 +30,7 @@ const RarityIconSelector: FC = () => {
         <SelectorMenuItem key={ri.slug} value={ri.id}>
           <SelectorListItemIcon>
             <Image
-              src={Routes.Assets.Icons.Rarity(ri.slug)}
+              src={themeMode === 'light' ? Routes.Assets.Icons.Rarity(ri.slug) : Routes.Assets.Icons.RarityWhite(ri.slug)}
               height={13}
               width={13}
               alt=""

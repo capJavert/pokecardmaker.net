@@ -11,7 +11,7 @@ export const DefaultAppBar = styled(AppBar)``;
 
 export const NavItems = styled('nav')`
   display: flex;
-  margin-left: auto;
+  margin-left: ${({ theme }) => theme.spacing(2)};
 `;
 
 export const NavItem = styled(Button)`

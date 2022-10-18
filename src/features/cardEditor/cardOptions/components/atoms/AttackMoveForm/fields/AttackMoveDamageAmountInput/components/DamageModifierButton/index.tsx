@@ -29,15 +29,15 @@ const DamageModifierButton: FC<DamageModifierButtonProps> = ({
 
   return (
     <Button
-      sx={{
+      sx={theme => ({
         fontSize: '0.9rem',
         borderColor: 'transparent',
-        borderLeftColor: 'rgba(0, 0, 0, 0.25)',
+        borderLeftColor: theme.custom.inputBorderColor,
         color: isActive
           ? theme.palette.primary.contrastText
           : theme.palette.text.primary,
         ...sx,
-      }}
+      })}
       variant={isActive ? 'contained' : 'outlined'}
       onClick={() => onDamageModifierChange(modifier)}
     >

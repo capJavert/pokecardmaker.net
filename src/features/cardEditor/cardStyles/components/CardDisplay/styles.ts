@@ -16,11 +16,11 @@ export const CardContainer = styled('div')<{
   }
 
   &::before {
-    /* Simple white background so the card isn't transparent */
+    /* Simple plain background so the card isn't transparent */
     z-index: -10;
     content: '';
     position: absolute;
-    background: white;
+    background: ${({ theme }) => theme.palette.background.default};
     border-radius: 30px;
     /* Space a bit away from the borders so it's not visible outside of the card */
     width: calc(100% - 8px);

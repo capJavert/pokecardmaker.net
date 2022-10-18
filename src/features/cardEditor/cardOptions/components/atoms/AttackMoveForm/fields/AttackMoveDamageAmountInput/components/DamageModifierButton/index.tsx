@@ -7,7 +7,7 @@ const DamageModifierButton: FC<DamageModifierButtonProps> = ({
   modifier,
   move,
   setMove,
-  sx,
+  noBorderRadius,
   children,
 }) => {
   const isActive = useMemo<boolean>(
@@ -34,7 +34,7 @@ const DamageModifierButton: FC<DamageModifierButtonProps> = ({
         color: isActive
           ? theme.palette.primary.contrastText
           : theme.palette.text.primary,
-        ...sx,
+        borderRadius: noBorderRadius ? 0 : undefined,
       })}
       variant={isActive ? 'contained' : 'outlined'}
       onClick={() => onDamageModifierChange(modifier)}

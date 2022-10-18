@@ -22,7 +22,7 @@ const AttackMoveDamageAmountInput: FC<AttackMoveFieldProps> = ({
             move={move}
             setMove={setMove}
             modifier="×"
-            sx={{ borderRadius: 0 }}
+            noBorderRadius
           >
             ×
           </DamageModifierButton>
@@ -30,7 +30,7 @@ const AttackMoveDamageAmountInput: FC<AttackMoveFieldProps> = ({
             move={move}
             setMove={setMove}
             modifier="+"
-            sx={{ borderRadius: 0 }}
+            noBorderRadius
           >
             +
           </DamageModifierButton>

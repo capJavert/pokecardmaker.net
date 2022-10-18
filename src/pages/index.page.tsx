@@ -22,7 +22,16 @@ const Home: FC = () => {
       />
       <Box gap={4} display="flex" flexDirection="column">
         <PaperBox>
-          <Image src={banner} />
+          <Box
+            sx={theme => ({
+              borderRadius: theme.shape.borderRadius,
+              boxShadow: theme.shadows[1],
+              overflow: 'hidden',
+              width: '100%',
+            })}
+          >
+            <Image src={banner} layout="responsive" alt="" />
+          </Box>
           <Typography variant="h2" textAlign="center">
             {siteDescription}
           </Typography>

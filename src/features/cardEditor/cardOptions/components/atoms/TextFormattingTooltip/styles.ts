@@ -42,6 +42,6 @@ export const ExampleList = styled('div')`
   width: fit-content;
   margin: ${({ theme }) => theme.spacing(2, 0)};
   padding: ${({ theme }) => theme.spacing(1.5, 3)};
-  border: 1px solid rgba(0, 0, 0, 0.25);
+  border: 1px solid ${({ theme }) => theme.custom.inputBorderColor};
   border-radius: ${({ theme }) => theme.shape.borderRadius}px;
 `;

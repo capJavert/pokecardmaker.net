@@ -24,7 +24,14 @@ const Header: FC = () => {
               Pokécardmaker.net
             </Typography>
           </NextLink>
-          <IconButton aria-label="switch theme mode" color="inherit" onClick={() => setThemeMode(prev => prev === 'light' ? 'dark' : 'light')} sx={{ ml: 'auto' }}>
+          <IconButton
+            aria-label="switch theme mode"
+            color="inherit"
+            onClick={() =>
+              setThemeMode(prev => (prev === 'light' ? 'dark' : 'light'))
+            }
+            sx={{ ml: 'auto' }}
+          >
             {themeMode === 'light' ? <Brightness4 /> : <Brightness7 />}
           </IconButton>
           <Hidden smDown>

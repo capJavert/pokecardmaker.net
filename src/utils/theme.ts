@@ -1,4 +1,4 @@
-import { createTheme, PaletteMode, responsiveFontSizes } from '@mui/material';
+import { PaletteMode, createTheme, responsiveFontSizes } from '@mui/material';
 
 interface CustomThemeProps {
   space: (n: number) => number;
@@ -65,14 +65,18 @@ export const getTheme = (mode: PaletteMode) => {
   theme = createTheme(theme, {
     custom: {
       space: (n: number) => n * spacingAmount,
-      inputBorderColor: isLight ? 'rgba(0, 0, 0, 0.25)' : 'rgba(255, 255, 255, 0.25)',
-      backgroundGradient: isLight ? `repeating-linear-gradient(
+      inputBorderColor: isLight
+        ? 'rgba(0, 0, 0, 0.25)'
+        : 'rgba(255, 255, 255, 0.25)',
+      backgroundGradient: isLight
+        ? `repeating-linear-gradient(
         -45deg,
         #e8e8e8,
         #e8e8e8 75px,
         #e0e0e0 75px,
         #e0e0e0 150px
-      )` : `repeating-linear-gradient(
+      )`
+        : `repeating-linear-gradient(
         -45deg,
         #121212,
         #121212 75px,
@@ -185,8 +189,7 @@ export const getTheme = (mode: PaletteMode) => {
     },
   });
 
-
   theme = responsiveFontSizes(theme);
 
   return theme;
-}
+};

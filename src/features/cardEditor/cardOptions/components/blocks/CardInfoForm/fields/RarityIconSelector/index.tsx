@@ -30,7 +30,11 @@ const RarityIconSelector: FC = () => {
         <SelectorMenuItem key={ri.slug} value={ri.id}>
           <SelectorListItemIcon>
             <Image
-              src={themeMode === 'light' ? Routes.Assets.Icons.Rarity(ri.slug) : Routes.Assets.Icons.RarityWhite(ri.slug)}
+              src={
+                themeMode === 'light'
+                  ? Routes.Assets.Icons.Rarity(ri.slug)
+                  : Routes.Assets.Icons.RarityWhite(ri.slug)
+              }
               height={13}
               width={13}
               alt=""

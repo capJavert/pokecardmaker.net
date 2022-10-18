@@ -1,6 +1,12 @@
 import { PaletteMode, Theme } from '@mui/material';
 import { getTheme } from '@utils/theme';
-import React, { createContext, Dispatch, SetStateAction, useMemo, useState } from 'react';
+import React, {
+  Dispatch,
+  SetStateAction,
+  createContext,
+  useMemo,
+  useState,
+} from 'react';
 
 interface SettingsContextInterface {
   theme: Theme;
@@ -15,7 +21,7 @@ export const SettingsContext = createContext<SettingsContextInterface>({
 });
 
 export const SettingsProvider: React.FC = ({ children }) => {
-  const [themeMode, setThemeMode] = useState<PaletteMode>('dark');
+  const [themeMode, setThemeMode] = useState<PaletteMode>('light');
 
   const modeTheme = useMemo(() => getTheme(themeMode), [themeMode]);
 

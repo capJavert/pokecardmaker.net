@@ -16,15 +16,13 @@ const Providers: FC = ({ children }) => {
         <CardDebugProvider>
           <CardLogicProvider>
             <CardStylesProvider>
-              <AnalyticsProvider>
-                {children}
-              </AnalyticsProvider>
+              <AnalyticsProvider>{children}</AnalyticsProvider>
             </CardStylesProvider>
           </CardLogicProvider>
         </CardDebugProvider>
       </CardOptionsProvider>
     </ThemeProvider>
   );
-}
+};
 
 export default Providers;

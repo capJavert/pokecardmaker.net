@@ -8,8 +8,8 @@ import CookieConsent from '@components/CookieConsent';
 import GoatCounter from '@features/analytics/components/GoatCounter';
 import { GoogleTagManagerScript } from '@features/analytics/components/GTM';
 import { useRouter } from 'next/router';
-import { Background, MainContainer } from './styles';
 import { SettingsProvider } from '@features/settings';
+import { Background, MainContainer } from './styles';
 import Providers from './Providers';
 
 interface AppProps extends NextAppProps {

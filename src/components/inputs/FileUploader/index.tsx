@@ -157,7 +157,11 @@ const FileUploader: FC<FileUploaderProps> = ({
           onClick={onClipboardUpload}
           variant="outlined"
           color="inherit"
-          sx={theme => ({ borderColor: theme.custom.inputBorderColor, px: 2.5, minWidth: 0 })}
+          sx={theme => ({
+            borderColor: theme.custom.inputBorderColor,
+            px: 2.5,
+            minWidth: 0,
+          })}
         >
           <ClipboardIcon fontSize="small" />
         </Button>

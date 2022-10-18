@@ -7,7 +7,9 @@ export const InvisibleHeading = styled('h1')`
   left: 0;
 `;
 
-export const DefaultAppBar = styled(AppBar)``;
+export const DefaultAppBar = styled(AppBar)`
+  background: ${({ theme }) => theme.palette.primary.main};
+`;
 
 export const NavItems = styled('nav')`
   display: flex;

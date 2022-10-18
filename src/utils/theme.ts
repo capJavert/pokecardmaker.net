@@ -32,7 +32,7 @@ export const getTheme = (mode: PaletteMode) => {
       },
       background: {
         default: isLight ? '#ffffff' : '#121212',
-        paper: isLight ? '#ffffff80' : '#1d1d1d',
+        paper: isLight ? '#ffffff80' : '#1d1d1d80',
       },
     },
     typography: {
@@ -87,9 +87,6 @@ export const getTheme = (mode: PaletteMode) => {
     palette: {},
     components: {
       MuiAppBar: {
-        defaultProps: {
-          color: 'primary',
-        },
         styleOverrides: {
           root: {
             height: 65,

@@ -2,11 +2,9 @@ import { useContext } from 'react';
 import { AnalyticsContext } from '../Context';
 
 const useAnalytics = () => {
-  const { trackCardCreatorEvent } = useContext(AnalyticsContext);
+  const state = useContext(AnalyticsContext);
 
-  return {
-    trackCardCreatorEvent,
-  };
+  return state;
 };
 
 export default useAnalytics;

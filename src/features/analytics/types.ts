@@ -1,4 +1,8 @@
 export enum AnalyticsEvent {
+  ThemeSwitch = 'theme_switch',
+}
+
+export enum CardCreatorAnalyticsEvent {
   BaseSetChange = 'base_set_change',
   SupertypeChange = 'supertype_change',
   TypeChange = 'type_change',

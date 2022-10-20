@@ -1,17 +1,19 @@
 import React, { createContext, useCallback, useEffect, useRef } from 'react';
 import { useCardRelations } from '@cardEditor/cardOptions';
 import { pushToDataLayer, relationsToSlugs } from './utils';
-import { AnalyticsEvent } from './types';
+import { AnalyticsEvent, CardCreatorAnalyticsEvent } from './types';
 
 interface AnalyticsContextInterface {
   trackCardCreatorEvent: (
-    event: AnalyticsEvent,
+    event: CardCreatorAnalyticsEvent,
     data?: Record<string, string>,
   ) => void;
+  trackEvent: (event: AnalyticsEvent, data?: Record<string, string>) => void;
 }
 
 export const AnalyticsContext = createContext<AnalyticsContextInterface>({
   trackCardCreatorEvent: () => null,
+  trackEvent: () => null,
 });
 
 export const AnalyticsProvider: React.FC = ({ children }) => {
@@ -33,7 +35,7 @@ export const AnalyticsProvider: React.FC = ({ children }) => {
   }, [baseSet, supertype, type, subtype, variation, rarity]);
 
   const trackCardCreatorEvent = useCallback(
-    (event: AnalyticsEvent, data?: Record<string, string>) => {
+    (event: CardCreatorAnalyticsEvent, data?: Record<string, string>) => {
       setTimeout(() => {
         pushToDataLayer(event, {
           card: cardDataRef.current,
@@ -44,10 +46,18 @@ export const AnalyticsProvider: React.FC = ({ children }) => {
     [],
   );
 
+  const trackEvent = useCallback(
+    (event: AnalyticsEvent, data?: Record<string, string>) => {
+      pushToDataLayer(event, { ...data });
+    },
+    [],
+  );
+
   return (
     <AnalyticsContext.Provider
       value={{
         trackCardCreatorEvent,
+        trackEvent,
       }}
     >
       {children}

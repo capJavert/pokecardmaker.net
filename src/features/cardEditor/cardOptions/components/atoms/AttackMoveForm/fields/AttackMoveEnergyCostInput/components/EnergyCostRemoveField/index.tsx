@@ -52,6 +52,7 @@ const EnergyCostRemoveField: FC<EnergyCostRemoveFieldProps> = ({
   return (
     <EnergyTypeButton
       label={`remove ${type.displayName} energy cost`}
+      title={type.displayName}
       small
       onClick={remove}
     >

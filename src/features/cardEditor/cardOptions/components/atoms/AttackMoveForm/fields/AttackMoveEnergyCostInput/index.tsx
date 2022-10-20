@@ -43,6 +43,7 @@ const AttackMoveEnergyCostInput: FC<AttackMoveFieldProps> = ({
           ))}
           <EnergyTypeButton
             label="add energy plus"
+            title="+"
             onClick={() =>
               setMove({
                 ...move,
@@ -54,6 +55,7 @@ const AttackMoveEnergyCostInput: FC<AttackMoveFieldProps> = ({
           </EnergyTypeButton>
           <EnergyTypeButton
             label="add energy minus"
+            title="-"
             onClick={() =>
               setMove({
                 ...move,
@@ -98,6 +100,7 @@ const AttackMoveEnergyCostInput: FC<AttackMoveFieldProps> = ({
               label={`remove energy ${
                 move.energyCostModifier === '+' ? 'plus' : 'minus'
               }`}
+              title={move.energyCostModifier}
               onClick={() =>
                 setMove({
                   ...move,

@@ -47,6 +47,7 @@ const EnergyCostAddField: FC<EnergyCostAddFieldProps> = ({
   return (
     <EnergyTypeButton
       label={`add ${type.displayName} energy cost`}
+      title={type.displayName}
       onClick={add}
     >
       <Image

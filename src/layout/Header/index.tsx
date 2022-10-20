@@ -1,6 +1,5 @@
-import { useSettings } from '@features/settings';
-import { Brightness4, Brightness7 } from '@mui/icons-material';
-import { Hidden, IconButton, Link, Toolbar, Typography } from '@mui/material';
+import ThemeToggle from '@components/ThemeToggle';
+import { Hidden, Link, Toolbar, Typography } from '@mui/material';
 import Routes from '@routes';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
@@ -10,7 +9,6 @@ import { DefaultAppBar, InvisibleHeading } from './styles';
 
 const Header: FC = () => {
   const { pathname } = useRouter();
-  const { themeMode, setThemeMode } = useSettings();
 
   return (
     <>
@@ -24,16 +22,7 @@ const Header: FC = () => {
               Pokécardmaker.net
             </Typography>
           </NextLink>
-          <IconButton
-            aria-label="switch theme mode"
-            color="inherit"
-            onClick={() =>
-              setThemeMode(prev => (prev === 'light' ? 'dark' : 'light'))
-            }
-            sx={{ ml: 'auto' }}
-          >
-            {themeMode === 'light' ? <Brightness4 /> : <Brightness7 />}
-          </IconButton>
+          <ThemeToggle />
           <Hidden smDown>
             <DesktopHeader />
           </Hidden>

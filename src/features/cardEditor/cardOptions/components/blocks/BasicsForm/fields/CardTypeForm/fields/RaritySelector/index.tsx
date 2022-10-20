@@ -1,6 +1,6 @@
 import { useRarity } from '@cardEditor/cardOptions/rarity';
 import ControlledSelector from '@components/inputs/ControlledSelector';
-import { AnalyticsEvent, useAnalytics } from '@features/analytics';
+import { CardCreatorAnalyticsEvent, useAnalytics } from '@features/analytics';
 import { ListItemText, MenuItem, SelectChangeEvent } from '@mui/material';
 import { FC, useCallback } from 'react';
 
@@ -12,7 +12,7 @@ const RaritySelector: FC = () => {
   const handleChange = useCallback(
     (event: SelectChangeEvent) => {
       setRarity(Number(event.target.value) ?? undefined);
-      trackCardCreatorEvent(AnalyticsEvent.RarityChange);
+      trackCardCreatorEvent(CardCreatorAnalyticsEvent.RarityChange);
     },
     [setRarity, trackCardCreatorEvent],
   );

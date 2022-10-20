@@ -8,7 +8,7 @@ import { useSupertype } from '@cardEditor/cardOptions/supertype';
 import { Type, useType } from '@cardEditor/cardOptions/type';
 import { SelectorListItemIcon } from '@components/SelectorListItemIcon';
 import { SelectorMenuItem } from '@components/SelectorMenuItem';
-import { AnalyticsEvent, useAnalytics } from '@features/analytics';
+import { CardCreatorAnalyticsEvent, useAnalytics } from '@features/analytics';
 import { useBaseSet } from '@cardEditor/cardOptions/baseSet';
 
 const TypeSelector: FC = () => {
@@ -21,7 +21,7 @@ const TypeSelector: FC = () => {
   const handleChange = useCallback(
     (event: SelectChangeEvent) => {
       setType(Number(event.target.value));
-      trackCardCreatorEvent(AnalyticsEvent.TypeChange);
+      trackCardCreatorEvent(CardCreatorAnalyticsEvent.TypeChange);
     },
     [setType, trackCardCreatorEvent],
   );

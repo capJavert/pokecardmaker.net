@@ -4,7 +4,7 @@ import ControlledSelector from '@components/inputs/ControlledSelector';
 import { useSubtype } from '@cardEditor/cardOptions/subtype';
 import { useType } from '@cardEditor/cardOptions/type';
 import { useCardLogic } from '@cardEditor/cardLogic';
-import { AnalyticsEvent, useAnalytics } from '@features/analytics';
+import { CardCreatorAnalyticsEvent, useAnalytics } from '@features/analytics';
 import { useBaseSet } from '@cardEditor/cardOptions/baseSet';
 
 const SubtypeSelector: FC = () => {
@@ -17,7 +17,7 @@ const SubtypeSelector: FC = () => {
   const handleChange = useCallback(
     (event: SelectChangeEvent) => {
       setSubtype(Number(event.target.value) ?? undefined);
-      trackCardCreatorEvent(AnalyticsEvent.SubtypeChange);
+      trackCardCreatorEvent(CardCreatorAnalyticsEvent.SubtypeChange);
     },
     [setSubtype, trackCardCreatorEvent],
   );

@@ -1,5 +1,5 @@
 import { useCardOptions } from '@cardEditor/cardOptions/hooks';
-import { AnalyticsEvent, useAnalytics } from '@features/analytics';
+import { CardCreatorAnalyticsEvent, useAnalytics } from '@features/analytics';
 import { Share as ShareIcon } from '@mui/icons-material';
 import { FC, useCallback, useState } from 'react';
 import useIsMobile from '@hooks/useIsMobile';
@@ -38,7 +38,7 @@ const ShareButton: FC<ShareButtonProps> = ({ cardId, ...props }) => {
       navigator.share(shareData).catch(e => {
         console.error(e, shareData);
       });
-      trackCardCreatorEvent(AnalyticsEvent.CardShare, {
+      trackCardCreatorEvent(CardCreatorAnalyticsEvent.CardShare, {
         sharePlatform: 'native',
       });
     });

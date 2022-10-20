@@ -1,5 +1,5 @@
 import { useCardOptions } from '@cardEditor/cardOptions/hooks';
-import { AnalyticsEvent, useAnalytics } from '@features/analytics';
+import { CardCreatorAnalyticsEvent, useAnalytics } from '@features/analytics';
 import { Download as DownloadIcon } from '@mui/icons-material';
 import { FC, useCallback, useState } from 'react';
 import useIsMobile from '@hooks/useIsMobile';
@@ -40,7 +40,7 @@ const DownloadButton: FC<DownloadButtonProps> = ({ cardId, ...props }) => {
     setLoading(false);
     if (!canvas) return;
     downloadCanvas(canvas);
-    trackCardCreatorEvent(AnalyticsEvent.CardDownload);
+    trackCardCreatorEvent(CardCreatorAnalyticsEvent.CardDownload);
   }, [cardId, downloadCanvas, trackCardCreatorEvent]);
 
   return (

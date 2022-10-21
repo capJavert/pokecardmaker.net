@@ -10,7 +10,7 @@ const NewFeatureHelpText: FC = ({ children }) => (
       fontSize="inherit"
       sx={{ alignSelf: 'flex-start', height: 24 }}
     />
-    <Typography color="black" variant="caption" lineHeight={1.75}>
+    <Typography color="text.primary" variant="caption" lineHeight={1.75}>
       {children}
     </Typography>
   </Box>

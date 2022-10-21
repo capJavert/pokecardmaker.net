@@ -84,6 +84,7 @@ const RarityIconSelector: FC = () => {
           </SelectorMenuItem>
         ))}
       </ControlledSelector>
+      {/* TODO: Maybe generalize into a custom icon uploader component? */}
       {customIconActive && (
         <FileUploader
           slug="customRarityIconSrc"

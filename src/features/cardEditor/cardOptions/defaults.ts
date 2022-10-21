@@ -62,6 +62,8 @@ export const defaultCardOptions: RequiredIsh<CardInterface> = {
   customSetIconSrc: undefined,
   prevolveImgSrc: undefined,
   customTypeImgSrc: undefined,
+  customRarityIconImgSrc: undefined,
+  customRotationIconImgSrc: undefined,
   typeImgAmount: 1,
   cardNumber: '',
   totalInSet: '',

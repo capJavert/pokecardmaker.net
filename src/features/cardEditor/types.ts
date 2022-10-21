@@ -44,6 +44,8 @@ export interface CardInterface {
   imgLayer2?: CroppableImg;
   customSetIconSrc?: string;
   customTypeImgSrc?: string;
+  customRarityIconImgSrc?: string;
+  customRotationIconImgSrc?: string;
   typeImgAmount?: number | '';
   cardNumber?: string;
   totalInSet?: string;

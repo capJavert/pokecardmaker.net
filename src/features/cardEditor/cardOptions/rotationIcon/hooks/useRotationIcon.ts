@@ -5,7 +5,8 @@ import { defaultRelations, useCardOptions } from '@cardEditor/cardOptions';
 import { rotationIcons } from '../data';
 
 const useRotationIcon = () => {
-  const { rotationIconId, stateSetter } = useCardOptions();
+  const { rotationIconId, stateSetter, customRotationIconImgSrc } =
+    useCardOptions();
 
   const rotationIcon = useMemo<RelationsInterface['rotationIcon']>(
     () =>
@@ -18,10 +19,20 @@ const useRotationIcon = () => {
     [stateSetter],
   );
 
+  const setCustomRotationIconSrc = useMemo(
+    () =>
+      stateSetter<CardInterface['customRotationIconImgSrc']>(
+        'customRotationIconImgSrc',
+      ),
+    [stateSetter],
+  );
+
   return {
     rotationIcons,
     rotationIcon,
     setRotationIcon,
+    customRotationIconImgSrc,
+    setCustomRotationIconSrc,
   };
 };
 

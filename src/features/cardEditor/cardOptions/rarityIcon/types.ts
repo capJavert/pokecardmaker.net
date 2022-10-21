@@ -1,3 +1,7 @@
 import { IdentifierInfo } from '../types';
 
-export type RarityIcon = IdentifierInfo;
+export type RarityIconShape = 'big' | 'small';
+
+export type RarityIcon = IdentifierInfo & {
+  shape: RarityIconShape;
+};

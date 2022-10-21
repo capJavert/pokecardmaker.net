@@ -7,14 +7,17 @@ import { Wrapper } from './styles';
 
 const RotationIcon: FC = () => {
   const { hasRotationIcon } = useCardLogic();
-  const { rotationIcon } = useRotationIcon();
+  const { rotationIcon, customRotationIconImgSrc } = useRotationIcon();
   const imgSrc =
-    !!rotationIcon && Routes.Assets.Icons.Rotation(rotationIcon.slug);
+    customRotationIconImgSrc ||
+    (!!rotationIcon && Routes.Assets.Icons.Rotation(rotationIcon.slug));
 
   if (!imgSrc || !hasRotationIcon) return null;
 
   return (
-    <Wrapper $shape={rotationIcon.shape}>
+    <Wrapper
+      $shape={customRotationIconImgSrc ? undefined : rotationIcon?.shape}
+    >
       <DisplayImg src={imgSrc} />
     </Wrapper>
   );

@@ -5,7 +5,8 @@ import { defaultRelations, useCardOptions } from '@cardEditor/cardOptions';
 import { rarityIcons } from '../data';
 
 const useRarityIcon = () => {
-  const { rarityIconId, stateSetter } = useCardOptions();
+  const { rarityIconId, stateSetter, customRarityIconImgSrc } =
+    useCardOptions();
 
   const rarityIcon = useMemo<RelationsInterface['rarityIcon']>(
     () => findById(rarityIcons, rarityIconId, defaultRelations.rarityIcon),
@@ -17,10 +18,20 @@ const useRarityIcon = () => {
     [stateSetter],
   );
 
+  const setCustomRarityIconImgSrc = useMemo(
+    () =>
+      stateSetter<CardInterface['customRarityIconImgSrc']>(
+        'customRarityIconImgSrc',
+      ),
+    [stateSetter],
+  );
+
   return {
     rarityIcons,
     rarityIcon,
     setRarityIcon,
+    customRarityIconImgSrc,
+    setCustomRarityIconImgSrc,
   };
 };
 

@@ -1,7 +1,7 @@
 import { RotationIconShape } from '@cardEditor/cardOptions/rotationIcon';
 import { css, styled } from '@css';
 
-export const Wrapper = styled('div')<{ $shape: RotationIconShape }>`
+export const Wrapper = styled('div')<{ $shape?: RotationIconShape }>`
   position: relative;
 
   ${({ $shape }) => {
@@ -18,7 +18,11 @@ export const Wrapper = styled('div')<{ $shape: RotationIconShape }>`
           width: 1.2em;
         `;
       default:
-        return undefined;
+        return css`
+          margin-left: -0.4em;
+          height: 1.8em;
+          width: 1.8em;
+        `;
     }
   }}
 `;

@@ -6,21 +6,25 @@ import { FC } from 'react';
 import { Wrapper } from './styles';
 
 const RarityIcon: FC = () => {
-  const { rarityIcon } = useRarityIcon();
+  const { rarityIcon, customRarityIconImgSrc } = useRarityIcon();
   const {
     rarityIconColor,
     positions: { rarityIcon: placement },
   } = useCardStyles();
   const imgSrc =
-    !!rarityIcon &&
-    (rarityIconColor === 'white'
-      ? Routes.Assets.Icons.RarityWhite(rarityIcon.slug)
-      : Routes.Assets.Icons.Rarity(rarityIcon.slug));
+    customRarityIconImgSrc ||
+    (!!rarityIcon &&
+      (rarityIconColor === 'white'
+        ? Routes.Assets.Icons.RarityWhite(rarityIcon.slug)
+        : Routes.Assets.Icons.Rarity(rarityIcon.slug)));
 
   if (!imgSrc) return null;
 
   return (
-    <Wrapper placement={placement}>
+    <Wrapper
+      placement={placement}
+      $shape={customRarityIconImgSrc ? undefined : rarityIcon?.shape}
+    >
       <DisplayImg src={imgSrc} />
     </Wrapper>
   );

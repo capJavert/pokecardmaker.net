@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { useCardOptions } from '@cardEditor/cardOptions';
-import { StyledCroppedImg, Wrapper } from './styles';
+import CroppedImg from '@components/CroppedImg';
+import { Wrapper } from './styles';
 
 const ImgLayer2: FC = () => {
   const { imgLayer2 } = useCardOptions();
@@ -9,7 +10,7 @@ const ImgLayer2: FC = () => {
 
   return (
     <Wrapper>
-      <StyledCroppedImg {...imgLayer2} />
+      <CroppedImg {...imgLayer2} />
     </Wrapper>
   );
 };

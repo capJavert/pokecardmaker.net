@@ -109,4 +109,9 @@ export interface CardLogic {
    * @default false
    */
   hasMove3?: boolean;
+  /**
+   * Whether the card supports a badge icon on top of the frame
+   * @default false
+   */
+  hasBadgeIcon: boolean;
 }

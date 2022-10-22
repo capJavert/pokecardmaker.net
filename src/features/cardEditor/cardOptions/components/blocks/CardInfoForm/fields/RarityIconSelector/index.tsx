@@ -1,5 +1,5 @@
 import { Icon, ListItemText, SelectChangeEvent } from '@mui/material';
-import { FC, useState } from 'react';
+import { FC, useCallback, useState } from 'react';
 import Routes from '@routes';
 import Image from 'next/image';
 import ControlledSelector from '@components/inputs/ControlledSelector';
@@ -10,8 +10,10 @@ import { SelectorMenuItem } from '@components/SelectorMenuItem';
 import { useSettings } from '@features/settings';
 import FileUploader from '@components/inputs/FileUploader';
 import NewFeatureHelpText from '@cardEditor/cardOptions/components/atoms/NewFeatureHelpText';
+import { CardCreatorAnalyticsEvent, useAnalytics } from '@features/analytics';
 
 const RarityIconSelector: FC = () => {
+  const { trackCardCreatorEvent } = useAnalytics();
   const { themeMode } = useSettings();
   const {
     rarityIcons,
@@ -24,16 +26,25 @@ const RarityIconSelector: FC = () => {
     !!customRarityIconImgSrc,
   );
 
-  const handleChange = (event: SelectChangeEvent) => {
-    const value = Number(event.target.value);
-    if (value) {
-      setRarityIcon(value);
-      setCustomIconActive(false);
-      setCustomRarityIconImgSrc(undefined);
-    } else {
-      setCustomIconActive(true);
-    }
-  };
+  const handleChange = useCallback(
+    (event: SelectChangeEvent) => {
+      const value = Number(event.target.value);
+      if (value) {
+        setRarityIcon(value);
+        setCustomIconActive(false);
+        setCustomRarityIconImgSrc(undefined);
+      } else {
+        setCustomIconActive(true);
+      }
+      trackCardCreatorEvent(CardCreatorAnalyticsEvent.RarityIconChange);
+    },
+    [
+      setRarityIcon,
+      setCustomIconActive,
+      setCustomRarityIconImgSrc,
+      trackCardCreatorEvent,
+    ],
+  );
 
   return (
     <>

@@ -51,6 +51,7 @@ export const defaultRelations: RelationsInterface = {
   rotationIcon: d,
   rarityIcon: common,
   typeImg: colorless,
+  badgeIcon: undefined,
 };
 
 export const defaultCardOptions: RequiredIsh<CardInterface> = {
@@ -119,6 +120,7 @@ export const defaultCardOptions: RequiredIsh<CardInterface> = {
   rotationIconId: defaultRelations.rotationIcon?.id,
   rarityIconId: defaultRelations.rarityIcon?.id,
   typeImgId: defaultRelations.typeImg?.id,
+  badgeIconId: defaultRelations.badgeIcon?.id,
 };
 
 export const defaultSupertypeTypes: {

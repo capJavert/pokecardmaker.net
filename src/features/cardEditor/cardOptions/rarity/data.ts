@@ -10,6 +10,7 @@ export const promo: Rarity = {
   logic: {
     hasDexEntry: true,
     hasDexStats: false,
+    hasBadgeIcon: false,
   },
   styles: {
     nameOutline: 'white',
@@ -126,6 +127,7 @@ export const characterRare: Rarity = {
   displayName: 'Character Rare',
   logic: {
     hasDexStats: false,
+    hasBadgeIcon: false,
   },
   styles: {
     nameTextColor: 'black',

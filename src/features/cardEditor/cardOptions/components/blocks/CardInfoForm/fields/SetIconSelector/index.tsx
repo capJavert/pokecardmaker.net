@@ -4,7 +4,7 @@ import {
   ListSubheader,
   SelectChangeEvent,
 } from '@mui/material';
-import { FC, useMemo, useState } from 'react';
+import { FC, useCallback, useMemo, useState } from 'react';
 import Routes from '@routes';
 import Image from 'next/image';
 import ControlledSelector from '@components/inputs/ControlledSelector';
@@ -15,8 +15,10 @@ import { QuestionMark as QuestionMarkIcon } from '@mui/icons-material';
 import FileUploader from '@components/inputs/FileUploader';
 import { useBaseSet } from '@cardEditor/cardOptions/baseSet';
 import findById from '@utils/findById';
+import { CardCreatorAnalyticsEvent, useAnalytics } from '@features/analytics';
 
 const SetIconSelector: FC = () => {
+  const { trackCardCreatorEvent } = useAnalytics();
   const { baseSets } = useBaseSet();
   const {
     setIcons,
@@ -29,16 +31,25 @@ const SetIconSelector: FC = () => {
     !!customSetIconSrc,
   );
 
-  const handleChange = (event: SelectChangeEvent) => {
-    const value = Number(event.target.value);
-    if (value) {
-      setSetIcon(value);
-      setCustomIconActive(false);
-      setCustomSetIconSrc(undefined);
-    } else {
-      setCustomIconActive(true);
-    }
-  };
+  const handleChange = useCallback(
+    (event: SelectChangeEvent) => {
+      const value = Number(event.target.value);
+      if (value) {
+        setSetIcon(value);
+        setCustomIconActive(false);
+        setCustomSetIconSrc(undefined);
+      } else {
+        setCustomIconActive(true);
+      }
+      trackCardCreatorEvent(CardCreatorAnalyticsEvent.SetIconChange);
+    },
+    [
+      setSetIcon,
+      setCustomIconActive,
+      setCustomSetIconSrc,
+      trackCardCreatorEvent,
+    ],
+  );
 
   const setIconGroups = useMemo(
     () =>

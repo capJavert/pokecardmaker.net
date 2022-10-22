@@ -1,18 +1,10 @@
-import { CardInterface, RelationsInterface } from '@cardEditor';
-import findById from '@utils/findById';
+import { CardInterface } from '@cardEditor';
 import { useMemo } from 'react';
-import { defaultRelations, useCardOptions } from '@cardEditor/cardOptions';
-import useType from './useType';
+import { useCardOptions, useCardRelations } from '@cardEditor/cardOptions';
 
 const useWeaknessType = () => {
-  const { weaknessTypeId, stateSetter } = useCardOptions();
-  const { attackCostTypes } = useType();
-
-  const weaknessType = useMemo<RelationsInterface['weaknessType']>(
-    () =>
-      findById(attackCostTypes, weaknessTypeId, defaultRelations.weaknessType),
-    [attackCostTypes, weaknessTypeId],
-  );
+  const { weaknessType } = useCardRelations();
+  const { stateSetter } = useCardOptions();
 
   const setWeaknessType = useMemo(
     () => stateSetter<CardInterface['weaknessTypeId']>('weaknessTypeId'),

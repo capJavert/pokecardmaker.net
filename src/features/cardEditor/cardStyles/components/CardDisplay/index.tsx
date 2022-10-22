@@ -13,6 +13,7 @@ import NameBar from '../blocks/NameBar';
 import Hitpoints from '../blocks/NameBar/fields/Hitpoints';
 import TypeBar from '../blocks/TypeBar';
 import BackgroundImg from '../fields/BackgroundImg';
+import BadgeIcon from '../fields/BadgeIcon';
 import CardImage from '../fields/CardImage';
 import Description from '../fields/Description';
 import DexStats from '../fields/DexStats';
@@ -52,6 +53,7 @@ const CardDisplay: FC = () => {
         <PrevolveImg />
         <TypeImg />
         <DexStats />
+        <BadgeIcon />
         <Moves />
         <Description />
         <TypeBar />

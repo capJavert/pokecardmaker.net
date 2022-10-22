@@ -14,6 +14,10 @@ import { subtypes } from '@cardEditor/cardOptions/subtype';
 import { supertypes } from '@cardEditor/cardOptions/supertype';
 import { variations } from '@cardEditor/cardOptions/variation';
 import { types } from '@cardEditor/cardOptions/type';
+import { badgeIcons } from './badgeIcon';
+import { rarityIcons } from './rarityIcon';
+import { rotationIcons } from './rotationIcon';
+import { setIcons } from './setIcon';
 
 export type CardOptionsState = CardInterface;
 
@@ -64,6 +68,43 @@ export const CardOptionsProvider: React.FC = ({ children }) => {
     [state.rarityId],
   );
 
+  const badgeIcon = useMemo<RelationsInterface['badgeIcon']>(
+    () => findById(badgeIcons, state.badgeIconId, defaultRelations.badgeIcon),
+    [state.badgeIconId],
+  );
+
+  const weaknessType = useMemo<RelationsInterface['weaknessType']>(
+    () => findById(types, state.weaknessTypeId, defaultRelations.weaknessType),
+    [state.weaknessTypeId],
+  );
+
+  const resistanceType = useMemo<RelationsInterface['resistanceType']>(
+    () =>
+      findById(types, state.resistanceTypeId, defaultRelations.resistanceType),
+    [state.resistanceTypeId],
+  );
+
+  const rarityIcon = useMemo<RelationsInterface['rarityIcon']>(
+    () =>
+      findById(rarityIcons, state.rarityIconId, defaultRelations.rarityIcon),
+    [state.rarityIconId],
+  );
+
+  const rotationIcon = useMemo<RelationsInterface['rotationIcon']>(
+    () =>
+      findById(
+        rotationIcons,
+        state.rotationIconId,
+        defaultRelations.rotationIcon,
+      ),
+    [state.rotationIconId],
+  );
+
+  const setIcon = useMemo<RelationsInterface['setIcon']>(
+    () => findById(setIcons, state.setIconId, defaultRelations.setIcon),
+    [state.setIconId],
+  );
+
   return (
     <CardOptionsContext.Provider
       value={{
@@ -76,6 +117,12 @@ export const CardOptionsProvider: React.FC = ({ children }) => {
           subtype,
           variation,
           rarity,
+          badgeIcon,
+          weaknessType,
+          resistanceType,
+          rarityIcon,
+          rotationIcon,
+          setIcon,
         },
       }}
     >

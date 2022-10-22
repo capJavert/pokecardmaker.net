@@ -1,4 +1,3 @@
-import CroppedImg from '@components/CroppedImg';
 import { styled } from '@css';
 
 export const Wrapper = styled('div')`
@@ -9,8 +8,6 @@ export const Wrapper = styled('div')`
   height: 100%;
   top: 0;
   left: 0;
-`;
-
-export const StyledCroppedImg = styled(CroppedImg)`
   border-radius: 21px;
+  overflow: hidden;
 `;

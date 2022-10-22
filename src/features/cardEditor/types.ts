@@ -8,6 +8,7 @@ import { SetIcon } from './cardOptions/setIcon';
 import { Subtype } from './cardOptions/subtype';
 import { Supertype } from './cardOptions/supertype';
 import { Variation } from './cardOptions/variation';
+import { BadgeIcon } from './cardOptions/badgeIcon';
 
 export type DamageModifier = '×' | '+' | '-';
 export type EnergyCostModifier = '+' | '-';
@@ -78,6 +79,7 @@ export interface CardInterface {
   typeImgId?: number;
   rotationIconId?: number;
   rarityIconId?: number;
+  badgeIconId?: number;
 }
 
 /**
@@ -95,5 +97,6 @@ export interface RelationsInterface {
   setIcon?: SetIcon;
   rotationIcon?: RotationIcon;
   rarityIcon?: RarityIcon;
+  badgeIcon?: BadgeIcon;
   typeImg?: Type;
 }

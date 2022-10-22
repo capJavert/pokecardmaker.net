@@ -1,5 +1,5 @@
 import React, { createContext, useCallback, useEffect, useRef } from 'react';
-import { useCardRelations } from '@cardEditor/cardOptions';
+import { useCardOptions, useCardRelations } from '@cardEditor/cardOptions';
 import { pushToDataLayer, relationsToSlugs } from './utils';
 import { AnalyticsEvent, CardCreatorAnalyticsEvent } from './types';
 
@@ -17,22 +17,19 @@ export const AnalyticsContext = createContext<AnalyticsContextInterface>({
 });
 
 export const AnalyticsProvider: React.FC = ({ children }) => {
-  const { baseSet, supertype, type, subtype, variation, rarity } =
-    useCardRelations();
-  const cardDataRef = useRef(
-    relationsToSlugs({ baseSet, supertype, type, subtype, variation, rarity }),
-  );
+  const { retreatCost } = useCardOptions();
+  const { typeImg: _, ...relations } = useCardRelations();
+  const cardDataRef = useRef({
+    retreatCost,
+    ...relationsToSlugs(relations),
+  });
 
   useEffect(() => {
-    cardDataRef.current = relationsToSlugs({
-      baseSet,
-      supertype,
-      type,
-      subtype,
-      variation,
-      rarity,
-    });
-  }, [baseSet, supertype, type, subtype, variation, rarity]);
+    cardDataRef.current = {
+      retreatCost,
+      ...relationsToSlugs(relations),
+    };
+  }, [retreatCost, relations]);
 
   const trackCardCreatorEvent = useCallback(
     (event: CardCreatorAnalyticsEvent, data?: Record<string, string>) => {

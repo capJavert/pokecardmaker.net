@@ -5,18 +5,21 @@ import { MenuItem, SelectChangeEvent } from '@mui/material';
 import Routes from '@routes';
 import Image from 'next/image';
 import { useBaseSet } from '@cardEditor/cardOptions/baseSet';
+import { CardCreatorAnalyticsEvent, useAnalytics } from '@features/analytics';
 
 const MAX_RETREAT_COST = 5;
 
 const RetreatCostSelector: FC = () => {
+  const { trackCardCreatorEvent } = useAnalytics();
   const { baseSet } = useBaseSet();
   const { retreatCost, setRetreatCost } = useCardOptions();
 
   const handleChange = useCallback(
     (event: SelectChangeEvent) => {
-      setRetreatCost(+event.target.value);
+      setRetreatCost(Number(event.target.value));
+      trackCardCreatorEvent(CardCreatorAnalyticsEvent.RetreatCostChange);
     },
-    [setRetreatCost],
+    [setRetreatCost, trackCardCreatorEvent],
   );
 
   return (

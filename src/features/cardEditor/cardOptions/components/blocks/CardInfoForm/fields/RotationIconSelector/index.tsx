@@ -1,5 +1,5 @@
 import { Icon, ListItemText, SelectChangeEvent } from '@mui/material';
-import { FC, useState } from 'react';
+import { FC, useCallback, useState } from 'react';
 import Routes from '@routes';
 import Image from 'next/image';
 import ControlledSelector from '@components/inputs/ControlledSelector';
@@ -10,8 +10,10 @@ import { SelectorMenuItem } from '@components/SelectorMenuItem';
 import { useCardLogic } from '@cardEditor/cardLogic';
 import FileUploader from '@components/inputs/FileUploader';
 import NewFeatureHelpText from '@cardEditor/cardOptions/components/atoms/NewFeatureHelpText';
+import { CardCreatorAnalyticsEvent, useAnalytics } from '@features/analytics';
 
 const RotationIconSelector: FC = () => {
+  const { trackCardCreatorEvent } = useAnalytics();
   const { hasRotationIcon } = useCardLogic();
   const {
     rotationIcons,
@@ -24,16 +26,25 @@ const RotationIconSelector: FC = () => {
     !!customRotationIconImgSrc,
   );
 
-  const handleChange = (event: SelectChangeEvent) => {
-    const value = Number(event.target.value);
-    if (value) {
-      setRotationIcon(value);
-      setCustomIconActive(false);
-      setCustomRotationIconSrc(undefined);
-    } else {
-      setCustomIconActive(true);
-    }
-  };
+  const handleChange = useCallback(
+    (event: SelectChangeEvent) => {
+      const value = Number(event.target.value);
+      if (value) {
+        setRotationIcon(value);
+        setCustomIconActive(false);
+        setCustomRotationIconSrc(undefined);
+      } else {
+        setCustomIconActive(true);
+      }
+      trackCardCreatorEvent(CardCreatorAnalyticsEvent.RotationIconChange);
+    },
+    [
+      setRotationIcon,
+      setCustomIconActive,
+      setCustomRotationIconSrc,
+      trackCardCreatorEvent,
+    ],
+  );
 
   if (!hasRotationIcon) return null;
 

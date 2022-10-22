@@ -7,22 +7,26 @@ import { useType } from '@cardEditor/cardOptions/type';
 import { SelectorListItemIcon } from '@components/SelectorListItemIcon';
 import { SelectorMenuItem } from '@components/SelectorMenuItem';
 import { useBaseSet } from '@cardEditor/cardOptions/baseSet';
+import { useAnalytics } from '@features/analytics';
 import { TypeBarTypeSelectorProps } from './types';
 
 const TypeBarTypeSelector: FC<TypeBarTypeSelectorProps> = ({
   displayName,
   slug,
   type,
+  analyticsEvent,
   setType,
 }) => {
+  const { trackCardCreatorEvent } = useAnalytics();
   const { baseSet } = useBaseSet();
   const { attackCostTypes } = useType();
 
   const handleChange = useCallback(
     (event: SelectChangeEvent) => {
       setType(Number(event.target.value));
+      trackCardCreatorEvent(analyticsEvent);
     },
-    [setType],
+    [analyticsEvent, setType, trackCardCreatorEvent],
   );
 
   return (

@@ -1,18 +1,11 @@
-import { CardInterface, RelationsInterface } from '@cardEditor';
-import findById from '@utils/findById';
+import { CardInterface } from '@cardEditor';
 import { useMemo } from 'react';
-import { defaultRelations, useCardOptions } from '@cardEditor/cardOptions';
+import { useCardOptions, useCardRelations } from '@cardEditor/cardOptions';
 import { rotationIcons } from '../data';
 
 const useRotationIcon = () => {
-  const { rotationIconId, stateSetter, customRotationIconImgSrc } =
-    useCardOptions();
-
-  const rotationIcon = useMemo<RelationsInterface['rotationIcon']>(
-    () =>
-      findById(rotationIcons, rotationIconId, defaultRelations.rotationIcon),
-    [rotationIconId],
-  );
+  const { rotationIcon } = useCardRelations();
+  const { stateSetter, customRotationIconImgSrc } = useCardOptions();
 
   const setRotationIcon = useMemo(
     () => stateSetter<CardInterface['rotationIconId']>('rotationIconId'),

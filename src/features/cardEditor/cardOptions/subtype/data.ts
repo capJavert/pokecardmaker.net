@@ -52,6 +52,7 @@ export const basic: Subtype = {
     hasDexEntry: true,
     hasVariations: true,
     isVariationRequired: false,
+    hasBadgeIcon: true,
   },
   baseSetDependencies: {
     [swordAndShield.id]: [
@@ -86,6 +87,7 @@ export const stage1: Subtype = {
     hasDexEntry: true,
     hasVariations: true,
     isVariationRequired: false,
+    hasBadgeIcon: true,
   },
   baseSetDependencies: {
     [swordAndShield.id]: [
@@ -120,6 +122,7 @@ export const stage2: Subtype = {
     hasDexEntry: true,
     hasVariations: true,
     isVariationRequired: false,
+    hasBadgeIcon: true,
   },
   baseSetDependencies: {
     [swordAndShield.id]: [
@@ -274,6 +277,7 @@ export const tool: Subtype = {
   },
   logic: {
     hasVariations: false,
+    hasBadgeIcon: true,
   },
   baseSetDependencies: {
     [swordAndShield.id]: [

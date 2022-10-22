@@ -48,10 +48,7 @@ export const initializeCookieConsent = () => {
 };
 
 export const relationsToSlugs = (
-  relations: Pick<
-    RelationsInterface,
-    'baseSet' | 'supertype' | 'type' | 'subtype' | 'variation' | 'rarity'
-  >,
+  relations: Omit<RelationsInterface, 'typeImgId'>,
 ) => {
   const slugs: Record<string, string | undefined> = {};
   Object.entries(relations).forEach(([key, value]) => {

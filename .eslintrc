@@ -69,13 +69,27 @@
     "linebreak-style": "off",
     "arrow-parens": ["warn", "as-needed"],
     "@typescript-eslint/ban-types": "off",
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "variable",
+        "format": ["camelCase", "PascalCase", "UPPER_CASE"],
+        "leadingUnderscore" : "allow"
+      }
+    ],
     "@typescript-eslint/no-unused-vars": [
       "error",
-      { "argsIgnorePattern": "^_" }
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
     ],
     "no-unused-vars": [
       "error",
-      { "argsIgnorePattern": "^_" }
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
     ],
     "unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-vars": [

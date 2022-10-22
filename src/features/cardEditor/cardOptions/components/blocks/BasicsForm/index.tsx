@@ -1,5 +1,6 @@
 import AccordionForm from '@components/AccordionForm';
 import { FC } from 'react';
+import BadgeIconSelector from '../CardInfoForm/fields/BadgeIconSelector';
 import DescriptionInput from './fields/DescriptionInput';
 import DexStatsInput from './fields/DexStatsInput';
 import HitpointsInput from './fields/HitpointsInput';
@@ -21,6 +22,7 @@ const BasicsForm: FC = () => (
     <DexStatsInput />
     <TypeImgSelector />
     <TypeImgAmountSelector />
+    <BadgeIconSelector />
   </AccordionForm>
 );
 

@@ -33,6 +33,7 @@ const Routes = {
     Cards: `${assets}/cards`,
     Icons: {
       Set: (slug: string) => `${icons}/sets/${slug}.png`,
+      Badge: (slug: string) => `${icons}/badges/${slug}.png`,
       Rotation: (slug: string) => `${icons}/rotations/${slug}.png`,
       Rarity: (slug: string) => `${icons}/rarities/${slug}.png`,
       RarityWhite: (slug: string) => `${icons}/rarities/white/${slug}.png`,

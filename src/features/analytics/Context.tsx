@@ -19,19 +19,36 @@ export const AnalyticsContext = createContext<AnalyticsContextInterface>({
 
 export const AnalyticsProvider: React.FC = ({ children }) => {
   const { themeMode } = useSettings();
-  const { retreatCost } = useCardOptions();
+  const {
+    retreatCost,
+    customRarityIconImgSrc,
+    customRotationIconImgSrc,
+    customSetIconSrc,
+  } = useCardOptions();
   const { typeImg: _, ...relations } = useCardRelations();
-  const cardDataRef = useRef({
+  const cardDataRef = useRef<Record<string, string | number | undefined>>({
     retreatCost,
     ...relationsToSlugs(relations),
   });
 
   useEffect(() => {
+    const relationSlugs = relationsToSlugs(relations);
     cardDataRef.current = {
       retreatCost,
       ...relationsToSlugs(relations),
+      rarityIcon: customRarityIconImgSrc ? 'custom' : relationSlugs.rarityIcon,
+      rotationIcon: customRotationIconImgSrc
+        ? 'custom'
+        : relationSlugs.rotationIcon,
+      setIcon: customSetIconSrc ? 'custom' : relationSlugs.setIcon,
     };
-  }, [retreatCost, relations]);
+  }, [
+    retreatCost,
+    relations,
+    customRarityIconImgSrc,
+    customRotationIconImgSrc,
+    customSetIconSrc,
+  ]);
 
   // TODO: Maybe only track relations that have dependencies with this fn (so not weaknessType, badgeIcon, etc.)
   const trackCardCreatorEvent = useCallback(

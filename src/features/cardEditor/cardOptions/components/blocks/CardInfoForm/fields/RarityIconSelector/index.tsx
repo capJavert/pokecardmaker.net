@@ -28,7 +28,12 @@ const RarityIconSelector: FC = () => {
 
   const handleChange = useCallback(
     (event: SelectChangeEvent) => {
-      const value = Number(event.target.value);
+      const { value } = event.target;
+      if (typeof value === 'string') {
+        // 'None' selected
+        setRarityIcon(undefined);
+        return;
+      }
       if (value) {
         setRarityIcon(value);
         setCustomIconActive(false);

@@ -1,12 +1,19 @@
 import { IdentifierInfo } from '../types';
 
-export type BadgeIconType = 'trainerIcon' | 'setLogo';
+export type BadgeIconShape = 'trainerIcon' | 'setLogo';
+
+export interface BadgeIconType extends IdentifierInfo {
+  slug: BadgeIconShape;
+  width: number;
+}
 
 export interface BadgeIcon extends IdentifierInfo {
   /**
-   * The group this badgeIcon will be placed into in the Selector
-   * Leaving this empty will place the badge in group 'Other'
+   * The id of the BadgeIconType
    */
-  groupName?: string;
-  type: BadgeIconType;
+  type: number;
+  /**
+   * The baseSet this setIcon can be grouped into
+   */
+  baseSet?: number;
 }

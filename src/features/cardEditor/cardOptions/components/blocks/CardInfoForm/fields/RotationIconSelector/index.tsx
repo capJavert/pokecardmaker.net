@@ -9,7 +9,6 @@ import { SelectorListItemIcon } from '@components/SelectorListItemIcon';
 import { SelectorMenuItem } from '@components/SelectorMenuItem';
 import { useCardLogic } from '@cardEditor/cardLogic';
 import FileUploader from '@components/inputs/FileUploader';
-import NewFeatureHelpText from '@cardEditor/cardOptions/components/atoms/NewFeatureHelpText';
 import { CardCreatorAnalyticsEvent, useAnalytics } from '@features/analytics';
 
 const RotationIconSelector: FC = () => {
@@ -55,17 +54,6 @@ const RotationIconSelector: FC = () => {
         displayName="Rotation Icon"
         slug="rotationIcon"
         onChange={handleChange}
-        helpText={
-          !customIconActive && (
-            <NewFeatureHelpText>
-              You can now upload{' '}
-              <b>
-                <i>custom</i>
-              </b>{' '}
-              rotation icons!
-            </NewFeatureHelpText>
-          )
-        }
       >
         <SelectorMenuItem value={0}>
           <SelectorListItemIcon>

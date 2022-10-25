@@ -13,7 +13,7 @@ const BadgeIcon: FC = () => {
   if (!hasBadgeIcon || !imgSrc) return null;
 
   return (
-    <Wrapper>
+    <Wrapper $type={badgeIcon.type}>
       <DisplayImg src={imgSrc} />
     </Wrapper>
   );

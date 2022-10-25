@@ -40,6 +40,7 @@ export const StyledImg = styled(PlacementBlock)<{
   $custom: boolean;
   $hasBorder: boolean;
 }>`
+  position: relative;
   height: 100%;
   border-radius: 50%;
   background: white;

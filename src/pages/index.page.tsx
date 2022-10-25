@@ -137,7 +137,11 @@ const Home: FC = () => {
             >
               aschefield101
             </Link>{' '}
-            and RuneScript for providing the template designs
+            , RuneScript and the rest of the{' '}
+            <Link href={Routes.Discord} target="_blank">
+              Pokémon TCG Faking Community Discord
+            </Link>{' '}
+            for providing the template designs
           </p>
         </PaperBox>
       </Box>

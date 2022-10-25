@@ -18,10 +18,10 @@ export const Wrapper = styled(PlacementBlock)<{ $type: number }>`
       case setLogo.id:
         return css`
           /* TODO: Logos are probably not going to be the same size, mass check */
-          top: 31.6%;
-          right: 2.7%;
-          height: 12em;
-          width: 12em;
+          top: 26%;
+          right: 3%;
+          height: 23em;
+          width: 18em;
         `;
       default:
         return undefined;

@@ -3,13 +3,15 @@ import { FC, useCallback, useState } from 'react';
 import Routes from '@routes';
 import Image from 'next/image';
 import ControlledSelector from '@components/inputs/ControlledSelector';
-import { QuestionMark as QuestionMarkIcon } from '@mui/icons-material';
+import {
+  CropFree as EmptyIcon,
+  QuestionMark as QuestionMarkIcon,
+} from '@mui/icons-material';
 import { useRarityIcon } from '@cardEditor/cardOptions/rarityIcon';
 import { SelectorListItemIcon } from '@components/SelectorListItemIcon';
 import { SelectorMenuItem } from '@components/SelectorMenuItem';
 import { useSettings } from '@features/settings';
 import FileUploader from '@components/inputs/FileUploader';
-import NewFeatureHelpText from '@cardEditor/cardOptions/components/atoms/NewFeatureHelpText';
 import { CardCreatorAnalyticsEvent, useAnalytics } from '@features/analytics';
 
 const RarityIconSelector: FC = () => {
@@ -58,20 +60,11 @@ const RarityIconSelector: FC = () => {
         displayName="Rarity Icon"
         slug="rarityIcon"
         onChange={handleChange}
-        helpText={
-          !customIconActive && (
-            <NewFeatureHelpText>
-              You can now upload{' '}
-              <b>
-                <i>custom</i>
-              </b>{' '}
-              rarity icons!
-            </NewFeatureHelpText>
-          )
-        }
       >
         <SelectorMenuItem value="">
-          <SelectorListItemIcon />
+          <SelectorListItemIcon>
+            <EmptyIcon />
+          </SelectorListItemIcon>
           <ListItemText primary="None" />
         </SelectorMenuItem>
         <SelectorMenuItem value={0}>

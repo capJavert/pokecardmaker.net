@@ -11,6 +11,7 @@ import ControlledSelector from '@components/inputs/ControlledSelector';
 import {
   BadgeIcon,
   badgeIconTypes,
+  setLogo,
   useBadgeIcon,
 } from '@cardEditor/cardOptions/badgeIcon';
 import { SelectorListItemIcon } from '@components/SelectorListItemIcon';
@@ -19,6 +20,8 @@ import { useCardLogic } from '@cardEditor/cardLogic';
 import { CardCreatorAnalyticsEvent, useAnalytics } from '@features/analytics';
 import findById from '@utils/findById';
 import { baseSets } from '@cardEditor/cardOptions/baseSet';
+import { CropFree as EmptyIcon } from '@mui/icons-material';
+import NewFeatureHelpText from '@cardEditor/cardOptions/components/atoms/NewFeatureHelpText';
 
 const BadgeIconSelector: FC = () => {
   const { trackCardCreatorEvent } = useAnalytics();
@@ -72,10 +75,22 @@ const BadgeIconSelector: FC = () => {
                 displayName={`${iconType.displayName} Badge Icon`}
                 slug={`badgeIcon${iconType.slug}`}
                 onChange={handleChange}
+                helpText={
+                  iconType.slug === setLogo.slug && (
+                    <NewFeatureHelpText>
+                      Try the new{' '}
+                      <b>
+                        <i>Set Logo</i>
+                      </b>{' '}
+                      badge icons!
+                    </NewFeatureHelpText>
+                  )
+                }
               >
                 <SelectorMenuItem value="">
-                  {/* TODO: Include placeholder icon for all "None" items in the project */}
-                  <SelectorListItemIcon $width={iconType.width} />
+                  <SelectorListItemIcon>
+                    <EmptyIcon />
+                  </SelectorListItemIcon>
                   <ListItemText primary="None" />
                 </SelectorMenuItem>
                 {Object.entries(iconBaseSetGroups).map(([baseSetId, icons]) => {

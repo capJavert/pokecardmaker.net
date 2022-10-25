@@ -1,8 +1,8 @@
 import { styled } from '@css';
 import { ListItemIcon } from '@mui/material';
 
-export const SelectorListItemIcon = styled(ListItemIcon)<{ $width?: number }>`
+export const SelectorListItemIcon = styled(ListItemIcon)`
   justify-content: center;
-  min-width: ${({ $width }) => `${$width || 36}px`} !important;
+  min-width: 36px;
   z-index: 99;
 `;

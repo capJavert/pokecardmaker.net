@@ -10,21 +10,22 @@ import {
 } from '@mui/icons-material';
 import { Button, IconButton, Paper } from '@mui/material';
 import { Box } from '@mui/system';
-import { FC, memo, useCallback } from 'react';
+import { FC, memo, useCallback, useEffect, useState } from 'react';
 import { Area } from 'react-easy-crop';
-import { useBoolean } from 'react-use';
+import { useBoolean, useThrottle } from 'react-use';
 import { SrcLabel } from './styles';
 
 export interface ImgItemProps {
   img: CroppableCardImg;
 }
 
-// TODO: Fix zoom lagging probably caused by the whole image array being updated (debounce fix?)
 const ImgItem: FC<ImgItemProps> = ({ img }) => {
   const { images, setImages } = useCardOptions();
   const { cardImgSrc } = useCardStyles();
   const [editActive, toggleEditActive] = useBoolean(false);
   const [cropActive, toggleCropActive] = useBoolean(false);
+  const [crop, setCrop] = useState<Area | undefined>(img.croppedArea);
+  const throttledCrop = useThrottle(crop, 500);
 
   const handleDelete = useCallback(() => {
     const newImages = [...images];
@@ -34,16 +35,17 @@ const ImgItem: FC<ImgItemProps> = ({ img }) => {
     setImages(newImages);
   }, [img, images, setImages]);
 
-  const handleCrop = useCallback(
-    (croppedArea: Area) => {
-      const newImages = [...images];
-      const index = newImages.findIndex(image => image.order === img.order);
-      if (index < 0) return;
-      newImages[index].croppedArea = croppedArea;
-      setImages(newImages);
-    },
-    [img, images, setImages],
-  );
+  useEffect(() => {
+    if (!throttledCrop) return;
+
+    const newImages = [...images];
+    const index = newImages.findIndex(image => image.order === img.order);
+    if (index < 0) return;
+    newImages[index].croppedArea = throttledCrop;
+    setImages(newImages);
+    // Would result in infinite loop
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [throttledCrop]);
 
   return (
     <Paper>
@@ -87,7 +89,7 @@ const ImgItem: FC<ImgItemProps> = ({ img }) => {
           initialCroppedArea={img.croppedArea}
           overlayImgSrc={cardImgSrc}
           overlayImgZIndex={1}
-          onChange={handleCrop}
+          onChange={setCrop}
         />
       )}
     </Paper>

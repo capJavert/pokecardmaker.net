@@ -19,6 +19,7 @@ const ImagesForm: FC = () => {
             {
               name,
               src,
+              // TODO: Make images draggable
               behindTemplate: true,
               order: images.length + 1,
             },

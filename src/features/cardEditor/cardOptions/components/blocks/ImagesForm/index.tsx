@@ -1,15 +1,33 @@
+import { useCardOptions } from '@cardEditor/cardOptions/hooks';
 import AccordionForm from '@components/AccordionForm';
+import FileUploader from '@components/inputs/FileUploader';
 import { FC } from 'react';
-import BackgroundImgCropper from './fields/BackgroundImgCropper';
-import ImgLayer1Cropper from './fields/ImgLayer1Cropper';
-import ImgLayer2Cropper from './fields/ImgLayer2Cropper';
+import ImgItem from './components/ImgItem';
 
 const ImagesForm: FC = () => {
+  const { images, setImages } = useCardOptions();
+
   return (
     <AccordionForm slug="imagesForm" header="Images">
-      <BackgroundImgCropper />
-      <ImgLayer1Cropper />
-      <ImgLayer2Cropper />
+      <FileUploader
+        label="Upload Image"
+        slug="imgUpload"
+        hideFileName
+        onChange={(name, src) =>
+          setImages([
+            ...(images || []),
+            {
+              name,
+              src,
+              behindTemplate: true,
+              order: images.length + 1,
+            },
+          ])
+        }
+      />
+      {images.map(img => (
+        <ImgItem key={img.order} img={img} />
+      ))}
     </AccordionForm>
   );
 };

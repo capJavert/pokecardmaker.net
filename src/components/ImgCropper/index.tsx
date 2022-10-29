@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { FC, useState } from 'react';
+import { FC, memo, useState } from 'react';
 import Cropper, { Point } from 'react-easy-crop';
 import {
   cardImgHeight,
@@ -46,4 +46,10 @@ const ImgCropper: FC<ImgCropperProps> = ({
   );
 };
 
-export default ImgCropper;
+export default memo(ImgCropper, (prevProps, nextProps) => {
+  if (prevProps.src !== nextProps.src) return false;
+  if (prevProps.overlayImgSrc !== nextProps.overlayImgSrc) return false;
+  if (prevProps.overlayImgZIndex !== nextProps.overlayImgZIndex) return false;
+  if (prevProps.onChange !== nextProps.onChange) return false;
+  return true;
+});

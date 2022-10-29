@@ -37,12 +37,22 @@ export interface CroppableImg {
   croppedArea?: Area;
 }
 
+export interface CroppableCardImg extends CroppableImg {
+  name: string;
+  /**
+   * No 2 images may have the same order as this is also used as an identifier
+   */
+  order: number;
+  /**
+   * If it's not behind, then it's in front
+   */
+  behindTemplate: boolean;
+}
+
 export interface CardInterface {
   name?: string;
   subname?: string;
-  backgroundImg?: CroppableImg;
-  imgLayer1?: CroppableImg;
-  imgLayer2?: CroppableImg;
+  images: CroppableCardImg[];
   customSetIconSrc?: string;
   customTypeImgSrc?: string;
   customRarityIconImgSrc?: string;

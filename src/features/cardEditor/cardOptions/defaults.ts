@@ -57,9 +57,7 @@ export const defaultRelations: RelationsInterface = {
 export const defaultCardOptions: RequiredIsh<CardInterface> = {
   name: '',
   subname: '',
-  backgroundImg: undefined,
-  imgLayer1: undefined,
-  imgLayer2: undefined,
+  images: [],
   customSetIconSrc: undefined,
   prevolveImgSrc: undefined,
   customTypeImgSrc: undefined,

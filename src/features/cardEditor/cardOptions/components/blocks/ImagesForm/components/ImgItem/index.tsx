@@ -69,7 +69,6 @@ const ImgItem: FC<ImgItemProps> = ({ img, provided }) => {
         </IconButton>
       </Box>
       {editActive && (
-        // TODO: Add precision cropping
         <Box display="flex" gap={1} px={1} pb={1}>
           <Button
             fullWidth
@@ -91,11 +90,13 @@ const ImgItem: FC<ImgItemProps> = ({ img, provided }) => {
       )}
       {editActive && cropActive && (
         <ImgCropper
+          slug={img.id}
           src={img.src}
           initialCroppedArea={img.croppedArea}
           overlayImgSrc={cardImgSrc}
           overlayImgZIndex={img.behindTemplate ? 1 : 0}
           onChange={setCrop}
+          allowPrecisionControls
         />
       )}
     </Paper>

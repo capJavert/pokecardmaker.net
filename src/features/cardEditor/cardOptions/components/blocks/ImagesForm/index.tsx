@@ -13,6 +13,7 @@ import { Box } from '@mui/system';
 import { Divider } from '@mui/material';
 import ImgItem from './components/ImgItem';
 import { constructDroppableList, constructImageList, isCardImg } from './utils';
+import TooltipContent from './components/TooltipContent';
 
 const ImagesForm: FC = () => {
   const { images, setImages } = useCardOptions();
@@ -55,6 +56,11 @@ const ImagesForm: FC = () => {
         label="Upload Image"
         slug="imgUpload"
         hideFileName
+        tooltipProps={{
+          title: 'Image Layers',
+          withPopup: true,
+          children: <TooltipContent />,
+        }}
         onChange={(name, src) =>
           setImages([
             ...(images || []),

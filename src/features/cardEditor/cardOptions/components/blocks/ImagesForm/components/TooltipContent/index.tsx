@@ -1,81 +1,83 @@
-import Image from 'next/image';
 import { FC } from 'react';
-import demoBackgroundImg from '@assets/images/demoBackground.png';
-import demoLayer1Img from '@assets/images/demoLayer1.png';
-import demoLayer2Img from '@assets/images/demoLayer2.png';
-import demoCardImg from '@assets/cards/baseSets/swordAndShield/supertypes/pokemon/types/water/subtypes/basic.png';
-import demoFullImg from '@assets/images/demoFull.png';
-import { ArrowRightAlt as ArrowRightIcon } from '@mui/icons-material';
-import { Box } from '@mui/system';
-import { Typography } from '@mui/material';
-import {
-  FullImage,
-  ImagesWrapper,
-  NumberText,
-  PerspectiveImg,
-  PerspectiveWrapper,
-} from './styles';
+import { Box, Typography } from '@mui/material';
+import Image from 'next/image';
+import crop from '@assets/images/cardImgDemo/crop.png';
+import layering from '@assets/images/cardImgDemo/layering.png';
+import uploadButton from '@assets/images/cardImgDemo/uploadButton.png';
+import advancedCrop from '@assets/images/cardImgDemo/advancedCrop.png';
+import { ImgWrapper, ListItem } from './styles';
 
 const TooltipContent: FC = () => (
   <Box display="flex" flexDirection="column" gap={2}>
-    <Box>
-      <ImagesWrapper>
-        <PerspectiveWrapper>
-          <PerspectiveImg>
-            <Image src={demoBackgroundImg} layout="fill" />
-            <NumberText variant="h5">1.</NumberText>
-          </PerspectiveImg>
-          <PerspectiveImg $translateX={20}>
-            <Image src={demoLayer1Img} layout="fill" />
-            <NumberText variant="h5">2.</NumberText>
-          </PerspectiveImg>
-          <PerspectiveImg $translateX={60}>
-            <Image src={demoCardImg} layout="fill" />
-            <NumberText variant="h5">3.</NumberText>
-          </PerspectiveImg>
-          <PerspectiveImg $translateX={100}>
-            <Image src={demoLayer2Img} layout="fill" />
-            <NumberText variant="h5">4.</NumberText>
-          </PerspectiveImg>
-        </PerspectiveWrapper>
-        <ArrowRightIcon
-          fontSize="large"
-          sx={{
-            transform: {
-              xs: 'rotate(90deg)',
-              md: 'rotate(0deg)',
-            },
-          }}
-        />
-        <FullImage>
-          <Image src={demoFullImg} />
-        </FullImage>
-      </ImagesWrapper>
-      <Typography variant="caption">
-        Hint: You can tap the layers to get a better overview of their placement
-      </Typography>
-    </Box>
-    <Box>
-      <Typography variant="h5">1. Background</Typography>
-      <Typography mb={2}>
-        The background image is placed behind everything.
-      </Typography>
-      <Typography variant="h5">2. Layer 1</Typography>
-      <Typography mb={2}>
-        The layer 1 image is placed in front of the background image and behind
-        the card image. This is generally used to place any character images.
-      </Typography>
-      <Typography variant="h5">3. Card Image</Typography>
-      <Typography mb={2}>
-        The card image is the Pokémon Card image you selected earlier.
-      </Typography>
-      <Typography variant="h5">4. Layer 2</Typography>
-      <Typography mb={2}>
-        The layer 2 image is placed in front of the Card Image, and behind the
-        text on the card. This is generally used to overlap certain parts of
-        your image over the card borders.
-      </Typography>
-    </Box>
+    <ol>
+      <ListItem>
+        <Box display="flex" flexDirection="column">
+          <Typography>
+            <b>Upload</b> your image(s) by pressing the &quot;Upload image&quot;
+            button.
+          </Typography>
+          <ImgWrapper height={uploadButton.height} width={uploadButton.width}>
+            <Image src={uploadButton} />
+          </ImgWrapper>
+        </Box>
+      </ListItem>
+      <ListItem>
+        <Box display="flex" flexDirection="column">
+          <Typography>
+            You can drag your image around in order to set <b>layers</b>.
+          </Typography>
+          <ImgWrapper height={layering.height} width={layering.width}>
+            <Image src={layering} />
+          </ImgWrapper>
+        </Box>
+      </ListItem>
+      <ListItem>
+        <Box display="flex" flexDirection="column">
+          <Typography>
+            If you drag images <b>above</b> the &quot;Template image&quot;
+            divider, they will appear <b>under</b> the image template.
+          </Typography>
+          <Typography>
+            If you drag images <b>below</b> the &quot;Template image&quot;
+            divider, they will appear <b>above</b> the image template.
+          </Typography>
+        </Box>
+      </ListItem>
+      <ListItem>
+        <Box display="flex" flexDirection="column">
+          <Typography>
+            Clicking the pencil icon allows you to <b>edit</b> your image. You
+            can choose to crop or delete your image.
+          </Typography>
+        </Box>
+      </ListItem>
+      <ListItem>
+        <Box display="flex" flexDirection="column">
+          <Typography>
+            Enabling the <b>cropper</b> allows you to drag zoom your image.
+          </Typography>
+          <ImgWrapper height={crop.height} width={crop.width}>
+            <Image src={crop} />
+          </ImgWrapper>
+        </Box>
+      </ListItem>
+      <ListItem>
+        <Box display="flex" flexDirection="column">
+          <Typography>
+            At the bottom of the cropper, you can enable{' '}
+            <b>advanced cropping</b>. This allows you to precisely set image
+            coordinates and the zoom level.{' '}
+            <i>
+              While advanced crop is active, you can&apos;t drag and zoom on the
+              cropper above.
+            </i>
+          </Typography>
+          <ImgWrapper height={advancedCrop.height} width={advancedCrop.width}>
+            <Image src={advancedCrop} />
+          </ImgWrapper>
+        </Box>
+      </ListItem>
+    </ol>
   </Box>
 );
 

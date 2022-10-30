@@ -14,6 +14,7 @@ const GeneralInput: FC<GeneralInputProps> = ({
   tooltipProps,
   value,
   forceUpdate,
+  skipDebounce,
   ...rest
 }) => {
   const [tempValue, setTempValue] = useState(value);
@@ -28,7 +29,7 @@ const GeneralInput: FC<GeneralInputProps> = ({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       onChange(tempValue as any);
     },
-    250,
+    skipDebounce ? 0 : 250,
     [tempValue],
   );
 

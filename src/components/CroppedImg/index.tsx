@@ -3,7 +3,7 @@ import { Area } from 'react-easy-crop';
 import { Img, Wrapper } from './styles';
 import { CroppedImgProps } from './types';
 
-const DEFAULT_CROP: Area = { height: 0, width: 0, x: 0, y: 0 };
+export const DEFAULT_CROP: Area = { height: 0, width: 0, x: 0, y: 0 };
 
 const CroppedImg: FC<CroppedImgProps> = ({
   src,

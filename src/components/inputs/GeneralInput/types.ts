@@ -11,6 +11,7 @@ export interface InputProps {
   disabled?: boolean;
   onChange: ((value: string) => void) | ((value: number | '') => void);
   tooltipProps?: PropsWithChildren<TooltipProps>;
+  skipDebounce?: boolean;
 }
 
 export interface GeneralInputProps extends InputProps {

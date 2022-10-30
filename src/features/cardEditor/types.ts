@@ -37,12 +37,20 @@ export interface CroppableImg {
   croppedArea?: Area;
 }
 
+export interface CroppableCardImg extends CroppableImg {
+  id: string;
+  name: string;
+  order: number;
+  /**
+   * If it's not behind, then it's in front
+   */
+  behindTemplate: boolean;
+}
+
 export interface CardInterface {
   name?: string;
   subname?: string;
-  backgroundImg?: CroppableImg;
-  imgLayer1?: CroppableImg;
-  imgLayer2?: CroppableImg;
+  images: CroppableCardImg[];
   customSetIconSrc?: string;
   customTypeImgSrc?: string;
   customRarityIconImgSrc?: string;

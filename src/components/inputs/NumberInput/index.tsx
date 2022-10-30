@@ -7,6 +7,7 @@ const NumberInput: FC<NumberInputProps> = ({
   onChange,
   min,
   max,
+  step = 1,
   ...props
 }) => {
   const [update, forceUpdate] = useBoolean(false);
@@ -17,7 +18,7 @@ const NumberInput: FC<NumberInputProps> = ({
       if (finalValue !== '') {
         if (min !== undefined) finalValue = Math.max(min, finalValue);
         if (max !== undefined) finalValue = Math.min(max, finalValue);
-        if (finalValue !== +value) forceUpdate();
+        if (+finalValue !== +value) forceUpdate();
       }
       onChange(finalValue);
     },
@@ -29,6 +30,7 @@ const NumberInput: FC<NumberInputProps> = ({
       inputProps={{
         inputMode: 'numeric',
         pattern: '[0-9]*',
+        step,
       }}
       type="number"
       onChange={handleChange}

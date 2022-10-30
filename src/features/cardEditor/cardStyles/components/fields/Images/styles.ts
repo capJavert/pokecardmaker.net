@@ -1,9 +1,9 @@
 import { styled } from '@css';
 
-export const Wrapper = styled('div')`
+export const Wrapper = styled('div')<{ $isBehindTemplate: boolean }>`
   position: absolute;
   pointer-events: none;
-  z-index: -2;
+  z-index: ${({ $isBehindTemplate }) => ($isBehindTemplate ? '-2' : '2')};
   width: 100%;
   height: 100%;
   top: 0;

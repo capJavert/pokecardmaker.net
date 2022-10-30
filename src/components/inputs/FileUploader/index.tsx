@@ -27,6 +27,7 @@ import { FileUploaderProps } from './types';
 const FileUploader: FC<FileUploaderProps> = ({
   slug,
   label,
+  hideFileName,
   onChange,
   file,
   tooltipProps,
@@ -97,7 +98,7 @@ const FileUploader: FC<FileUploaderProps> = ({
       if (typeof result !== 'string') return;
 
       setLoading(false);
-      onChange(result);
+      onChange(fileName || 'My image', result);
     };
 
     const errorCallback = () => {
@@ -111,7 +112,7 @@ const FileUploader: FC<FileUploaderProps> = ({
       fileReader.current?.removeEventListener('load', successCallback);
       fileReader.current?.removeEventListener('error', errorCallback);
     };
-  }, [onChange]);
+  }, [onChange, fileName]);
 
   return (
     <FormControl error={!!errorMessage}>
@@ -136,14 +137,16 @@ const FileUploader: FC<FileUploaderProps> = ({
             )
           }
           endIcon={
-            !fileName ? (
+            hideFileName || !!fileName ? (
               <InputAdornment position="end">
                 <Typography variant="subtitle2">&lt; 5 MB</Typography>
               </InputAdornment>
             ) : undefined
           }
         >
-          <ButtonLabel>{fileName ?? <>&nbsp;</>}</ButtonLabel>
+          <ButtonLabel>
+            {hideFileName ? <>&nbsp;</> : fileName ?? <>&nbsp;</>}
+          </ButtonLabel>
           <input
             id={`${slug}-input`}
             accept="image/*"

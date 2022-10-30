@@ -25,16 +25,8 @@ const useCardOptions = () => {
     () => stateSetter<CardInterface['dexStats']>('dexStats'),
     [stateSetter],
   );
-  const setBackgroundImg = useMemo(
-    () => stateSetter<CardInterface['backgroundImg']>('backgroundImg'),
-    [stateSetter],
-  );
-  const setImgLayer1 = useMemo(
-    () => stateSetter<CardInterface['imgLayer1']>('imgLayer1'),
-    [stateSetter],
-  );
-  const setImgLayer2 = useMemo(
-    () => stateSetter<CardInterface['imgLayer2']>('imgLayer2'),
+  const setImages = useMemo(
+    () => stateSetter<CardInterface['images']>('images'),
     [stateSetter],
   );
   const setPrevolveImgSrc = useMemo(
@@ -112,9 +104,7 @@ const useCardOptions = () => {
     setName,
     setSubname,
     setDexStats,
-    setBackgroundImg,
-    setImgLayer1,
-    setImgLayer2,
+    setImages,
     setPrevolveImgSrc,
     setCardNumber,
     setTotalInSet,

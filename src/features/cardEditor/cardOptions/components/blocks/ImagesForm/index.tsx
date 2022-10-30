@@ -1,7 +1,7 @@
 import { useCardOptions } from '@cardEditor/cardOptions/hooks';
 import AccordionForm from '@components/AccordionForm';
 import FileUploader from '@components/inputs/FileUploader';
-import { FC, useCallback, useEffect, useMemo, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
 import {
   DragDropContext,
@@ -12,7 +12,7 @@ import {
 import { Box } from '@mui/system';
 import { Divider } from '@mui/material';
 import ImgItem from './components/ImgItem';
-import { constructDroppableList, isCardImg } from './utils';
+import { constructDroppableList, constructImageList, isCardImg } from './utils';
 
 const ImagesForm: FC = () => {
   const { images, setImages } = useCardOptions();
@@ -26,34 +26,8 @@ const ImagesForm: FC = () => {
   }, []);
 
   useEffect(() => {
-    let passedDivider = false;
-    setImages(
-      droppableList
-        .map((item, index) => {
-          if (!isCardImg(item)) {
-            passedDivider = true;
-            return item;
-          }
-          return {
-            ...item,
-            behindTemplate: !passedDivider,
-            order: index - (passedDivider ? 1 : 0),
-          };
-        })
-        .filter(isCardImg),
-    );
-  }, [droppableList, setImages]);
-
-  useEffect(() => {
-    if (images.length !== droppableList.length - 1) {
-      setDroppableList(constructDroppableList(images));
-    }
-  }, [images, droppableList.length]);
-
-  const templateDividerIndex = useMemo<number>(
-    () => droppableList.findIndex(item => !isCardImg(item)),
-    [droppableList],
-  );
+    setDroppableList(constructDroppableList(images));
+  }, [images]);
 
   const handleDrop = useCallback(
     (item: DropResult) => {
@@ -66,13 +40,13 @@ const ImagesForm: FC = () => {
       if (currentIndex === newIndex) return;
 
       const newList = [...droppableList];
-
       const [reorderedItem] = newList.splice(currentIndex, 1);
       newList.splice(newIndex, 0, reorderedItem);
 
       setDroppableList(newList);
+      setImages(constructImageList(newList));
     },
-    [droppableList],
+    [droppableList, setImages],
   );
 
   return (
@@ -111,13 +85,7 @@ const ImagesForm: FC = () => {
                       index={index}
                     >
                       {providedItem => (
-                        <ImgItem
-                          img={{
-                            ...item,
-                            behindTemplate: index < templateDividerIndex,
-                          }}
-                          provided={providedItem}
-                        />
+                        <ImgItem img={item} provided={providedItem} />
                       )}
                     </Draggable>
                   ) : (

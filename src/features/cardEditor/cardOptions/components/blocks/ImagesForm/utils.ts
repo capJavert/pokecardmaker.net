@@ -21,3 +21,22 @@ export const constructDroppableList = (
   if (!dividerInserted) list.push({ id: 'divider' });
   return list;
 };
+
+export const constructImageList = (
+  list: DroppableListItem[],
+): CroppableCardImg[] => {
+  let passedDivider = false;
+  return list
+    .map((item, index) => {
+      if (!isCardImg(item)) {
+        passedDivider = true;
+        return item;
+      }
+      return {
+        ...item,
+        behindTemplate: !passedDivider,
+        order: index - (passedDivider ? 1 : 0),
+      };
+    })
+    .filter(isCardImg);
+};

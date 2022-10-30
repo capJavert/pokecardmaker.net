@@ -57,11 +57,8 @@ const CardDisplay: FC = () => {
         <TypeBar />
         <CardInfo />
       </CardContent>
-      {/* <BackgroundImg />
-      <ImgLayer1 /> */}
       <Images />
       <CardImage />
-      {/* <ImgLayer2 /> */}
     </CardContainer>
   );
 };

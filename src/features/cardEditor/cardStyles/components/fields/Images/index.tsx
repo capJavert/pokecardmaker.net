@@ -13,7 +13,7 @@ const Images: FC = () => {
       {images
         .sort((a, b) => a.order - b.order)
         .map(img => (
-          <Wrapper key={img.order} $isBehindTemplate={img.behindTemplate}>
+          <Wrapper key={img.id} $isBehindTemplate={img.behindTemplate}>
             <CroppedImg {...img} />
           </Wrapper>
         ))}

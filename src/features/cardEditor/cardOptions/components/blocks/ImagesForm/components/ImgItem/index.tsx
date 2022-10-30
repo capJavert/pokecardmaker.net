@@ -5,21 +5,23 @@ import ImgCropper from '@components/ImgCropper';
 import {
   Crop as CropIcon,
   Delete as DeleteIcon,
-  Menu as DragIcon,
+  DragIndicator as DragIcon,
   Edit as EditIcon,
 } from '@mui/icons-material';
 import { Button, IconButton, Paper } from '@mui/material';
 import { Box } from '@mui/system';
 import { FC, memo, useCallback, useEffect, useState } from 'react';
+import { DraggableProvided } from 'react-beautiful-dnd';
 import { Area } from 'react-easy-crop';
 import { useBoolean, useThrottle } from 'react-use';
 import { SrcLabel } from './styles';
 
 export interface ImgItemProps {
   img: CroppableCardImg;
+  provided: DraggableProvided;
 }
 
-const ImgItem: FC<ImgItemProps> = ({ img }) => {
+const ImgItem: FC<ImgItemProps> = ({ img, provided }) => {
   const { images, setImages } = useCardOptions();
   const { cardImgSrc } = useCardStyles();
   const [editActive, toggleEditActive] = useBoolean(false);
@@ -29,7 +31,7 @@ const ImgItem: FC<ImgItemProps> = ({ img }) => {
 
   const handleDelete = useCallback(() => {
     const newImages = [...images];
-    const index = newImages.findIndex(image => image.order === img.order);
+    const index = newImages.findIndex(image => image.id === img.id);
     if (index < 0) return;
     newImages.splice(index, 1);
     setImages(newImages);
@@ -37,9 +39,8 @@ const ImgItem: FC<ImgItemProps> = ({ img }) => {
 
   useEffect(() => {
     if (!throttledCrop) return;
-
     const newImages = [...images];
-    const index = newImages.findIndex(image => image.order === img.order);
+    const index = newImages.findIndex(image => image.id === img.id);
     if (index < 0) return;
     newImages[index].croppedArea = throttledCrop;
     setImages(newImages);
@@ -48,9 +49,14 @@ const ImgItem: FC<ImgItemProps> = ({ img }) => {
   }, [throttledCrop]);
 
   return (
-    <Paper>
-      <Box display="flex" alignItems="center" p={0.25}>
-        <IconButton sx={{ mr: 2 }} color="inherit">
+    <Paper {...provided.draggableProps} ref={provided.innerRef} sx={{ mt: 2 }}>
+      <Box
+        display="flex"
+        alignItems="center"
+        p={0.25}
+        {...provided.dragHandleProps}
+      >
+        <IconButton sx={{ mr: 2, pointerEvents: 'none' }} color="inherit">
           <DragIcon />
         </IconButton>
         <SrcLabel>{img.name}</SrcLabel>
@@ -64,7 +70,7 @@ const ImgItem: FC<ImgItemProps> = ({ img }) => {
       </Box>
       {editActive && (
         // TODO: Add precision cropping
-        <Box display="flex" gap={1} px={1} mb={1}>
+        <Box display="flex" gap={1} px={1} pb={1}>
           <Button
             fullWidth
             onClick={toggleCropActive}
@@ -88,7 +94,7 @@ const ImgItem: FC<ImgItemProps> = ({ img }) => {
           src={img.src}
           initialCroppedArea={img.croppedArea}
           overlayImgSrc={cardImgSrc}
-          overlayImgZIndex={1}
+          overlayImgZIndex={img.behindTemplate ? 1 : 0}
           onChange={setCrop}
         />
       )}
@@ -96,7 +102,4 @@ const ImgItem: FC<ImgItemProps> = ({ img }) => {
   );
 };
 
-export default memo(ImgItem, (prevProps, nextProps) => {
-  if (prevProps.img.order !== nextProps.img.order) return false;
-  return true;
-});
+export default memo(ImgItem);

@@ -4,7 +4,7 @@ import {
   ListSubheader,
   SelectChangeEvent,
 } from '@mui/material';
-import { FC, useCallback, useMemo } from 'react';
+import { FC, Fragment, useCallback, useMemo } from 'react';
 import Routes from '@routes';
 import Image from 'next/image';
 import ControlledSelector from '@components/inputs/ControlledSelector';
@@ -45,12 +45,10 @@ const BadgeIconSelector: FC = () => {
       }>((groups, item) => {
         const iconType: number = item.type || 0;
         if (!groups[iconType]) {
-          // eslint-disable-next-line no-param-reassign
           groups[iconType] = [];
         }
         const baseSet: number = item.baseSet || 0;
         if (!groups[iconType][baseSet]) {
-          // eslint-disable-next-line no-param-reassign
           groups[iconType][baseSet] = [];
         }
         groups[iconType][baseSet].push(item);
@@ -68,7 +66,7 @@ const BadgeIconSelector: FC = () => {
         ([iconTypeId, iconBaseSetGroups], i) => {
           const iconType = findById(badgeIconTypes, +iconTypeId)!;
           return (
-            <>
+            <Fragment key={iconTypeId}>
               <ControlledSelector
                 // Display "None" when the selected badge icon is not in this group
                 value={badgeIcon?.type === +iconTypeId ? badgeIcon.id : ''}
@@ -126,7 +124,7 @@ const BadgeIconSelector: FC = () => {
               {i !== Object.keys(badgeIconGroups).length - 1 && (
                 <Divider sx={{ my: -4 }}>or</Divider>
               )}
-            </>
+            </Fragment>
           );
         },
       )}

@@ -38,10 +38,8 @@ export interface CroppableImg {
 }
 
 export interface CroppableCardImg extends CroppableImg {
+  id: string;
   name: string;
-  /**
-   * No 2 images may have the same order as this is also used as an identifier
-   */
   order: number;
   /**
    * If it's not behind, then it's in front

@@ -57,7 +57,22 @@ export const defaultRelations: RelationsInterface = {
 export const defaultCardOptions: RequiredIsh<CardInterface> = {
   name: '',
   subname: '',
-  images: [],
+  images: [
+    {
+      behindTemplate: true,
+      id: 'asd',
+      name: 'asd.png',
+      order: 1,
+      src: 'https://static.vecteezy.com/packs/media/vectors/term-bg-1-666de2d9.jpg',
+    },
+    {
+      behindTemplate: true,
+      id: 'asd2',
+      name: 'asd2.png',
+      order: 2,
+      src: 'https://images.unsplash.com/photo-1606657264989-ae6572c2ba5f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MXx8fGVufDB8fHx8&w=1000&q=80',
+    },
+  ],
   customSetIconSrc: undefined,
   prevolveImgSrc: undefined,
   customTypeImgSrc: undefined,

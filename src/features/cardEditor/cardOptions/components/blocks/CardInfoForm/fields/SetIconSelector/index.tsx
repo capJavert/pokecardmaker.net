@@ -58,7 +58,6 @@ const SetIconSelector: FC = () => {
       }>((groups, item) => {
         const groupId: number = item.baseSet || 0;
         if (!groups[groupId]) {
-          // eslint-disable-next-line no-param-reassign
           groups[groupId] = [];
         }
         groups[groupId].push(item);

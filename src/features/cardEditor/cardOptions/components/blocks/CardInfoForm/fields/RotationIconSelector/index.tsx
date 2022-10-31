@@ -81,7 +81,7 @@ const RotationIconSelector: FC = () => {
         <FileUploader
           slug="customRotationIconSrc"
           label="Custom Rotation Icon"
-          onChange={setCustomRotationIconSrc}
+          onChange={(_, img) => setCustomRotationIconSrc(img)}
           tooltipProps={{
             title: 'Recommended size: 32×32 pixels',
           }}

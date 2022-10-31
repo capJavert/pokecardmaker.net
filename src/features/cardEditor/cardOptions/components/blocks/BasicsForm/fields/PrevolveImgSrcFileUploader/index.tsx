@@ -13,7 +13,7 @@ const PrevolveImgSrcFileUploader: FC = () => {
     <FileUploader
       slug="prevolveImg"
       label="Prevolve Image"
-      onChange={setPrevolveImgSrc}
+      onChange={(_, img) => setPrevolveImgSrc(img)}
     />
   );
 };

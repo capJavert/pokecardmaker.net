@@ -98,7 +98,7 @@ const RarityIconSelector: FC = () => {
         <FileUploader
           slug="customRarityIconSrc"
           label="Custom Rarity Icon"
-          onChange={setCustomRarityIconImgSrc}
+          onChange={(_, img) => setCustomRarityIconImgSrc(img)}
           tooltipProps={{
             title: 'Recommended size: 32×32 pixels',
           }}

@@ -68,7 +68,7 @@ const TypeImgSelector: FC = () => {
         <FileUploader
           slug="customTypeImgSrc"
           label="Custom Energy Type"
-          onChange={setCustomTypeImgSrc}
+          onChange={(_, img) => setCustomTypeImgSrc(img)}
           tooltipProps={{
             title: 'Recommended size: 42×42 pixels',
           }}

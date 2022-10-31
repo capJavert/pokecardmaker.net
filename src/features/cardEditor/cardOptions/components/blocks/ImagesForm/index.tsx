@@ -56,7 +56,13 @@ const ImagesForm: FC = () => {
       <FileUploader
         label="Upload Image"
         slug="imgUpload"
-        hideFileName
+        buttonText={
+          <Typography variant="body2" component="span">
+            {images.length
+              ? 'Click to add another image'
+              : 'Click to add your image'}
+          </Typography>
+        }
         tooltipProps={{
           title: 'Image Layers',
           withPopup: true,

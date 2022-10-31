@@ -27,7 +27,7 @@ import { FileUploaderProps } from './types';
 const FileUploader: FC<FileUploaderProps> = ({
   slug,
   label,
-  hideFileName,
+  buttonText,
   onChange,
   file,
   tooltipProps,
@@ -137,16 +137,14 @@ const FileUploader: FC<FileUploaderProps> = ({
             )
           }
           endIcon={
-            hideFileName || !!fileName ? (
+            !buttonText && !!fileName ? (
               <InputAdornment position="end">
                 <Typography variant="subtitle2">&lt; 5 MB</Typography>
               </InputAdornment>
             ) : undefined
           }
         >
-          <ButtonLabel>
-            {hideFileName ? <>&nbsp;</> : fileName ?? <>&nbsp;</>}
-          </ButtonLabel>
+          <ButtonLabel>{buttonText || (fileName ?? <>&nbsp;</>)}</ButtonLabel>
           <input
             id={`${slug}-input`}
             accept="image/*"

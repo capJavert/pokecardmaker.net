@@ -10,7 +10,8 @@ import {
   Droppable,
 } from 'react-beautiful-dnd';
 import { Box } from '@mui/system';
-import { Divider } from '@mui/material';
+import { Divider, Typography } from '@mui/material';
+import { DragIndicator } from '@mui/icons-material';
 import ImgItem from './components/ImgItem';
 import { constructDroppableList, constructImageList, isCardImg } from './utils';
 import TooltipContent from './components/TooltipContent';
@@ -63,14 +64,17 @@ const ImagesForm: FC = () => {
         }}
         onChange={(name, src) =>
           setImages([
-            ...(images || []),
             {
               id: nanoid(),
               name,
               src,
-              behindTemplate: false,
-              order: images.length + 1,
+              behindTemplate: true,
+              order: 1,
             },
+            ...images.map(img => ({
+              ...img,
+              order: img.order + 1,
+            })),
           ])
         }
       />
@@ -101,14 +105,31 @@ const ImagesForm: FC = () => {
                       key={item.id}
                     >
                       {providedItem => (
-                        <Divider
-                          sx={{ mt: 2 }}
-                          ref={providedItem.innerRef}
-                          // {...providedItem.dragHandleProps}
-                          {...providedItem.draggableProps}
-                        >
-                          Template Image
-                        </Divider>
+                        <Box>
+                          <Divider
+                            sx={{ mt: 2 }}
+                            ref={providedItem.innerRef}
+                            // {...providedItem.dragHandleProps}
+                            {...providedItem.draggableProps}
+                          >
+                            Template Image
+                          </Divider>
+                          {index === droppableList.length - 1 && (
+                            <Typography
+                              variant="caption"
+                              display="block"
+                              textAlign="center"
+                            >
+                              You can{' '}
+                              <DragIndicator
+                                fontSize="inherit"
+                                display="inline"
+                              />{' '}
+                              drag images under this this line to make them
+                              appear above the template image
+                            </Typography>
+                          )}
+                        </Box>
                       )}
                     </Draggable>
                   ),

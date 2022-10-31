@@ -6,7 +6,6 @@ import {
   Crop as CropIcon,
   Delete as DeleteIcon,
   DragIndicator as DragIcon,
-  Edit as EditIcon,
 } from '@mui/icons-material';
 import { Button, IconButton, Paper } from '@mui/material';
 import { Box } from '@mui/system';
@@ -24,7 +23,6 @@ export interface ImgItemProps {
 const ImgItem: FC<ImgItemProps> = ({ img, provided }) => {
   const { images, setImages } = useCardOptions();
   const { cardImgSrc } = useCardStyles();
-  const [editActive, toggleEditActive] = useBoolean(false);
   const [cropActive, toggleCropActive] = useBoolean(false);
   const [crop, setCrop] = useState<Area | undefined>(img.croppedArea);
   const throttledCrop = useThrottle(crop, 500);
@@ -60,35 +58,26 @@ const ImgItem: FC<ImgItemProps> = ({ img, provided }) => {
           <DragIcon />
         </IconButton>
         <SrcLabel>{img.name}</SrcLabel>
-        <IconButton
-          sx={{ ml: 'auto' }}
-          color="inherit"
-          onClick={toggleEditActive}
-        >
-          <EditIcon fontSize="small" />
-        </IconButton>
       </Box>
-      {editActive && (
-        <Box display="flex" gap={1} px={1} pb={1}>
-          <Button
-            fullWidth
-            onClick={toggleCropActive}
-            variant={cropActive ? 'contained' : 'outlined'}
-            startIcon={<CropIcon />}
-          >
-            Crop
-          </Button>
-          <Button
-            fullWidth
-            onClick={handleDelete}
-            variant="outlined"
-            startIcon={<DeleteIcon />}
-          >
-            Delete
-          </Button>
-        </Box>
-      )}
-      {editActive && cropActive && (
+      <Box display="flex" gap={1} px={1} pb={1}>
+        <Button
+          fullWidth
+          onClick={toggleCropActive}
+          variant={cropActive ? 'contained' : 'outlined'}
+          startIcon={<CropIcon />}
+        >
+          Crop
+        </Button>
+        <Button
+          fullWidth
+          onClick={handleDelete}
+          variant="outlined"
+          startIcon={<DeleteIcon />}
+        >
+          Delete
+        </Button>
+      </Box>
+      {cropActive && (
         <ImgCropper
           slug={img.id}
           src={img.src}

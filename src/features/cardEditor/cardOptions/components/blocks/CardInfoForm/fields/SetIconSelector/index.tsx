@@ -112,7 +112,7 @@ const SetIconSelector: FC = () => {
         <FileUploader
           slug="customSetIconSrc"
           label="Custom Set Icon"
-          onChange={setCustomSetIconSrc}
+          onChange={(_, img) => setCustomSetIconSrc(img)}
           tooltipProps={{
             title: 'Recommended size: 38×38 pixels',
           }}

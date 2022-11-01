@@ -1,5 +1,5 @@
 import { CardOptionsContext } from '@cardEditor/cardOptions/Context';
-import { CardInterface } from '@cardEditor/types';
+import { isCardInterface } from '@cardEditor/cardOptions/utils';
 import { DataObject } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import { FC, useCallback, useContext } from 'react';
@@ -13,9 +13,10 @@ const ImportButton: FC = () => {
     navigator.clipboard
       .readText()
       .then((value: string) => {
-        // TODO: Check whether it's really a CardInterface object
-        const card = JSON.parse(value) as CardInterface;
-        setState(card);
+        const card = JSON.parse(value);
+        if (isCardInterface(card)) {
+          setState(card);
+        }
       })
       .catch(console.error);
   }, [setState]);

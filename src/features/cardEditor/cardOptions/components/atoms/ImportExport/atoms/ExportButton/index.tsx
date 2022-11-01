@@ -1,18 +1,17 @@
 import { CardOptionsContext } from '@cardEditor/cardOptions/Context';
+import { useStrippedCard } from '@cardEditor/cardOptions/hooks';
 import { DataObject } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import { FC, useCallback, useContext } from 'react';
 
 const ExportButton: FC = () => {
   const { state } = useContext(CardOptionsContext);
+  const strippedCard = useStrippedCard(state);
 
   const handleExport = useCallback(() => {
     if (!navigator?.clipboard) return;
-
-    // TODO: Remove all unused properties
-    // Example: `moves` are not used when exporting a `Trainer`
-    navigator.clipboard.writeText(JSON.stringify(state));
-  }, [state]);
+    navigator.clipboard.writeText(JSON.stringify(strippedCard));
+  }, [strippedCard]);
 
   return (
     <Button

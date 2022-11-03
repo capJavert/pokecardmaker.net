@@ -1,16 +1,27 @@
 import { CardOptionsContext } from '@cardEditor/cardOptions/Context';
 import { useStrippedCard } from '@cardEditor/cardOptions/hooks';
-import { DataObject } from '@mui/icons-material';
+import { AssignmentTurnedIn, DataObject } from '@mui/icons-material';
 import { Button } from '@mui/material';
-import { FC, useCallback, useContext } from 'react';
+import { FC, useCallback, useContext, useState } from 'react';
 
 const ExportButton: FC = () => {
   const { state } = useContext(CardOptionsContext);
   const strippedCard = useStrippedCard(state);
+  const [Icon, setIcon] = useState(<DataObject />);
 
   const handleExport = useCallback(() => {
-    if (!navigator?.clipboard) return;
-    navigator.clipboard.writeText(JSON.stringify(strippedCard));
+    let timeout: NodeJS.Timeout;
+
+    if (navigator?.clipboard) {
+      navigator.clipboard.writeText(JSON.stringify(strippedCard)).then(() => {
+        setIcon(<AssignmentTurnedIn />);
+        timeout = setTimeout(() => setIcon(<DataObject />), 2000);
+      });
+    }
+
+    return () => {
+      clearTimeout(timeout);
+    };
   }, [strippedCard]);
 
   return (
@@ -18,7 +29,7 @@ const ExportButton: FC = () => {
       sx={{ pl: 10 }}
       fullWidth
       variant="outlined"
-      startIcon={<DataObject />}
+      startIcon={Icon}
       onClick={handleExport}
     >
       Export object

@@ -8,6 +8,7 @@ import { Form } from './styles';
 import CardDownloader from '../atoms/CardDownloader';
 import TypeBarForm from '../blocks/TypeBarForm';
 import ImagesForm from '../blocks/ImagesForm';
+import ImportExport from '../atoms/ImportExport';
 
 const CardOptionsForm: FC = () => (
   <Form as="form">
@@ -19,6 +20,7 @@ const CardOptionsForm: FC = () => (
     <TypeBarForm />
     <CardInfoForm />
     <CardDownloader />
+    <ImportExport />
   </Form>
 );
 

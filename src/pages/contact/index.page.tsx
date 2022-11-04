@@ -78,15 +78,6 @@ const ContactPage: FC = () => {
           </Box>
         </PaperBox>
         <PaperBox>
-          <Typography variant="h3">Join the Discord!</Typography>
-          <Typography textAlign="center">
-            <Link href={Routes.Discord} target="_blank">
-              Join the Pokémon TCG Faking Community Discord
-            </Link>{' '}
-            and share your creations with tons of other passionate people!
-          </Typography>
-        </PaperBox>
-        <PaperBox>
           <Typography textAlign="center">
             Want to get in contact privately? Don&apos;t hesitate to send an
             email!{' '}

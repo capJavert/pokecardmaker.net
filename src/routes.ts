@@ -49,7 +49,6 @@ const Routes = {
         `${symbols}/moveBackground/${slug}.png`,
     },
   },
-  Discord: 'https://discord.com/invite/fKzFZ2n',
 };
 
 export default Routes;

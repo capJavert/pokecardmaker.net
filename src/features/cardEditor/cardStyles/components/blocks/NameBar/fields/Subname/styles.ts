@@ -4,7 +4,6 @@ import { Font } from '@utils/fonts';
 
 export const SubnameText = styled(CardText)<{ $beforeName: boolean }>`
   align-self: flex-end;
-  letter-spacing: -0.015em;
 
   ${({ $beforeName }) =>
     $beforeName
@@ -12,9 +11,10 @@ export const SubnameText = styled(CardText)<{ $beforeName: boolean }>`
           /* Pokémon's subname */
           font-family: '${Font.GillSansStdRegularBold}', monospace;
           order: -1;
-          font-size: 1.6em;
+          font-size: 1.7em;
           line-height: 1.85em;
-          margin-right: 0.2em;
+          transform: scale(0.9, 1.1);
+          transform-origin: center left;
         `
       : css`
           /* Trainer's subname */

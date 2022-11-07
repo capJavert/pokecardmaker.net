@@ -13,9 +13,9 @@ export const swordAndShield: BaseSet = {
         height: '6%',
       },
       prevolveName: {
-        letterSpacing: '0.01em',
-        top: '9.7%',
-        left: '17.8%',
+        top: '9.6%',
+        left: '17.6%',
+        fontSize: '1.04em',
       },
       prevolveImg: {
         top: '7.9%',
@@ -115,9 +115,9 @@ export const sunAndMoon: BaseSet = {
           'polygon(25% 0, 75% 0, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0 75%, 0 25%)',
       },
       prevolveName: {
-        letterSpacing: '-0.04em',
         top: '9.1%',
         left: '17.4%',
+        fontSize: '0.94em',
       },
       dexStats: {
         top: '47.9%',
@@ -149,9 +149,6 @@ export const sunAndMoon: BaseSet = {
       cardInfoBar: {
         gap: '0.75em',
         alignItems: 'center',
-      },
-      illustrator: {
-        letterSpacing: '-0.04em',
       },
       setIcon: {
         height: '1.7em',

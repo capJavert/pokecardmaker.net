@@ -44,7 +44,7 @@ const Name: FC = () => {
   }, [emphemeralUnit, namePosition, nameSymbolSize]);
 
   const scale = useMemo<number>(
-    () => Math.min(maxWidth / width, 1),
+    () => Math.min(maxWidth / width, 0.9),
     [maxWidth, width],
   );
 

@@ -7,7 +7,7 @@ export const AbilityDescriptionText = styled(CardText)`
   font-size: 1.71em;
   letter-spacing: -0.003em;
   width: 100%;
-  white-space: pre-wrap;
+  white-space: pre-line;
   text-align: justify;
   line-height: 1.05em;
   padding-left: 1.5%;

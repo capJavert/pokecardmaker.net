@@ -12,7 +12,7 @@ export const MoveDescriptionText = styled(CardText)<{
   font-size: 1.67em;
   letter-spacing: -0.003em;
   width: 100%;
-  white-space: pre-wrap;
+  white-space: pre-line;
   text-align: justify;
   line-height: 1.05em;
   min-height: 0.55em;

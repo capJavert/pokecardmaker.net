@@ -1,6 +1,7 @@
 import { useCardLogic } from '@cardEditor/cardLogic';
 import { useCardOptions } from '@cardEditor/cardOptions';
 import { useCardStyles } from '@cardEditor/cardStyles';
+import keepDoubleSpaces from '@cardEditor/cardStyles/utils/keepDoubleSpaces';
 import { FC } from 'react';
 import { DescriptionText, Wrapper } from './styles';
 
@@ -18,7 +19,7 @@ const Description: FC = () => {
   return (
     <Wrapper placement={descriptionPosition}>
       <DescriptionText textOutline={movesOutline} textColor={movesTextColor}>
-        {description}
+        {keepDoubleSpaces(description)}
       </DescriptionText>
     </Wrapper>
   );

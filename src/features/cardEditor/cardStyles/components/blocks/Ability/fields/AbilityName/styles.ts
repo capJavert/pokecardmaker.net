@@ -7,4 +7,6 @@ export const AbilityNameText = styled(CardText)<{ $energyCost: number }>`
   color: #a30000;
   font-size: 2.625em;
   letter-spacing: -0.05em;
+  position: absolute;
+  left: ${({ $energyCost }) => `${Math.max(4, $energyCost) * 7.5}%`};
 `;

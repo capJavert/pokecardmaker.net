@@ -6,7 +6,8 @@ export const CardNumberText = styled(CardText)`
   font-family: '${Font.FrutigerLT66BoldItalic}', monospace;
   line-height: 0.88em;
   margin-left: -0.2em;
-  letter-spacing: 0.02em;
   display: flex;
   justify-content: flex-end;
+  transform: scaleX(1.02);
+  transform-origin: left center;
 `;

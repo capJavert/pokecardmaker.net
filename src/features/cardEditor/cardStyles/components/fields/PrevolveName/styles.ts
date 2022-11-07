@@ -4,8 +4,8 @@ import CardText from '../../atoms/CardText';
 
 export const StyledText = styled(CardText)`
   font-family: '${Font.FrutigerLT66BoldItalic}', monospace;
-  font-size: 1.0125em;
   position: absolute;
   width: 50%;
   overflow: hidden;
+  transform: scaleY(0.93);
 `;

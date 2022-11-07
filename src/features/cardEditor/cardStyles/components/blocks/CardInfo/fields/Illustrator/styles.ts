@@ -7,4 +7,6 @@ export const IllustratorText = styled(CardText)`
   font-family: '${Font.FuturaStdBoldOblique}', monospace;
   margin-left: 0.3em;
   margin-bottom: -0.1em;
+  transform: scaleX(0.96);
+  transform-origin: left center;
 `;

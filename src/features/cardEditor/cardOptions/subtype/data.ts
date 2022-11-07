@@ -169,20 +169,10 @@ export const v: Subtype = {
     nameSymbol: 'v',
   },
   baseSetDependencies: {
-    [swordAndShield.id]: [
-      ...defaultPokemonTypes.map(t => ({
-        type: t,
-        rarities: [fullArt.id, goldenFullArtPokemon.id],
-      })),
-      {
-        type: dragon.id,
-        rarities: [],
-      },
-      {
-        type: fairy.id,
-        rarities: [],
-      },
-    ],
+    [swordAndShield.id]: allPokemonTypes.map(t => ({
+      type: t,
+      rarities: [fullArt.id, goldenFullArtPokemon.id],
+    })),
   },
 };
 

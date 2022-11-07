@@ -1,4 +1,5 @@
 import { useCardStyles } from '@cardEditor/cardStyles';
+import keepDoubleSpaces from '@cardEditor/cardStyles/utils/keepDoubleSpaces';
 import { FC } from 'react';
 import { MoveDescriptionText } from './styles';
 import { AttackMoveDescriptionProps } from './types';
@@ -21,7 +22,7 @@ const AttackMoveDescription: FC<AttackMoveDescriptionProps> = ({
       $isEmpty={!move?.description}
       $isOnlyMove={!!isOnlyMove}
     >
-      {move?.description}
+      {move ? keepDoubleSpaces(move?.description) : null}
     </MoveDescriptionText>
   );
 };

@@ -1,12 +1,14 @@
 import { styled } from '@css';
-import { cropperHeight } from 'src/constants';
+import { cardImgHeight, cardImgWidth, cropperWidth } from 'src/constants';
 
 export const Wrapper = styled('div')`
   position: relative;
   background: ${({ theme }) => theme.palette.background.default};
   width: 100%;
-  height: ${cropperHeight}px;
   border-radius: ${({ theme }) => theme.shape.borderRadius}px;
+  max-width: ${cropperWidth}px;
+  margin: 0 auto;
+  aspect-ratio: ${cardImgWidth} / ${cardImgHeight};
 
   [data-testid='container'] {
     border-radius: ${({ theme }) => theme.shape.borderRadius}px;

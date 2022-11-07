@@ -15,4 +15,7 @@ export const DescriptionText = styled(CardText)`
   white-space: pre-line;
   text-align: justify;
   line-height: inherit;
+  transform: scaleX(0.97);
+  transform-origin: left;
+  width: 103%;
 `;

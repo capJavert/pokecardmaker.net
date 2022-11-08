@@ -2,7 +2,7 @@ import { useCardLogic } from '@cardEditor/cardLogic';
 import { useCardOptions } from '@cardEditor/cardOptions';
 import { useCardStyles } from '@cardEditor/cardStyles/hooks';
 import { FC } from 'react';
-import { SubnameText } from './styles';
+import { SCALE, SubnameText } from './styles';
 
 const Subname: FC = () => {
   const {
@@ -20,6 +20,7 @@ const Subname: FC = () => {
       textOutline={nameOutline}
       textColor={nameTextColor}
       $beforeName={!!beforeName}
+      unscale={SCALE}
     >
       {subname}
     </SubnameText>

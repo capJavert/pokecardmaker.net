@@ -21,7 +21,7 @@ const DexEntry: FC = () => {
       textOutline={cardInfoOutline}
       placement={placement}
     >
-      <span>{dexEntry}</span>
+      {dexEntry}
     </DexEntryText>
   );
 };

@@ -2,7 +2,7 @@ import { useCardLogic } from '@cardEditor/cardLogic';
 import { useCardOptions } from '@cardEditor/cardOptions';
 import { useCardStyles } from '@cardEditor/cardStyles/hooks';
 import { FC } from 'react';
-import { IllustratorText } from './styles';
+import { IllustratorText, SCALE } from './styles';
 
 const Illustrator: FC = () => {
   const { illustrator } = useCardOptions();
@@ -19,6 +19,7 @@ const Illustrator: FC = () => {
     <IllustratorText
       textColor={cardInfoTextColor}
       textOutline={cardInfoOutline}
+      unscale={SCALE}
       placement={placement}
     >
       Illus. {illustrator}

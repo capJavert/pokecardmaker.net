@@ -5,7 +5,7 @@ import parse, {
   domToReact,
 } from 'html-react-parser';
 import { CardTextProps } from './types';
-import { SmallText, SpecialCharacter, Text } from './styles';
+import { SmallText, SpecialCharacter, Text, TextWrapper } from './styles';
 
 const parseOptions: HTMLReactParserOptions = {
   replace: domNode => {
@@ -21,7 +21,7 @@ const parseOptions: HTMLReactParserOptions = {
         case 'u':
           return <u>{children}</u>;
         case 'pkm':
-          return <SpecialCharacter>{children}</SpecialCharacter>;
+          return <SpecialCharacter data-special>{children}</SpecialCharacter>;
         case 'small':
           return <SmallText>{children}</SmallText>;
         default:
@@ -35,6 +35,7 @@ const parseOptions: HTMLReactParserOptions = {
 const CardText: FC<CardTextProps> = ({
   textOutline,
   textColor = 'black',
+  unscale,
   children,
   ...props
 }) => {
@@ -59,9 +60,13 @@ const CardText: FC<CardTextProps> = ({
             /(?:=)(?:(?!\s))((?:(?!\n|=).)+)(?:=)/g,
             '<small>$1</small>',
           );
-        return parse(contentString, parseOptions);
+        return (
+          <TextWrapper $scale={unscale}>
+            {parse(contentString, parseOptions)}
+          </TextWrapper>
+        );
       }),
-    [children],
+    [unscale, children],
   );
 
   return (

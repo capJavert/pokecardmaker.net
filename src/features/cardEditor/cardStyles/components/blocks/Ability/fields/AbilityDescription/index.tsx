@@ -2,7 +2,7 @@ import { useCardOptions } from '@cardEditor/cardOptions';
 import { useCardStyles } from '@cardEditor/cardStyles';
 import keepDoubleSpaces from '@cardEditor/cardStyles/utils/keepDoubleSpaces';
 import { FC } from 'react';
-import { AbilityDescriptionText } from './styles';
+import { AbilityDescriptionText, SCALE } from './styles';
 
 const AbilityDescription: FC = () => {
   const { ability } = useCardOptions();
@@ -12,6 +12,7 @@ const AbilityDescription: FC = () => {
     <AbilityDescriptionText
       textOutline={movesOutline}
       textColor={movesTextColor}
+      unscale={SCALE}
     >
       {ability ? keepDoubleSpaces(ability?.description) : null}
     </AbilityDescriptionText>

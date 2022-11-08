@@ -9,6 +9,8 @@ import { cardImgWidth } from 'src/constants';
 import { getNameSymbolSize } from '../NameSymbol/utils';
 import { NameText } from './styles';
 
+const DEFAULT_SCALE = 0.9;
+
 const Name: FC = () => {
   const { name } = useCardOptions();
   const {
@@ -35,16 +37,17 @@ const Name: FC = () => {
       : 0;
     // TODO: Subtract measured subname size
     // TODO: And measured HP too?
+    // TODO: Replace 0.02 with a calculation using `DEFAULT_SCALE`
     return (
       cardImgWidth *
         (emphemeralUnit / baseEmphemeralUnit) *
-        maxWidthPercentile -
+        (maxWidthPercentile - 0.02) -
       nameSymbolPx
     );
   }, [emphemeralUnit, namePosition, nameSymbolSize]);
 
   const scale = useMemo<number>(
-    () => Math.min(maxWidth / width, 0.9),
+    () => Math.min(maxWidth / width, DEFAULT_SCALE),
     [maxWidth, width],
   );
 
@@ -57,7 +60,10 @@ const Name: FC = () => {
         sx={{
           transformOrigin: 'left center',
           transform: `scale(${scale}, 1)`,
-          width: scale === 1 ? 'unset' : `calc(100% - ${nameSymbolSize})`,
+          width:
+            scale === DEFAULT_SCALE
+              ? 'unset'
+              : `calc(101% - ${nameSymbolSize})`,
         }}
       >
         <NameText textOutline={nameOutline} textColor={nameTextColor}>

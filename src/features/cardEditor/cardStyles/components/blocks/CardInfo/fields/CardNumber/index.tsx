@@ -1,7 +1,7 @@
 import { useCardOptions } from '@cardEditor/cardOptions';
 import { useCardStyles } from '@cardEditor/cardStyles/hooks';
 import { FC } from 'react';
-import { CardNumberText } from './styles';
+import { CardNumberText, SCALE } from './styles';
 
 const CardNumber: FC = () => {
   const { cardNumber, totalInSet } = useCardOptions();
@@ -17,6 +17,7 @@ const CardNumber: FC = () => {
     <CardNumberText
       textColor={cardInfoTextColor}
       textOutline={cardInfoOutline}
+      unscale={SCALE}
       placement={placement}
     >
       {cardNumber && <span>{cardNumber}</span>}

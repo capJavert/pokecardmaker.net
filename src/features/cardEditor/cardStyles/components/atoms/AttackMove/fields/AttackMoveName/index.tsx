@@ -1,7 +1,7 @@
 import { useCardLogic } from '@cardEditor/cardLogic';
 import { FC } from 'react';
 import { AttackMoveDisplayProps } from '../../types';
-import { MoveNameText } from './styles';
+import { MoveNameText, SCALE } from './styles';
 
 const AttackMoveName: FC<AttackMoveDisplayProps> = ({
   move,
@@ -15,6 +15,7 @@ const AttackMoveName: FC<AttackMoveDisplayProps> = ({
       $energyCost={greatestEnergyCost}
       textOutline={outline}
       textColor={color}
+      unscale={SCALE}
     >
       {move?.name}
     </MoveNameText>

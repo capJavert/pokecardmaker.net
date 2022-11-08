@@ -1,7 +1,7 @@
 import { useCardStyles } from '@cardEditor/cardStyles';
 import keepDoubleSpaces from '@cardEditor/cardStyles/utils/keepDoubleSpaces';
 import { FC } from 'react';
-import { MoveDescriptionText } from './styles';
+import { MoveDescriptionText, SCALE } from './styles';
 import { AttackMoveDescriptionProps } from './types';
 
 const AttackMoveDescription: FC<AttackMoveDescriptionProps> = ({
@@ -17,6 +17,7 @@ const AttackMoveDescription: FC<AttackMoveDescriptionProps> = ({
     <MoveDescriptionText
       textOutline={outline}
       textColor={color}
+      unscale={SCALE}
       $alignBottom={alignMovesBottom}
       $isLastMove={!!isLastMove}
       $isEmpty={!move?.description}

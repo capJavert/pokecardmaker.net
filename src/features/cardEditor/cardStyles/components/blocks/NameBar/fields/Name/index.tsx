@@ -9,8 +9,10 @@ import { cardImgWidth } from 'src/constants';
 import { getNameSymbolSize } from '../NameSymbol/utils';
 import { NameText } from './styles';
 
-const DEFAULT_SCALE = 0.9;
-
+// TODO: Apply a DEFAULT_SCALE of 0.9
+// Could be difficult because the NameSymbol needs to move appropriately
+// The width:unset does not work anymore, because of the scale still taking up less space,
+// it leaves a greater gap
 const Name: FC = () => {
   const { name } = useCardOptions();
   const {
@@ -24,7 +26,7 @@ const Name: FC = () => {
   const [invisibleRef, { width }] = useMeasure<HTMLDivElement>();
 
   const nameSymbolSize = useMemo<string>(
-    () => getNameSymbolSize(nameSymbol)?.width || '0',
+    () => getNameSymbolSize(nameSymbol)?.width || '0em',
     [nameSymbol],
   );
 
@@ -37,17 +39,16 @@ const Name: FC = () => {
       : 0;
     // TODO: Subtract measured subname size
     // TODO: And measured HP too?
-    // TODO: Replace 0.02 with a calculation using `DEFAULT_SCALE`
     return (
       cardImgWidth *
         (emphemeralUnit / baseEmphemeralUnit) *
-        (maxWidthPercentile - 0.02) -
+        maxWidthPercentile -
       nameSymbolPx
     );
   }, [emphemeralUnit, namePosition, nameSymbolSize]);
 
   const scale = useMemo<number>(
-    () => Math.min(maxWidth / width, DEFAULT_SCALE),
+    () => Math.min(maxWidth / width, 1),
     [maxWidth, width],
   );
 
@@ -60,10 +61,7 @@ const Name: FC = () => {
         sx={{
           transformOrigin: 'left center',
           transform: `scale(${scale}, 1)`,
-          width:
-            scale === DEFAULT_SCALE
-              ? 'unset'
-              : `calc(101% - ${nameSymbolSize})`,
+          width: scale === 1 ? `unset` : `calc(100% - ${nameSymbolSize})`,
         }}
       >
         <NameText textOutline={nameOutline} textColor={nameTextColor}>

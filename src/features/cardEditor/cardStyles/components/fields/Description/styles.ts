@@ -3,6 +3,8 @@ import { styled } from '@css';
 import { Font } from '@utils/fonts';
 import PlacementBlock from '../../atoms/PlacementBlock';
 
+export const SCALE = 0.97;
+
 export const Wrapper = styled(PlacementBlock)`
   display: flex;
   align-items: center;
@@ -15,7 +17,7 @@ export const DescriptionText = styled(CardText)`
   white-space: pre-line;
   text-align: justify;
   line-height: inherit;
-  transform: scaleX(0.97);
+  transform: scaleX(${SCALE});
   transform-origin: left;
   width: 103%;
 `;

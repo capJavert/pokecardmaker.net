@@ -42,3 +42,15 @@ export const SmallText = styled('span')`
   font-size: 0.7em;
   line-height: 1em;
 `;
+
+export const TextWrapper = styled('span')<{ $scale?: number }>`
+  ${({ $scale }) =>
+    $scale &&
+    css`
+      [data-special] {
+        transform: scaleX(${1 / $scale});
+        transform-origin: center;
+        display: inline-block;
+      }
+    `}
+`;

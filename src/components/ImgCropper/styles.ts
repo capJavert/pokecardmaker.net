@@ -1,5 +1,6 @@
+import { cropperWidth } from '@cardEditor/cardOptions/components/blocks/ImagesForm/constants';
+import { cardImgHeight, cardImgWidth } from '@cardEditor/cardStyles';
 import { styled } from '@css';
-import { cardImgHeight, cardImgWidth, cropperWidth } from 'src/constants';
 
 export const Wrapper = styled('div')`
   position: relative;

@@ -51,6 +51,7 @@ export interface CardInterface {
   name?: string;
   subname?: string;
   images: CroppableCardImg[];
+  backgroundColor: string;
   customSetIconSrc?: string;
   customTypeImgSrc?: string;
   customRarityIconImgSrc?: string;

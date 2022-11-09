@@ -1,3 +1,4 @@
+import { useCardOptions } from '@cardEditor/cardOptions';
 import {
   cardId,
   cardImgAspect,
@@ -23,6 +24,7 @@ import TypeImg from '../fields/TypeImg';
 import { CardContainer, CardContent } from './styles';
 
 const CardDisplay: FC = () => {
+  const { backgroundColor } = useCardOptions();
   const { emphemeralUnit, setEmphemeralUnit } = useCardStyles();
   const [squareRef, { width }] = useMeasure<HTMLDivElement>();
   const [height, setHeight] = useState<number>(cardImgHeight);
@@ -41,6 +43,7 @@ const CardDisplay: FC = () => {
       id={cardId}
       $fontSize={emphemeralUnit}
       $height={height}
+      $backgroundColor={backgroundColor}
       ref={squareRef}
     >
       <Debug />

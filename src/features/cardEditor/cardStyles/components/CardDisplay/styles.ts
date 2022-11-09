@@ -1,8 +1,10 @@
 import { styled } from '@css';
+import { ColorValue } from 'mui-color';
 
 export const CardContainer = styled('div')<{
   $fontSize: number;
   $height: number;
+  $backgroundColor: ColorValue;
 }>`
   position: relative;
   z-index: 1;
@@ -20,7 +22,7 @@ export const CardContainer = styled('div')<{
     z-index: -10;
     content: '';
     position: absolute;
-    background: ${({ theme }) => theme.palette.background.default};
+    background: #${({ $backgroundColor }) => String($backgroundColor)};
     border-radius: 30px;
     /* Space a bit away from the borders so it's not visible outside of the card */
     width: calc(100% - 8px);

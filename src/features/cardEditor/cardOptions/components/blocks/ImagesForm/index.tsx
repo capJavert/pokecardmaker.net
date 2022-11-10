@@ -12,12 +12,14 @@ import {
 import { Box } from '@mui/system';
 import { Divider, Typography } from '@mui/material';
 import { DragIndicator } from '@mui/icons-material';
+import ControlledColorPicker from '@components/inputs/ControlledColorPicker';
 import ImgItem from './components/ImgItem';
 import { constructDroppableList, constructImageList, isCardImg } from './utils';
 import TooltipContent from './components/TooltipContent';
 
 const ImagesForm: FC = () => {
-  const { images, setImages } = useCardOptions();
+  const { images, setImages, backgroundColor, setBackgroundColor } =
+    useCardOptions();
   const [windowReady, setWindowReady] = useState<boolean>(false);
   const [droppableList, setDroppableList] = useState(
     constructDroppableList(images),
@@ -53,6 +55,14 @@ const ImagesForm: FC = () => {
 
   return (
     <AccordionForm slug="imagesForm" header="Images">
+      {windowReady && (
+        <ControlledColorPicker
+          label="Background Color"
+          slug="backgroundColor"
+          onChange={setBackgroundColor}
+          value={backgroundColor}
+        />
+      )}
       <FileUploader
         label="Upload Image"
         slug="imgUpload"

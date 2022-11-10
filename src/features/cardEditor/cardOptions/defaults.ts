@@ -58,6 +58,7 @@ export const defaultCardOptions: RequiredIsh<CardInterface> = {
   name: '',
   subname: '',
   images: [],
+  backgroundColor: 'white',
   customSetIconSrc: undefined,
   prevolveImgSrc: undefined,
   customTypeImgSrc: undefined,

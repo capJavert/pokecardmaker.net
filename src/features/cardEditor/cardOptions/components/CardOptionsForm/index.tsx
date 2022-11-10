@@ -9,12 +9,14 @@ import CardDownloader from '../atoms/CardDownloader';
 import TypeBarForm from '../blocks/TypeBarForm';
 import ImagesForm from '../blocks/ImagesForm';
 import ImportExport from '../atoms/ImportExport';
+import DexStatsForm from '../blocks/DexStatsForm';
 
 const CardOptionsForm: FC = () => (
   <Form as="form">
     <DebugForm />
     <CardTypeForm />
     <BasicsForm />
+    <DexStatsForm />
     <ImagesForm />
     <AllMovesForm />
     <TypeBarForm />

@@ -1,5 +1,9 @@
+import {
+  baseEmphemeralUnit,
+  cardImgHeight,
+  cardImgWidth,
+} from '@cardEditor/cardStyles';
 import { toCanvas } from 'html-to-image';
-import { baseFontSize, cardImgHeight, cardImgWidth } from 'src/constants';
 
 export const makeCanvas = async (
   cardId: string,
@@ -20,7 +24,7 @@ export const makeCanvas = async (
   // Set desired css attributes
   div.style.width = `${cardImgWidth}px`;
   div.style.height = `${cardImgHeight}px`;
-  div.style.fontSize = `${baseFontSize}px`;
+  div.style.fontSize = `${baseEmphemeralUnit}px`;
 
   const canvas = await toCanvas(div, {
     backgroundColor: 'transparent',

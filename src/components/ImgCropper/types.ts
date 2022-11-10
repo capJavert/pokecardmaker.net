@@ -1,4 +1,4 @@
-import { Area } from 'react-easy-crop';
+import { Area, Size } from 'react-easy-crop';
 
 export interface ImgCropperProps {
   slug: string;
@@ -8,4 +8,6 @@ export interface ImgCropperProps {
   overlayImgSrc?: string;
   overlayImgZIndex?: number;
   allowPrecisionControls?: boolean;
+  aspect?: number;
+  cropSize?: Size;
 }

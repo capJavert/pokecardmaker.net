@@ -44,6 +44,11 @@ const GeneralInput: FC<GeneralInputProps> = ({
           startAdornment,
           endAdornment,
         }}
+        inputProps={{
+          sx: {
+            cursor: disabled ? 'not-allowed' : undefined,
+          },
+        }}
         disabled={disabled}
         onChange={e => setTempValue(e.currentTarget.value)}
         value={tempValue}

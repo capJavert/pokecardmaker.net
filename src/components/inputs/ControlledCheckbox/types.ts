@@ -3,4 +3,5 @@ export interface ControlledCheckboxProps {
   label: string;
   slug: string;
   onChange: (value: boolean) => void;
+  noBorder?: boolean;
 }

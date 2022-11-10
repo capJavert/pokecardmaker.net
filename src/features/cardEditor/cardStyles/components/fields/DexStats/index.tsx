@@ -2,7 +2,7 @@ import { useCardLogic } from '@cardEditor/cardLogic';
 import { useCardOptions } from '@cardEditor/cardOptions';
 import { useCardStyles } from '@cardEditor/cardStyles/hooks';
 import { FC } from 'react';
-import { DexStatsText } from './styles';
+import { DexStatsText, SCALE } from './styles';
 
 const DexStats: FC = () => {
   const { hasDexStats } = useCardLogic();
@@ -20,6 +20,7 @@ const DexStats: FC = () => {
       textColor={dexStatsTextColor}
       textOutline={dexStatsOutline}
       placement={placement}
+      unscale={SCALE}
     >
       {dexStats}
     </DexStatsText>

@@ -1,5 +1,9 @@
 import { useCardOptions } from '@cardEditor/cardOptions/hooks';
-import { useCardStyles } from '@cardEditor/cardStyles';
+import {
+  cardImgHeight,
+  cardImgWidth,
+  useCardStyles,
+} from '@cardEditor/cardStyles';
 import { CroppableCardImg } from '@cardEditor/types';
 import ImgCropper from '@components/ImgCropper';
 import {
@@ -13,6 +17,7 @@ import { FC, memo, useCallback, useEffect, useState } from 'react';
 import { DraggableProvided } from 'react-beautiful-dnd';
 import { Area } from 'react-easy-crop';
 import { useBoolean, useThrottle } from 'react-use';
+import { cropperHeight, cropperWidth } from '../../constants';
 import { SrcLabel } from './styles';
 
 export interface ImgItemProps {
@@ -86,6 +91,8 @@ const ImgItem: FC<ImgItemProps> = ({ img, provided }) => {
           overlayImgZIndex={img.behindTemplate ? 1 : 0}
           onChange={setCrop}
           allowPrecisionControls
+          cropSize={{ width: cropperWidth, height: cropperHeight }}
+          aspect={cardImgWidth / cardImgHeight}
         />
       )}
     </Paper>

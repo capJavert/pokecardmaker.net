@@ -29,6 +29,10 @@ const useCardOptions = () => {
     () => stateSetter<CardInterface['images']>('images'),
     [stateSetter],
   );
+  const setBackgroundColor = useMemo(
+    () => stateSetter<CardInterface['backgroundColor']>('backgroundColor'),
+    [stateSetter],
+  );
   const setPrevolveImgSrc = useMemo(
     () => stateSetter<CardInterface['prevolveImgSrc']>('prevolveImgSrc'),
     [stateSetter],
@@ -105,6 +109,7 @@ const useCardOptions = () => {
     setSubname,
     setDexStats,
     setImages,
+    setBackgroundColor,
     setPrevolveImgSrc,
     setCardNumber,
     setTotalInSet,

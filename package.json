@@ -48,6 +48,7 @@
     "html-react-parser": "^3.0.1",
     "html-to-image": "^1.9.0",
     "lodash.merge": "^4.6.2",
+    "mui-color": "^2.0.0-beta.2",
     "nanoid": "^4.0.0",
     "next": "^12.1.4",
     "next-sitemap": "^3.1.21",

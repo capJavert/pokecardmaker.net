@@ -4,12 +4,6 @@ import Image from 'next/image';
 import { FC, useCallback, useState } from 'react';
 import Cropper, { Area, Point } from 'react-easy-crop';
 import { useBoolean } from 'react-use';
-import {
-  cardImgHeight,
-  cardImgWidth,
-  cropperHeight,
-  cropperWidth,
-} from 'src/constants';
 import { Transform as PrecisionCropIcon } from '@mui/icons-material';
 import { Button, Typography } from '@mui/material';
 import { Overlay, Wrapper } from './styles';
@@ -22,6 +16,8 @@ const ImgCropper: FC<ImgCropperProps> = ({
   overlayImgSrc,
   overlayImgZIndex = 0,
   allowPrecisionControls,
+  aspect,
+  cropSize,
   onChange,
 }) => {
   const [crop, setCrop] = useState<Point>({ x: 0, y: 0 });
@@ -47,12 +43,12 @@ const ImgCropper: FC<ImgCropperProps> = ({
           crop={crop}
           initialCroppedAreaPercentages={initialCroppedArea}
           zoom={zoom}
-          cropSize={{ width: cropperWidth, height: cropperHeight }}
+          cropSize={cropSize}
           maxZoom={100}
           minZoom={0.1}
           restrictPosition={false}
           zoomSpeed={0.1}
-          aspect={cardImgWidth / cardImgHeight}
+          aspect={aspect}
           onCropChange={setCrop}
           onZoomChange={setZoom}
           onCropComplete={onChange}

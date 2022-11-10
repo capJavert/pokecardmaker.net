@@ -183,6 +183,13 @@ export const getTheme = (mode: PaletteMode) => {
           },
         },
       },
+      MuiPopover: {
+        styleOverrides: {
+          paper: {
+            backgroundColor: theme.palette.background.default,
+          },
+        },
+      },
     },
   });
 

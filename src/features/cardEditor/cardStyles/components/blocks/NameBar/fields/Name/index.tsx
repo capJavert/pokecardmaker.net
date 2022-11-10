@@ -1,18 +1,18 @@
 import { useCardOptions } from '@cardEditor/cardOptions';
-import { baseEmphemeralUnit, useCardStyles } from '@cardEditor/cardStyles';
+import {
+  baseEmphemeralUnit,
+  cardImgWidth,
+  useCardStyles,
+} from '@cardEditor/cardStyles';
 import { CSSProperties } from '@mui/styled-engine';
 import { Box } from '@mui/system';
 import { FC, useMemo, useRef } from 'react';
 import { useMeasure } from 'react-use';
-// TODO: Remove duplicate constant files
-import { cardImgWidth } from 'src/constants';
 import { getNameSymbolSize } from '../NameSymbol/utils';
 import { NameText } from './styles';
 
-// TODO: Apply a DEFAULT_SCALE of 0.9
-// Could be difficult because the NameSymbol needs to move appropriately
-// The width:unset does not work anymore, because of the scale still taking up less space,
-// it leaves a greater gap
+const DEFAULT_SCALE = 0.9;
+
 const Name: FC = () => {
   const { name } = useCardOptions();
   const {
@@ -48,7 +48,7 @@ const Name: FC = () => {
   }, [emphemeralUnit, namePosition, nameSymbolSize]);
 
   const scale = useMemo<number>(
-    () => Math.min(maxWidth / width, 1),
+    () => Math.min(maxWidth / width, DEFAULT_SCALE),
     [maxWidth, width],
   );
 
@@ -61,10 +61,17 @@ const Name: FC = () => {
         sx={{
           transformOrigin: 'left center',
           transform: `scale(${scale}, 1)`,
-          width: scale === 1 ? `unset` : `calc(100% - ${nameSymbolSize})`,
+          width:
+            scale === DEFAULT_SCALE
+              ? `${width * DEFAULT_SCALE}px`
+              : `calc(100% - ${nameSymbolSize})`,
         }}
       >
-        <NameText textOutline={nameOutline} textColor={nameTextColor}>
+        <NameText
+          textOutline={nameOutline}
+          textColor={nameTextColor}
+          unscale={scale}
+        >
           {name}
         </NameText>
       </Box>
@@ -78,6 +85,7 @@ const Name: FC = () => {
           zIndex: -100,
           opacity: 0,
           pointerEvents: 'none',
+          transform: `scaleX(${DEFAULT_SCALE})`,
         }}
       >
         <NameText textOutline={nameOutline} textColor={nameTextColor}>

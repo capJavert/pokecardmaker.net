@@ -9,8 +9,9 @@ const ControlledCheckbox: FC<ControlledCheckboxProps> = ({
   slug,
   value,
   onChange,
+  noBorder,
 }) => (
-  <StyledFormControl>
+  <StyledFormControl $noBorder={noBorder}>
     <Label slug={slug}>{label}</Label>
     <Checkbox
       id={`${slug}-input`}

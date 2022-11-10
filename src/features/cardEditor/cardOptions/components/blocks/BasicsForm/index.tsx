@@ -2,7 +2,6 @@ import AccordionForm from '@components/AccordionForm';
 import { FC } from 'react';
 import BadgeIconSelector from '../CardInfoForm/fields/BadgeIconSelector';
 import DescriptionInput from './fields/DescriptionInput';
-import DexStatsInput from './fields/DexStatsInput';
 import HitpointsInput from './fields/HitpointsInput';
 import NameInput from './fields/NameInput';
 import PrevolveImgSrcFileUploader from './fields/PrevolveImgSrcFileUploader';
@@ -19,7 +18,6 @@ const BasicsForm: FC = () => (
     <DescriptionInput />
     <PrevolveNameInput />
     <PrevolveImgSrcFileUploader />
-    <DexStatsInput />
     <TypeImgSelector />
     <TypeImgAmountSelector />
     <BadgeIconSelector />

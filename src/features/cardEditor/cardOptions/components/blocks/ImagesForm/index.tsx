@@ -10,10 +10,9 @@ import {
   Droppable,
 } from 'react-beautiful-dnd';
 import { Box } from '@mui/system';
-import { Divider, FormControl, Typography } from '@mui/material';
+import { Divider, Typography } from '@mui/material';
 import { DragIndicator } from '@mui/icons-material';
-import { ColorObject, ColorPicker } from 'mui-color';
-import Label from '@components/inputs/Label';
+import ControlledColorPicker from '@components/inputs/ControlledColorPicker';
 import ImgItem from './components/ImgItem';
 import { constructDroppableList, constructImageList, isCardImg } from './utils';
 import TooltipContent from './components/TooltipContent';
@@ -56,17 +55,14 @@ const ImagesForm: FC = () => {
 
   return (
     <AccordionForm slug="imagesForm" header="Images">
-      {/* TODO: Move into colorpicker input component and style better */}
-      {/* Disable input manually */}
-      <FormControl>
-        <Label slug="backgroundColor">Background color</Label>
-        <ColorPicker
-          value={`#${backgroundColor}`}
-          onChange={color =>
-            setBackgroundColor((color as ColorObject).hex || '')
-          }
+      {windowReady && (
+        <ControlledColorPicker
+          label="Background Color"
+          slug="backgroundColor"
+          onChange={setBackgroundColor}
+          value={backgroundColor}
         />
-      </FormControl>
+      )}
       <FileUploader
         label="Upload Image"
         slug="imgUpload"

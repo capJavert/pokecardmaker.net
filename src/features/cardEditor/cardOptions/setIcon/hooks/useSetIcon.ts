@@ -5,15 +5,16 @@ import { setIcons } from '../data';
 
 const useSetIcon = () => {
   const { setIcon } = useCardRelations();
-  const { stateSetter, customSetIconSrc } = useCardOptions();
+  const { stateSetter, customSetIconImgSrc } = useCardOptions();
 
   const setSetIcon = useMemo(
     () => stateSetter<CardInterface['setIconId']>('setIconId'),
     [stateSetter],
   );
 
-  const setCustomSetIconSrc = useMemo(
-    () => stateSetter<CardInterface['customSetIconSrc']>('customSetIconSrc'),
+  const setCustomSetIconImgSrc = useMemo(
+    () =>
+      stateSetter<CardInterface['customSetIconImgSrc']>('customSetIconImgSrc'),
     [stateSetter],
   );
 
@@ -21,8 +22,8 @@ const useSetIcon = () => {
     setIcons,
     setIcon,
     setSetIcon,
-    customSetIconSrc,
-    setCustomSetIconSrc,
+    customSetIconImgSrc,
+    setCustomSetIconImgSrc,
   };
 };
 

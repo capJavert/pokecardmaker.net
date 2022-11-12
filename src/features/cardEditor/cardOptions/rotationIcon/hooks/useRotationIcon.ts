@@ -12,7 +12,7 @@ const useRotationIcon = () => {
     [stateSetter],
   );
 
-  const setCustomRotationIconSrc = useMemo(
+  const setCustomRotationIconImgSrc = useMemo(
     () =>
       stateSetter<CardInterface['customRotationIconImgSrc']>(
         'customRotationIconImgSrc',
@@ -25,7 +25,7 @@ const useRotationIcon = () => {
     rotationIcon,
     setRotationIcon,
     customRotationIconImgSrc,
-    setCustomRotationIconSrc,
+    setCustomRotationIconImgSrc,
   };
 };
 

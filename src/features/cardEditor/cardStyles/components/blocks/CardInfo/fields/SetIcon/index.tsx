@@ -9,7 +9,7 @@ const SetIcon: FC = () => {
   const {
     positions: { setIcon: placement },
   } = useCardStyles();
-  const { setIcon, customSetIconSrc } = useSetIcon();
+  const { setIcon, customSetIconImgSrc: customSetIconSrc } = useSetIcon();
   const imgSrc =
     customSetIconSrc || (!!setIcon && Routes.Assets.Icons.Set(setIcon.slug));
 

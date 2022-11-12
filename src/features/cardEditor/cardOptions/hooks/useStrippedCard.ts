@@ -53,7 +53,7 @@ const useStrippedCard = (card: CardInterface): CardInterface => {
     }
     if (!cardLogic.hasCardInfo) {
       delete clone.setIconId;
-      delete clone.customSetIconSrc;
+      delete clone.customSetIconImgSrc;
       delete clone.rotationIconId;
       delete clone.customRotationIconImgSrc;
       delete clone.cardNumber;

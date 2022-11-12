@@ -23,7 +23,7 @@ export const AnalyticsProvider: React.FC = ({ children }) => {
     retreatCost,
     customRarityIconImgSrc,
     customRotationIconImgSrc,
-    customSetIconSrc,
+    customSetIconImgSrc: customSetIconSrc,
   } = useCardOptions();
   const { typeImg: _, ...relations } = useCardRelations();
   const cardDataRef = useRef<Record<string, string | number | undefined>>({
@@ -50,7 +50,6 @@ export const AnalyticsProvider: React.FC = ({ children }) => {
     customSetIconSrc,
   ]);
 
-  // TODO: Maybe only track relations that have dependencies with this fn (so not weaknessType, badgeIcon, etc.)
   const trackCardCreatorEvent = useCallback(
     (event: CardCreatorAnalyticsEvent, data?: Record<string, string>) => {
       setTimeout(() => {

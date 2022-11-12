@@ -1,15 +1,13 @@
-import { Icon, ListItemText, SelectChangeEvent } from '@mui/material';
-import { FC, useState } from 'react';
+import { ListItemText } from '@mui/material';
+import { FC } from 'react';
 import Routes from '@routes';
 import Image from 'next/image';
-import ControlledSelector from '@components/inputs/ControlledSelector';
 import { SelectorListItemIcon } from '@components/SelectorListItemIcon';
 import { SelectorMenuItem } from '@components/SelectorMenuItem';
-import { QuestionMark as QuestionMarkIcon } from '@mui/icons-material';
-import FileUploader from '@components/inputs/FileUploader';
 import { useType, useTypeImg } from '@cardEditor/cardOptions/type';
 import { useCardLogic } from '@cardEditor/cardLogic';
 import { useBaseSet } from '@cardEditor/cardOptions/baseSet';
+import CustomIconSelector from '@cardEditor/cardOptions/components/atoms/CustomIconSelector';
 
 const TypeImgSelector: FC = () => {
   const { hasTypeImage } = useCardLogic();
@@ -17,64 +15,33 @@ const TypeImgSelector: FC = () => {
   const { pokemonTypes } = useType();
   const { typeImg, setTypeImg, customTypeImgSrc, setCustomTypeImgSrc } =
     useTypeImg();
-  const [customIconActive, setCustomIconActive] = useState<boolean>(
-    !!customTypeImgSrc,
-  );
-
-  const handleChange = (event: SelectChangeEvent) => {
-    const value = Number(event.target.value);
-    if (value) {
-      setTypeImg(value);
-      setCustomIconActive(false);
-      setCustomTypeImgSrc(undefined);
-    } else {
-      setCustomIconActive(true);
-    }
-  };
 
   if (!hasTypeImage) return null;
 
   return (
-    <>
-      <ControlledSelector
-        value={customIconActive ? 0 : typeImg?.id}
-        displayName="Energy Type"
-        slug="typeImg"
-        onChange={handleChange}
-      >
-        <SelectorMenuItem value={0}>
+    <CustomIconSelector
+      displayName="Energy Type"
+      slug="typeImg"
+      icon={typeImg}
+      customIconSrc={customTypeImgSrc}
+      setIcon={setTypeImg}
+      setCustomIconSrc={setCustomTypeImgSrc}
+      recommendedSize={42}
+    >
+      {pokemonTypes.map(pt => (
+        <SelectorMenuItem key={pt.slug} value={pt.id}>
           <SelectorListItemIcon>
-            <Icon>
-              <QuestionMarkIcon />
-            </Icon>
+            <Image
+              src={Routes.Assets.Icons.Type(baseSet.slug, pt.slug, true)}
+              width={26}
+              height={26}
+              alt=""
+            />
           </SelectorListItemIcon>
-          <ListItemText primary="Custom" />
+          <ListItemText primary={pt.displayName} />
         </SelectorMenuItem>
-        {pokemonTypes.map(pt => (
-          <SelectorMenuItem key={pt.slug} value={pt.id}>
-            <SelectorListItemIcon>
-              <Image
-                src={Routes.Assets.Icons.Type(baseSet.slug, pt.slug, true)}
-                width={26}
-                height={26}
-                alt=""
-              />
-            </SelectorListItemIcon>
-            <ListItemText primary={pt.displayName} />
-          </SelectorMenuItem>
-        ))}
-      </ControlledSelector>
-      {customIconActive && (
-        <FileUploader
-          slug="customTypeImgSrc"
-          label="Custom Energy Type"
-          onChange={(_, img) => setCustomTypeImgSrc(img)}
-          tooltipProps={{
-            title: 'Recommended size: 42×42 pixels',
-          }}
-        />
-      )}
-    </>
+      ))}
+    </CustomIconSelector>
   );
 };
 

@@ -27,7 +27,6 @@ const SEO: FC<SEOProps> = ({
       <meta property="og:title" content={finalTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:site_name" content={siteTitle} />
-      {/* TODO: Change this image to avoid cropping */}
       <meta
         property="og:image"
         content="https://pokecardmaker.net/assets/images/metaImage.png"

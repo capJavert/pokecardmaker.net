@@ -30,7 +30,7 @@ export const Wrapper = styled(PlacementBlock)<{
               `
             : css`
                 /* Single default */
-                right: 4.55%;
+                right: 4.45%;
               `}
         `}
 `;

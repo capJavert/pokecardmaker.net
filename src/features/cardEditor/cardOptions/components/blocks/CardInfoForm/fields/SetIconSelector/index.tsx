@@ -1,55 +1,24 @@
-import {
-  Icon,
-  ListItemText,
-  ListSubheader,
-  SelectChangeEvent,
-} from '@mui/material';
-import { FC, useCallback, useMemo, useState } from 'react';
+import { ListItemText, ListSubheader } from '@mui/material';
+import { FC, useMemo } from 'react';
 import Routes from '@routes';
 import Image from 'next/image';
-import ControlledSelector from '@components/inputs/ControlledSelector';
 import { SetIcon, useSetIcon } from '@cardEditor/cardOptions/setIcon';
 import { SelectorListItemIcon } from '@components/SelectorListItemIcon';
 import { SelectorMenuItem } from '@components/SelectorMenuItem';
-import { QuestionMark as QuestionMarkIcon } from '@mui/icons-material';
-import FileUploader from '@components/inputs/FileUploader';
 import { useBaseSet } from '@cardEditor/cardOptions/baseSet';
 import findById from '@utils/findById';
-import { CardCreatorAnalyticsEvent, useAnalytics } from '@features/analytics';
+import { CardCreatorAnalyticsEvent } from '@features/analytics';
+import CustomIconSelector from '@cardEditor/cardOptions/components/atoms/CustomIconSelector';
 
 const SetIconSelector: FC = () => {
-  const { trackCardCreatorEvent } = useAnalytics();
   const { baseSets } = useBaseSet();
   const {
     setIcons,
     setIcon,
     setSetIcon,
-    customSetIconSrc,
-    setCustomSetIconSrc,
+    customSetIconImgSrc,
+    setCustomSetIconImgSrc,
   } = useSetIcon();
-  const [customIconActive, setCustomIconActive] = useState<boolean>(
-    !!customSetIconSrc,
-  );
-
-  const handleChange = useCallback(
-    (event: SelectChangeEvent) => {
-      const value = Number(event.target.value);
-      if (value) {
-        setSetIcon(value);
-        setCustomIconActive(false);
-        setCustomSetIconSrc(undefined);
-      } else {
-        setCustomIconActive(true);
-      }
-      trackCardCreatorEvent(CardCreatorAnalyticsEvent.SetIconChange);
-    },
-    [
-      setSetIcon,
-      setCustomIconActive,
-      setCustomSetIconSrc,
-      trackCardCreatorEvent,
-    ],
-  );
 
   const setIconGroups = useMemo(
     () =>
@@ -67,58 +36,42 @@ const SetIconSelector: FC = () => {
   );
 
   return (
-    <>
-      <ControlledSelector
-        value={customIconActive ? 0 : setIcon?.id}
-        displayName="Set Icon"
-        slug="setIcon"
-        onChange={handleChange}
-      >
-        <SelectorMenuItem value={0}>
-          <SelectorListItemIcon>
-            <Icon>
-              <QuestionMarkIcon />
-            </Icon>
-          </SelectorListItemIcon>
-          <ListItemText primary="Custom" />
-        </SelectorMenuItem>
-        {Object.entries(setIconGroups).map(([baseSetId, icons]) => {
-          const baseSet = findById(baseSets, +baseSetId);
-          return [
-            ...(baseSet
-              ? [
-                  <ListSubheader key={baseSet.id}>
-                    {baseSet.displayName}
-                  </ListSubheader>,
-                ]
-              : []),
-            ...icons.map(si => (
-              <SelectorMenuItem key={si.slug} value={si.id}>
-                <SelectorListItemIcon>
-                  <Image
-                    src={Routes.Assets.Icons.Set(si.slug)}
-                    width={36}
-                    height={si.shape === 'square' ? 36 : 24}
-                    alt=""
-                  />
-                </SelectorListItemIcon>
-                <ListItemText primary={si.displayName} secondary={si.subText} />
-              </SelectorMenuItem>
-            )),
-          ];
-        })}
-      </ControlledSelector>
-      {customIconActive && (
-        <FileUploader
-          slug="customSetIconSrc"
-          label="Custom Set Icon"
-          onChange={(_, img) => setCustomSetIconSrc(img)}
-          tooltipProps={{
-            title: 'Recommended size: 38×38 pixels',
-          }}
-        />
-      )}
-    </>
+    <CustomIconSelector
+      displayName="Set Icon"
+      slug="setIcon"
+      icon={setIcon}
+      customIconSrc={customSetIconImgSrc}
+      setIcon={setSetIcon}
+      setCustomIconSrc={setCustomSetIconImgSrc}
+      recommendedSize={38}
+      trackEvent={CardCreatorAnalyticsEvent.SetIconChange}
+    >
+      {Object.entries(setIconGroups).map(([baseSetId, icons]) => {
+        const baseSet = findById(baseSets, +baseSetId);
+        return [
+          ...(baseSet
+            ? [
+                <ListSubheader key={baseSet.id}>
+                  {baseSet.displayName}
+                </ListSubheader>,
+              ]
+            : []),
+          ...icons.map(si => (
+            <SelectorMenuItem key={si.slug} value={si.id}>
+              <SelectorListItemIcon>
+                <Image
+                  src={Routes.Assets.Icons.Set(si.slug)}
+                  width={36}
+                  height={si.shape === 'square' ? 36 : 24}
+                  alt=""
+                />
+              </SelectorListItemIcon>
+              <ListItemText primary={si.displayName} secondary={si.subText} />
+            </SelectorMenuItem>
+          )),
+        ];
+      })}
+    </CustomIconSelector>
   );
 };
 

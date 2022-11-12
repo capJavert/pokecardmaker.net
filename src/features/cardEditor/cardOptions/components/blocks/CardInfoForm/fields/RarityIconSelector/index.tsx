@@ -1,21 +1,15 @@
-import { Icon, ListItemText, SelectChangeEvent } from '@mui/material';
-import { FC, useCallback, useState } from 'react';
+import { ListItemText } from '@mui/material';
+import { FC } from 'react';
 import Routes from '@routes';
 import Image from 'next/image';
-import ControlledSelector from '@components/inputs/ControlledSelector';
-import {
-  CropFree as EmptyIcon,
-  QuestionMark as QuestionMarkIcon,
-} from '@mui/icons-material';
 import { useRarityIcon } from '@cardEditor/cardOptions/rarityIcon';
 import { SelectorListItemIcon } from '@components/SelectorListItemIcon';
 import { SelectorMenuItem } from '@components/SelectorMenuItem';
 import { useSettings } from '@features/settings';
-import FileUploader from '@components/inputs/FileUploader';
-import { CardCreatorAnalyticsEvent, useAnalytics } from '@features/analytics';
+import { CardCreatorAnalyticsEvent } from '@features/analytics';
+import CustomIconSelector from '@cardEditor/cardOptions/components/atoms/CustomIconSelector';
 
 const RarityIconSelector: FC = () => {
-  const { trackCardCreatorEvent } = useAnalytics();
   const { themeMode } = useSettings();
   const {
     rarityIcons,
@@ -24,87 +18,37 @@ const RarityIconSelector: FC = () => {
     customRarityIconImgSrc,
     setCustomRarityIconImgSrc,
   } = useRarityIcon();
-  const [customIconActive, setCustomIconActive] = useState<boolean>(
-    !!customRarityIconImgSrc,
-  );
-
-  const handleChange = useCallback(
-    (event: SelectChangeEvent) => {
-      const { value } = event.target;
-      if (typeof value === 'string') {
-        // 'None' selected
-        setRarityIcon(undefined);
-        return;
-      }
-      if (value) {
-        setRarityIcon(value);
-        setCustomIconActive(false);
-        setCustomRarityIconImgSrc(undefined);
-      } else {
-        setCustomIconActive(true);
-      }
-      trackCardCreatorEvent(CardCreatorAnalyticsEvent.RarityIconChange);
-    },
-    [
-      setRarityIcon,
-      setCustomIconActive,
-      setCustomRarityIconImgSrc,
-      trackCardCreatorEvent,
-    ],
-  );
 
   return (
-    <>
-      <ControlledSelector
-        value={customIconActive ? 0 : rarityIcon?.id}
-        displayName="Rarity Icon"
-        slug="rarityIcon"
-        onChange={handleChange}
-      >
-        <SelectorMenuItem value="">
+    <CustomIconSelector
+      displayName="Rarity Icon"
+      slug="rarityIcon"
+      icon={rarityIcon}
+      customIconSrc={customRarityIconImgSrc}
+      setIcon={setRarityIcon}
+      setCustomIconSrc={setCustomRarityIconImgSrc}
+      recommendedSize={32}
+      trackEvent={CardCreatorAnalyticsEvent.RarityIconChange}
+      hasNone
+    >
+      {rarityIcons.map(ri => (
+        <SelectorMenuItem key={ri.slug} value={ri.id}>
           <SelectorListItemIcon>
-            <EmptyIcon />
+            <Image
+              src={
+                themeMode === 'light'
+                  ? Routes.Assets.Icons.Rarity(ri.slug)
+                  : Routes.Assets.Icons.RarityWhite(ri.slug)
+              }
+              height={ri.shape === 'small' ? 13 : 24}
+              width={ri.shape === 'small' ? 13 : 24}
+              alt=""
+            />
           </SelectorListItemIcon>
-          <ListItemText primary="None" />
+          <ListItemText primary={ri.displayName} secondary={ri.subText} />
         </SelectorMenuItem>
-        <SelectorMenuItem value={0}>
-          <SelectorListItemIcon>
-            <Icon>
-              <QuestionMarkIcon />
-            </Icon>
-          </SelectorListItemIcon>
-          <ListItemText primary="Custom" />
-        </SelectorMenuItem>
-        {rarityIcons.map(ri => (
-          <SelectorMenuItem key={ri.slug} value={ri.id}>
-            <SelectorListItemIcon>
-              <Image
-                src={
-                  themeMode === 'light'
-                    ? Routes.Assets.Icons.Rarity(ri.slug)
-                    : Routes.Assets.Icons.RarityWhite(ri.slug)
-                }
-                height={ri.shape === 'small' ? 13 : 24}
-                width={ri.shape === 'small' ? 13 : 24}
-                alt=""
-              />
-            </SelectorListItemIcon>
-            <ListItemText primary={ri.displayName} secondary={ri.subText} />
-          </SelectorMenuItem>
-        ))}
-      </ControlledSelector>
-      {/* TODO: Maybe generalize into a custom icon uploader component? */}
-      {customIconActive && (
-        <FileUploader
-          slug="customRarityIconSrc"
-          label="Custom Rarity Icon"
-          onChange={(_, img) => setCustomRarityIconImgSrc(img)}
-          tooltipProps={{
-            title: 'Recommended size: 32×32 pixels',
-          }}
-        />
-      )}
-    </>
+      ))}
+    </CustomIconSelector>
   );
 };
 

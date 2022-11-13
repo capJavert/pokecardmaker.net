@@ -22,28 +22,27 @@ export const Wrapper = styled(CardText)<{ $size: Size }>`
 
 export const HPText = styled('span')<{ $size: Size }>`
   display: inline-block;
-  transform: scaleX(0.65);
   transform-origin: center right;
   letter-spacing: 0.1em;
   margin-right: 0.1em;
+  font-family: '${Font.GillSansStdUltraBold}', monospace;
 
   ${({ $size }) =>
     $size === 'sm'
       ? css`
-          font-family: '${Font.GillSansStdUltraBold}', monospace;
           font-size: 1.2em;
           font-weight: bold;
+          transform: scaleX(0.65);
         `
       : css`
-          font-family: 'Gill Sans Std', monospace;
-          font-size: 1.3em;
-          font-weight: bold;
+          font-size: 1.25em;
+          transform: scaleX(0.6);
         `};
 `;
 
 export const HPNumbers = styled('span')<{ $size: Size }>`
   font-family: '${Font.FuturaLTMediumBold}', monospace;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.025em;
 
   ${({ $size }) =>
     $size === 'sm'

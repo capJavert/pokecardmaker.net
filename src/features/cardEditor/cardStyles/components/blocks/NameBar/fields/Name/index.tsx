@@ -11,7 +11,8 @@ import { useMeasure } from 'react-use';
 import { getNameSymbolSize } from '../NameSymbol/utils';
 import { NameText } from './styles';
 
-const DEFAULT_SCALE = 0.9;
+// TODO: Change back to 0.9
+const DEFAULT_SCALE = 1;
 
 const Name: FC = () => {
   const { name } = useCardOptions();
@@ -39,6 +40,8 @@ const Name: FC = () => {
       : 0;
     // TODO: Subtract measured subname size
     // TODO: And measured HP too?
+
+    // TODO: Get rid of emphemeralunit calculations in this fn because it breaks consistency with downloads
     return (
       cardImgWidth *
         (emphemeralUnit / baseEmphemeralUnit) *
@@ -61,9 +64,11 @@ const Name: FC = () => {
         sx={{
           transformOrigin: 'left center',
           transform: `scale(${scale}, 1)`,
+          // TODO: Change back when DEFAULT_SCALE === 0.9
+          // ? `${width * DEFAULT_SCALE}px`
           width:
             scale === DEFAULT_SCALE
-              ? `${width * DEFAULT_SCALE}px`
+              ? 'unset'
               : `calc(100% - ${nameSymbolSize})`,
         }}
       >
@@ -85,6 +90,7 @@ const Name: FC = () => {
           zIndex: -100,
           opacity: 0,
           pointerEvents: 'none',
+          transformOrigin: 'left center',
           transform: `scaleX(${DEFAULT_SCALE})`,
         }}
       >

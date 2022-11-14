@@ -2,7 +2,7 @@ import { css, styled } from '@css';
 import PlacementBlock from '../../atoms/PlacementBlock';
 
 export const Wrapper = styled(PlacementBlock)<{
-  $hasMove2: boolean;
+  $hasMultipleAttacks: boolean;
   $alignBottom: boolean;
 }>`
   top: 53%;
@@ -13,8 +13,8 @@ export const Wrapper = styled(PlacementBlock)<{
   flex-direction: column;
   gap: 0.5em;
 
-  ${({ $hasMove2 }) =>
-    $hasMove2 &&
+  ${({ $hasMultipleAttacks }) =>
+    $hasMultipleAttacks &&
     css`
       justify-content: space-evenly;
     `}

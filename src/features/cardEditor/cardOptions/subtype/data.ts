@@ -230,9 +230,9 @@ export const vstar: Subtype = {
         height: 'unset',
         gap: '3em',
       },
-      move2: {
-        height: '10.8em',
-      },
+      // move2: {
+      //   height: '10.8em',
+      // },
       ability: {
         height: '10.8em',
         order: '10',
@@ -298,16 +298,16 @@ const gxStyles: Partial<CardStyles> = {
   nameSymbol: 'gx',
   hpSize: 'lg',
   alignMovesBottom: true,
-  move3: {
-    type: 'gx',
-    background: 'gx',
-    displayName: 'GX Attack',
-    descriptionTextColor: 'gx',
-    descriptionOutline: 'white',
-    nameTextColor: 'white',
-    nameOutline: undefined,
-    hasAttackCostBorder: false,
-  },
+  // move3: {
+  //   type: 'gx',
+  //   background: 'gx',
+  //   displayName: 'GX Attack',
+  //   descriptionTextColor: 'gx',
+  //   descriptionOutline: 'white',
+  //   nameTextColor: 'white',
+  //   nameOutline: undefined,
+  //   hasAttackCostBorder: false,
+  // },
   positions: {
     hitpoints: {
       top: '2.5%',

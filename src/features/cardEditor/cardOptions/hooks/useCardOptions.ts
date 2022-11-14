@@ -77,28 +77,8 @@ const useCardOptions = () => {
     () => stateSetter<CardInterface['description']>('description'),
     [stateSetter],
   );
-  const setHasAbility = useMemo(
-    () => stateSetter<CardInterface['hasAbility']>('hasAbility'),
-    [stateSetter],
-  );
-  const setAbility = useMemo(
-    () => stateSetter<CardInterface['ability']>('ability'),
-    [stateSetter],
-  );
-  const setMove1 = useMemo(
-    () => stateSetter<CardInterface['move1']>('move1'),
-    [stateSetter],
-  );
-  const setHasMove2 = useMemo(
-    () => stateSetter<CardInterface['hasMove2']>('hasMove2'),
-    [stateSetter],
-  );
-  const setMove2 = useMemo(
-    () => stateSetter<CardInterface['move2']>('move2'),
-    [stateSetter],
-  );
-  const setMove3 = useMemo(
-    () => stateSetter<CardInterface['move3']>('move3'),
+  const setMoves = useMemo(
+    () => stateSetter<CardInterface['moves']>('moves'),
     [stateSetter],
   );
 
@@ -121,12 +101,7 @@ const useCardOptions = () => {
     setPrevolveName,
     setDexEntry,
     setDescription,
-    setHasAbility,
-    setAbility,
-    setMove1,
-    setHasMove2,
-    setMove2,
-    setMove3,
+    setMoves,
   };
 };
 

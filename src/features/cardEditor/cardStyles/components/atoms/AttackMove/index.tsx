@@ -1,6 +1,4 @@
-import { useCardLogic } from '@cardEditor/cardLogic';
-import useBase64Img from '@hooks/useBase64Image';
-import Routes from '@routes';
+import { useCardStyles } from '@cardEditor/cardStyles/hooks';
 import { FC } from 'react';
 import AttackMoveDamageAmount from './fields/AttackMoveDamageAmount';
 import AttackMoveDescription from './fields/AttackMoveDescription';
@@ -11,27 +9,32 @@ import { AttackMoveProps } from './types';
 
 const AttackMove: FC<AttackMoveProps> = ({
   move,
-  isLastMove,
+  isLastAttack,
   isOnlyMove,
-  forceShow,
+  isOnlyAttack,
   descriptionOutline,
   descriptionTextColor,
   nameOutline,
   nameTextColor,
-  background,
   hasAttackCostBorder,
   ...props
 }) => {
-  const { hasMoves } = useCardLogic();
-  const backgroundImg = useBase64Img(
-    background ? Routes.Assets.Symbols.MoveBackground(background) : undefined,
-  );
-
-  if (!hasMoves || (!forceShow && !move?.name)) return null;
+  const { alignMovesBottom } = useCardStyles();
+  // const backgroundImg = useBase64Img(
+  //   move.background
+  //     ? Routes.Assets.Symbols.MoveBackground(move.background)
+  //     : undefined,
+  // );
 
   return (
-    <Wrapper $hasBackground={!!background} {...props}>
-      <TitleBar $background={backgroundImg}>
+    <Wrapper
+      // TODO: Set background based on move.type === gx, but also change based on cardStyles (gx, gxGold, gxUltraBeast)
+      $hasBackground={false}
+      // TODO: Set default height if move.type === vstar
+      $verticalCenter={isOnlyAttack && !alignMovesBottom}
+      {...props}
+    >
+      <TitleBar $background={undefined}>
         <AttackMoveEnergyCost
           move={move}
           hasAttackCostBorder={hasAttackCostBorder}
@@ -51,7 +54,7 @@ const AttackMove: FC<AttackMoveProps> = ({
       </TitleBar>
       <AttackMoveDescription
         move={move}
-        isLastMove={isLastMove}
+        isLastAttack={isLastAttack}
         isOnlyMove={isOnlyMove}
         textOutline={descriptionOutline}
         textColor={descriptionTextColor}

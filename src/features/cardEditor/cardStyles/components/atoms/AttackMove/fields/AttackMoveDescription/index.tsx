@@ -6,7 +6,7 @@ import { AttackMoveDescriptionProps } from './types';
 
 const AttackMoveDescription: FC<AttackMoveDescriptionProps> = ({
   move,
-  isLastMove,
+  isLastAttack: isLastMove,
   isOnlyMove,
   textColor: color,
   textOutline: outline,

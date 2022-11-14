@@ -12,8 +12,12 @@ import { BadgeIcon } from './cardOptions/badgeIcon';
 
 export type DamageModifier = '×' | '+' | '-';
 export type EnergyCostModifier = '+' | '-';
+export type MoveBackground = 'gx' | 'gxUltraBeast' | 'gxGold';
+export type AttackMoveType = 'default' | 'gx' | 'vstar';
+// export type Move3Type = 'gx';
 
 export interface BaseMove {
+  id: string;
   name: string;
   description: string;
 }
@@ -24,11 +28,45 @@ export interface MoveType {
 }
 
 export interface AttackMove extends BaseMove {
+  type: AttackMoveType;
   damageAmount: number | '';
   damageModifier?: DamageModifier;
   energyCost: MoveType[];
   energyCostModifier?: EnergyCostModifier;
+  // background?: MoveBackground;
 }
+
+// export interface Move3CardLogic
+//   extends Pick<CardStyles, 'hasAttackCostBorder'> {
+//   /**
+//    * @default 'gx'
+//    */
+//   type: Move3Type;
+//   /**
+//    * @default none
+//    */
+//   background?: MoveBackground;
+//   /**
+//    * @default 'Third move'
+//    */
+//   displayName: string;
+//   /**
+//    * @default none
+//    */
+//   nameOutline?: TextColor;
+//   /**
+//    * @default black
+//    */
+//   nameTextColor: TextColor;
+//   /**
+//    * @default none
+//    */
+//   descriptionOutline?: TextColor;
+//   /**
+//    * @default black
+//    */
+//   descriptionTextColor: TextColor;
+// }
 
 export type AbilityMove = BaseMove;
 
@@ -69,12 +107,7 @@ export interface CardInterface {
   dexStats?: string;
   dexEntry?: string;
   description?: string;
-  hasAbility: boolean;
-  ability?: AbilityMove;
-  move1?: AttackMove;
-  hasMove2: boolean;
-  move2?: AttackMove;
-  move3?: AttackMove;
+  moves: (AttackMove | AbilityMove)[];
   // Relations
   baseSetId: number;
   supertypeId: number;

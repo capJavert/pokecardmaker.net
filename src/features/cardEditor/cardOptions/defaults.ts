@@ -76,36 +76,43 @@ export const defaultCardOptions: RequiredIsh<CardInterface> = {
   dexStats: '',
   dexEntry: '',
   description: '',
-  hasAbility: false,
-  ability: {
-    name: '',
-    description: '',
-  },
-  move1: {
-    name: '',
-    description: '',
-    damageAmount: '',
-    damageModifier: undefined,
-    energyCost: [],
-    energyCostModifier: undefined,
-  },
-  hasMove2: true,
-  move2: {
-    name: '',
-    description: '',
-    damageAmount: '',
-    damageModifier: undefined,
-    energyCost: [],
-    energyCostModifier: undefined,
-  },
-  move3: {
-    name: '',
-    description: '',
-    damageAmount: '',
-    damageModifier: undefined,
-    energyCost: [],
-    energyCostModifier: undefined,
-  },
+  moves: [
+    {
+      id: '1',
+      name: 'Ability',
+      description: 'This is an ability',
+    },
+    {
+      id: '2',
+      type: 'default',
+      name: 'Move1',
+      description: 'This is move 1',
+      damageAmount: 80,
+      damageModifier: '+',
+      energyCost: [
+        {
+          amount: 1,
+          typeId: colorless.id,
+        },
+      ],
+      energyCostModifier: undefined,
+    },
+    {
+      id: '3',
+      type: 'vstar',
+      name: 'Move2',
+      description: 'This is move 2',
+      damageAmount: 80,
+      damageModifier: undefined,
+      energyCost: [
+        {
+          amount: 5,
+          typeId: colorless.id,
+        },
+      ],
+      energyCostModifier: undefined,
+    },
+  ],
   // Relations
   baseSetId: defaultRelations.baseSet.id,
   supertypeId: defaultRelations.supertype.id,

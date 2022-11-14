@@ -44,7 +44,7 @@ const Move3: FC = () => {
   return (
     <AttackMove3
       move={finalMove}
-      isLastMove
+      isLastAttack
       descriptionTextColor={descriptionTextColor}
       descriptionOutline={descriptionOutline}
       nameTextColor={nameTextColor}

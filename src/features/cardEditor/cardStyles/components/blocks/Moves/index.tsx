@@ -2,18 +2,21 @@ import { useCardLogic } from '@cardEditor/cardLogic';
 import { useCardOptions } from '@cardEditor/cardOptions';
 import { isAttackMove } from '@cardEditor/cardOptions/utils/isMove';
 import { useCardStyles } from '@cardEditor/cardStyles/hooks';
-import { FC, useMemo } from 'react';
+import { AttackMove as AttackMoveType } from '@cardEditor/types';
+import { FC, useCallback, useMemo } from 'react';
 import AttackMove from '../../atoms/AttackMove';
+import { AttackMoveProps } from '../../atoms/AttackMove/types';
 import Ability from '../Ability';
 import { Wrapper } from './styles';
 
 const Moves: FC = () => {
-  const { hasMoves } = useCardLogic();
+  const { hasMoves, hasSpecialMove } = useCardLogic();
   const {
     alignMovesBottom,
     movesTextColor,
     movesOutline,
     hasAttackCostBorder,
+    specialMove,
     positions: { movesWrapper: placement, lastMove: lastMovePlacement },
   } = useCardStyles();
   const { moves } = useCardOptions();
@@ -27,6 +30,45 @@ const Moves: FC = () => {
     [moves],
   );
 
+  const getStyleProps = useCallback(
+    (
+      move: AttackMoveType,
+    ): Pick<
+      AttackMoveProps,
+      | 'descriptionTextColor'
+      | 'descriptionOutline'
+      | 'nameTextColor'
+      | 'nameOutline'
+      | 'background'
+      | 'hasAttackCostBorder'
+    > => {
+      if (!!specialMove && hasSpecialMove && move.type === 'special') {
+        return {
+          descriptionTextColor: specialMove.descriptionTextColor,
+          descriptionOutline: specialMove.descriptionOutline,
+          nameTextColor: specialMove.nameTextColor,
+          nameOutline: specialMove.nameOutline,
+          hasAttackCostBorder: !!specialMove.hasAttackCostBorder,
+          background: specialMove.background,
+        };
+      }
+      return {
+        descriptionTextColor: movesTextColor,
+        descriptionOutline: movesOutline,
+        nameTextColor: movesTextColor,
+        nameOutline: movesOutline,
+        hasAttackCostBorder,
+      };
+    },
+    [
+      hasSpecialMove,
+      specialMove,
+      hasAttackCostBorder,
+      movesOutline,
+      movesTextColor,
+    ],
+  );
+
   if (!hasMoves) return null;
 
   return (
@@ -35,36 +77,34 @@ const Moves: FC = () => {
       $alignBottom={alignMovesBottom}
       placement={placement}
     >
-      {moves.map((move, index) =>
-        isAttackMove(move) ? (
-          <AttackMove
-            key={move.id}
-            move={move}
-            isLastAttack={
-              [...moves].reverse().findIndex(isAttackMove) === index
-            }
-            isOnlyMove={moves.length === 1}
-            isOnlyAttack={attackMoveCount === 1}
-            // Can be different for move3:
-            descriptionTextColor={movesTextColor}
-            descriptionOutline={movesOutline}
-            nameTextColor={movesTextColor}
-            nameOutline={movesOutline}
-            hasAttackCostBorder={hasAttackCostBorder}
-            placement={
-              index === moves.length - 1 ? lastMovePlacement : undefined
-            }
-          />
-        ) : (
-          <Ability
-            key={move.id}
-            ability={move}
-            placement={
-              index === moves.length - 1 ? lastMovePlacement : undefined
-            }
-          />
-        ),
-      )}
+      {moves
+        .sort((a, b) => a.order - b.order)
+        .map((move, index) =>
+          isAttackMove(move) ? (
+            <AttackMove
+              key={move.id}
+              move={move}
+              isLastAttack={
+                [...moves].reverse().findIndex(isAttackMove) === index
+              }
+              isOnlyMove={moves.length === 1}
+              isOnlyAttack={attackMoveCount === 1}
+              // Can be different for move3:
+              {...getStyleProps(move)}
+              placement={
+                index === moves.length - 1 ? lastMovePlacement : undefined
+              }
+            />
+          ) : (
+            <Ability
+              key={move.id}
+              ability={move}
+              placement={
+                index === moves.length - 1 ? lastMovePlacement : undefined
+              }
+            />
+          ),
+        )}
     </Wrapper>
   );
 };

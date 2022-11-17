@@ -18,6 +18,8 @@ export type NameSymbol =
   | 'lvX';
 export type TextColor = 'white' | 'black' | 'gx' | 'ultraBeast';
 export type Size = 'sm' | 'lg';
+export type SpecialMoveType = 'gx';
+export type MoveBackground = 'gx' | 'gxUltraBeast' | 'gxGold';
 
 export type Placement = SxProps;
 
@@ -47,6 +49,38 @@ export interface Positions {
   rarityIcon?: Placement;
   dexEntry?: Placement;
   lastMove?: Placement;
+}
+
+export interface SpecialMoveCardLogic
+  extends Pick<CardStyles, 'hasAttackCostBorder'> {
+  /**
+   * @default 'gx'
+   */
+  type: SpecialMoveType;
+  /**
+   * @default none
+   */
+  background?: MoveBackground;
+  /**
+   * @default 'Third move'
+   */
+  displayName: string;
+  /**
+   * @default none
+   */
+  nameOutline?: TextColor;
+  /**
+   * @default black
+   */
+  nameTextColor: TextColor;
+  /**
+   * @default none
+   */
+  descriptionOutline?: TextColor;
+  /**
+   * @default black
+   */
+  descriptionTextColor: TextColor;
 }
 
 export interface CardStyles {
@@ -147,4 +181,8 @@ export interface CardStyles {
    * For example, `Name` is displayed differently on a Pokémon and a Trainer
    */
   positions: Partial<Positions>;
+  /**
+   * Styling for the special move
+   */
+  specialMove?: Partial<SpecialMoveCardLogic>;
 }

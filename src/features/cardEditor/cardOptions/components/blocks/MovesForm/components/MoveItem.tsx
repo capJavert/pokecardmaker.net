@@ -1,6 +1,8 @@
-import AttackMoveForm from '@cardEditor/cardOptions/components/atoms/AttackMoveForm';
+import { useCardLogic } from '@cardEditor/cardLogic';
+import AttackMoveForm from '@cardEditor/cardOptions/components/blocks/MovesForm/atoms/AttackMoveForm';
 import { useCardOptions } from '@cardEditor/cardOptions/hooks';
 import { isAttackMove } from '@cardEditor/cardOptions/utils/isMove';
+import { useCardStyles } from '@cardEditor/cardStyles';
 import { AbilityMove, AttackMove } from '@cardEditor/types';
 import {
   Delete as DeleteIcon,
@@ -8,9 +10,9 @@ import {
 } from '@mui/icons-material';
 import { Button, IconButton, Paper, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import { FC, useCallback } from 'react';
+import { FC, useCallback, useMemo } from 'react';
 import { DraggableProvided } from 'react-beautiful-dnd';
-import AbilityMoveForm from '../../AbilityMoveForm';
+import AbilityMoveForm from '../atoms/AbilityMoveForm';
 
 interface MoveItemProps {
   provided: DraggableProvided;
@@ -19,6 +21,18 @@ interface MoveItemProps {
 
 const MoveItem: FC<MoveItemProps> = ({ move, provided }) => {
   const { moves, setMoves } = useCardOptions();
+  const { hasSpecialMove } = useCardLogic();
+  const { specialMove } = useCardStyles();
+
+  const label = useMemo<string>(
+    () =>
+      isAttackMove(move)
+        ? (hasSpecialMove && move.type === 'special'
+            ? specialMove?.displayName
+            : 'Attack') || 'Attack'
+        : 'Ability',
+    [move, hasSpecialMove, specialMove],
+  );
 
   const handleDelete = useCallback(() => {
     const newMoves = [...moves];
@@ -40,7 +54,7 @@ const MoveItem: FC<MoveItemProps> = ({ move, provided }) => {
           <DragIcon />
         </IconButton>
         <Typography fontWeight={700} px={1}>
-          {isAttackMove(move) ? 'Attack' : 'Ability'}
+          {label}
         </Typography>
         <Box ml="auto" pr={0.75} pt={0.75}>
           <Button
@@ -55,13 +69,9 @@ const MoveItem: FC<MoveItemProps> = ({ move, provided }) => {
       </Box>
       <Box px={1} pb={1}>
         {isAttackMove(move) ? (
-          <AttackMoveForm move={move} slug={`move${move.id}`} label="Attack" />
+          <AttackMoveForm move={move} slug={`move${move.id}`} />
         ) : (
-          <AbilityMoveForm
-            move={move}
-            slug={`move${move.id}`}
-            label="Ability"
-          />
+          <AbilityMoveForm move={move} slug={`move${move.id}`} />
         )}
       </Box>
     </Paper>

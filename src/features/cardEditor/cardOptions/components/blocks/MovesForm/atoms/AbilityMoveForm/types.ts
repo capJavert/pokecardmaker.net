@@ -1,7 +1,6 @@
 import { AbilityMove } from '@cardEditor/types';
 
 export interface AbilityMoveFormProps {
-  label: string;
   slug: string;
   move: AbilityMove;
 }

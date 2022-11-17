@@ -1,4 +1,6 @@
 import { useCardStyles } from '@cardEditor/cardStyles/hooks';
+import useBase64Img from '@hooks/useBase64Image';
+import Routes from '@routes';
 import { FC } from 'react';
 import AttackMoveDamageAmount from './fields/AttackMoveDamageAmount';
 import AttackMoveDescription from './fields/AttackMoveDescription';
@@ -12,6 +14,7 @@ const AttackMove: FC<AttackMoveProps> = ({
   isLastAttack,
   isOnlyMove,
   isOnlyAttack,
+  background,
   descriptionOutline,
   descriptionTextColor,
   nameOutline,
@@ -20,20 +23,17 @@ const AttackMove: FC<AttackMoveProps> = ({
   placement,
 }) => {
   const { alignMovesBottom } = useCardStyles();
-  // const backgroundImg = useBase64Img(
-  //   move.background
-  //     ? Routes.Assets.Symbols.MoveBackground(move.background)
-  //     : undefined,
-  // );
+  const backgroundImg = useBase64Img(
+    background ? Routes.Assets.Symbols.MoveBackground(background) : undefined,
+  );
 
   return (
     <Wrapper
-      // TODO: Set background based on move.type === gx, but also change based on cardStyles (gx, gxGold, gxUltraBeast)
-      $hasBackground={false}
+      $hasBackground={!!backgroundImg}
       $verticalCenter={isOnlyAttack && !alignMovesBottom}
       placement={placement}
     >
-      <TitleBar $background={undefined}>
+      <TitleBar $background={backgroundImg}>
         <AttackMoveEnergyCost
           move={move}
           hasAttackCostBorder={hasAttackCostBorder}

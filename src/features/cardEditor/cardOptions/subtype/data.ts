@@ -293,16 +293,16 @@ const gxStyles: Partial<CardStyles> = {
   nameSymbol: 'gx',
   hpSize: 'lg',
   alignMovesBottom: true,
-  // move3: {
-  //   type: 'gx',
-  //   background: 'gx',
-  //   displayName: 'GX Attack',
-  //   descriptionTextColor: 'gx',
-  //   descriptionOutline: 'white',
-  //   nameTextColor: 'white',
-  //   nameOutline: undefined,
-  //   hasAttackCostBorder: false,
-  // },
+  specialMove: {
+    type: 'gx',
+    background: 'gx',
+    displayName: 'GX Attack',
+    descriptionTextColor: 'gx',
+    descriptionOutline: 'white',
+    nameTextColor: 'white',
+    nameOutline: undefined,
+    hasAttackCostBorder: false,
+  },
   positions: {
     hitpoints: {
       top: '2.5%',

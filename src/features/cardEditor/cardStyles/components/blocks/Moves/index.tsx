@@ -71,6 +71,20 @@ const Moves: FC = () => {
 
   if (!hasMoves) return null;
 
+  /**
+   * // TODO
+   * If there's a clear divide between abilities and attacks
+   * (none are intertwined, all abilities after eachother and all attacks after eachother)
+   * and there is at least 1 ability and more than 1 attack
+   * create a wrapper around the attacks with the following css:
+   *
+   * display: flex;
+   * flex-direction: column;
+   * justify-content: space-evenly;
+   * gap: 0.5em;
+   * height: 100%;
+   */
+
   return (
     <Wrapper
       $hasMultipleAttacks={attackMoveCount > 1}

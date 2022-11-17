@@ -14,7 +14,7 @@ const Moves: FC = () => {
     movesTextColor,
     movesOutline,
     hasAttackCostBorder,
-    positions: { movesWrapper: placement },
+    positions: { movesWrapper: placement, lastMove: lastMovePlacement },
   } = useCardStyles();
   const { moves } = useCardOptions();
 
@@ -51,9 +51,18 @@ const Moves: FC = () => {
             nameTextColor={movesTextColor}
             nameOutline={movesOutline}
             hasAttackCostBorder={hasAttackCostBorder}
+            placement={
+              index === moves.length - 1 ? lastMovePlacement : undefined
+            }
           />
         ) : (
-          <Ability key={move.id} ability={move} />
+          <Ability
+            key={move.id}
+            ability={move}
+            placement={
+              index === moves.length - 1 ? lastMovePlacement : undefined
+            }
+          />
         ),
       )}
     </Wrapper>

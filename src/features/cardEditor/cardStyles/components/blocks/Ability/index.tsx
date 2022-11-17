@@ -15,13 +15,13 @@ import {
 } from './styles';
 import { AbilityProps } from './types';
 
-const Ability: FC<AbilityProps> = ({ ability }) => {
+const Ability: FC<AbilityProps> = ({ ability, placement }) => {
   const {
     abilitySymbol,
     movesTextColor,
     movesOutline,
     positions: {
-      ability: placement,
+      ability: abilityPlacement,
       abilityTitleBar: titleBarPlacement,
       abilityName: abilityNamePlacement,
       abilitySymbol: abilitySymbolPlacement,
@@ -35,7 +35,7 @@ const Ability: FC<AbilityProps> = ({ ability }) => {
   if (!imgSrc) return null;
 
   return (
-    <Wrapper placement={placement}>
+    <Wrapper placement={{ ...(placement || {}), ...(abilityPlacement || {}) }}>
       <TitleBar placement={titleBarPlacement}>
         <SymbolContainer placement={abilitySymbolPlacement}>
           <DisplayImg src={imgSrc} />

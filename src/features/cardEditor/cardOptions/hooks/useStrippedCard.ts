@@ -19,7 +19,7 @@ const useStrippedCard = (card: CardInterface): CardInterface => {
       delete clone.move2;
       delete clone.move3;
     }
-    if (!cardLogic.hasMove3) {
+    if (!cardLogic.hasSpecialMove) {
       delete clone.move3;
     }
     if (!cardLogic.hasSubtypes) {

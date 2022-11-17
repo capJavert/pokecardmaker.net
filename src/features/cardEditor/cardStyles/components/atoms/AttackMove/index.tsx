@@ -17,7 +17,7 @@ const AttackMove: FC<AttackMoveProps> = ({
   nameOutline,
   nameTextColor,
   hasAttackCostBorder,
-  ...props
+  placement,
 }) => {
   const { alignMovesBottom } = useCardStyles();
   // const backgroundImg = useBase64Img(
@@ -30,9 +30,8 @@ const AttackMove: FC<AttackMoveProps> = ({
     <Wrapper
       // TODO: Set background based on move.type === gx, but also change based on cardStyles (gx, gxGold, gxUltraBeast)
       $hasBackground={false}
-      // TODO: Set default height if move.type === vstar
       $verticalCenter={isOnlyAttack && !alignMovesBottom}
-      {...props}
+      placement={placement}
     >
       <TitleBar $background={undefined}>
         <AttackMoveEnergyCost

@@ -5,13 +5,13 @@ import { FC } from 'react';
 import AttackMoveForm from '../../atoms/AttackMoveForm';
 
 const Move3Form: FC = () => {
-  const { hasMove3 } = useCardLogic();
+  const { hasSpecialMove } = useCardLogic();
   const {
     move3: { displayName },
   } = useCardStyles();
   const { move3, setMove3 } = useCardOptions();
 
-  if (!move3 || !hasMove3) return null;
+  if (!move3 || !hasSpecialMove) return null;
 
   return (
     <AttackMoveForm

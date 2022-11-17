@@ -20,7 +20,7 @@ const Move3: FC = () => {
       hasAttackCostBorder,
     },
   } = useCardStyles();
-  const { hasMove3 } = useCardLogic();
+  const { hasSpecialMove } = useCardLogic();
   const { move3 } = useCardOptions();
 
   const finalMove = useMemo<AttackMove | undefined>(() => {
@@ -39,7 +39,7 @@ const Move3: FC = () => {
     }
   }, [type, move3]);
 
-  if (!hasMove3) return null;
+  if (!hasSpecialMove) return null;
 
   return (
     <AttackMove3

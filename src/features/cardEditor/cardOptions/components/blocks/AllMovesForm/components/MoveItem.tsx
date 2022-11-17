@@ -6,7 +6,7 @@ import {
   Delete as DeleteIcon,
   DragIndicator as DragIcon,
 } from '@mui/icons-material';
-import { Button, IconButton, Paper } from '@mui/material';
+import { Button, IconButton, Paper, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { FC, useCallback } from 'react';
 import { DraggableProvided } from 'react-beautiful-dnd';
@@ -39,7 +39,10 @@ const MoveItem: FC<MoveItemProps> = ({ move, provided }) => {
         <IconButton sx={{ mr: 2, pointerEvents: 'none' }} color="inherit">
           <DragIcon />
         </IconButton>
-        <Box ml="auto">
+        <Typography fontWeight={700} px={1}>
+          {isAttackMove(move) ? 'Attack' : 'Ability'}
+        </Typography>
+        <Box ml="auto" pr={0.75} pt={0.75}>
           <Button
             variant="outlined"
             startIcon={<DeleteIcon />}

@@ -1,7 +1,6 @@
 import { AttackMove } from '@cardEditor/types';
 
 export interface AttackMoveFormProps {
-  label: string;
   slug: string;
   move: AttackMove;
 }

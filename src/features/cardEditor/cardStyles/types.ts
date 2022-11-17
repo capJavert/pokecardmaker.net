@@ -46,6 +46,7 @@ export interface Positions {
   cardNumber?: Placement;
   rarityIcon?: Placement;
   dexEntry?: Placement;
+  lastMove?: Placement;
 }
 
 export interface CardStyles {

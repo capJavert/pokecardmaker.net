@@ -95,20 +95,15 @@ export interface CardLogic {
    */
   hasDexEntry: boolean;
   /**
-   * Whether it is required to have a bonus move (2nd move or ability)
-   * @default false
-   */
-  bonusMoveRequired: boolean;
-  /**
    * Whether the card should show the Rotation Icon (D/E/F)
    * @default true
    */
   hasRotationIcon: boolean;
   /**
-   * Whether the Pokémon has a third move
+   * Whether the Pokémon has a special move (like GX)
    * @default false
    */
-  hasMove3?: boolean;
+  hasSpecialMove?: boolean;
   /**
    * Whether the card supports a badge icon on top of the frame
    * @default false

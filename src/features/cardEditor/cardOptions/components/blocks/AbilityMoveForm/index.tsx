@@ -1,13 +1,12 @@
 import { useCardOptions } from '@cardEditor/cardOptions/hooks';
 import { AbilityMove } from '@cardEditor/types';
 import { FC, useCallback } from 'react';
-import MoveForm from '../../atoms/MoveForm';
 import AbilityDescriptionInput from './fields/AbilityDescriptionInput';
 import AbilityNameInput from './fields/AbilityNameInput';
 import { AbilityMoveFormProps } from './types';
 
-const AbilityMoveForm: FC<AbilityMoveFormProps> = ({ label, ...rest }) => {
-  const { move } = rest;
+const AbilityMoveForm: FC<AbilityMoveFormProps> = props => {
+  const { move } = props;
   const { moves, setMoves } = useCardOptions();
 
   const handleChange = useCallback(
@@ -23,10 +22,10 @@ const AbilityMoveForm: FC<AbilityMoveFormProps> = ({ label, ...rest }) => {
   );
 
   return (
-    <MoveForm label={label}>
-      <AbilityNameInput {...rest} setMove={handleChange} />
-      <AbilityDescriptionInput {...rest} setMove={handleChange} />
-    </MoveForm>
+    <>
+      <AbilityNameInput {...props} setMove={handleChange} />
+      <AbilityDescriptionInput {...props} setMove={handleChange} />
+    </>
   );
 };
 

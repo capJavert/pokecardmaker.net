@@ -1,15 +1,14 @@
 import { useCardOptions } from '@cardEditor/cardOptions/hooks';
 import { AttackMove } from '@cardEditor/types';
 import { FC, useCallback } from 'react';
-import MoveForm from '../MoveForm';
 import AttackMoveDamageAmountInput from './fields/AttackMoveDamageAmountInput';
 import AttackMoveDescriptionInput from './fields/AttackMoveDescriptionInput';
 import AttackMoveEnergyCostInput from './fields/AttackMoveEnergyCostInput';
 import AttackMoveNameInput from './fields/AttackMoveNameInput';
 import { AttackMoveFormProps } from './types';
 
-const AttackMoveForm: FC<AttackMoveFormProps> = ({ label, ...rest }) => {
-  const { move } = rest;
+const AttackMoveForm: FC<AttackMoveFormProps> = props => {
+  const { move } = props;
   const { moves, setMoves } = useCardOptions();
 
   const handleChange = useCallback(
@@ -27,12 +26,12 @@ const AttackMoveForm: FC<AttackMoveFormProps> = ({ label, ...rest }) => {
   if (!move) return null;
 
   return (
-    <MoveForm label={label}>
-      <AttackMoveNameInput {...rest} setMove={handleChange} />
-      <AttackMoveEnergyCostInput {...rest} setMove={handleChange} />
-      <AttackMoveDamageAmountInput {...rest} setMove={handleChange} />
-      <AttackMoveDescriptionInput {...rest} setMove={handleChange} />
-    </MoveForm>
+    <>
+      <AttackMoveNameInput {...props} setMove={handleChange} />
+      <AttackMoveEnergyCostInput {...props} setMove={handleChange} />
+      <AttackMoveDamageAmountInput {...props} setMove={handleChange} />
+      <AttackMoveDescriptionInput {...props} setMove={handleChange} />
+    </>
   );
 };
 

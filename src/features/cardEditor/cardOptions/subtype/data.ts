@@ -230,19 +230,14 @@ export const vstar: Subtype = {
         height: 'unset',
         gap: '3em',
       },
-      // move2: {
-      //   height: '10.8em',
-      // },
-      ability: {
+      lastMove: {
         height: '10.8em',
-        order: '10',
       },
     },
   },
   logic: {
     hasPrevolveImg: true,
     hasPrevolveName: true,
-    bonusMoveRequired: true,
     hasNameSymbol: true,
   },
   baseSetDependencies: {
@@ -324,7 +319,7 @@ const gxStyles: Partial<CardStyles> = {
 const gxLogic: Partial<CardLogic> = {
   hasVariations: true,
   isVariationRequired: false,
-  hasMove3: true,
+  hasSpecialMove: true,
   hasNameSymbol: true,
 };
 

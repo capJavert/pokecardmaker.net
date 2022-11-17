@@ -4,7 +4,8 @@ export interface AttackMoveFormProps {
   label: string;
   slug: string;
   move: AttackMove;
-  setMove: (move: AttackMove | undefined) => void;
 }
 
-export type AttackMoveFieldProps = Omit<AttackMoveFormProps, 'label'>;
+export type AttackMoveFieldProps = Omit<AttackMoveFormProps, 'label'> & {
+  setMove: (newMove?: AttackMove) => void;
+};

@@ -20,6 +20,7 @@ export interface BaseMove {
   id: string;
   name: string;
   description: string;
+  order: number;
 }
 
 export interface MoveType {

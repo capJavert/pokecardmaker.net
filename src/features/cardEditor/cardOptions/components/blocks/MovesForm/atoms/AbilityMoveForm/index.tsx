@@ -1,5 +1,6 @@
 import { useCardOptions } from '@cardEditor/cardOptions/hooks';
 import { AbilityMove } from '@cardEditor/types';
+import { Box } from '@mui/system';
 import { FC, useCallback } from 'react';
 import AbilityDescriptionInput from './fields/AbilityDescriptionInput';
 import AbilityNameInput from './fields/AbilityNameInput';
@@ -22,10 +23,10 @@ const AbilityMoveForm: FC<AbilityMoveFormProps> = props => {
   );
 
   return (
-    <>
+    <Box display="flex" flexDirection="column" gap={1}>
       <AbilityNameInput {...props} setMove={handleChange} />
       <AbilityDescriptionInput {...props} setMove={handleChange} />
-    </>
+    </Box>
   );
 };
 

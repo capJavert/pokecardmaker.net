@@ -1,5 +1,6 @@
 import { useCardOptions } from '@cardEditor/cardOptions/hooks';
 import { AttackMove } from '@cardEditor/types';
+import { Box } from '@mui/system';
 import { FC, useCallback } from 'react';
 import AttackMoveDamageAmountInput from './fields/AttackMoveDamageAmountInput';
 import AttackMoveDescriptionInput from './fields/AttackMoveDescriptionInput';
@@ -26,12 +27,12 @@ const AttackMoveForm: FC<AttackMoveFormProps> = props => {
   if (!move) return null;
 
   return (
-    <>
+    <Box display="flex" flexDirection="column" gap={1}>
       <AttackMoveNameInput {...props} setMove={handleChange} />
       <AttackMoveEnergyCostInput {...props} setMove={handleChange} />
       <AttackMoveDamageAmountInput {...props} setMove={handleChange} />
       <AttackMoveDescriptionInput {...props} setMove={handleChange} />
-    </>
+    </Box>
   );
 };
 

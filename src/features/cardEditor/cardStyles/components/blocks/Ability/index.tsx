@@ -1,26 +1,66 @@
-import { useCardOptions } from '@cardEditor/cardOptions';
+import { useCardLogic } from '@cardEditor/cardLogic';
 import { useCardStyles } from '@cardEditor/cardStyles/hooks';
+import { Placement } from '@cardEditor/cardStyles/types';
+import keepDoubleSpaces from '@cardEditor/cardStyles/utils/keepDoubleSpaces';
+import Routes from '@routes';
 import { FC } from 'react';
-import AbilityDescription from './fields/AbilityDescription';
-import AbilityName from './fields/AbilityName';
-import AbilitySymbol from './fields/AbilitySymbol';
-import { TitleBar, Wrapper } from './styles';
+import DisplayImg from '../../atoms/DisplayImg';
+import {
+  AbilityDescriptionText,
+  AbilityNameText,
+  DESCRIPTION_SCALE,
+  NAME_SCALE,
+  SymbolContainer,
+  TitleBar,
+  Wrapper,
+} from './styles';
+import { AbilityProps } from './types';
 
-const Ability: FC = () => {
+const Ability: FC<AbilityProps> = ({ ability, placement }) => {
   const {
-    positions: { ability: placement, abilityTitleBar: titleBarPlacement },
+    abilitySymbol,
+    movesTextColor,
+    movesOutline,
+    positions: {
+      ability: abilityPlacement,
+      abilityTitleBar: titleBarPlacement,
+      abilityName: abilityNamePlacement,
+      abilitySymbol: abilitySymbolPlacement,
+    },
   } = useCardStyles();
-  const { hasAbility } = useCardOptions();
+  const { greatestEnergyCost } = useCardLogic();
 
-  if (!hasAbility) return null;
+  const imgSrc =
+    !!abilitySymbol && Routes.Assets.Symbols.Ability(abilitySymbol);
+
+  if (!imgSrc) return null;
 
   return (
-    <Wrapper placement={placement}>
+    <Wrapper
+      placement={
+        { ...(placement ?? {}), ...(abilityPlacement ?? {}) } as Placement
+      }
+    >
       <TitleBar placement={titleBarPlacement}>
-        <AbilitySymbol />
-        <AbilityName />
+        <SymbolContainer placement={abilitySymbolPlacement}>
+          <DisplayImg src={imgSrc} />
+        </SymbolContainer>
+        <AbilityNameText
+          textOutline={movesOutline}
+          $energyCost={greatestEnergyCost}
+          unscale={NAME_SCALE}
+          placement={abilityNamePlacement}
+        >
+          {ability.name}
+        </AbilityNameText>
       </TitleBar>
-      <AbilityDescription />
+      <AbilityDescriptionText
+        textOutline={movesOutline}
+        textColor={movesTextColor}
+        unscale={DESCRIPTION_SCALE}
+      >
+        {keepDoubleSpaces(ability.description)}
+      </AbilityDescriptionText>
     </Wrapper>
   );
 };

@@ -49,7 +49,7 @@ export const goldenFullArtPokemon: Rarity = {
     cardInfoOutline: 'white',
     hpOutline: 'black',
     typeBarTextColor: 'black',
-    move3: {
+    specialMove: {
       background: 'gxGold',
     },
   },

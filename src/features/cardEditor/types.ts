@@ -12,10 +12,13 @@ import { BadgeIcon } from './cardOptions/badgeIcon';
 
 export type DamageModifier = '×' | '+' | '-';
 export type EnergyCostModifier = '+' | '-';
+export type AttackMoveType = 'default' | 'special';
 
 export interface BaseMove {
+  id: string;
   name: string;
   description: string;
+  order: number;
 }
 
 export interface MoveType {
@@ -24,6 +27,7 @@ export interface MoveType {
 }
 
 export interface AttackMove extends BaseMove {
+  type: AttackMoveType;
   damageAmount: number | '';
   damageModifier?: DamageModifier;
   energyCost: MoveType[];
@@ -69,12 +73,7 @@ export interface CardInterface {
   dexStats?: string;
   dexEntry?: string;
   description?: string;
-  hasAbility: boolean;
-  ability?: AbilityMove;
-  move1?: AttackMove;
-  hasMove2: boolean;
-  move2?: AttackMove;
-  move3?: AttackMove;
+  moves?: (AttackMove | AbilityMove)[];
   // Relations
   baseSetId: number;
   supertypeId: number;

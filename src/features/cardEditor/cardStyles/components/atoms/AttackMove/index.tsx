@@ -1,4 +1,3 @@
-import { useCardLogic } from '@cardEditor/cardLogic';
 import useBase64Img from '@hooks/useBase64Image';
 import Routes from '@routes';
 import { FC } from 'react';
@@ -11,26 +10,22 @@ import { AttackMoveProps } from './types';
 
 const AttackMove: FC<AttackMoveProps> = ({
   move,
-  isLastMove,
+  isLastAttack,
   isOnlyMove,
-  forceShow,
+  background,
   descriptionOutline,
   descriptionTextColor,
   nameOutline,
   nameTextColor,
-  background,
   hasAttackCostBorder,
-  ...props
+  placement,
 }) => {
-  const { hasMoves } = useCardLogic();
   const backgroundImg = useBase64Img(
     background ? Routes.Assets.Symbols.MoveBackground(background) : undefined,
   );
 
-  if (!hasMoves || (!forceShow && !move?.name)) return null;
-
   return (
-    <Wrapper $hasBackground={!!background} {...props}>
+    <Wrapper $hasBackground={!!backgroundImg} placement={placement}>
       <TitleBar $background={backgroundImg}>
         <AttackMoveEnergyCost
           move={move}
@@ -51,7 +46,7 @@ const AttackMove: FC<AttackMoveProps> = ({
       </TitleBar>
       <AttackMoveDescription
         move={move}
-        isLastMove={isLastMove}
+        isLastAttack={isLastAttack}
         isOnlyMove={isOnlyMove}
         textOutline={descriptionOutline}
         textColor={descriptionTextColor}

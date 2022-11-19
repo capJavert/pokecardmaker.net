@@ -1,7 +1,9 @@
 import { css, styled } from '@css';
 import PlacementBlock from '../PlacementBlock';
 
-export const Wrapper = styled(PlacementBlock)<{ $hasBackground: boolean }>`
+export const Wrapper = styled(PlacementBlock)<{
+  $hasBackground: boolean;
+}>`
   position: relative;
   display: flex;
   flex-direction: column;

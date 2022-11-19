@@ -45,7 +45,7 @@ export const CardLogicProvider: React.FC = ({ children }) => {
 
   const greatestEnergyCost = useMemo<number>(() => {
     let greatestCost = 0;
-    moves.filter(isAttackMove).forEach(move => {
+    moves?.filter(isAttackMove).forEach(move => {
       let moveCost = (move?.energyCost ?? []).reduce(
         (acc, cost) => acc + cost.amount,
         0,

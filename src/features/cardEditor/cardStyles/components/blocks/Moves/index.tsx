@@ -26,7 +26,7 @@ const Moves: FC = () => {
 
   const attackMoveCount = useMemo<number>(
     () =>
-      moves.reduce(
+      (moves || []).reduce(
         (count, move) => (isAttackMove(move) ? count + 1 : count),
         0,
       ),
@@ -34,7 +34,7 @@ const Moves: FC = () => {
   );
 
   const sortedMoves = useMemo(
-    () => [...moves].sort((a, b) => a.order - b.order),
+    () => [...(moves || [])].sort((a, b) => a.order - b.order),
     [moves],
   );
 

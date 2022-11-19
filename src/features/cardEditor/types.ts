@@ -73,7 +73,7 @@ export interface CardInterface {
   dexStats?: string;
   dexEntry?: string;
   description?: string;
-  moves: (AttackMove | AbilityMove)[];
+  moves?: (AttackMove | AbilityMove)[];
   // Relations
   baseSetId: number;
   supertypeId: number;

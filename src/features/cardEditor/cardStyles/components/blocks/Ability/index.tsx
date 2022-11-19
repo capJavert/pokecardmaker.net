@@ -1,5 +1,6 @@
 import { useCardLogic } from '@cardEditor/cardLogic';
 import { useCardStyles } from '@cardEditor/cardStyles/hooks';
+import { Placement } from '@cardEditor/cardStyles/types';
 import keepDoubleSpaces from '@cardEditor/cardStyles/utils/keepDoubleSpaces';
 import Routes from '@routes';
 import { FC } from 'react';
@@ -35,7 +36,11 @@ const Ability: FC<AbilityProps> = ({ ability, placement }) => {
   if (!imgSrc) return null;
 
   return (
-    <Wrapper placement={{ ...(placement || {}), ...(abilityPlacement || {}) }}>
+    <Wrapper
+      placement={
+        { ...(placement ?? {}), ...(abilityPlacement ?? {}) } as Placement
+      }
+    >
       <TitleBar placement={titleBarPlacement}>
         <SymbolContainer placement={abilitySymbolPlacement}>
           <DisplayImg src={imgSrc} />

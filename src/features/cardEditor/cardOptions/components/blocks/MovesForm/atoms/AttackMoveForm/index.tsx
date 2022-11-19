@@ -14,7 +14,7 @@ const AttackMoveForm: FC<AttackMoveFormProps> = props => {
   const handleChange = useCallback(
     (newMove?: AttackMove) => {
       if (!newMove) return;
-      const newMoves = [...moves];
+      const newMoves = [...(moves || [])];
       const index = newMoves.findIndex(m => m.id === move.id);
       if (index < 0) return;
       newMoves[index] = newMove;

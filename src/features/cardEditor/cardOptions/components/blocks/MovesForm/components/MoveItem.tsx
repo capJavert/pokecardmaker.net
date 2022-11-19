@@ -35,7 +35,7 @@ const MoveItem: FC<MoveItemProps> = ({ move, provided }) => {
   );
 
   const handleDelete = useCallback(() => {
-    const newMoves = [...moves];
+    const newMoves = [...(moves || [])];
     const index = newMoves.findIndex(m => m.id === move.id);
     if (index < 0) return;
     newMoves.splice(index, 1);

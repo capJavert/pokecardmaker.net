@@ -8,7 +8,7 @@ import { AttackMoveStyleProps } from '../../types';
 interface AttackMoveWrapperProps {
   index: number;
   move: AttackMoveType;
-  moves: CardInterface['moves'];
+  moves: Required<CardInterface>['moves'];
   styleProps: AttackMoveStyleProps;
 }
 

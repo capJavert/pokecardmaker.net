@@ -15,12 +15,10 @@ const useStrippedCard = (card: CardInterface): CardInterface => {
       delete clone.hitpoints;
     }
     if (!cardLogic.hasMoves) {
-      delete clone.move1;
-      delete clone.move2;
-      delete clone.move3;
+      delete clone.moves;
     }
-    if (!cardLogic.hasSpecialMove) {
-      delete clone.move3;
+    if (!cardLogic.hasSpecialMove && !!clone.moves?.length) {
+      clone.moves = clone.moves.map(move => ({ ...move, type: 'default' }));
     }
     if (!cardLogic.hasSubtypes) {
       delete clone.subtypeId;
@@ -73,12 +71,6 @@ const useStrippedCard = (card: CardInterface): CardInterface => {
     }
     if (!cardLogic.hasBadgeIcon) {
       delete clone.badgeIconId;
-    }
-    if (!clone.hasAbility) {
-      delete clone.ability;
-    }
-    if (!clone.hasMove2) {
-      delete clone.move2;
     }
 
     return clone;

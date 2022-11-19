@@ -34,7 +34,7 @@ const MovesForm: FC = () => {
       // No changes
       if (currentIndex === newIndex) return;
 
-      const newList = [...moves];
+      const newList = [...(moves || [])];
       const [reorderedItem] = newList.splice(currentIndex, 1);
       newList.splice(newIndex, 0, reorderedItem);
 
@@ -49,15 +49,15 @@ const MovesForm: FC = () => {
   );
 
   const specialAttackAdded = useMemo(
-    () => moves.some(m => isAttackMove(m) && m.type === 'special'),
+    () => !!moves?.some(m => isAttackMove(m) && m.type === 'special'),
     [moves],
   );
 
   useEffect(() => {
     // If we need a special move and there are already moves defined,
     // Make the last move as special move
-    if (moves.some(isAttackMove) && hasSpecialMove && !specialAttackAdded) {
-      const newMoves = [...moves];
+    if (!!moves?.some(isAttackMove) && hasSpecialMove && !specialAttackAdded) {
+      const newMoves = [...(moves || [])];
       const index = newMoves.reverse().findIndex(isAttackMove);
       if (index < 0) return;
       newMoves[index] = {
@@ -76,15 +76,15 @@ const MovesForm: FC = () => {
       description: '',
       damageAmount: '',
       energyCost: [],
-      order: moves.length,
+      order: moves?.length || 0,
     };
 
     if (!hasSpecialMove || (hasSpecialMove && !specialAttackAdded)) {
       // Place new moves at the bottom by default
-      setMoves([...moves, move]);
+      setMoves([...(moves || []), move]);
     } else {
       // If there's a special move present, place the new move above that
-      const newMoves = [...moves];
+      const newMoves = [...(moves || [])];
       const specialMoveIndex = newMoves.findIndex(
         m => isAttackMove(m) && m.type === 'special',
       );
@@ -113,7 +113,7 @@ const MovesForm: FC = () => {
         description: '',
         order: 0,
       },
-      ...moves.map(move => ({
+      ...(moves || []).map(move => ({
         ...move,
         order: move.order + 1,
       })),
@@ -141,7 +141,7 @@ const MovesForm: FC = () => {
                 ref={providedList.innerRef}
                 mt={-1}
               >
-                {moves
+                {(moves || [])
                   .sort((a, b) => a.order - b.order)
                   .map((item, index) => (
                     <Draggable

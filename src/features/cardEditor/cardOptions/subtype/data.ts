@@ -302,6 +302,9 @@ const gxStyles: Partial<CardStyles> = {
     nameTextColor: 'white',
     nameOutline: undefined,
     hasAttackCostBorder: false,
+    nameAddition: ' [X]',
+    descriptionAddition:
+      ' _=(You can’t use more than 1 [X] attack in a game.)=_',
   },
   positions: {
     hitpoints: {

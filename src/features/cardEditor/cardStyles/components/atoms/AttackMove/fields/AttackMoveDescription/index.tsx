@@ -1,6 +1,7 @@
+import { useCardLogic } from '@cardEditor/cardLogic';
 import { useCardStyles } from '@cardEditor/cardStyles';
 import keepDoubleSpaces from '@cardEditor/cardStyles/utils/keepDoubleSpaces';
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 import { MoveDescriptionText, SCALE } from './styles';
 import { AttackMoveDescriptionProps } from './types';
 
@@ -11,7 +12,14 @@ const AttackMoveDescription: FC<AttackMoveDescriptionProps> = ({
   textColor: color,
   textOutline: outline,
 }) => {
-  const { alignMovesBottom } = useCardStyles();
+  const { hasSpecialMove } = useCardLogic();
+  const { alignMovesBottom, specialMove } = useCardStyles();
+  const { descriptionAddition } = specialMove || {};
+
+  const description = useMemo(
+    () => keepDoubleSpaces(move.description),
+    [move.description],
+  );
 
   return (
     <MoveDescriptionText
@@ -23,7 +31,9 @@ const AttackMoveDescription: FC<AttackMoveDescriptionProps> = ({
       $isEmpty={!move?.description}
       $isOnlyMove={!!isOnlyMove}
     >
-      {move ? keepDoubleSpaces(move?.description) : null}
+      {hasSpecialMove && !!descriptionAddition && move.type === 'special'
+        ? `${description}${descriptionAddition}`
+        : description}
     </MoveDescriptionText>
   );
 };

@@ -1,4 +1,5 @@
 import { useCardLogic } from '@cardEditor/cardLogic';
+import { useCardStyles } from '@cardEditor/cardStyles/hooks';
 import { FC } from 'react';
 import { AttackMoveDisplayProps } from '../../types';
 import { MoveNameText, SCALE } from './styles';
@@ -8,7 +9,9 @@ const AttackMoveName: FC<AttackMoveDisplayProps> = ({
   textColor: color,
   textOutline: outline,
 }) => {
-  const { greatestEnergyCost } = useCardLogic();
+  const { greatestEnergyCost, hasSpecialMove } = useCardLogic();
+  const { specialMove } = useCardStyles();
+  const { nameAddition } = specialMove || {};
 
   return (
     <MoveNameText
@@ -17,7 +20,9 @@ const AttackMoveName: FC<AttackMoveDisplayProps> = ({
       textColor={color}
       unscale={SCALE}
     >
-      {move?.name}
+      {hasSpecialMove && !!nameAddition && move.type === 'special'
+        ? `${move.name}${nameAddition}`
+        : move.name}
     </MoveNameText>
   );
 };

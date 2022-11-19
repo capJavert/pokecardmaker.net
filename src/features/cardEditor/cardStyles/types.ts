@@ -81,6 +81,16 @@ export interface SpecialMoveCardLogic
    * @default black
    */
   descriptionTextColor: TextColor;
+  /**
+   * The extra text that will be appended to the special move's name
+   * @default none
+   */
+  nameAddition?: string;
+  /**
+   * The extra text that will be appended to the special move's description
+   * @default none
+   */
+  descriptionAddition?: string;
 }
 
 export interface CardStyles {

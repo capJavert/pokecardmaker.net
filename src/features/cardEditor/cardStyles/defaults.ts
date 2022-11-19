@@ -23,7 +23,8 @@ export const defaultCardStyles: RequiredIsh<CardStyles> = {
   hasTypeImgBorder: true,
   hasSubnameBeforeName: false,
   prevolveText: 'Evolves from',
-  move3: {
+  positions: {},
+  specialMove: {
     type: 'gx',
     background: undefined,
     displayName: 'Third move',
@@ -33,5 +34,4 @@ export const defaultCardStyles: RequiredIsh<CardStyles> = {
     nameOutline: undefined,
     hasAttackCostBorder: true,
   },
-  positions: {},
 };

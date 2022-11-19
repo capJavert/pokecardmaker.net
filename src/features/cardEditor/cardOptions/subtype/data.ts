@@ -206,7 +206,6 @@ export const vmax: Subtype = {
   },
 };
 
-// TODO: Make VStar Power a Move3?
 export const vstar: Subtype = {
   id: id++,
   slug: 'vstar',
@@ -219,6 +218,7 @@ export const vstar: Subtype = {
     abilitySymbol: 'vstar',
     nameSymbol: 'vstar',
     hpSize: 'lg',
+    alignMovesBottom: true,
     positions: {
       prevolveImg: {
         top: '7.7%',
@@ -230,19 +230,14 @@ export const vstar: Subtype = {
         height: 'unset',
         gap: '3em',
       },
-      move2: {
+      lastMove: {
         height: '10.8em',
-      },
-      ability: {
-        height: '10.8em',
-        order: '10',
       },
     },
   },
   logic: {
     hasPrevolveImg: true,
     hasPrevolveName: true,
-    bonusMoveRequired: true,
     hasNameSymbol: true,
   },
   baseSetDependencies: {
@@ -298,7 +293,7 @@ const gxStyles: Partial<CardStyles> = {
   nameSymbol: 'gx',
   hpSize: 'lg',
   alignMovesBottom: true,
-  move3: {
+  specialMove: {
     type: 'gx',
     background: 'gx',
     displayName: 'GX Attack',
@@ -307,6 +302,9 @@ const gxStyles: Partial<CardStyles> = {
     nameTextColor: 'white',
     nameOutline: undefined,
     hasAttackCostBorder: false,
+    nameAddition: ' [X]',
+    descriptionAddition:
+      ' _=(You can’t use more than 1 [X] attack in a game.)=_',
   },
   positions: {
     hitpoints: {
@@ -324,7 +322,7 @@ const gxStyles: Partial<CardStyles> = {
 const gxLogic: Partial<CardLogic> = {
   hasVariations: true,
   isVariationRequired: false,
-  hasMove3: true,
+  hasSpecialMove: true,
   hasNameSymbol: true,
 };
 

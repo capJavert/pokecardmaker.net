@@ -34,7 +34,7 @@ const GeneralInput: FC<GeneralInputProps> = ({
   );
 
   return (
-    <FormControl>
+    <FormControl sx={{ width: '100%' }}>
       <Label slug={slug} tooltipProps={tooltipProps}>
         {label}
       </Label>

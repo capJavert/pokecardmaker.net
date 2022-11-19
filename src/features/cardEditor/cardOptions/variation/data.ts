@@ -132,7 +132,7 @@ export const ultraBeast: Variation = {
   displayName: 'Ultra Beast',
   styles: {
     nameSymbol: 'gxUltraBeast',
-    move3: {
+    specialMove: {
       background: 'gxUltraBeast',
       descriptionTextColor: 'ultraBeast',
     },

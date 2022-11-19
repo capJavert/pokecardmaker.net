@@ -3,7 +3,6 @@ import PlacementBlock from '../PlacementBlock';
 
 export const Wrapper = styled(PlacementBlock)<{
   $hasBackground: boolean;
-  $verticalCenter: boolean;
 }>`
   position: relative;
   display: flex;
@@ -15,12 +14,6 @@ export const Wrapper = styled(PlacementBlock)<{
     $hasBackground &&
     css`
       margin-top: -0.8em;
-    `}
-
-  ${({ $verticalCenter }) =>
-    $verticalCenter &&
-    css`
-      margin: auto 0;
     `}
 `;
 

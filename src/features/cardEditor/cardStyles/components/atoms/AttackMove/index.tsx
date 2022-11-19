@@ -1,4 +1,3 @@
-import { useCardStyles } from '@cardEditor/cardStyles/hooks';
 import useBase64Img from '@hooks/useBase64Image';
 import Routes from '@routes';
 import { FC } from 'react';
@@ -13,7 +12,6 @@ const AttackMove: FC<AttackMoveProps> = ({
   move,
   isLastAttack,
   isOnlyMove,
-  isOnlyAttack,
   background,
   descriptionOutline,
   descriptionTextColor,
@@ -22,17 +20,12 @@ const AttackMove: FC<AttackMoveProps> = ({
   hasAttackCostBorder,
   placement,
 }) => {
-  const { alignMovesBottom } = useCardStyles();
   const backgroundImg = useBase64Img(
     background ? Routes.Assets.Symbols.MoveBackground(background) : undefined,
   );
 
   return (
-    <Wrapper
-      $hasBackground={!!backgroundImg}
-      $verticalCenter={isOnlyAttack && !alignMovesBottom}
-      placement={placement}
-    >
+    <Wrapper $hasBackground={!!backgroundImg} placement={placement}>
       <TitleBar $background={backgroundImg}>
         <AttackMoveEnergyCost
           move={move}

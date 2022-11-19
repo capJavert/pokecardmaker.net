@@ -1,13 +1,16 @@
 import { useCardLogic } from '@cardEditor/cardLogic';
 import { useCardOptions } from '@cardEditor/cardOptions';
-import { isAttackMove } from '@cardEditor/cardOptions/utils/isMove';
+import {
+  isAbilityMove,
+  isAttackMove,
+} from '@cardEditor/cardOptions/utils/isMove';
 import { useCardStyles } from '@cardEditor/cardStyles/hooks';
-import { AttackMove as AttackMoveType } from '@cardEditor/types';
+import { AbilityMove, AttackMove as AttackMoveType } from '@cardEditor/types';
 import { FC, useCallback, useMemo } from 'react';
-import AttackMove from '../../atoms/AttackMove';
-import { AttackMoveProps } from '../../atoms/AttackMove/types';
 import Ability from '../Ability';
-import { Wrapper } from './styles';
+import AttackMoveWrapper from './components/AttackMoveWrapper';
+import { CenteredAttacksWrapper, Wrapper } from './styles';
+import { AttackMoveStyleProps } from './types';
 
 const Moves: FC = () => {
   const { hasMoves, hasSpecialMove } = useCardLogic();
@@ -30,18 +33,55 @@ const Moves: FC = () => {
     [moves],
   );
 
+  const sortedMoves = useMemo(
+    () => [...moves].sort((a, b) => a.order - b.order),
+    [moves],
+  );
+
+  const abilitiesFirst = useMemo<boolean>(
+    () => !!sortedMoves.length && isAbilityMove(sortedMoves[0]),
+    [sortedMoves],
+  );
+
+  const abilityMoves = useMemo<AbilityMove[]>(
+    () => sortedMoves.filter(isAbilityMove),
+    [sortedMoves],
+  );
+
+  const attackMoves = useMemo<AttackMoveType[]>(
+    () => sortedMoves.filter(isAttackMove),
+    [sortedMoves],
+  );
+
+  // Whether there's a clear divide between abilities and attacks, none are used in conjunction
+  const abilityAttacksDivided = useMemo<boolean>(() => {
+    if (sortedMoves.length === 1) return true;
+
+    let abilitySeen = false;
+    let attackSeen = false;
+    return sortedMoves.every((move, index) => {
+      if (isAttackMove(move)) {
+        attackSeen = true;
+        // Ability has already been iterated over and there's another ability later in the list
+        if (
+          abilitySeen &&
+          !![...sortedMoves].slice(index).find(isAbilityMove)
+        ) {
+          return false;
+        }
+      } else {
+        abilitySeen = true;
+        // Attack has already been iterated over and there's another attack later in the list
+        if (attackSeen && !![...sortedMoves].slice(index).find(isAttackMove)) {
+          return false;
+        }
+      }
+      return true;
+    });
+  }, [sortedMoves]);
+
   const getStyleProps = useCallback(
-    (
-      move: AttackMoveType,
-    ): Pick<
-      AttackMoveProps,
-      | 'descriptionTextColor'
-      | 'descriptionOutline'
-      | 'nameTextColor'
-      | 'nameOutline'
-      | 'background'
-      | 'hasAttackCostBorder'
-    > => {
+    (move: AttackMoveType): AttackMoveStyleProps => {
       if (!!specialMove && hasSpecialMove && move.type === 'special') {
         return {
           descriptionTextColor: specialMove.descriptionTextColor,
@@ -71,54 +111,59 @@ const Moves: FC = () => {
 
   if (!hasMoves) return null;
 
-  /**
-   * // TODO
-   * If there's a clear divide between abilities and attacks
-   * (none are intertwined, all abilities after eachother and all attacks after eachother)
-   * and there is at least 1 ability and more than 1 attack
-   * create a wrapper around the attacks with the following css:
-   *
-   * display: flex;
-   * flex-direction: column;
-   * justify-content: space-evenly;
-   * gap: 0.5em;
-   * height: 100%;
-   */
-
   return (
     <Wrapper
       $hasMultipleAttacks={attackMoveCount > 1}
       $alignBottom={alignMovesBottom}
       placement={placement}
     >
-      {moves
-        .sort((a, b) => a.order - b.order)
-        .map((move, index) =>
-          isAttackMove(move) ? (
-            <AttackMove
+      {!alignMovesBottom && abilityAttacksDivided ? (
+        <>
+          {abilityMoves.map((move, index) => (
+            <Ability
               key={move.id}
-              move={move}
-              isLastAttack={
-                [...moves].reverse().findIndex(isAttackMove) === index
-              }
-              isOnlyMove={moves.length === 1}
-              isOnlyAttack={attackMoveCount === 1}
-              // Can be different for move3:
-              {...getStyleProps(move)}
+              ability={move}
               placement={
-                index === moves.length - 1 ? lastMovePlacement : undefined
+                (abilitiesFirst ? 0 : attackMoves.length) + index ===
+                sortedMoves.length - 1
+                  ? lastMovePlacement
+                  : undefined
               }
+            />
+          ))}
+          <CenteredAttacksWrapper $orderFirst={!abilitiesFirst}>
+            {attackMoves.map((move, index) => (
+              <AttackMoveWrapper
+                move={move}
+                styleProps={getStyleProps(move)}
+                index={(abilitiesFirst ? abilityMoves.length : 0) + index}
+                moves={sortedMoves}
+                key={move.id}
+              />
+            ))}
+          </CenteredAttacksWrapper>
+        </>
+      ) : (
+        sortedMoves.map((move, index) =>
+          isAttackMove(move) ? (
+            <AttackMoveWrapper
+              move={move}
+              styleProps={getStyleProps(move)}
+              index={index}
+              moves={sortedMoves}
+              key={move.id}
             />
           ) : (
             <Ability
               key={move.id}
               ability={move}
               placement={
-                index === moves.length - 1 ? lastMovePlacement : undefined
+                index === sortedMoves.length - 1 ? lastMovePlacement : undefined
               }
             />
           ),
-        )}
+        )
+      )}
     </Wrapper>
   );
 };

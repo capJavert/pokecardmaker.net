@@ -206,7 +206,6 @@ export const vmax: Subtype = {
   },
 };
 
-// TODO: Make VStar Power a Move3?
 export const vstar: Subtype = {
   id: id++,
   slug: 'vstar',
@@ -219,6 +218,7 @@ export const vstar: Subtype = {
     abilitySymbol: 'vstar',
     nameSymbol: 'vstar',
     hpSize: 'lg',
+    alignMovesBottom: true,
     positions: {
       prevolveImg: {
         top: '7.7%',

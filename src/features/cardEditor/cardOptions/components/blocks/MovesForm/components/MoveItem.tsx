@@ -50,7 +50,7 @@ const MoveItem: FC<MoveItemProps> = ({ move, provided }) => {
         p={0.25}
         {...provided.dragHandleProps}
       >
-        <IconButton sx={{ mr: 2, pointerEvents: 'none' }} color="inherit">
+        <IconButton sx={{ pointerEvents: 'none' }} color="inherit">
           <DragIcon />
         </IconButton>
         <Typography fontWeight={700} px={1}>

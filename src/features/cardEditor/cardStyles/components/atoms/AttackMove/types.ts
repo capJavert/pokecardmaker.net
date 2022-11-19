@@ -9,7 +9,6 @@ import { CardTextProps } from '../CardText/types';
 export type AttackMoveProps = {
   move: AttackMove;
   isLastAttack: boolean;
-  isOnlyAttack: boolean;
   isOnlyMove: boolean;
   background?: MoveBackground;
   descriptionTextColor?: TextColor;

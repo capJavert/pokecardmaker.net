@@ -1,9 +1,13 @@
 import { CardInterface } from '@cardEditor';
 import useCardOptionsStore from '../store';
 
-const useCardOptionsNew = <T extends Partial<CardInterface>>(
+const useCardOptionsNew = <
+  T extends Partial<CardInterface>,
+  // @ts-expect-error - This is right
+  V extends T = { [P in keyof T]: CardInterface[P] },
+>(
   properties: (keyof T)[],
-): T & { setState: (values: Partial<T>) => void } => {
+): V & { setState: (values: Partial<V>) => void } => {
   const { setStateValues, ...values } = useCardOptionsStore(store => ({
     ...properties.reduce<Partial<CardInterface>>(
       (obj, key) => ({
@@ -16,7 +20,7 @@ const useCardOptionsNew = <T extends Partial<CardInterface>>(
   }));
 
   return {
-    ...(values as T),
+    ...(values as V),
     setState: setStateValues,
   };
 };

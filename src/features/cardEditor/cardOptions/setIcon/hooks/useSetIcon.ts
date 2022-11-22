@@ -1,21 +1,27 @@
 import { CardInterface } from '@cardEditor';
-import { useMemo } from 'react';
-import { useCardOptions, useCardRelations } from '@cardEditor/cardOptions';
+import { useCallback } from 'react';
+import useCardOptionsNew from '@cardEditor/cardOptions/hooks/useCardOptionsNew';
+import useCardRelationsNew from '@cardEditor/cardOptions/hooks/useCardRelationsNew';
 import { setIcons } from '../data';
 
 const useSetIcon = () => {
-  const { setIcon } = useCardRelations();
-  const { stateSetter, customSetIconImgSrc } = useCardOptions();
+  const { customSetIconImgSrc, setState } = useCardOptionsNew([
+    'customSetIconImgSrc',
+  ]);
+  const { setIcon } = useCardRelationsNew(['setIcon']);
 
-  const setSetIcon = useMemo(
-    () => stateSetter<CardInterface['setIconId']>('setIconId'),
-    [stateSetter],
+  const setSetIcon = useCallback(
+    (setIconId: CardInterface['setIconId']) => {
+      setState({ setIconId });
+    },
+    [setState],
   );
 
-  const setCustomSetIconImgSrc = useMemo(
-    () =>
-      stateSetter<CardInterface['customSetIconImgSrc']>('customSetIconImgSrc'),
-    [stateSetter],
+  const setCustomSetIconImgSrc = useCallback(
+    (value: CardInterface['customSetIconImgSrc']) => {
+      setState({ customSetIconImgSrc: value });
+    },
+    [setState],
   );
 
   return {

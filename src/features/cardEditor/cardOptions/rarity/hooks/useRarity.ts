@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo } from 'react';
 import useCardRelationsNew from '@cardEditor/cardOptions/hooks/useCardRelationsNew';
 import useCardOptionsStore from '@cardEditor/cardOptions/store';
+import { CardInterface } from '@cardEditor/types';
 import { rarities } from '../data';
 
 const useRarity = () => {
@@ -14,7 +15,7 @@ const useRarity = () => {
   ]);
 
   const setRarity = useCallback(
-    (rarityId?: number) => {
+    (rarityId: CardInterface['rarityId']) => {
       setStateValues({ rarityId });
     },
     [setStateValues],

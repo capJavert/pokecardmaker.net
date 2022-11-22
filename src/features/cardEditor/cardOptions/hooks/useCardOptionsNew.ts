@@ -7,7 +7,7 @@ const useCardOptionsNew = <
   V extends T = { [P in keyof T]: CardInterface[P] },
 >(
   properties: (keyof T)[],
-): V & { setState: (values: Partial<V>) => void } => {
+): V & { setState: (values: Partial<CardInterface>) => void } => {
   const { setStateValues, ...values } = useCardOptionsStore(store => ({
     ...properties.reduce<Partial<CardInterface>>(
       (obj, key) => ({

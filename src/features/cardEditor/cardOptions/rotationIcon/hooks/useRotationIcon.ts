@@ -1,23 +1,27 @@
 import { CardInterface } from '@cardEditor';
-import { useMemo } from 'react';
-import { useCardOptions, useCardRelations } from '@cardEditor/cardOptions';
+import { useCallback } from 'react';
+import useCardOptionsNew from '@cardEditor/cardOptions/hooks/useCardOptionsNew';
+import useCardRelationsNew from '@cardEditor/cardOptions/hooks/useCardRelationsNew';
 import { rotationIcons } from '../data';
 
 const useRotationIcon = () => {
-  const { rotationIcon } = useCardRelations();
-  const { stateSetter, customRotationIconImgSrc } = useCardOptions();
+  const { customRotationIconImgSrc, setState } = useCardOptionsNew([
+    'customRotationIconImgSrc',
+  ]);
+  const { rotationIcon } = useCardRelationsNew(['rotationIcon']);
 
-  const setRotationIcon = useMemo(
-    () => stateSetter<CardInterface['rotationIconId']>('rotationIconId'),
-    [stateSetter],
+  const setRotationIcon = useCallback(
+    (rotationIconId: CardInterface['rotationIconId']) => {
+      setState({ rotationIconId });
+    },
+    [setState],
   );
 
-  const setCustomRotationIconImgSrc = useMemo(
-    () =>
-      stateSetter<CardInterface['customRotationIconImgSrc']>(
-        'customRotationIconImgSrc',
-      ),
-    [stateSetter],
+  const setCustomRotationIconImgSrc = useCallback(
+    (value: CardInterface['customRotationIconImgSrc']) => {
+      setState({ customRotationIconImgSrc: value });
+    },
+    [setState],
   );
 
   return {

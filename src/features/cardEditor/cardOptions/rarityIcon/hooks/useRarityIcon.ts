@@ -1,23 +1,27 @@
 import { CardInterface } from '@cardEditor';
-import { useMemo } from 'react';
-import { useCardOptions, useCardRelations } from '@cardEditor/cardOptions';
+import { useCallback } from 'react';
+import useCardOptionsNew from '@cardEditor/cardOptions/hooks/useCardOptionsNew';
+import useCardRelationsNew from '@cardEditor/cardOptions/hooks/useCardRelationsNew';
 import { rarityIcons } from '../data';
 
 const useRarityIcon = () => {
-  const { rarityIcon } = useCardRelations();
-  const { stateSetter, customRarityIconImgSrc } = useCardOptions();
+  const { customRarityIconImgSrc, setState } = useCardOptionsNew([
+    'customRarityIconImgSrc',
+  ]);
+  const { rarityIcon } = useCardRelationsNew(['rarityIcon']);
 
-  const setRarityIcon = useMemo(
-    () => stateSetter<CardInterface['rarityIconId']>('rarityIconId'),
-    [stateSetter],
+  const setRarityIcon = useCallback(
+    (rarityIconId: CardInterface['rarityIconId']) => {
+      setState({ rarityIconId });
+    },
+    [setState],
   );
 
-  const setCustomRarityIconImgSrc = useMemo(
-    () =>
-      stateSetter<CardInterface['customRarityIconImgSrc']>(
-        'customRarityIconImgSrc',
-      ),
-    [stateSetter],
+  const setCustomRarityIconImgSrc = useCallback(
+    (value: CardInterface['customRarityIconImgSrc']) => {
+      setState({ customRarityIconImgSrc: value });
+    },
+    [setState],
   );
 
   return {

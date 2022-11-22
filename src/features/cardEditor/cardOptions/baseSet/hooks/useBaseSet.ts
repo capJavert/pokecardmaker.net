@@ -1,15 +1,18 @@
 import { CardInterface } from '@cardEditor';
-import { useMemo } from 'react';
-import { useCardOptions, useCardRelations } from '@cardEditor/cardOptions';
+import { useCallback } from 'react';
+import useCardRelationsNew from '@cardEditor/cardOptions/hooks/useCardRelationsNew';
+import useCardOptionsStore from '@cardEditor/cardOptions/store';
 import { baseSets } from '../data';
 
 const useBaseSet = () => {
-  const { stateSetter } = useCardOptions();
-  const { baseSet } = useCardRelations();
+  const { setStateValues } = useCardOptionsStore();
+  const { baseSet } = useCardRelationsNew(['baseSet']);
 
-  const setBaseSet = useMemo(
-    () => stateSetter<CardInterface['baseSetId']>('baseSetId'),
-    [stateSetter],
+  const setBaseSet = useCallback(
+    (baseSetId: CardInterface['baseSetId']) => {
+      setStateValues({ baseSetId });
+    },
+    [setStateValues],
   );
 
   return {

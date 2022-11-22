@@ -1,15 +1,23 @@
-import { useCardOptions, useCardRelations } from '@cardEditor/cardOptions';
-import { CardInterface } from '@cardEditor';
 import { useCallback, useEffect, useMemo } from 'react';
+import useCardRelationsNew from '@cardEditor/cardOptions/hooks/useCardRelationsNew';
+import useCardOptionsStore from '@cardEditor/cardOptions/store';
 import { rarities } from '../data';
 
 const useRarity = () => {
-  const { rarityId, stateSetter } = useCardOptions();
-  const { rarity, baseSet, type, subtype, variation } = useCardRelations();
+  const { setStateValues } = useCardOptionsStore();
+  const { rarity, baseSet, type, subtype, variation } = useCardRelationsNew([
+    'rarity',
+    'baseSet',
+    'type',
+    'subtype',
+    'variation',
+  ]);
 
-  const setRarity = useMemo(
-    () => stateSetter<CardInterface['rarityId']>('rarityId'),
-    [stateSetter],
+  const setRarity = useCallback(
+    (rarityId?: number) => {
+      setStateValues({ rarityId });
+    },
+    [setStateValues],
   );
 
   const typeRarities = useMemo(
@@ -94,12 +102,12 @@ const useRarity = () => {
   ]);
 
   useEffect(() => {
-    if (!rarityId) return;
-    if (!rarityIsAvailable(rarityId)) {
-      setRarity(undefined);
+    if (!rarity?.id) return;
+    if (!rarityIsAvailable(rarity.id)) {
+      setStateValues({ rarityId: undefined });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [subtype, type, variation, baseSet, setRarity, rarityIsAvailable]);
+  }, [subtype, type, variation, baseSet, setStateValues, rarityIsAvailable]);
 
   return {
     rarities,

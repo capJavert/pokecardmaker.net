@@ -38,6 +38,7 @@
     }
   },
   "rules": {
+    "no-prototype-builtins": "off",
     "no-param-reassign": "off",
     "no-plusplus": "off",
     "react/no-array-index-key": "off",

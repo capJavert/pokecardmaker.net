@@ -11,13 +11,12 @@ export const MoveDescriptionText = styled(CardText)<{
   $isOnlyMove: boolean;
 }>`
   font-family: '${Font.GillSansStdRegular}', monospace;
-  font-size: 1.67em;
-  letter-spacing: -0.003em;
+  font-size: 1.75em;
   white-space: pre-line;
   text-align: justify;
   line-height: 1.05em;
   min-height: 0.55em;
-  padding-left: 1.5%;
+  padding-left: 1%;
   width: 103%;
   transform: scaleX(${SCALE});
   transform-origin: left;

@@ -72,6 +72,19 @@ const useStrippedCard = (card: CardInterface): CardInterface => {
     if (!cardLogic.hasBadgeIcon) {
       delete clone.badgeIconId;
     }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const legacyCard = clone as any;
+    if (
+      legacyCard.move1 ||
+      legacyCard.move2 ||
+      legacyCard.move3 ||
+      legacyCard.ability
+    ) {
+      delete legacyCard.move1;
+      delete legacyCard.move2;
+      delete legacyCard.move3;
+      delete legacyCard.ability;
+    }
 
     return clone;
   }, [card, cardLogic]);

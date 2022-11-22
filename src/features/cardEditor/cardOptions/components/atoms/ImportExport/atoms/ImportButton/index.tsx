@@ -44,6 +44,12 @@ const ImportButton: FC = () => {
               newMoves.push({ ...legacyImport.move3, order: 3, id: nanoid() });
             }
             card.moves = newMoves;
+            delete legacyImport.move1;
+            delete legacyImport.move2;
+            delete legacyImport.move3;
+            delete legacyImport.ability;
+            delete legacyImport.hasAbility;
+            delete legacyImport.hasMove2;
           }
           setState(card);
         }

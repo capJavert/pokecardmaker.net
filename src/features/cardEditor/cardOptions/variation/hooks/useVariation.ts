@@ -4,17 +4,17 @@ import {
   defaultSubtypeVariations,
   defaultTypeSubtypes,
   defaultTypeVariations,
+  useCardRelations,
 } from '@cardEditor/cardOptions';
 import { subtypes } from '@cardEditor/cardOptions/subtype';
 import findById from '@utils/findById';
-import useCardRelationsNew from '@cardEditor/cardOptions/hooks/useCardRelationsNew';
 import useCardOptionsStore from '@cardEditor/cardOptions/store';
 import { variations } from '../data';
 import { Variation } from '../types';
 
 const useVariation = () => {
   const { setStateValues } = useCardOptionsStore();
-  const { baseSet, type, subtype, variation } = useCardRelationsNew([
+  const { baseSet, type, subtype, variation } = useCardRelations([
     'baseSet',
     'type',
     'subtype',

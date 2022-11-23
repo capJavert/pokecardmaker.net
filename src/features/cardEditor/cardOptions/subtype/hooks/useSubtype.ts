@@ -1,13 +1,12 @@
 import { CardInterface } from '@cardEditor';
 import { useCallback, useEffect } from 'react';
-import { defaultTypeSubtypes } from '@cardEditor/cardOptions';
-import useCardRelationsNew from '@cardEditor/cardOptions/hooks/useCardRelationsNew';
+import { defaultTypeSubtypes, useCardRelations } from '@cardEditor/cardOptions';
 import useCardOptionsStore from '@cardEditor/cardOptions/store';
 import { subtypes } from '../data';
 
 const useSubtype = () => {
   const { setStateValues } = useCardOptionsStore();
-  const { baseSet, type, subtype } = useCardRelationsNew([
+  const { baseSet, type, subtype } = useCardRelations([
     'baseSet',
     'type',
     'subtype',

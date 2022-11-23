@@ -1,15 +1,17 @@
 import { CardInterface } from '@cardEditor';
 import { useCallback, useEffect, useMemo } from 'react';
-import { defaultSupertypeTypes } from '@cardEditor/cardOptions';
+import {
+  defaultSupertypeTypes,
+  useCardRelations,
+} from '@cardEditor/cardOptions';
 import findById from '@utils/findById';
-import useCardRelationsNew from '@cardEditor/cardOptions/hooks/useCardRelationsNew';
 import useCardOptionsStore from '@cardEditor/cardOptions/store';
 import { Type } from '../types';
 import { types } from '../data';
 
 const useType = () => {
   const { setStateValues } = useCardOptionsStore();
-  const { baseSet, supertype, type } = useCardRelationsNew([
+  const { baseSet, supertype, type } = useCardRelations([
     'baseSet',
     'supertype',
     'type',

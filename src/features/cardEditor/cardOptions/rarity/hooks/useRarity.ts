@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useMemo } from 'react';
-import useCardRelationsNew from '@cardEditor/cardOptions/hooks/useCardRelationsNew';
+import { useCardRelations } from '@cardEditor/cardOptions';
 import useCardOptionsStore from '@cardEditor/cardOptions/store';
 import { CardInterface } from '@cardEditor/types';
 import { rarities } from '../data';
 
 const useRarity = () => {
   const { setStateValues } = useCardOptionsStore();
-  const { rarity, baseSet, type, subtype, variation } = useCardRelationsNew([
+  const { rarity, baseSet, type, subtype, variation } = useCardRelations([
     'rarity',
     'baseSet',
     'type',

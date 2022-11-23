@@ -25,7 +25,20 @@ export const AnalyticsProvider: React.FC = ({ children }) => {
     customRotationIconImgSrc,
     customSetIconImgSrc: customSetIconSrc,
   } = useCardOptions();
-  const { typeImg: _, ...relations } = useCardRelations();
+  const relations = useCardRelations([
+    'baseSet',
+    'supertype',
+    'type',
+    'subtype',
+    'rarity',
+    'variation',
+    'weaknessType',
+    'resistanceType',
+    'setIcon',
+    'rotationIcon',
+    'rarityIcon',
+    'badgeIcon',
+  ]);
   const cardDataRef = useRef<Record<string, string | number | undefined>>({
     retreatCost,
     ...relationsToSlugs(relations),

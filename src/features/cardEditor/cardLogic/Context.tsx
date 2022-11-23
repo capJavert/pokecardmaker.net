@@ -20,7 +20,14 @@ export const CardLogicContext = createContext<CardLogicContextInterface>({
 
 export const CardLogicProvider: React.FC = ({ children }) => {
   const { baseSet, supertype, type, subtype, variation, rarity } =
-    useCardRelations();
+    useCardRelations([
+      'baseSet',
+      'supertype',
+      'type',
+      'subtype',
+      'rarity',
+      'variation',
+    ]);
   const { moves } = useCardOptions();
 
   const state = useMemo<Required<CardLogic>>(

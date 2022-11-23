@@ -8,9 +8,9 @@ import {
   getCardImagePath,
 } from '@cardEditor/cardStyles';
 import { RequiredIsh } from '@interfaces/utils';
-import { useCardRelations } from '@cardEditor/cardOptions';
 import Routes from '@routes';
 import fallbackCard from '@assets/fallbackCard.png';
+import { useCardRelations } from '@cardEditor/cardOptions';
 
 export type CardStylesState = RequiredIsh<CardStyles>;
 
@@ -32,7 +32,14 @@ export const CardStylesContext = createContext<CardStylesContextInterface>({
 
 export const CardStylesProvider: React.FC = ({ children }) => {
   const { baseSet, supertype, type, subtype, variation, rarity } =
-    useCardRelations();
+    useCardRelations([
+      'baseSet',
+      'supertype',
+      'type',
+      'subtype',
+      'rarity',
+      'variation',
+    ]);
   const [emphemeralUnit, setEm] = useState<number>(baseEmphemeralUnit);
 
   const setEmphemeralUnit = useCallback(

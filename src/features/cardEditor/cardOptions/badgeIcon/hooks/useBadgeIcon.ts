@@ -1,12 +1,12 @@
 import { CardInterface } from '@cardEditor';
 import { useCallback } from 'react';
-import useCardRelationsNew from '@cardEditor/cardOptions/hooks/useCardRelationsNew';
+import { useCardRelations } from '@cardEditor/cardOptions';
 import useCardOptionsStore from '@cardEditor/cardOptions/store';
 import { badgeIcons } from '../data';
 
 const useBadgeIcon = () => {
   const { setStateValues } = useCardOptionsStore();
-  const { badgeIcon } = useCardRelationsNew(['badgeIcon']);
+  const { badgeIcon } = useCardRelations(['badgeIcon']);
 
   const setBadgeIcon = useCallback(
     (badgeIconId: CardInterface['badgeIconId']) => {

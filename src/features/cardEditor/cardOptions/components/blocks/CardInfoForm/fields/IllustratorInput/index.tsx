@@ -4,7 +4,7 @@ import { useCardLogic } from '@cardEditor/cardLogic';
 import { useCardOptions } from '@cardEditor/cardOptions';
 
 const IllustratorInput: FC = () => {
-  const { hasIllustratorName } = useCardLogic();
+  const { hasIllustratorName } = useCardLogic(['hasIllustratorName']);
   const { illustrator, setState } = useCardOptions(['illustrator']);
 
   if (!hasIllustratorName) return null;

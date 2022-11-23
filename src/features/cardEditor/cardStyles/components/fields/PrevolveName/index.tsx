@@ -6,7 +6,7 @@ import { StyledText } from './styles';
 
 const PrevolveName: FC = () => {
   const { prevolveName } = useCardOptions(['prevolveName']);
-  const { hasPrevolveName } = useCardLogic();
+  const { hasPrevolveName } = useCardLogic(['hasPrevolveName']);
   const {
     prevolveText,
     positions: { prevolveName: placement },

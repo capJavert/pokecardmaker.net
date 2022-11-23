@@ -11,7 +11,10 @@ const TypeImg: FC = () => {
     hasTypeImgBorder,
     positions: { typeImgContainer: containerPlacement, typeImg: imgPlacement },
   } = useCardStyles();
-  const { hasTypeImage, hasMultipleTypeImages } = useCardLogic();
+  const { hasTypeImage, hasMultipleTypeImages } = useCardLogic([
+    'hasTypeImage',
+    'hasMultipleTypeImages',
+  ]);
   const { baseSet } = useBaseSet();
   const { typeImg, customTypeImgSrc, typeImgAmount } = useTypeImg();
 

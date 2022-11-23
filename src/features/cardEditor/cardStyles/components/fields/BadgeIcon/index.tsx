@@ -6,7 +6,7 @@ import { FC, memo } from 'react';
 import { Wrapper } from './styles';
 
 const BadgeIcon: FC = () => {
-  const { hasBadgeIcon } = useCardLogic();
+  const { hasBadgeIcon } = useCardLogic(['hasBadgeIcon']);
   const { badgeIcon } = useBadgeIcon();
   const imgSrc = !!badgeIcon && Routes.Assets.Icons.Badge(badgeIcon.slug);
 

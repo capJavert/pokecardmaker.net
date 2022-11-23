@@ -3,15 +3,18 @@ import { FC, useCallback } from 'react';
 import ControlledSelector from '@components/inputs/ControlledSelector';
 import { useSubtype } from '@cardEditor/cardOptions/subtype';
 import { useType } from '@cardEditor/cardOptions/type';
-import { useCardLogic } from '@cardEditor/cardLogic';
 import { CardCreatorAnalyticsEvent, useAnalytics } from '@features/analytics';
 import { useBaseSet } from '@cardEditor/cardOptions/baseSet';
+import { useCardLogic } from '@cardEditor/cardLogic';
 
 const SubtypeSelector: FC = () => {
   const { trackCardCreatorEvent } = useAnalytics();
   const { baseSet } = useBaseSet();
   const { type } = useType();
-  const { hasSubtypes, isSubtypeRequired } = useCardLogic();
+  const { hasSubtypes, isSubtypeRequired } = useCardLogic([
+    'hasSubtypes',
+    'isSubtypeRequired',
+  ]);
   const { subtypes, subtype, setSubtype } = useSubtype();
 
   const handleChange = useCallback(

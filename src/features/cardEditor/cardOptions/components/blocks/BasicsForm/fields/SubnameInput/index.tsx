@@ -4,7 +4,7 @@ import { useCardLogic } from '@cardEditor/cardLogic';
 import { useCardOptions } from '@cardEditor/cardOptions';
 
 const SubnameInput: FC = () => {
-  const { hasSubname } = useCardLogic();
+  const { hasSubname } = useCardLogic(['hasSubname']);
   const { subname, setState } = useCardOptions(['subname']);
 
   if (!hasSubname) return null;

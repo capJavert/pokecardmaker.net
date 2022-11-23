@@ -4,7 +4,7 @@ import TextAreaInput from '@components/inputs/TextAreaInput';
 import { useCardOptions } from '@cardEditor/cardOptions';
 
 const DexEntryInput: FC = () => {
-  const { hasDexEntry } = useCardLogic();
+  const { hasDexEntry } = useCardLogic(['hasDexEntry']);
   const { dexEntry, setState } = useCardOptions(['dexEntry']);
 
   if (!hasDexEntry) return null;

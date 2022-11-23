@@ -12,7 +12,7 @@ const AttackMoveDescription: FC<AttackMoveDescriptionProps> = ({
   textColor: color,
   textOutline: outline,
 }) => {
-  const { hasSpecialMove } = useCardLogic();
+  const { hasSpecialMove } = useCardLogic(['hasSpecialMove']);
   const { alignMovesBottom, specialMove } = useCardStyles();
   const { descriptionAddition } = specialMove || {};
 

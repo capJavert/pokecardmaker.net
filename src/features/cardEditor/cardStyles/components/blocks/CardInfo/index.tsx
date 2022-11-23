@@ -16,7 +16,7 @@ const CardInfo: FC = () => {
       cardInfoBar: infoBarPlacement,
     },
   } = useCardStyles();
-  const { hasCardInfo } = useCardLogic();
+  const { hasCardInfo } = useCardLogic(['hasCardInfo']);
 
   if (!hasCardInfo) return null;
 

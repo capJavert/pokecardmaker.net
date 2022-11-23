@@ -6,7 +6,7 @@ import { FC, memo } from 'react';
 import { Wrapper } from './styles';
 
 const RotationIcon: FC = () => {
-  const { hasRotationIcon } = useCardLogic();
+  const { hasRotationIcon } = useCardLogic(['hasRotationIcon']);
   const { rotationIcon, customRotationIconImgSrc } = useRotationIcon();
   const imgSrc =
     customRotationIconImgSrc ||

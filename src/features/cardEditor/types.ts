@@ -108,3 +108,11 @@ export interface RelationsInterface {
   badgeIcon?: BadgeIcon;
   typeImg?: Type;
 }
+
+/**
+ * All relations which can change the card template image
+ */
+export type TemplateRelations = Pick<
+  RelationsInterface,
+  'baseSet' | 'supertype' | 'type' | 'subtype' | 'rarity' | 'variation'
+>;

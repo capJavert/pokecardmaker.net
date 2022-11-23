@@ -7,7 +7,7 @@ import { Wrapper } from './styles';
 
 const NameSymbol: FC = () => {
   const { nameSymbol } = useCardStyles();
-  const { hasNameSymbol } = useCardLogic();
+  const { hasNameSymbol } = useCardLogic(['hasNameSymbol']);
   const imgSrc = !!nameSymbol && Routes.Assets.Symbols.Name(nameSymbol);
 
   if (!hasNameSymbol || !imgSrc) return null;

@@ -13,7 +13,10 @@ import { CenteredAttacksWrapper, Wrapper } from './styles';
 import { AttackMoveStyleProps } from './types';
 
 const Moves: FC = () => {
-  const { hasMoves, hasSpecialMove } = useCardLogic();
+  const { hasMoves, hasSpecialMove } = useCardLogic([
+    'hasMoves',
+    'hasSpecialMove',
+  ]);
   const {
     alignMovesBottom,
     movesTextColor,

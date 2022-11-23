@@ -7,7 +7,10 @@ import { FC, useCallback } from 'react';
 
 const VariationSelector: FC = () => {
   const { trackCardCreatorEvent } = useAnalytics();
-  const { hasVariations, isVariationRequired } = useCardLogic();
+  const { hasVariations, isVariationRequired } = useCardLogic([
+    'hasVariations',
+    'isVariationRequired',
+  ]);
   const { variations, variation, setVariation, variationIsAvailable } =
     useVariation();
 

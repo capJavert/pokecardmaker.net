@@ -4,7 +4,7 @@ import { useCardLogic } from '@cardEditor/cardLogic';
 import { useCardOptions } from '@cardEditor/cardOptions';
 
 const NameInput: FC = () => {
-  const { hasName } = useCardLogic();
+  const { hasName } = useCardLogic(['hasName']);
   const { name, setState } = useCardOptions(['name']);
 
   if (!hasName) return null;

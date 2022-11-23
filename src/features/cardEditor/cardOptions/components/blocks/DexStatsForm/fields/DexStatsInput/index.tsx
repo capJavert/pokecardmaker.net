@@ -5,7 +5,7 @@ import { Box } from '@mui/system';
 import { useCardOptions } from '@cardEditor/cardOptions';
 
 const DexStatsInput: FC = () => {
-  const { hasDexStats } = useCardLogic();
+  const { hasDexStats } = useCardLogic(['hasDexStats']);
   const { dexStats, setState } = useCardOptions(['dexStats']);
   const [number, setNumber] = useState<string>('');
   const [category, setCategory] = useState<string>('');

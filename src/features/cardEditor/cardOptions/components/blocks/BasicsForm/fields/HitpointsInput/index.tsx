@@ -4,7 +4,7 @@ import { useCardLogic } from '@cardEditor/cardLogic';
 import { useCardOptions } from '@cardEditor/cardOptions';
 
 const HitpointsInput: FC = () => {
-  const { hasHitpoints } = useCardLogic();
+  const { hasHitpoints } = useCardLogic(['hasHitpoints']);
   const { hitpoints, setState } = useCardOptions(['hitpoints']);
 
   if (!hasHitpoints) return null;

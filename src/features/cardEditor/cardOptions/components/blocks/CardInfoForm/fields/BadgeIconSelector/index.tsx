@@ -25,7 +25,7 @@ import NewFeatureHelpText from '@cardEditor/cardOptions/components/atoms/NewFeat
 
 const BadgeIconSelector: FC = () => {
   const { trackCardCreatorEvent } = useAnalytics();
-  const { hasBadgeIcon } = useCardLogic();
+  const { hasBadgeIcon } = useCardLogic(['hasBadgeIcon']);
   const { badgeIcons, badgeIcon, setBadgeIcon } = useBadgeIcon();
 
   const handleChange = useCallback(

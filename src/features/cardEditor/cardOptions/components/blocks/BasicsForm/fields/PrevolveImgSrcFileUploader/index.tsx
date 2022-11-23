@@ -4,7 +4,7 @@ import { useCardLogic } from '@cardEditor/cardLogic';
 import { useCardOptions } from '@cardEditor/cardOptions';
 
 const PrevolveImgSrcFileUploader: FC = () => {
-  const { hasPrevolveImg } = useCardLogic();
+  const { hasPrevolveImg } = useCardLogic(['hasPrevolveImg']);
   const { setState } = useCardOptions([]);
 
   if (!hasPrevolveImg) return null;

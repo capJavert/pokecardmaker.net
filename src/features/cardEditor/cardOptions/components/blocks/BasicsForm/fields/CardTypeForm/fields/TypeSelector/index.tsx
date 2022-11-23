@@ -13,7 +13,7 @@ import { useBaseSet } from '@cardEditor/cardOptions/baseSet';
 
 const TypeSelector: FC = () => {
   const { trackCardCreatorEvent } = useAnalytics();
-  const { isPokemonType } = useCardLogic();
+  const { isPokemonType } = useCardLogic(['isPokemonType']);
   const { baseSet } = useBaseSet();
   const { supertype } = useSupertype();
   const { types, type, setType } = useType();

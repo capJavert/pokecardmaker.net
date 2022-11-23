@@ -10,7 +10,7 @@ import WeaknessType from './fields/WeaknessType';
 import { Block, TypeWrapper } from './styles';
 
 const TypeBar: FC = () => {
-  const { hasTypeBar } = useCardLogic();
+  const { hasTypeBar } = useCardLogic(['hasTypeBar']);
   const { weaknessTypeId, weaknessAmount, resistanceTypeId, resistanceAmount } =
     useCardOptions([
       'weaknessTypeId',

@@ -5,7 +5,7 @@ import { FC, memo } from 'react';
 import { DexStatsText, SCALE } from './styles';
 
 const DexStats: FC = () => {
-  const { hasDexStats } = useCardLogic();
+  const { hasDexStats } = useCardLogic(['hasDexStats']);
   const { dexStats } = useCardOptions(['dexStats']);
   const {
     dexStatsTextColor,

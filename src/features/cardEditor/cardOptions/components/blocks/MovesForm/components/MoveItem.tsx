@@ -21,7 +21,7 @@ interface MoveItemProps {
 
 const MoveItem: FC<MoveItemProps> = ({ move, provided }) => {
   const { moves, setState } = useCardOptions(['moves']);
-  const { hasSpecialMove } = useCardLogic();
+  const { hasSpecialMove } = useCardLogic(['hasSpecialMove']);
   const { specialMove } = useCardStyles();
 
   const label = useMemo<string>(

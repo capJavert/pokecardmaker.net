@@ -5,7 +5,7 @@ import TextAreaInput from '@components/inputs/TextAreaInput';
 import { FC } from 'react';
 
 const DescriptionInput: FC = () => {
-  const { hasDescription } = useCardLogic();
+  const { hasDescription } = useCardLogic(['hasDescription']);
   const { description, setState } = useCardOptions(['description']);
 
   if (!hasDescription) return null;

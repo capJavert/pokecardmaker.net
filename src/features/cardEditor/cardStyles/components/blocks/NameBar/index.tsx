@@ -7,7 +7,7 @@ import Subname from './fields/Subname';
 import { Block } from './styles';
 
 const NameBar: FC = () => {
-  const { hasName } = useCardLogic();
+  const { hasName } = useCardLogic(['hasName']);
   const {
     positions: { name: placement },
   } = useCardStyles();

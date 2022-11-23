@@ -10,7 +10,7 @@ import { SelectorMenuItem } from '@components/SelectorMenuItem';
 import { ListItemText } from '@mui/material';
 
 const RotationIconSelector: FC = () => {
-  const { hasRotationIcon } = useCardLogic();
+  const { hasRotationIcon } = useCardLogic(['hasRotationIcon']);
   const {
     rotationIcons,
     rotationIcon,

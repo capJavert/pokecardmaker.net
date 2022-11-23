@@ -1,3 +1,4 @@
+import { useCardLogicStore } from '@cardEditor/cardLogic';
 import { CardInterface, RelationsInterface } from '@cardEditor/types';
 import create from 'zustand';
 import { defaultCardOptions, defaultRelations } from './defaults';
@@ -15,8 +16,23 @@ export const useCardOptionsStore = create<CardOptionsStore>(set => ({
   relations: defaultRelations,
   setState: state => set({ state }),
   setStateValues: values =>
-    set(store => ({
-      state: { ...store.state, ...values },
-      relations: { ...store.relations, ...createNewRelations(values) },
-    })),
+    set(store => {
+      const newRelations = createNewRelations(values);
+      const relations: RelationsInterface = {
+        ...store.relations,
+        ...newRelations,
+      };
+      if (Object.keys(newRelations).length > 0) {
+        useCardLogicStore.getState().updateTemplate(relations);
+      }
+      if (values.hasOwnProperty('moves')) {
+        useCardLogicStore
+          .getState()
+          .updateGreatestEnergyCost(values.moves || []);
+      }
+      return {
+        state: { ...store.state, ...values },
+        relations,
+      };
+    }),
 }));

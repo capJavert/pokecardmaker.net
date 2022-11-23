@@ -11,7 +11,7 @@ const Subname: FC = () => {
     hasSubnameBeforeName: beforeName,
   } = useCardStyles();
   const { subname } = useCardOptions(['subname']);
-  const { hasSubname } = useCardLogic();
+  const { hasSubname } = useCardLogic(['hasSubname']);
 
   if (!hasSubname || !subname) return null;
 

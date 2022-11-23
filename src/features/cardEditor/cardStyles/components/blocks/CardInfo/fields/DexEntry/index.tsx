@@ -6,7 +6,7 @@ import { DexEntryText } from './styles';
 
 const DexEntry: FC = () => {
   const { dexEntry } = useCardOptions(['dexEntry']);
-  const { hasDexEntry } = useCardLogic();
+  const { hasDexEntry } = useCardLogic(['hasDexEntry']);
   const {
     cardInfoOutline,
     cardInfoTextColor,

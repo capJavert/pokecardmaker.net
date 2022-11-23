@@ -11,7 +11,7 @@ const MAX_TYPE_IMG_AMOUNT = 3;
 
 const TypeImgAmountSelector: FC = () => {
   const { baseSet } = useBaseSet();
-  const { hasMultipleTypeImages } = useCardLogic();
+  const { hasMultipleTypeImages } = useCardLogic(['hasMultipleTypeImages']);
   const { typeImgAmount, setTypeImgAmount, typeImg, customTypeImgSrc } =
     useTypeImg();
 

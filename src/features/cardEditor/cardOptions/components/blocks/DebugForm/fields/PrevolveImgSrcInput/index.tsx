@@ -4,7 +4,7 @@ import { useCardDebug } from '@cardEditor/cardDebug';
 import { useCardLogic } from '@cardEditor/cardLogic';
 
 const PrevolveImgSrcInput: FC = () => {
-  const { hasPrevolveImg: hasPrevolve } = useCardLogic();
+  const { hasPrevolveImg: hasPrevolve } = useCardLogic(['hasPrevolveImg']);
   const { prevolveImgSrc, setPrevolveImgSrc } = useCardDebug();
 
   if (!hasPrevolve) return null;

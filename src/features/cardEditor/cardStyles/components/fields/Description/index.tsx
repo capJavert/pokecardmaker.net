@@ -6,7 +6,7 @@ import { FC, memo } from 'react';
 import { DescriptionText, SCALE, Wrapper } from './styles';
 
 const Description: FC = () => {
-  const { hasDescription } = useCardLogic();
+  const { hasDescription } = useCardLogic(['hasDescription']);
   const { description } = useCardOptions(['description']);
   const {
     movesOutline,

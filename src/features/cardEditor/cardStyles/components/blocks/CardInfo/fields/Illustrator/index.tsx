@@ -6,7 +6,7 @@ import { IllustratorText, SCALE } from './styles';
 
 const Illustrator: FC = () => {
   const { illustrator } = useCardOptions(['illustrator']);
-  const { hasIllustratorName } = useCardLogic();
+  const { hasIllustratorName } = useCardLogic(['hasIllustratorName']);
   const {
     cardInfoOutline,
     cardInfoTextColor,

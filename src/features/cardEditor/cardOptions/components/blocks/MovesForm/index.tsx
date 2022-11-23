@@ -17,7 +17,10 @@ import MoveItem from './components/MoveItem';
 
 const MovesForm: FC = () => {
   const { moves, setState } = useCardOptions(['moves']);
-  const { hasMoves, hasSpecialMove } = useCardLogic();
+  const { hasMoves, hasSpecialMove } = useCardLogic([
+    'hasMoves',
+    'hasSpecialMove',
+  ]);
   const [windowReady, setWindowReady] = useState<boolean>(false);
 
   useEffect(() => {

@@ -1,12 +1,29 @@
-import { CardLogicContext } from '@cardEditor/cardLogic';
-import { useContext } from 'react';
+import shallow from 'zustand/shallow';
+import { useCardLogicStore } from '../store';
+import { CardLogic } from '../types';
 
-const useCardLogic = () => {
-  const { state, greatestEnergyCost } = useContext(CardLogicContext);
+const useCardLogic = <
+  T extends Partial<CardLogic>,
+  // @ts-expect-error - This is right
+  V extends T = { [P in keyof T]: CardLogic[P] },
+>(
+  properties: (keyof T)[],
+): V => {
+  const values = useCardLogicStore(
+    store => ({
+      ...properties.reduce<Partial<CardLogic>>(
+        (obj, key) => ({
+          ...obj,
+          [key]: store.state[key as keyof CardLogic],
+        }),
+        {},
+      ),
+    }),
+    shallow,
+  );
 
   return {
-    ...state,
-    greatestEnergyCost,
+    ...(values as V),
   };
 };
 

@@ -5,7 +5,7 @@ import { FC, memo } from 'react';
 import { HPNumbers, HPText, Wrapper } from './styles';
 
 const Hitpoints: FC = () => {
-  const { hasHitpoints } = useCardLogic();
+  const { hasHitpoints } = useCardLogic(['hasHitpoints']);
   const { hitpoints } = useCardOptions(['hitpoints']);
   const {
     hpSize,

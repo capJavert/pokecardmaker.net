@@ -1,12 +1,12 @@
 import TextInput from '@components/inputs/TextInput';
 import { FC, useEffect, useState } from 'react';
-import { useCardOptions } from '@cardEditor/cardOptions';
 import { useCardLogic } from '@cardEditor/cardLogic';
 import { Box } from '@mui/system';
+import { useCardOptions } from '@cardEditor/cardOptions';
 
 const DexStatsInput: FC = () => {
   const { hasDexStats } = useCardLogic();
-  const { dexStats, setDexStats } = useCardOptions();
+  const { dexStats, setState } = useCardOptions(['dexStats']);
   const [number, setNumber] = useState<string>('');
   const [category, setCategory] = useState<string>('');
   const [height, setHeight] = useState<string>('');
@@ -14,11 +14,11 @@ const DexStatsInput: FC = () => {
 
   useEffect(() => {
     if (number || category || height || weight) {
-      setDexStats(
-        `NO. ${number}  ${category} Pokémon  HT: ${height}  WT: ${weight} lbs.`,
-      );
+      setState({
+        dexStats: `NO. ${number}  ${category} Pokémon  HT: ${height}  WT: ${weight} lbs.`,
+      });
     }
-  }, [number, category, height, weight, setDexStats]);
+  }, [number, category, height, weight, setState]);
 
   if (!hasDexStats) return null;
 
@@ -56,7 +56,7 @@ const DexStatsInput: FC = () => {
         slug="dexStatsCustom"
         label="Custom"
         value={dexStats}
-        onChange={setDexStats}
+        onChange={value => setState({ dexStats: value })}
       />
     </Box>
   );

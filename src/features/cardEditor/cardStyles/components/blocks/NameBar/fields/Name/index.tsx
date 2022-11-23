@@ -6,7 +6,7 @@ import {
 } from '@cardEditor/cardStyles';
 import { CSSProperties } from '@mui/styled-engine';
 import { Box } from '@mui/system';
-import { FC, useMemo, useRef } from 'react';
+import { FC, memo, useMemo, useRef } from 'react';
 import { useMeasure } from 'react-use';
 import { getNameSymbolSize } from '../NameSymbol/utils';
 import { NameText } from './styles';
@@ -15,7 +15,7 @@ import { NameText } from './styles';
 const DEFAULT_SCALE = 1;
 
 const Name: FC = () => {
-  const { name } = useCardOptions();
+  const { name } = useCardOptions(['name']);
   const {
     nameOutline,
     nameTextColor,
@@ -102,4 +102,4 @@ const Name: FC = () => {
   );
 };
 
-export default Name;
+export default memo(Name);

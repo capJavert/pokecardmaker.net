@@ -2,7 +2,7 @@ import { useCardDebug } from '@cardEditor/cardDebug';
 import { useCardLogic } from '@cardEditor/cardLogic';
 import { useCardOptions } from '@cardEditor/cardOptions';
 import { useCardStyles } from '@cardEditor/cardStyles/hooks';
-import { FC, useMemo } from 'react';
+import { FC, memo, useMemo } from 'react';
 import { Img } from './styles';
 
 const PrevolveImg: FC = () => {
@@ -10,7 +10,7 @@ const PrevolveImg: FC = () => {
     positions: { prevolveImg: placement },
   } = useCardStyles();
   const { hasPrevolveImg } = useCardLogic();
-  const { prevolveImgSrc } = useCardOptions();
+  const { prevolveImgSrc } = useCardOptions(['prevolveImgSrc']);
   const { showDebug, prevolveImgSrc: debugImgSrc } = useCardDebug();
 
   const imgSrc = useMemo<string | undefined>(
@@ -23,4 +23,4 @@ const PrevolveImg: FC = () => {
   return <Img $url={imgSrc} placement={placement} />;
 };
 
-export default PrevolveImg;
+export default memo(PrevolveImg);

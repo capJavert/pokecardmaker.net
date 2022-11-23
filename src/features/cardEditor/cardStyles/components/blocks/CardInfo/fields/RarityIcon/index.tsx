@@ -2,7 +2,7 @@ import { useRarityIcon } from '@cardEditor/cardOptions/rarityIcon';
 import DisplayImg from '@cardEditor/cardStyles/components/atoms/DisplayImg';
 import { useCardStyles } from '@cardEditor/cardStyles/hooks';
 import Routes from '@routes';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { Wrapper } from './styles';
 
 const RarityIcon: FC = () => {
@@ -30,4 +30,4 @@ const RarityIcon: FC = () => {
   );
 };
 
-export default RarityIcon;
+export default memo(RarityIcon);

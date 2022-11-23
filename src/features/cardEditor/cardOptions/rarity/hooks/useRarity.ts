@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useMemo } from 'react';
-import { useCardRelations } from '@cardEditor/cardOptions';
-import useCardOptionsStore from '@cardEditor/cardOptions/store';
+import { useCardOptionsStore, useCardRelations } from '@cardEditor/cardOptions';
 import { CardInterface } from '@cardEditor/types';
 import { rarities } from '../data';
 

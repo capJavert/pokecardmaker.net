@@ -1,11 +1,11 @@
 import { useCardLogic } from '@cardEditor/cardLogic';
-import useCardOptionsNew from '@cardEditor/cardOptions/hooks/useCardOptionsNew';
+import { useCardOptions } from '@cardEditor/cardOptions';
 import { useCardStyles } from '@cardEditor/cardStyles/hooks';
 import { FC, memo } from 'react';
 import { IllustratorText, SCALE } from './styles';
 
 const Illustrator: FC = () => {
-  const { illustrator } = useCardOptionsNew(['illustrator']);
+  const { illustrator } = useCardOptions(['illustrator']);
   const { hasIllustratorName } = useCardLogic();
   const {
     cardInfoOutline,

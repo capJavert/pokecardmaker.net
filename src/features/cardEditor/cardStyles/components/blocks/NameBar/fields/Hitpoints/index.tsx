@@ -1,12 +1,12 @@
 import { useCardLogic } from '@cardEditor/cardLogic';
 import { useCardOptions } from '@cardEditor/cardOptions';
 import { useCardStyles } from '@cardEditor/cardStyles';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { HPNumbers, HPText, Wrapper } from './styles';
 
 const Hitpoints: FC = () => {
   const { hasHitpoints } = useCardLogic();
-  const { hitpoints } = useCardOptions();
+  const { hitpoints } = useCardOptions(['hitpoints']);
   const {
     hpSize,
     hpOutline,
@@ -29,4 +29,4 @@ const Hitpoints: FC = () => {
   );
 };
 
-export default Hitpoints;
+export default memo(Hitpoints);

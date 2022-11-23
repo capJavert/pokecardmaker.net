@@ -1,7 +1,10 @@
 import { CardInterface } from '@cardEditor';
 import { useCallback, useEffect } from 'react';
-import { defaultTypeSubtypes, useCardRelations } from '@cardEditor/cardOptions';
-import useCardOptionsStore from '@cardEditor/cardOptions/store';
+import {
+  defaultTypeSubtypes,
+  useCardOptionsStore,
+  useCardRelations,
+} from '@cardEditor/cardOptions';
 import { subtypes } from '../data';
 
 const useSubtype = () => {

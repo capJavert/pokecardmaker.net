@@ -1,5 +1,5 @@
 import { useCardDebug } from '@cardEditor/cardDebug';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { StyledImage } from './styles';
 
 const DebugImage: FC = () => {
@@ -12,4 +12,4 @@ const DebugImage: FC = () => {
   );
 };
 
-export default DebugImage;
+export default memo(DebugImage);

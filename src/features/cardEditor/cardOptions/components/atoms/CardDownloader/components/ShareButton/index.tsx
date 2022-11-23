@@ -1,8 +1,8 @@
-import { useCardOptions } from '@cardEditor/cardOptions/hooks';
 import { CardCreatorAnalyticsEvent, useAnalytics } from '@features/analytics';
 import { Share as ShareIcon } from '@mui/icons-material';
 import { FC, useCallback, useState } from 'react';
 import useIsMobile from '@hooks/useIsMobile';
+import { useCardOptions } from '@cardEditor/cardOptions';
 import { makeCanvas } from '../../utils';
 import LoadingButton from '../../atoms/LoadingButton';
 import { ShareButtonProps } from './types';
@@ -10,7 +10,7 @@ import { ShareButtonProps } from './types';
 const ShareButton: FC<ShareButtonProps> = ({ cardId, ...props }) => {
   const { isMobile } = useIsMobile();
   const { trackCardCreatorEvent } = useAnalytics();
-  const { name } = useCardOptions();
+  const { name } = useCardOptions(['name']);
   const [isLoading, setLoading] = useState<boolean>(false);
 
   const handleShare = useCallback(async () => {

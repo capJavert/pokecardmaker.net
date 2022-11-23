@@ -1,5 +1,5 @@
 import { useCardLogic } from '@cardEditor/cardLogic';
-import { useCardOptions } from '@cardEditor/cardOptions/hooks';
+import { useCardOptions } from '@cardEditor/cardOptions';
 import { isAttackMove } from '@cardEditor/cardOptions/utils/isMove';
 import { AttackMove } from '@cardEditor/types';
 import AccordionForm from '@components/AccordionForm';
@@ -16,7 +16,7 @@ import {
 import MoveItem from './components/MoveItem';
 
 const MovesForm: FC = () => {
-  const { moves, setMoves } = useCardOptions();
+  const { moves, setState } = useCardOptions(['moves']);
   const { hasMoves, hasSpecialMove } = useCardLogic();
   const [windowReady, setWindowReady] = useState<boolean>(false);
 
@@ -38,14 +38,14 @@ const MovesForm: FC = () => {
       const [reorderedItem] = newList.splice(currentIndex, 1);
       newList.splice(newIndex, 0, reorderedItem);
 
-      setMoves(
-        newList.map((m, index) => ({
+      setState({
+        moves: newList.map((m, index) => ({
           ...m,
           order: index,
         })),
-      );
+      });
     },
-    [moves, setMoves],
+    [moves, setState],
   );
 
   const specialAttackAdded = useMemo(
@@ -64,9 +64,9 @@ const MovesForm: FC = () => {
         ...newMoves[index],
         type: 'special',
       };
-      setMoves(newMoves.reverse());
+      setState({ moves: newMoves.reverse() });
     }
-  }, [moves, specialAttackAdded, hasSpecialMove, setMoves]);
+  }, [moves, specialAttackAdded, hasSpecialMove, setState]);
 
   const handleAddAttack = useCallback(() => {
     const move: AttackMove = {
@@ -81,7 +81,7 @@ const MovesForm: FC = () => {
 
     if (!hasSpecialMove || (hasSpecialMove && !specialAttackAdded)) {
       // Place new moves at the bottom by default
-      setMoves([...(moves || []), move]);
+      setState({ moves: [...(moves || []), move] });
     } else {
       // If there's a special move present, place the new move above that
       const newMoves = [...(moves || [])];
@@ -90,35 +90,39 @@ const MovesForm: FC = () => {
       );
       const beforeSpecialMove = newMoves.slice(0, specialMoveIndex);
       const afterSpecialMove = newMoves.slice(specialMoveIndex);
-      setMoves([
-        ...beforeSpecialMove,
-        {
-          ...move,
-          order: beforeSpecialMove.length,
-        },
-        ...afterSpecialMove.map(m => ({
-          ...m,
-          order: m.order + 1,
-        })),
-      ]);
+      setState({
+        moves: [
+          ...beforeSpecialMove,
+          {
+            ...move,
+            order: beforeSpecialMove.length,
+          },
+          ...afterSpecialMove.map(m => ({
+            ...m,
+            order: m.order + 1,
+          })),
+        ],
+      });
     }
-  }, [moves, setMoves, specialAttackAdded, hasSpecialMove]);
+  }, [moves, setState, specialAttackAdded, hasSpecialMove]);
 
   const handleAddAbility = useCallback(() => {
     // Place new abilities at the top by default
-    setMoves([
-      {
-        id: nanoid(),
-        name: '',
-        description: '',
-        order: 0,
-      },
-      ...(moves || []).map(move => ({
-        ...move,
-        order: move.order + 1,
-      })),
-    ]);
-  }, [moves, setMoves]);
+    setState({
+      moves: [
+        {
+          id: nanoid(),
+          name: '',
+          description: '',
+          order: 0,
+        },
+        ...(moves || []).map(move => ({
+          ...move,
+          order: move.order + 1,
+        })),
+      ],
+    });
+  }, [moves, setState]);
 
   if (!hasMoves) return null;
 

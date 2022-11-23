@@ -1,6 +1,5 @@
 import { CardDebugProvider } from '@cardEditor/cardDebug';
 import { CardLogicProvider } from '@cardEditor/cardLogic';
-import { CardOptionsProvider } from '@cardEditor/cardOptions';
 import { CardStylesProvider } from '@cardEditor/cardStyles';
 import { ThemeProvider } from '@emotion/react';
 import { AnalyticsProvider } from '@features/analytics';
@@ -12,15 +11,13 @@ const Providers: FC = ({ children }) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <CardOptionsProvider>
-        <CardDebugProvider>
-          <CardLogicProvider>
-            <CardStylesProvider>
-              <AnalyticsProvider>{children}</AnalyticsProvider>
-            </CardStylesProvider>
-          </CardLogicProvider>
-        </CardDebugProvider>
-      </CardOptionsProvider>
+      <CardDebugProvider>
+        <CardLogicProvider>
+          <CardStylesProvider>
+            <AnalyticsProvider>{children}</AnalyticsProvider>
+          </CardStylesProvider>
+        </CardLogicProvider>
+      </CardDebugProvider>
     </ThemeProvider>
   );
 };

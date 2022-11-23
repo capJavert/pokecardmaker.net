@@ -1,11 +1,11 @@
 import { useCardLogic } from '@cardEditor/cardLogic';
 import { useCardOptions } from '@cardEditor/cardOptions';
 import { useCardStyles } from '@cardEditor/cardStyles/hooks';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { DexEntryText } from './styles';
 
 const DexEntry: FC = () => {
-  const { dexEntry } = useCardOptions();
+  const { dexEntry } = useCardOptions(['dexEntry']);
   const { hasDexEntry } = useCardLogic();
   const {
     cardInfoOutline,
@@ -26,4 +26,4 @@ const DexEntry: FC = () => {
   );
 };
 
-export default DexEntry;
+export default memo(DexEntry);

@@ -28,7 +28,7 @@ export const CardLogicProvider: React.FC = ({ children }) => {
       'rarity',
       'variation',
     ]);
-  const { moves } = useCardOptions();
+  const { moves } = useCardOptions(['moves']);
 
   const state = useMemo<Required<CardLogic>>(
     () =>

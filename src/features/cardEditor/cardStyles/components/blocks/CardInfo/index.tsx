@@ -1,6 +1,6 @@
 import { useCardLogic } from '@cardEditor/cardLogic';
 import { useCardStyles } from '@cardEditor/cardStyles/hooks';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import CardNumber from './fields/CardNumber';
 import DexEntry from './fields/DexEntry';
 import Illustrator from './fields/Illustrator';
@@ -36,4 +36,4 @@ const CardInfo: FC = () => {
   );
 };
 
-export default CardInfo;
+export default memo(CardInfo);

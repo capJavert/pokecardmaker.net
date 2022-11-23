@@ -1,11 +1,11 @@
 import NumberInput from '@components/inputs/NumberInput';
 import { FC } from 'react';
-import { useCardOptions } from '@cardEditor/cardOptions';
 import { useCardLogic } from '@cardEditor/cardLogic';
+import { useCardOptions } from '@cardEditor/cardOptions';
 
 const HitpointsInput: FC = () => {
   const { hasHitpoints } = useCardLogic();
-  const { hitpoints, setHitpoints } = useCardOptions();
+  const { hitpoints, setState } = useCardOptions(['hitpoints']);
 
   if (!hasHitpoints) return null;
 
@@ -16,7 +16,7 @@ const HitpointsInput: FC = () => {
       value={hitpoints}
       min={0}
       max={999}
-      onChange={setHitpoints}
+      onChange={value => setState({ hitpoints: value })}
     />
   );
 };

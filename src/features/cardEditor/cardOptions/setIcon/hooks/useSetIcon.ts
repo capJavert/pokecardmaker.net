@@ -1,11 +1,10 @@
 import { CardInterface } from '@cardEditor';
 import { useCallback } from 'react';
-import useCardOptionsNew from '@cardEditor/cardOptions/hooks/useCardOptionsNew';
-import { useCardRelations } from '@cardEditor/cardOptions';
+import { useCardOptions, useCardRelations } from '@cardEditor/cardOptions';
 import { setIcons } from '../data';
 
 const useSetIcon = () => {
-  const { customSetIconImgSrc, setState } = useCardOptionsNew([
+  const { customSetIconImgSrc, setState } = useCardOptions([
     'customSetIconImgSrc',
   ]);
   const { setIcon } = useCardRelations(['setIcon']);

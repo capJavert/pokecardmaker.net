@@ -1,11 +1,11 @@
 import TextInput from '@components/inputs/TextInput';
 import { FC } from 'react';
 import { useCardLogic } from '@cardEditor/cardLogic';
-import useCardOptionsNew from '@cardEditor/cardOptions/hooks/useCardOptionsNew';
+import { useCardOptions } from '@cardEditor/cardOptions';
 
 const IllustratorInput: FC = () => {
   const { hasIllustratorName } = useCardLogic();
-  const { illustrator, setState } = useCardOptionsNew(['illustrator']);
+  const { illustrator, setState } = useCardOptions(['illustrator']);
 
   if (!hasIllustratorName) return null;
 

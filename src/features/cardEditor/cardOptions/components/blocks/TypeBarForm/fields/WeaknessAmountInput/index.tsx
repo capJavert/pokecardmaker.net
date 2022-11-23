@@ -1,11 +1,13 @@
 import { FC } from 'react';
-import { useCardOptions } from '@cardEditor/cardOptions';
 import NumberInput from '@components/inputs/NumberInput';
 import { InputAdornment } from '@mui/material';
+import { useCardOptions } from '@cardEditor/cardOptions';
 
 const WeaknessAmountInput: FC = () => {
-  const { weaknessTypeId, weaknessAmount, setWeaknessAmount } =
-    useCardOptions();
+  const { weaknessTypeId, weaknessAmount, setState } = useCardOptions([
+    'weaknessTypeId',
+    'weaknessAmount',
+  ]);
 
   if (!weaknessTypeId) return null;
 
@@ -15,7 +17,7 @@ const WeaknessAmountInput: FC = () => {
       label="Weakness Amount"
       value={weaknessAmount}
       startAdornment={<InputAdornment position="start">×</InputAdornment>}
-      onChange={setWeaknessAmount}
+      onChange={value => setState({ weaknessAmount: value })}
       max={99}
       min={1}
     />

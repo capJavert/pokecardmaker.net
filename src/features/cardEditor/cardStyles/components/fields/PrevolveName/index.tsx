@@ -1,11 +1,11 @@
 import { useCardLogic } from '@cardEditor/cardLogic';
 import { useCardOptions } from '@cardEditor/cardOptions';
 import { useCardStyles } from '@cardEditor/cardStyles/hooks';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { StyledText } from './styles';
 
 const PrevolveName: FC = () => {
-  const { prevolveName } = useCardOptions();
+  const { prevolveName } = useCardOptions(['prevolveName']);
   const { hasPrevolveName } = useCardLogic();
   const {
     prevolveText,
@@ -21,4 +21,4 @@ const PrevolveName: FC = () => {
   );
 };
 
-export default PrevolveName;
+export default memo(PrevolveName);

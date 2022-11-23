@@ -2,10 +2,10 @@ import { CardInterface } from '@cardEditor';
 import { useCallback, useEffect, useMemo } from 'react';
 import {
   defaultSupertypeTypes,
+  useCardOptionsStore,
   useCardRelations,
 } from '@cardEditor/cardOptions';
 import findById from '@utils/findById';
-import useCardOptionsStore from '@cardEditor/cardOptions/store';
 import { Type } from '../types';
 import { types } from '../data';
 

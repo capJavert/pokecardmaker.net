@@ -2,7 +2,7 @@ import { useCardLogic } from '@cardEditor/cardLogic';
 import { useBadgeIcon } from '@cardEditor/cardOptions/badgeIcon';
 import DisplayImg from '@cardEditor/cardStyles/components/atoms/DisplayImg';
 import Routes from '@routes';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { Wrapper } from './styles';
 
 const BadgeIcon: FC = () => {
@@ -19,4 +19,4 @@ const BadgeIcon: FC = () => {
   );
 };
 
-export default BadgeIcon;
+export default memo(BadgeIcon);

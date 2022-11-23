@@ -1,11 +1,10 @@
 import { CardInterface } from '@cardEditor';
 import { useCallback } from 'react';
-import useCardOptionsNew from '@cardEditor/cardOptions/hooks/useCardOptionsNew';
-import { useCardRelations } from '@cardEditor/cardOptions';
+import { useCardOptions, useCardRelations } from '@cardEditor/cardOptions';
 import { rarityIcons } from '../data';
 
 const useRarityIcon = () => {
-  const { customRarityIconImgSrc, setState } = useCardOptionsNew([
+  const { customRarityIconImgSrc, setState } = useCardOptions([
     'customRarityIconImgSrc',
   ]);
   const { rarityIcon } = useCardRelations(['rarityIcon']);

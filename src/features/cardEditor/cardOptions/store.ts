@@ -1,6 +1,6 @@
-import { defaultCardOptions, defaultRelations } from '@cardEditor/cardOptions';
 import { CardInterface, RelationsInterface } from '@cardEditor/types';
 import create from 'zustand';
+import { defaultCardOptions, defaultRelations } from './defaults';
 import createNewRelations from './utils/createNewRelations';
 
 export interface CardOptionsStore {
@@ -10,7 +10,7 @@ export interface CardOptionsStore {
   setStateValues: (values: Partial<CardInterface>) => void;
 }
 
-const useCardOptionsStore = create<CardOptionsStore>(set => ({
+export const useCardOptionsStore = create<CardOptionsStore>(set => ({
   state: defaultCardOptions,
   relations: defaultRelations,
   setState: state => set({ state }),
@@ -20,5 +20,3 @@ const useCardOptionsStore = create<CardOptionsStore>(set => ({
       relations: { ...store.relations, ...createNewRelations(values) },
     })),
 }));
-
-export default useCardOptionsStore;

@@ -2,7 +2,7 @@ import { useSetIcon } from '@cardEditor/cardOptions/setIcon';
 import { useCardStyles } from '@cardEditor/cardStyles';
 import DisplayImg from '@cardEditor/cardStyles/components/atoms/DisplayImg';
 import Routes from '@routes';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { Wrapper } from './styles';
 
 const SetIcon: FC = () => {
@@ -22,4 +22,4 @@ const SetIcon: FC = () => {
   );
 };
 
-export default SetIcon;
+export default memo(SetIcon);

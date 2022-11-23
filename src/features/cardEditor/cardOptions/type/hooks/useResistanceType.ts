@@ -1,7 +1,6 @@
 import { CardInterface } from '@cardEditor';
 import { useCallback } from 'react';
-import { useCardRelations } from '@cardEditor/cardOptions';
-import useCardOptionsStore from '@cardEditor/cardOptions/store';
+import { useCardOptionsStore, useCardRelations } from '@cardEditor/cardOptions';
 
 const useResistanceType = () => {
   const { setStateValues } = useCardOptionsStore();

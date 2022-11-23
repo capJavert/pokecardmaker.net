@@ -1,7 +1,7 @@
 import { useCardLogic } from '@cardEditor/cardLogic';
 import { useCardOptions } from '@cardEditor/cardOptions';
 import { useCardStyles } from '@cardEditor/cardStyles/hooks';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { SCALE, SubnameText } from './styles';
 
 const Subname: FC = () => {
@@ -10,7 +10,7 @@ const Subname: FC = () => {
     nameTextColor,
     hasSubnameBeforeName: beforeName,
   } = useCardStyles();
-  const { subname } = useCardOptions();
+  const { subname } = useCardOptions(['subname']);
   const { hasSubname } = useCardLogic();
 
   if (!hasSubname || !subname) return null;
@@ -27,4 +27,4 @@ const Subname: FC = () => {
   );
 };
 
-export default Subname;
+export default memo(Subname);

@@ -5,7 +5,7 @@ import {
   cardImgHeight,
 } from '@cardEditor/cardStyles/constants';
 import { useCardStyles } from '@cardEditor/cardStyles/hooks';
-import { FC, useState } from 'react';
+import { FC, memo, useState } from 'react';
 import { useDebounce, useMeasure } from 'react-use';
 import CardInfo from '../blocks/CardInfo';
 import Debug from '../blocks/Debug';
@@ -24,7 +24,7 @@ import TypeImg from '../fields/TypeImg';
 import { CardContainer, CardContent } from './styles';
 
 const CardDisplay: FC = () => {
-  const { backgroundColor } = useCardOptions();
+  const { backgroundColor } = useCardOptions(['backgroundColor']);
   const { emphemeralUnit, setEmphemeralUnit } = useCardStyles();
   const [squareRef, { width }] = useMeasure<HTMLDivElement>();
   const [height, setHeight] = useState<number>(cardImgHeight);
@@ -66,4 +66,4 @@ const CardDisplay: FC = () => {
   );
 };
 
-export default CardDisplay;
+export default memo(CardDisplay);

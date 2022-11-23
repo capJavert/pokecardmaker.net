@@ -4,11 +4,11 @@ import {
   defaultSubtypeVariations,
   defaultTypeSubtypes,
   defaultTypeVariations,
+  useCardOptionsStore,
   useCardRelations,
 } from '@cardEditor/cardOptions';
 import { subtypes } from '@cardEditor/cardOptions/subtype';
 import findById from '@utils/findById';
-import useCardOptionsStore from '@cardEditor/cardOptions/store';
 import { variations } from '../data';
 import { Variation } from '../types';
 

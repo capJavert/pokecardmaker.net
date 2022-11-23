@@ -2,7 +2,7 @@ import { useCardLogic } from '@cardEditor/cardLogic';
 import { useCardStyles } from '@cardEditor/cardStyles';
 import DisplayImg from '@cardEditor/cardStyles/components/atoms/DisplayImg';
 import Routes from '@routes';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { Wrapper } from './styles';
 
 const NameSymbol: FC = () => {
@@ -19,4 +19,4 @@ const NameSymbol: FC = () => {
   );
 };
 
-export default NameSymbol;
+export default memo(NameSymbol);

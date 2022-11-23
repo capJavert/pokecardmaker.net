@@ -1,6 +1,6 @@
 import { useCardLogic } from '@cardEditor/cardLogic';
 import { useCardStyles } from '@cardEditor/cardStyles/hooks';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import Name from './fields/Name';
 import NameSymbol from './fields/NameSymbol';
 import Subname from './fields/Subname';
@@ -23,4 +23,4 @@ const NameBar: FC = () => {
   );
 };
 
-export default NameBar;
+export default memo(NameBar);

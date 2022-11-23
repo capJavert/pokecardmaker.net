@@ -1,4 +1,4 @@
-import { useCardOptions } from '@cardEditor/cardOptions/hooks';
+import { useCardOptions } from '@cardEditor/cardOptions';
 import { AttackMove } from '@cardEditor/types';
 import { Box } from '@mui/system';
 import { FC, useCallback } from 'react';
@@ -10,7 +10,7 @@ import { AttackMoveFormProps } from './types';
 
 const AttackMoveForm: FC<AttackMoveFormProps> = props => {
   const { move } = props;
-  const { moves, setMoves } = useCardOptions();
+  const { moves, setState } = useCardOptions(['moves']);
 
   const handleChange = useCallback(
     (newMove?: AttackMove) => {
@@ -19,9 +19,9 @@ const AttackMoveForm: FC<AttackMoveFormProps> = props => {
       const index = newMoves.findIndex(m => m.id === move.id);
       if (index < 0) return;
       newMoves[index] = newMove;
-      setMoves(newMoves);
+      setState({ moves: newMoves });
     },
-    [moves, setMoves, move],
+    [moves, setState, move],
   );
 
   if (!move) return null;

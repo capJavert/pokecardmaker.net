@@ -1,13 +1,13 @@
-import { CardOptionsContext } from '@cardEditor/cardOptions/Context';
+import { useCardOptionsStore } from '@cardEditor/cardOptions';
 import { isCardInterface } from '@cardEditor/cardOptions/utils';
 import { CardInterface } from '@cardEditor/types';
 import { DataObject } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import { nanoid } from 'nanoid';
-import { FC, useCallback, useContext } from 'react';
+import { FC, useCallback } from 'react';
 
 const ImportButton: FC = () => {
-  const { setState } = useContext(CardOptionsContext);
+  const { setState } = useCardOptionsStore();
 
   const handleImport = useCallback(() => {
     if (!navigator?.clipboard) return;

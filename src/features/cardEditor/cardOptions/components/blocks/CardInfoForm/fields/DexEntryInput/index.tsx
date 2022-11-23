@@ -1,11 +1,11 @@
 import { FC } from 'react';
-import { useCardOptions } from '@cardEditor/cardOptions';
 import { useCardLogic } from '@cardEditor/cardLogic';
 import TextAreaInput from '@components/inputs/TextAreaInput';
+import { useCardOptions } from '@cardEditor/cardOptions';
 
 const DexEntryInput: FC = () => {
   const { hasDexEntry } = useCardLogic();
-  const { dexEntry, setDexEntry } = useCardOptions();
+  const { dexEntry, setState } = useCardOptions(['dexEntry']);
 
   if (!hasDexEntry) return null;
 
@@ -14,7 +14,7 @@ const DexEntryInput: FC = () => {
       slug="dexEntry"
       label="Pokédex Entry"
       value={dexEntry}
-      onChange={setDexEntry}
+      onChange={value => setState({ dexEntry: value })}
     />
   );
 };

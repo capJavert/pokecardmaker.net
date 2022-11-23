@@ -1,10 +1,13 @@
 import { useCardOptions } from '@cardEditor/cardOptions';
 import { useCardStyles } from '@cardEditor/cardStyles/hooks';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { CardNumberText, SCALE } from './styles';
 
 const CardNumber: FC = () => {
-  const { cardNumber, totalInSet } = useCardOptions();
+  const { cardNumber, totalInSet } = useCardOptions([
+    'cardNumber',
+    'totalInSet',
+  ]);
   const {
     cardInfoOutline,
     cardInfoTextColor,
@@ -27,4 +30,4 @@ const CardNumber: FC = () => {
   );
 };
 
-export default CardNumber;
+export default memo(CardNumber);

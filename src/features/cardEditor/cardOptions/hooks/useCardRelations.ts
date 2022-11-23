@@ -1,5 +1,6 @@
+import shallow from 'zustand/shallow';
 import { RelationsInterface } from '@cardEditor';
-import useCardOptionsStore from '../store';
+import { useCardOptionsStore } from '../store';
 
 const useCardRelationsNew = <
   T extends Partial<RelationsInterface>,
@@ -8,15 +9,18 @@ const useCardRelationsNew = <
 >(
   properties: (keyof T)[],
 ): V => {
-  const relations = useCardOptionsStore(store => ({
-    ...properties.reduce<Partial<RelationsInterface>>(
-      (obj, key) => ({
-        ...obj,
-        [key]: store.relations[key as keyof RelationsInterface],
-      }),
-      {},
-    ),
-  }));
+  const relations = useCardOptionsStore(
+    store => ({
+      ...properties.reduce<Partial<RelationsInterface>>(
+        (obj, key) => ({
+          ...obj,
+          [key]: store.relations[key as keyof RelationsInterface],
+        }),
+        {},
+      ),
+    }),
+    shallow,
+  );
 
   return {
     ...(relations as V),

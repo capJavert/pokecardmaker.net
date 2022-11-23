@@ -1,11 +1,11 @@
 import TextInput from '@components/inputs/TextInput';
 import { FC } from 'react';
-import { useCardOptions } from '@cardEditor/cardOptions';
 import { useCardLogic } from '@cardEditor/cardLogic';
+import { useCardOptions } from '@cardEditor/cardOptions';
 
 const SubnameInput: FC = () => {
   const { hasSubname } = useCardLogic();
-  const { subname, setSubname } = useCardOptions();
+  const { subname, setState } = useCardOptions(['subname']);
 
   if (!hasSubname) return null;
 
@@ -14,7 +14,7 @@ const SubnameInput: FC = () => {
       slug="subname"
       label="Subname"
       value={subname}
-      onChange={setSubname}
+      onChange={value => setState({ subname: value })}
     />
   );
 };

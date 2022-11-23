@@ -3,7 +3,7 @@ import { useBaseSet } from '@cardEditor/cardOptions/baseSet';
 import { useTypeImg } from '@cardEditor/cardOptions/type';
 import { useCardStyles } from '@cardEditor/cardStyles/hooks';
 import Routes from '@routes';
-import { FC, useMemo } from 'react';
+import { FC, memo, useMemo } from 'react';
 import { StyledImg, Wrapper } from './styles';
 
 const TypeImg: FC = () => {
@@ -51,4 +51,4 @@ const TypeImg: FC = () => {
   );
 };
 
-export default TypeImg;
+export default memo(TypeImg);

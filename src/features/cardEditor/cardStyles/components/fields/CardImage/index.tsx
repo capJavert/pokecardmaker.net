@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { useCardStyles } from '@cardEditor/cardStyles';
 import { Wrapper } from './styles';
 import DisplayImg from '../../atoms/DisplayImg';
@@ -15,4 +15,4 @@ const CardImage: FC = () => {
   );
 };
 
-export default CardImage;
+export default memo(CardImage);

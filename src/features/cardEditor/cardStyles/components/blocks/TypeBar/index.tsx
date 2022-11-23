@@ -1,7 +1,7 @@
 import { useCardLogic } from '@cardEditor/cardLogic';
 import { useCardOptions } from '@cardEditor/cardOptions';
 import { useCardStyles } from '@cardEditor/cardStyles/hooks';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import ResistanceAmount from './fields/ResistanceAmount';
 import ResistanceType from './fields/ResistanceType';
 import RetreatCost from './fields/RetreatCost';
@@ -12,7 +12,12 @@ import { Block, TypeWrapper } from './styles';
 const TypeBar: FC = () => {
   const { hasTypeBar } = useCardLogic();
   const { weaknessTypeId, weaknessAmount, resistanceTypeId, resistanceAmount } =
-    useCardOptions();
+    useCardOptions([
+      'weaknessTypeId',
+      'weaknessAmount',
+      'resistanceTypeId',
+      'resistanceAmount',
+    ]);
   const {
     positions: {
       typeBar: placement,
@@ -42,4 +47,4 @@ const TypeBar: FC = () => {
   );
 };
 
-export default TypeBar;
+export default memo(TypeBar);

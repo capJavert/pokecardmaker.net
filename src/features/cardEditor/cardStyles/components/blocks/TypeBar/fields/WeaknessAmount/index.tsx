@@ -5,7 +5,10 @@ import { ModifierText, WeaknessText, Wrapper } from './styles';
 
 const WeaknessAmount: FC = () => {
   const { weaknessAmount } = useCardOptions(['weaknessAmount']);
-  const { typeBarTextColor, typeBarOutline } = useCardStyles();
+  const { typeBarTextColor, typeBarOutline } = useCardStyles([
+    'typeBarTextColor',
+    'typeBarOutline',
+  ]);
 
   return (
     <Wrapper textColor={typeBarTextColor} textOutline={typeBarOutline}>

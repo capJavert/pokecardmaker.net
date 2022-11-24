@@ -1,6 +1,6 @@
 import { useCardLogic } from '@cardEditor/cardLogic';
 import { useCardOptions } from '@cardEditor/cardOptions';
-import { useCardStyles } from '@cardEditor/cardStyles/hooks';
+import { useCardPlacements } from '@cardEditor/cardStyles/hooks';
 import { FC, memo } from 'react';
 import ResistanceAmount from './fields/ResistanceAmount';
 import ResistanceType from './fields/ResistanceType';
@@ -19,12 +19,10 @@ const TypeBar: FC = () => {
       'resistanceAmount',
     ]);
   const {
-    positions: {
-      typeBar: placement,
-      weakness: weaknessPlacement,
-      resistance: resistancePlacement,
-    },
-  } = useCardStyles();
+    typeBar: placement,
+    weakness: weaknessPlacement,
+    resistance: resistancePlacement,
+  } = useCardPlacements(['typeBar', 'weakness', 'resistance']);
 
   if (!hasTypeBar) return null;
 

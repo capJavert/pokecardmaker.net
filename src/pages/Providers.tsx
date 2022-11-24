@@ -1,5 +1,4 @@
 import { CardDebugProvider } from '@cardEditor/cardDebug';
-import { CardStylesProvider } from '@cardEditor/cardStyles';
 import { ThemeProvider } from '@emotion/react';
 import { AnalyticsProvider } from '@features/analytics';
 import { useSettings } from '@features/settings';
@@ -11,9 +10,7 @@ const Providers: FC = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
       <CardDebugProvider>
-        <CardStylesProvider>
-          <AnalyticsProvider>{children}</AnalyticsProvider>
-        </CardStylesProvider>
+        <AnalyticsProvider>{children}</AnalyticsProvider>
       </CardDebugProvider>
     </ThemeProvider>
   );

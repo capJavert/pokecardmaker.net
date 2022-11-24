@@ -1,10 +1,10 @@
 import { FC, memo } from 'react';
-import { useCardStyles } from '@cardEditor/cardStyles';
+import { useCardStylesStore } from '@cardEditor/cardStyles/store';
 import { Wrapper } from './styles';
 import DisplayImg from '../../atoms/DisplayImg';
 
 const CardImage: FC = () => {
-  const { cardImgSrc } = useCardStyles();
+  const cardImgSrc = useCardStylesStore(store => store.cardImgSrc);
 
   if (!cardImgSrc) return null;
 

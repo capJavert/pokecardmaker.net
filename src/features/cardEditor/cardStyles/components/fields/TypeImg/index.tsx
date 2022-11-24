@@ -1,16 +1,15 @@
 import { useCardLogic } from '@cardEditor/cardLogic';
 import { useBaseSet } from '@cardEditor/cardOptions/baseSet';
 import { useTypeImg } from '@cardEditor/cardOptions/type';
-import { useCardStyles } from '@cardEditor/cardStyles/hooks';
+import { useCardPlacements, useCardStyles } from '@cardEditor/cardStyles/hooks';
 import Routes from '@routes';
 import { FC, memo, useMemo } from 'react';
 import { StyledImg, Wrapper } from './styles';
 
 const TypeImg: FC = () => {
-  const {
-    hasTypeImgBorder,
-    positions: { typeImgContainer: containerPlacement, typeImg: imgPlacement },
-  } = useCardStyles();
+  const { hasTypeImgBorder } = useCardStyles(['hasTypeImgBorder']);
+  const { typeImgContainer: containerPlacement, typeImg: imgPlacement } =
+    useCardPlacements(['typeImgContainer', 'typeImg']);
   const { hasTypeImage, hasMultipleTypeImages } = useCardLogic([
     'hasTypeImage',
     'hasMultipleTypeImages',

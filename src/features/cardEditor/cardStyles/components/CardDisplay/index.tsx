@@ -4,9 +4,10 @@ import {
   cardImgAspect,
   cardImgHeight,
 } from '@cardEditor/cardStyles/constants';
-import { useCardStyles } from '@cardEditor/cardStyles/hooks';
+import { useCardStylesStore } from '@cardEditor/cardStyles/store';
 import { FC, memo, useState } from 'react';
 import { useDebounce, useMeasure } from 'react-use';
+import shallow from 'zustand/shallow';
 import CardInfo from '../blocks/CardInfo';
 import Debug from '../blocks/Debug';
 import Moves from '../blocks/Moves';
@@ -25,7 +26,13 @@ import { CardContainer, CardContent } from './styles';
 
 const CardDisplay: FC = () => {
   const { backgroundColor } = useCardOptions(['backgroundColor']);
-  const { emphemeralUnit, setEmphemeralUnit } = useCardStyles();
+  const { emphemeralUnit, setEmphemeralUnit } = useCardStylesStore(
+    store => ({
+      emphemeralUnit: store.emphemeralUnit,
+      setEmphemeralUnit: store.setEmphemeralUnit,
+    }),
+    shallow,
+  );
   const [squareRef, { width }] = useMeasure<HTMLDivElement>();
   const [height, setHeight] = useState<number>(cardImgHeight);
 

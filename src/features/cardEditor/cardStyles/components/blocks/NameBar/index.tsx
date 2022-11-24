@@ -1,5 +1,5 @@
 import { useCardLogic } from '@cardEditor/cardLogic';
-import { useCardStyles } from '@cardEditor/cardStyles/hooks';
+import { useCardPlacements } from '@cardEditor/cardStyles/hooks';
 import { FC, memo } from 'react';
 import Name from './fields/Name';
 import NameSymbol from './fields/NameSymbol';
@@ -8,9 +8,7 @@ import { Block } from './styles';
 
 const NameBar: FC = () => {
   const { hasName } = useCardLogic(['hasName']);
-  const {
-    positions: { name: placement },
-  } = useCardStyles();
+  const { name: placement } = useCardPlacements(['name']);
 
   if (!hasName) return null;
 

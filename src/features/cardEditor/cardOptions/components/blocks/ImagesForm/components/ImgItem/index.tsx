@@ -2,7 +2,7 @@ import { useCardOptions } from '@cardEditor/cardOptions';
 import {
   cardImgHeight,
   cardImgWidth,
-  useCardStyles,
+  useCardStylesStore,
 } from '@cardEditor/cardStyles';
 import { CroppableCardImg } from '@cardEditor/types';
 import ImgCropper from '@components/ImgCropper';
@@ -27,7 +27,7 @@ export interface ImgItemProps {
 
 const ImgItem: FC<ImgItemProps> = ({ img, provided }) => {
   const { images, setState } = useCardOptions(['images']);
-  const { cardImgSrc } = useCardStyles();
+  const cardImgSrc = useCardStylesStore(store => store.cardImgSrc);
   const [cropActive, toggleCropActive] = useBoolean(false);
   const [crop, setCrop] = useState<Area | undefined>(img.croppedArea);
   const throttledCrop = useThrottle(crop, 500);

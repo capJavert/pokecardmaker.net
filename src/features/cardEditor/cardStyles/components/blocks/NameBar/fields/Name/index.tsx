@@ -2,8 +2,10 @@ import { useCardOptions } from '@cardEditor/cardOptions';
 import {
   baseEmphemeralUnit,
   cardImgWidth,
-  useCardStyles,
+  useCardPlacements,
+  useCardStylesStore,
 } from '@cardEditor/cardStyles';
+import { useCardStyles } from '@cardEditor/cardStyles/hooks';
 import { CSSProperties } from '@mui/styled-engine';
 import { Box } from '@mui/system';
 import { FC, memo, useMemo, useRef } from 'react';
@@ -15,14 +17,14 @@ import { NameText } from './styles';
 const DEFAULT_SCALE = 1;
 
 const Name: FC = () => {
+  const emphemeralUnit = useCardStylesStore(store => store.emphemeralUnit);
   const { name } = useCardOptions(['name']);
-  const {
-    nameOutline,
-    nameTextColor,
-    nameSymbol,
-    emphemeralUnit,
-    positions: { name: namePosition },
-  } = useCardStyles();
+  const { nameOutline, nameTextColor, nameSymbol } = useCardStyles([
+    'nameOutline',
+    'nameTextColor',
+    'nameSymbol',
+  ]);
+  const { name: namePosition } = useCardPlacements(['name']);
   const ref = useRef<HTMLDivElement | null>(null);
   const [invisibleRef, { width }] = useMeasure<HTMLDivElement>();
 

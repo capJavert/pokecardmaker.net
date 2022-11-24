@@ -1,4 +1,5 @@
 import { useCardLogicStore } from '@cardEditor/cardLogic';
+import { useCardStylesStore } from '@cardEditor/cardStyles';
 import { CardInterface, RelationsInterface } from '@cardEditor/types';
 import create from 'zustand';
 import { defaultCardOptions, defaultRelations } from './defaults';
@@ -24,6 +25,7 @@ export const useCardOptionsStore = create<CardOptionsStore>(set => ({
       };
       if (Object.keys(newRelations).length > 0) {
         useCardLogicStore.getState().updateTemplate(relations);
+        useCardStylesStore.getState().updateTemplate(relations);
       }
       if (values.hasOwnProperty('moves')) {
         useCardLogicStore

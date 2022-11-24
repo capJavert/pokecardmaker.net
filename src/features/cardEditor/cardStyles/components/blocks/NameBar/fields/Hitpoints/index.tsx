@@ -1,18 +1,18 @@
 import { useCardLogic } from '@cardEditor/cardLogic';
 import { useCardOptions } from '@cardEditor/cardOptions';
-import { useCardStyles } from '@cardEditor/cardStyles';
+import { useCardPlacements, useCardStyles } from '@cardEditor/cardStyles/hooks';
 import { FC, memo } from 'react';
 import { HPNumbers, HPText, Wrapper } from './styles';
 
 const Hitpoints: FC = () => {
   const { hasHitpoints } = useCardLogic(['hasHitpoints']);
   const { hitpoints } = useCardOptions(['hitpoints']);
-  const {
-    hpSize,
-    hpOutline,
-    hpTextColor,
-    positions: { hitpoints: placement },
-  } = useCardStyles();
+  const { hpSize, hpOutline, hpTextColor } = useCardStyles([
+    'hpSize',
+    'hpOutline',
+    'hpTextColor',
+  ]);
+  const { hitpoints: placement } = useCardPlacements(['hitpoints']);
 
   if (!hasHitpoints || hitpoints === '') return null;
 

@@ -2,21 +2,21 @@ import shallow from 'zustand/shallow';
 import { useCardStylesStore } from '../store';
 import { CardStyles } from '../types';
 
-type StylesWithoutPlacement = Omit<CardStyles, 'positions'>;
+type Placements = CardStyles['positions'];
 
-const useCardStyles = <
-  T extends Partial<StylesWithoutPlacement>,
+const useCardPlacements = <
+  T extends Partial<Placements>,
   // @ts-expect-error - This is right
-  V extends T = { [P in keyof T]: StylesWithoutPlacement[P] },
+  V extends T = { [P in keyof T]: Placements[P] },
 >(
   properties: (keyof T)[],
 ): V => {
   const values = useCardStylesStore(
     store => ({
-      ...properties.reduce<Partial<StylesWithoutPlacement>>(
+      ...properties.reduce<Partial<Placements>>(
         (obj, key) => ({
           ...obj,
-          [key]: store.state[key as keyof StylesWithoutPlacement],
+          [key]: store.state.positions[key as keyof Placements],
         }),
         {},
       ),
@@ -29,4 +29,4 @@ const useCardStyles = <
   };
 };
 
-export default useCardStyles;
+export default useCardPlacements;

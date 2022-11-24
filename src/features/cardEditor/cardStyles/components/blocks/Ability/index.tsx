@@ -1,5 +1,5 @@
 import { useCardLogicStore } from '@cardEditor/cardLogic';
-import { useCardStyles } from '@cardEditor/cardStyles/hooks';
+import { useCardPlacements, useCardStyles } from '@cardEditor/cardStyles/hooks';
 import { Placement } from '@cardEditor/cardStyles/types';
 import keepDoubleSpaces from '@cardEditor/cardStyles/utils/keepDoubleSpaces';
 import Routes from '@routes';
@@ -20,17 +20,22 @@ const Ability: FC<AbilityProps> = ({ ability, placement }) => {
   const greatestEnergyCost = useCardLogicStore(
     store => store.greatestEnergyCost,
   );
+  const { abilitySymbol, movesTextColor, movesOutline } = useCardStyles([
+    'abilitySymbol',
+    'movesTextColor',
+    'movesOutline',
+  ]);
   const {
-    abilitySymbol,
-    movesTextColor,
-    movesOutline,
-    positions: {
-      ability: abilityPlacement,
-      abilityTitleBar: titleBarPlacement,
-      abilityName: abilityNamePlacement,
-      abilitySymbol: abilitySymbolPlacement,
-    },
-  } = useCardStyles();
+    ability: abilityPlacement,
+    abilityTitleBar: titleBarPlacement,
+    abilityName: abilityNamePlacement,
+    abilitySymbol: abilitySymbolPlacement,
+  } = useCardPlacements([
+    'ability',
+    'abilityTitleBar',
+    'abilityName',
+    'abilitySymbol',
+  ]);
 
   const imgSrc =
     !!abilitySymbol && Routes.Assets.Symbols.Ability(abilitySymbol);

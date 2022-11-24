@@ -1,14 +1,12 @@
 import { useSetIcon } from '@cardEditor/cardOptions/setIcon';
-import { useCardStyles } from '@cardEditor/cardStyles';
 import DisplayImg from '@cardEditor/cardStyles/components/atoms/DisplayImg';
 import Routes from '@routes';
 import { FC, memo } from 'react';
+import { useCardPlacements } from '@cardEditor/cardStyles/hooks';
 import { Wrapper } from './styles';
 
 const SetIcon: FC = () => {
-  const {
-    positions: { setIcon: placement },
-  } = useCardStyles();
+  const { setIcon: placement } = useCardPlacements(['setIcon']);
   const { setIcon, customSetIconImgSrc: customSetIconSrc } = useSetIcon();
   const imgSrc =
     customSetIconSrc || (!!setIcon && Routes.Assets.Icons.Set(setIcon.slug));

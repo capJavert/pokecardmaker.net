@@ -5,7 +5,10 @@ import { ModifierText, ResistanceText, Wrapper } from './styles';
 
 const ResistanceAmount: FC = () => {
   const { resistanceAmount } = useCardOptions(['resistanceAmount']);
-  const { typeBarTextColor, typeBarOutline } = useCardStyles();
+  const { typeBarTextColor, typeBarOutline } = useCardStyles([
+    'typeBarTextColor',
+    'typeBarOutline',
+  ]);
 
   return (
     <Wrapper textColor={typeBarTextColor} textOutline={typeBarOutline}>

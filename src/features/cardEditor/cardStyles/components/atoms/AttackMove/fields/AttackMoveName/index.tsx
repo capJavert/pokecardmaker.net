@@ -13,7 +13,7 @@ const AttackMoveName: FC<AttackMoveDisplayProps> = ({
     store => store.greatestEnergyCost,
   );
   const { hasSpecialMove } = useCardLogic(['hasSpecialMove']);
-  const { specialMove } = useCardStyles();
+  const { specialMove } = useCardStyles(['specialMove']);
   const { nameAddition } = specialMove || {};
 
   return (

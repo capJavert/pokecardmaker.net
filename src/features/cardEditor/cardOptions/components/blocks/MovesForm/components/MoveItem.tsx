@@ -2,7 +2,6 @@ import { useCardLogic } from '@cardEditor/cardLogic';
 import AttackMoveForm from '@cardEditor/cardOptions/components/blocks/MovesForm/atoms/AttackMoveForm';
 import { useCardOptions } from '@cardEditor/cardOptions';
 import { isAttackMove } from '@cardEditor/cardOptions/utils/isMove';
-import { useCardStyles } from '@cardEditor/cardStyles';
 import { AbilityMove, AttackMove } from '@cardEditor/types';
 import {
   Delete as DeleteIcon,
@@ -12,6 +11,7 @@ import { Button, IconButton, Paper, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { FC, useCallback, useMemo } from 'react';
 import { DraggableProvided } from 'react-beautiful-dnd';
+import { useCardStyles } from '@cardEditor/cardStyles/hooks';
 import AbilityMoveForm from '../atoms/AbilityMoveForm';
 
 interface MoveItemProps {
@@ -22,7 +22,7 @@ interface MoveItemProps {
 const MoveItem: FC<MoveItemProps> = ({ move, provided }) => {
   const { moves, setState } = useCardOptions(['moves']);
   const { hasSpecialMove } = useCardLogic(['hasSpecialMove']);
-  const { specialMove } = useCardStyles();
+  const { specialMove } = useCardStyles(['specialMove']);
 
   const label = useMemo<string>(
     () =>

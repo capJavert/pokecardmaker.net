@@ -9,7 +9,7 @@ const Subname: FC = () => {
     nameOutline,
     nameTextColor,
     hasSubnameBeforeName: beforeName,
-  } = useCardStyles();
+  } = useCardStyles(['nameOutline', 'nameTextColor', 'hasSubnameBeforeName']);
   const { subname } = useCardOptions(['subname']);
   const { hasSubname } = useCardLogic(['hasSubname']);
 

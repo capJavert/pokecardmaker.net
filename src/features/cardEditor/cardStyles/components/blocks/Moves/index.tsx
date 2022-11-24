@@ -4,7 +4,7 @@ import {
   isAbilityMove,
   isAttackMove,
 } from '@cardEditor/cardOptions/utils/isMove';
-import { useCardStyles } from '@cardEditor/cardStyles/hooks';
+import { useCardPlacements, useCardStyles } from '@cardEditor/cardStyles/hooks';
 import { AbilityMove, AttackMove as AttackMoveType } from '@cardEditor/types';
 import { FC, memo, useCallback, useMemo } from 'react';
 import Ability from '../Ability';
@@ -23,8 +23,15 @@ const Moves: FC = () => {
     movesOutline,
     hasAttackCostBorder,
     specialMove,
-    positions: { movesWrapper: placement, lastMove: lastMovePlacement },
-  } = useCardStyles();
+  } = useCardStyles([
+    'alignMovesBottom',
+    'movesTextColor',
+    'movesOutline',
+    'hasAttackCostBorder',
+    'specialMove',
+  ]);
+  const { movesWrapper: placement, lastMove: lastMovePlacement } =
+    useCardPlacements(['movesWrapper', 'lastMove']);
   const { moves } = useCardOptions(['moves']);
 
   const attackMoveCount = useMemo<number>(

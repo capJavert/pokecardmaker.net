@@ -17,6 +17,7 @@ const createNewRelations = (
 ): Partial<RelationsInterface> => {
   const relations: Partial<RelationsInterface> = {};
 
+  // TODO: Let the final types resolve here in a while(!noMoreChanges) loop instead of within the hooks
   if (values.hasOwnProperty('baseSetId')) {
     relations.baseSet = findById(
       baseSets,

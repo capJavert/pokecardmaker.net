@@ -1,4 +1,4 @@
-import { AnalyticsEvent, useAnalytics } from '@features/analytics';
+import { AnalyticsEvent, trackEvent } from '@features/analytics';
 import { useSettingsStore } from '@features/settings';
 import {
   Brightness4 as MoonIcon,
@@ -8,7 +8,6 @@ import { IconButton } from '@mui/material';
 import { FC, useCallback } from 'react';
 
 const ThemeToggle: FC = () => {
-  const { trackEvent } = useAnalytics();
   const themeMode = useSettingsStore(store => store.theme);
   const setThemeMode = useSettingsStore(store => store.setTheme);
 
@@ -18,7 +17,7 @@ const ThemeToggle: FC = () => {
     trackEvent(AnalyticsEvent.ThemeSwitch, {
       theme: newTheme,
     });
-  }, [setThemeMode, trackEvent, themeMode]);
+  }, [setThemeMode, themeMode]);
 
   return (
     <IconButton

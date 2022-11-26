@@ -1,11 +1,13 @@
 import { useSupertype } from '@cardEditor/cardOptions/supertype';
 import ControlledSelector from '@components/inputs/ControlledSelector';
-import { CardCreatorAnalyticsEvent, useAnalytics } from '@features/analytics';
+import {
+  CardCreatorAnalyticsEvent,
+  trackCardCreatorEvent,
+} from '@features/analytics';
 import { ListItemText, MenuItem, SelectChangeEvent } from '@mui/material';
 import { FC, useCallback } from 'react';
 
 const SupertypeSelector: FC = () => {
-  const { trackCardCreatorEvent } = useAnalytics();
   const { supertypes, supertype, setSupertype } = useSupertype();
 
   const handleChange = useCallback(
@@ -13,7 +15,7 @@ const SupertypeSelector: FC = () => {
       setSupertype(Number(event.target.value));
       trackCardCreatorEvent(CardCreatorAnalyticsEvent.SupertypeChange);
     },
-    [setSupertype, trackCardCreatorEvent],
+    [setSupertype],
   );
 
   return (

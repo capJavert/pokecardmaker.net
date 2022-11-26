@@ -1,4 +1,7 @@
-import { CardCreatorAnalyticsEvent, useAnalytics } from '@features/analytics';
+import {
+  CardCreatorAnalyticsEvent,
+  trackCardCreatorEvent,
+} from '@features/analytics';
 import { Share as ShareIcon } from '@mui/icons-material';
 import { FC, useCallback, useState } from 'react';
 import useIsMobile from '@hooks/useIsMobile';
@@ -9,7 +12,6 @@ import { ShareButtonProps } from './types';
 
 const ShareButton: FC<ShareButtonProps> = ({ cardId, ...props }) => {
   const { isMobile } = useIsMobile();
-  const { trackCardCreatorEvent } = useAnalytics();
   const { name } = useCardOptions(['name']);
   const [isLoading, setLoading] = useState<boolean>(false);
 
@@ -42,7 +44,7 @@ const ShareButton: FC<ShareButtonProps> = ({ cardId, ...props }) => {
         sharePlatform: 'native',
       });
     });
-  }, [cardId, name, setLoading, trackCardCreatorEvent]);
+  }, [cardId, name, setLoading]);
 
   if (
     !isMobile ||

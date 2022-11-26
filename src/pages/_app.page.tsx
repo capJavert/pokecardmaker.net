@@ -9,7 +9,6 @@ import GoatCounter from '@features/analytics/components/GoatCounter';
 import { GoogleTagManagerScript } from '@features/analytics/components/GTM';
 import { useRouter } from 'next/router';
 import { useSettingsStore } from '@features/settings';
-import { AnalyticsProvider } from '@features/analytics';
 import { getTheme } from '@utils/theme';
 import { Background, MainContainer } from './styles';
 
@@ -42,19 +41,17 @@ const App: FC<AppProps> = ({
   return (
     <CacheProvider value={emotionCache}>
       <ThemeProvider theme={getTheme(theme)}>
-        <AnalyticsProvider>
-          <GoogleTagManagerScript />
-          <GoatCounter />
-          <CssBaseline />
-          <Background>
-            <CookieConsent />
-            <Header />
-            <MainContainer as="main">
-              <Component {...pageProps} />
-            </MainContainer>
-            <Footer />
-          </Background>
-        </AnalyticsProvider>
+        <GoogleTagManagerScript />
+        <GoatCounter />
+        <CssBaseline />
+        <Background>
+          <CookieConsent />
+          <Header />
+          <MainContainer as="main">
+            <Component {...pageProps} />
+          </MainContainer>
+          <Footer />
+        </Background>
       </ThemeProvider>
     </CacheProvider>
   );

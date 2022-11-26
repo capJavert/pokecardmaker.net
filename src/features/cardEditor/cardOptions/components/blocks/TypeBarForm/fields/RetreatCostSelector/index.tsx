@@ -4,13 +4,15 @@ import { MenuItem, SelectChangeEvent } from '@mui/material';
 import Routes from '@routes';
 import Image from 'next/image';
 import { useBaseSet } from '@cardEditor/cardOptions/baseSet';
-import { CardCreatorAnalyticsEvent, useAnalytics } from '@features/analytics';
+import {
+  CardCreatorAnalyticsEvent,
+  trackCardCreatorEvent,
+} from '@features/analytics';
 import { useCardOptions } from '@cardEditor/cardOptions';
 
 const MAX_RETREAT_COST = 5;
 
 const RetreatCostSelector: FC = () => {
-  const { trackCardCreatorEvent } = useAnalytics();
   const { baseSet } = useBaseSet();
   const { retreatCost, setState } = useCardOptions(['retreatCost']);
 
@@ -19,7 +21,7 @@ const RetreatCostSelector: FC = () => {
       setState({ retreatCost: Number(event.target.value) });
       trackCardCreatorEvent(CardCreatorAnalyticsEvent.RetreatCostChange);
     },
-    [setState, trackCardCreatorEvent],
+    [setState],
   );
 
   return (

@@ -16,13 +16,15 @@ import {
 import { SelectorListItemIcon } from '@components/SelectorListItemIcon';
 import { SelectorMenuItem } from '@components/SelectorMenuItem';
 import { useCardLogic } from '@cardEditor/cardLogic';
-import { CardCreatorAnalyticsEvent, useAnalytics } from '@features/analytics';
+import {
+  CardCreatorAnalyticsEvent,
+  trackCardCreatorEvent,
+} from '@features/analytics';
 import findById from '@utils/findById';
 import { baseSets } from '@cardEditor/cardOptions/baseSet';
 import { CropFree as EmptyIcon } from '@mui/icons-material';
 
 const BadgeIconSelector: FC = () => {
-  const { trackCardCreatorEvent } = useAnalytics();
   const { hasBadgeIcon } = useCardLogic(['hasBadgeIcon']);
   const { badgeIcons, badgeIcon, setBadgeIcon } = useBadgeIcon();
 
@@ -31,7 +33,7 @@ const BadgeIconSelector: FC = () => {
       setBadgeIcon(Number(event.target.value));
       trackCardCreatorEvent(CardCreatorAnalyticsEvent.BadgeIconChange);
     },
-    [setBadgeIcon, trackCardCreatorEvent],
+    [setBadgeIcon],
   );
 
   const badgeIconGroups = useMemo(

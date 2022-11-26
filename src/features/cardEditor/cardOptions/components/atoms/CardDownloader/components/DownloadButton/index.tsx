@@ -1,4 +1,7 @@
-import { CardCreatorAnalyticsEvent, useAnalytics } from '@features/analytics';
+import {
+  CardCreatorAnalyticsEvent,
+  trackCardCreatorEvent,
+} from '@features/analytics';
 import { Download as DownloadIcon } from '@mui/icons-material';
 import { FC, useCallback, useState } from 'react';
 import useIsMobile from '@hooks/useIsMobile';
@@ -9,7 +12,6 @@ import { DownloadButtonProps } from './types';
 
 const DownloadButton: FC<DownloadButtonProps> = ({ cardId, ...props }) => {
   const { isMobile } = useIsMobile();
-  const { trackCardCreatorEvent } = useAnalytics();
   const { name } = useCardOptions(['name']);
   const [isLoading, setLoading] = useState<boolean>(false);
 
@@ -41,7 +43,7 @@ const DownloadButton: FC<DownloadButtonProps> = ({ cardId, ...props }) => {
     if (!canvas) return;
     downloadCanvas(canvas);
     trackCardCreatorEvent(CardCreatorAnalyticsEvent.CardDownload);
-  }, [cardId, downloadCanvas, trackCardCreatorEvent]);
+  }, [cardId, downloadCanvas]);
 
   return (
     <LoadingButton

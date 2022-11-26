@@ -8,7 +8,10 @@ import {
 import { SelectorListItemIcon } from '@components/SelectorListItemIcon';
 import { SelectorMenuItem } from '@components/SelectorMenuItem';
 import FileUploader from '@components/inputs/FileUploader';
-import { CardCreatorAnalyticsEvent, useAnalytics } from '@features/analytics';
+import {
+  CardCreatorAnalyticsEvent,
+  trackCardCreatorEvent,
+} from '@features/analytics';
 import { IdentifierInfo } from '@cardEditor/cardOptions';
 
 interface CustomIconSelectorProps {
@@ -35,7 +38,6 @@ const CustomIconSelector: FC<CustomIconSelectorProps> = ({
   hasNone,
   children,
 }) => {
-  const { trackCardCreatorEvent } = useAnalytics();
   const [customIconActive, setCustomIconActive] = useState<boolean>(
     !!customIconSrc,
   );
@@ -61,13 +63,7 @@ const CustomIconSelector: FC<CustomIconSelectorProps> = ({
         trackCardCreatorEvent(trackEvent);
       }
     },
-    [
-      setIcon,
-      setCustomIconActive,
-      setCustomIconSrc,
-      trackCardCreatorEvent,
-      trackEvent,
-    ],
+    [setIcon, setCustomIconActive, setCustomIconSrc, trackEvent],
   );
 
   return (

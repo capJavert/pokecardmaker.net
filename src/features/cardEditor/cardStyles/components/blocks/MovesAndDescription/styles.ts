@@ -8,6 +8,5 @@ export const Wrapper = styled(PlacementBlock)`
   height: 30.5%;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  gap: 0.5em;
+  gap: 1em;
 `;

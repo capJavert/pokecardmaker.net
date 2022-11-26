@@ -260,6 +260,7 @@ export const tool: Subtype = {
         top: '61%',
         height: '20%',
       },
+      description: {},
     },
   },
   logic: {

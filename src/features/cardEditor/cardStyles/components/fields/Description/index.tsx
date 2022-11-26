@@ -7,7 +7,7 @@ import { DescriptionText, SCALE, Wrapper } from './styles';
 
 const Description: FC = () => {
   const { hasDescription } = useCardLogic(['hasDescription']);
-  const { description } = useCardOptions(['description']);
+  const { description, moves } = useCardOptions(['description', 'moves']);
   const { movesOutline, movesTextColor } = useCardStyles([
     'movesOutline',
     'movesTextColor',
@@ -17,7 +17,7 @@ const Description: FC = () => {
   if (!hasDescription || !description) return null;
 
   return (
-    <Wrapper placement={placement}>
+    <Wrapper placement={placement} $hasMoves={!!moves?.length}>
       <DescriptionText
         textOutline={movesOutline}
         textColor={movesTextColor}

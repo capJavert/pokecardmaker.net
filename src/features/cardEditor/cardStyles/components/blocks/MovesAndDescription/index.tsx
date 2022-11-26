@@ -16,8 +16,8 @@ const MovesAndDescription: FC = () => {
 
   return (
     <Wrapper placement={placement}>
-      {hasMoves && <Moves />}
       {hasDescription && <Description />}
+      {hasMoves && <Moves />}
     </Wrapper>
   );
 };

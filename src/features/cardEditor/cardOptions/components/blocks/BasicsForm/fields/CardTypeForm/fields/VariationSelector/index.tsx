@@ -1,13 +1,18 @@
 import { useCardLogic } from '@cardEditor/cardLogic';
 import { useVariation } from '@cardEditor/cardOptions/variation';
 import ControlledSelector from '@components/inputs/ControlledSelector';
-import { CardCreatorAnalyticsEvent, useAnalytics } from '@features/analytics';
+import {
+  CardCreatorAnalyticsEvent,
+  trackCardCreatorEvent,
+} from '@features/analytics';
 import { ListItemText, MenuItem, SelectChangeEvent } from '@mui/material';
 import { FC, useCallback } from 'react';
 
 const VariationSelector: FC = () => {
-  const { trackCardCreatorEvent } = useAnalytics();
-  const { hasVariations, isVariationRequired } = useCardLogic();
+  const { hasVariations, isVariationRequired } = useCardLogic([
+    'hasVariations',
+    'isVariationRequired',
+  ]);
   const { variations, variation, setVariation, variationIsAvailable } =
     useVariation();
 
@@ -16,7 +21,7 @@ const VariationSelector: FC = () => {
       setVariation(Number(event.target.value));
       trackCardCreatorEvent(CardCreatorAnalyticsEvent.VariationChange);
     },
-    [setVariation, trackCardCreatorEvent],
+    [setVariation],
   );
 
   if (!hasVariations) return null;

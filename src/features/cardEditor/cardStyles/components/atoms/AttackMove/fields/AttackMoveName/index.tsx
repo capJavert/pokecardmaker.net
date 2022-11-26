@@ -1,4 +1,4 @@
-import { useCardLogic } from '@cardEditor/cardLogic';
+import { useCardLogic, useCardLogicStore } from '@cardEditor/cardLogic';
 import { useCardStyles } from '@cardEditor/cardStyles/hooks';
 import { FC } from 'react';
 import { AttackMoveDisplayProps } from '../../types';
@@ -9,8 +9,11 @@ const AttackMoveName: FC<AttackMoveDisplayProps> = ({
   textColor: color,
   textOutline: outline,
 }) => {
-  const { greatestEnergyCost, hasSpecialMove } = useCardLogic();
-  const { specialMove } = useCardStyles();
+  const greatestEnergyCost = useCardLogicStore(
+    store => store.greatestEnergyCost,
+  );
+  const { hasSpecialMove } = useCardLogic(['hasSpecialMove']);
+  const { specialMove } = useCardStyles(['specialMove']);
   const { nameAddition } = specialMove || {};
 
   return (

@@ -1,13 +1,13 @@
-import { useCardOptions } from '@cardEditor/cardOptions';
 import { useBaseSet } from '@cardEditor/cardOptions/baseSet';
+import { useCardOptions } from '@cardEditor/cardOptions';
 import DisplayImg from '@cardEditor/cardStyles/components/atoms/DisplayImg';
 import Routes from '@routes';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import TypeImgWrapper from '../../atoms/TypeImgWrapper';
 import { Wrapper } from './styles';
 
 const RetreatCost: FC = () => {
-  const { retreatCost } = useCardOptions();
+  const { retreatCost } = useCardOptions(['retreatCost']);
   const { baseSet } = useBaseSet();
   const imgSrc = Routes.Assets.Icons.Type(baseSet.slug, 'colorless');
 
@@ -24,4 +24,4 @@ const RetreatCost: FC = () => {
   );
 };
 
-export default RetreatCost;
+export default memo(RetreatCost);

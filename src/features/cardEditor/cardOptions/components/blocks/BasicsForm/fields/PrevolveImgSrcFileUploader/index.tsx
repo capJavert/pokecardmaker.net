@@ -1,11 +1,11 @@
 import FileUploader from '@components/inputs/FileUploader';
 import { FC } from 'react';
-import { useCardOptions } from '@cardEditor/cardOptions';
 import { useCardLogic } from '@cardEditor/cardLogic';
+import { useCardOptions } from '@cardEditor/cardOptions';
 
 const PrevolveImgSrcFileUploader: FC = () => {
-  const { hasPrevolveImg } = useCardLogic();
-  const { setPrevolveImgSrc } = useCardOptions();
+  const { hasPrevolveImg } = useCardLogic(['hasPrevolveImg']);
+  const { setState } = useCardOptions([]);
 
   if (!hasPrevolveImg) return null;
 
@@ -13,7 +13,7 @@ const PrevolveImgSrcFileUploader: FC = () => {
     <FileUploader
       slug="prevolveImg"
       label="Prevolve Image"
-      onChange={(_, img) => setPrevolveImgSrc(img)}
+      onChange={(_, value) => setState({ prevolveImgSrc: value })}
     />
   );
 };

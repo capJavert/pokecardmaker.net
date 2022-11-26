@@ -1,25 +1,27 @@
 import { FC, useCallback } from 'react';
-import { useCardOptions } from '@cardEditor/cardOptions/hooks';
 import ControlledSelector from '@components/inputs/ControlledSelector';
 import { MenuItem, SelectChangeEvent } from '@mui/material';
 import Routes from '@routes';
 import Image from 'next/image';
 import { useBaseSet } from '@cardEditor/cardOptions/baseSet';
-import { CardCreatorAnalyticsEvent, useAnalytics } from '@features/analytics';
+import {
+  CardCreatorAnalyticsEvent,
+  trackCardCreatorEvent,
+} from '@features/analytics';
+import { useCardOptions } from '@cardEditor/cardOptions';
 
 const MAX_RETREAT_COST = 5;
 
 const RetreatCostSelector: FC = () => {
-  const { trackCardCreatorEvent } = useAnalytics();
   const { baseSet } = useBaseSet();
-  const { retreatCost, setRetreatCost } = useCardOptions();
+  const { retreatCost, setState } = useCardOptions(['retreatCost']);
 
   const handleChange = useCallback(
     (event: SelectChangeEvent) => {
-      setRetreatCost(Number(event.target.value));
+      setState({ retreatCost: Number(event.target.value) });
       trackCardCreatorEvent(CardCreatorAnalyticsEvent.RetreatCostChange);
     },
-    [setRetreatCost, trackCardCreatorEvent],
+    [setState],
   );
 
   return (

@@ -11,7 +11,7 @@ import SetIconSelector from './fields/SetIconSelector';
 import TotalInSetInput from './fields/TotalInSetInput';
 
 const CardInfoForm: FC = () => {
-  const { hasCardInfo } = useCardLogic();
+  const { hasCardInfo } = useCardLogic(['hasCardInfo']);
 
   if (!hasCardInfo) return null;
 

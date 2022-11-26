@@ -1,4 +1,4 @@
-import { useCardDebug } from '@cardEditor/cardDebug';
+import { useCardDebugStore } from '@cardEditor/cardDebug';
 import AccordionForm from '@components/AccordionForm';
 import { FC } from 'react';
 import OverlayImgSrcInput from './fields/OverlayImgSrcInput';
@@ -7,7 +7,7 @@ import PrevolveImgSrcInput from './fields/PrevolveImgSrcInput';
 import ShowCardOverlayCheckbox from './fields/ShowCardOverlayCheckbox';
 
 const DebugForm: FC = () => {
-  const { showDebug } = useCardDebug();
+  const showDebug = useCardDebugStore(store => store.showDebug);
 
   if (!showDebug) return null;
 

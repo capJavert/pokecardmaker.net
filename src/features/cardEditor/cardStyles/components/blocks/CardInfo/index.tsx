@@ -1,6 +1,6 @@
 import { useCardLogic } from '@cardEditor/cardLogic';
-import { useCardStyles } from '@cardEditor/cardStyles/hooks';
-import { FC } from 'react';
+import { useCardPlacements } from '@cardEditor/cardStyles/hooks';
+import { FC, memo } from 'react';
 import CardNumber from './fields/CardNumber';
 import DexEntry from './fields/DexEntry';
 import Illustrator from './fields/Illustrator';
@@ -11,12 +11,10 @@ import { CardInfoBar, Wrapper } from './styles';
 
 const CardInfo: FC = () => {
   const {
-    positions: {
-      cardInfoContainer: containerPlacement,
-      cardInfoBar: infoBarPlacement,
-    },
-  } = useCardStyles();
-  const { hasCardInfo } = useCardLogic();
+    cardInfoContainer: containerPlacement,
+    cardInfoBar: infoBarPlacement,
+  } = useCardPlacements(['cardInfoContainer', 'cardInfoBar']);
+  const { hasCardInfo } = useCardLogic(['hasCardInfo']);
 
   if (!hasCardInfo) return null;
 
@@ -36,4 +34,4 @@ const CardInfo: FC = () => {
   );
 };
 
-export default CardInfo;
+export default memo(CardInfo);

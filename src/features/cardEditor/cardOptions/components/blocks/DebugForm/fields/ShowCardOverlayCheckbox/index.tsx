@@ -1,9 +1,12 @@
-import { useCardDebug } from '@cardEditor/cardDebug';
+import { useCardDebugStore } from '@cardEditor/cardDebug';
 import ControlledCheckbox from '@components/inputs/ControlledCheckbox';
 import { FC } from 'react';
 
 const ShowCardOverlayCheckbox: FC = () => {
-  const { showCardOverlay, setShowCardOverlay } = useCardDebug();
+  const showCardOverlay = useCardDebugStore(store => store.showCardOverlay);
+  const setShowCardOverlay = useCardDebugStore(
+    store => store.setShowCardOverlay,
+  );
 
   return (
     <ControlledCheckbox

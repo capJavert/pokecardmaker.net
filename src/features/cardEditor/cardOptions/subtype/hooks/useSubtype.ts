@@ -1,19 +1,25 @@
 import { CardInterface } from '@cardEditor';
-import { useEffect, useMemo } from 'react';
+import { useCallback, useEffect } from 'react';
 import {
   defaultTypeSubtypes,
-  useCardOptions,
+  useCardOptionsStore,
   useCardRelations,
 } from '@cardEditor/cardOptions';
 import { subtypes } from '../data';
 
 const useSubtype = () => {
-  const { stateSetter } = useCardOptions();
-  const { baseSet, type, subtype } = useCardRelations();
+  const { setStateValues } = useCardOptionsStore();
+  const { baseSet, type, subtype } = useCardRelations([
+    'baseSet',
+    'type',
+    'subtype',
+  ]);
 
-  const setSubtype = useMemo(
-    () => stateSetter<CardInterface['subtypeId']>('subtypeId'),
-    [stateSetter],
+  const setSubtype = useCallback(
+    (subtypeId: CardInterface['subtypeId']) => {
+      setStateValues({ subtypeId });
+    },
+    [setStateValues],
   );
 
   useEffect(() => {

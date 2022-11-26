@@ -6,10 +6,12 @@ import Routes from '@routes';
 import Image from 'next/image';
 import { FC, useCallback } from 'react';
 import { SelectorMenuItem } from '@components/SelectorMenuItem';
-import { CardCreatorAnalyticsEvent, useAnalytics } from '@features/analytics';
+import {
+  CardCreatorAnalyticsEvent,
+  trackCardCreatorEvent,
+} from '@features/analytics';
 
 const BaseSetSelector: FC = () => {
-  const { trackCardCreatorEvent } = useAnalytics();
   const { baseSets, baseSet, setBaseSet } = useBaseSet();
 
   const handleChange = useCallback(
@@ -17,7 +19,7 @@ const BaseSetSelector: FC = () => {
       setBaseSet(Number(event.target.value));
       trackCardCreatorEvent(CardCreatorAnalyticsEvent.BaseSetChange);
     },
-    [setBaseSet, trackCardCreatorEvent],
+    [setBaseSet],
   );
 
   return (

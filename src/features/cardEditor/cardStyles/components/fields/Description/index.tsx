@@ -1,18 +1,20 @@
 import { useCardLogic } from '@cardEditor/cardLogic';
 import { useCardOptions } from '@cardEditor/cardOptions';
-import { useCardStyles } from '@cardEditor/cardStyles';
+import { useCardPlacements, useCardStyles } from '@cardEditor/cardStyles/hooks';
 import keepDoubleSpaces from '@cardEditor/cardStyles/utils/keepDoubleSpaces';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { DescriptionText, SCALE, Wrapper } from './styles';
 
 const Description: FC = () => {
-  const { hasDescription } = useCardLogic();
-  const { description } = useCardOptions();
-  const {
-    movesOutline,
-    movesTextColor,
-    positions: { description: descriptionPosition },
-  } = useCardStyles();
+  const { hasDescription } = useCardLogic(['hasDescription']);
+  const { description } = useCardOptions(['description']);
+  const { movesOutline, movesTextColor } = useCardStyles([
+    'movesOutline',
+    'movesTextColor',
+  ]);
+  const { description: descriptionPosition } = useCardPlacements([
+    'description',
+  ]);
 
   if (!hasDescription || !description) return null;
 
@@ -29,4 +31,4 @@ const Description: FC = () => {
   );
 };
 
-export default Description;
+export default memo(Description);

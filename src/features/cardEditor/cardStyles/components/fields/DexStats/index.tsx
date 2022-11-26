@@ -1,17 +1,17 @@
 import { useCardLogic } from '@cardEditor/cardLogic';
 import { useCardOptions } from '@cardEditor/cardOptions';
-import { useCardStyles } from '@cardEditor/cardStyles/hooks';
-import { FC } from 'react';
+import { useCardPlacements, useCardStyles } from '@cardEditor/cardStyles/hooks';
+import { FC, memo } from 'react';
 import { DexStatsText, SCALE } from './styles';
 
 const DexStats: FC = () => {
-  const { hasDexStats } = useCardLogic();
-  const { dexStats } = useCardOptions();
-  const {
-    dexStatsTextColor,
-    dexStatsOutline,
-    positions: { dexStats: placement },
-  } = useCardStyles();
+  const { hasDexStats } = useCardLogic(['hasDexStats']);
+  const { dexStats } = useCardOptions(['dexStats']);
+  const { dexStatsTextColor, dexStatsOutline } = useCardStyles([
+    'dexStatsTextColor',
+    'dexStatsOutline',
+  ]);
+  const { dexStats: placement } = useCardPlacements(['dexStats']);
 
   if (!hasDexStats) return null;
 
@@ -27,4 +27,4 @@ const DexStats: FC = () => {
   );
 };
 
-export default DexStats;
+export default memo(DexStats);

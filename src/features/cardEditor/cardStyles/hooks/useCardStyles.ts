@@ -1,15 +1,31 @@
-import { CardStylesContext } from '@cardEditor/cardStyles';
-import { useContext } from 'react';
+import shallow from 'zustand/shallow';
+import { useCardStylesStore } from '../store';
+import { CardStyles } from '../types';
 
-const useCardStyles = () => {
-  const { state, emphemeralUnit, setEmphemeralUnit, cardImgSrc } =
-    useContext(CardStylesContext);
+type StylesWithoutPlacement = Omit<CardStyles, 'positions'>;
+
+const useCardStyles = <
+  T extends Partial<StylesWithoutPlacement>,
+  // @ts-expect-error - This is right
+  V extends T = { [P in keyof T]: StylesWithoutPlacement[P] },
+>(
+  properties: (keyof T)[],
+): V => {
+  const values = useCardStylesStore(
+    store => ({
+      ...properties.reduce<Partial<StylesWithoutPlacement>>(
+        (obj, key) => ({
+          ...obj,
+          [key]: store.state[key as keyof StylesWithoutPlacement],
+        }),
+        {},
+      ),
+    }),
+    shallow,
+  );
 
   return {
-    ...state,
-    emphemeralUnit,
-    setEmphemeralUnit,
-    cardImgSrc,
+    ...(values as V),
   };
 };
 

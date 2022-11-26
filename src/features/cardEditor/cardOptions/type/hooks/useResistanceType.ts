@@ -1,14 +1,16 @@
 import { CardInterface } from '@cardEditor';
-import { useMemo } from 'react';
-import { useCardOptions, useCardRelations } from '@cardEditor/cardOptions';
+import { useCallback } from 'react';
+import { useCardOptionsStore, useCardRelations } from '@cardEditor/cardOptions';
 
 const useResistanceType = () => {
-  const { resistanceType } = useCardRelations();
-  const { stateSetter } = useCardOptions();
+  const { setStateValues } = useCardOptionsStore();
+  const { resistanceType } = useCardRelations(['resistanceType']);
 
-  const setResistanceType = useMemo(
-    () => stateSetter<CardInterface['resistanceTypeId']>('resistanceTypeId'),
-    [stateSetter],
+  const setResistanceType = useCallback(
+    (resistanceTypeId: CardInterface['resistanceTypeId']) => {
+      setStateValues({ resistanceTypeId });
+    },
+    [setStateValues],
   );
 
   return {

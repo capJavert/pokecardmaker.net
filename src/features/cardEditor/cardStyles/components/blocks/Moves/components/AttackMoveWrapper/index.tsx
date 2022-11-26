@@ -1,6 +1,6 @@
 import { isAttackMove } from '@cardEditor/cardOptions/utils/isMove';
 import AttackMove from '@cardEditor/cardStyles/components/atoms/AttackMove';
-import { useCardStyles } from '@cardEditor/cardStyles/hooks';
+import { useCardPlacements } from '@cardEditor/cardStyles/hooks';
 import { AttackMove as AttackMoveType, CardInterface } from '@cardEditor/types';
 import { FC } from 'react';
 import { AttackMoveStyleProps } from '../../types';
@@ -18,9 +18,7 @@ const AttackMoveWrapper: FC<AttackMoveWrapperProps> = ({
   moves,
   styleProps,
 }) => {
-  const {
-    positions: { lastMove: lastMovePlacement },
-  } = useCardStyles();
+  const { lastMove: lastMovePlacement } = useCardPlacements(['lastMove']);
 
   return (
     <AttackMove

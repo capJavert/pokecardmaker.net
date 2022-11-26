@@ -12,12 +12,12 @@ export interface InputProps {
   onChange: ((value: string) => void) | ((value: number | '') => void);
   tooltipProps?: PropsWithChildren<TooltipProps>;
   skipDebounce?: boolean;
+  inputProps?: InputBaseProps['inputProps'];
 }
 
 export interface GeneralInputProps extends InputProps {
   type: 'number' | 'text';
   multiline?: boolean;
   minRows?: number;
-  inputProps?: InputBaseProps['inputProps'];
   forceUpdate?: boolean;
 }

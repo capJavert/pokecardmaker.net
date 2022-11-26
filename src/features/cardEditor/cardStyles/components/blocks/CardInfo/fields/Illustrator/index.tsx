@@ -1,17 +1,17 @@
 import { useCardLogic } from '@cardEditor/cardLogic';
 import { useCardOptions } from '@cardEditor/cardOptions';
-import { useCardStyles } from '@cardEditor/cardStyles/hooks';
-import { FC } from 'react';
+import { useCardPlacements, useCardStyles } from '@cardEditor/cardStyles/hooks';
+import { FC, memo } from 'react';
 import { IllustratorText, SCALE } from './styles';
 
 const Illustrator: FC = () => {
-  const { illustrator } = useCardOptions();
-  const { hasIllustratorName } = useCardLogic();
-  const {
-    cardInfoOutline,
-    cardInfoTextColor,
-    positions: { illustrator: placement },
-  } = useCardStyles();
+  const { illustrator } = useCardOptions(['illustrator']);
+  const { hasIllustratorName } = useCardLogic(['hasIllustratorName']);
+  const { cardInfoOutline, cardInfoTextColor } = useCardStyles([
+    'cardInfoOutline',
+    'cardInfoTextColor',
+  ]);
+  const { illustrator: placement } = useCardPlacements(['illustrator']);
 
   if (!hasIllustratorName || !illustrator) return null;
 
@@ -27,4 +27,4 @@ const Illustrator: FC = () => {
   );
 };
 
-export default Illustrator;
+export default memo(Illustrator);

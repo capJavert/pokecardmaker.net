@@ -2,7 +2,7 @@ import { CardInterface } from '@cardEditor';
 import { useCallback, useEffect, useMemo } from 'react';
 import {
   defaultSupertypeTypes,
-  useCardOptions,
+  useCardOptionsStore,
   useCardRelations,
 } from '@cardEditor/cardOptions';
 import findById from '@utils/findById';
@@ -10,8 +10,12 @@ import { Type } from '../types';
 import { types } from '../data';
 
 const useType = () => {
-  const { stateSetter } = useCardOptions();
-  const { baseSet, supertype, type } = useCardRelations();
+  const { setStateValues } = useCardOptionsStore();
+  const { baseSet, supertype, type } = useCardRelations([
+    'baseSet',
+    'supertype',
+    'type',
+  ]);
 
   const pokemonTypes = useMemo<Type[]>(
     () => types.filter(t => t.logic?.isPokemonType),
@@ -23,9 +27,11 @@ const useType = () => {
     [],
   );
 
-  const setType = useMemo(
-    () => stateSetter<CardInterface['typeId']>('typeId'),
-    [stateSetter],
+  const setType = useCallback(
+    (typeId: CardInterface['typeId']) => {
+      setStateValues({ typeId });
+    },
+    [setStateValues],
   );
 
   const getTypeById = useCallback((id: number) => findById(types, id), []);

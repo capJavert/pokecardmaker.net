@@ -15,6 +15,7 @@ const GeneralInput: FC<GeneralInputProps> = ({
   value,
   forceUpdate,
   skipDebounce,
+  inputProps,
   ...rest
 }) => {
   const [tempValue, setTempValue] = useState(value);
@@ -48,6 +49,7 @@ const GeneralInput: FC<GeneralInputProps> = ({
           sx: {
             cursor: disabled ? 'not-allowed' : undefined,
           },
+          ...inputProps,
         }}
         disabled={disabled}
         onChange={e => setTempValue(e.currentTarget.value)}

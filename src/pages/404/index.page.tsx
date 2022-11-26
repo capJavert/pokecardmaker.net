@@ -24,13 +24,9 @@ const NotFoundPage: FC = () => (
         Oh no! Page not found!
       </Typography>
       <Image src={notFoundImage} />
-      <NextLink href={Routes.Home} passHref>
-        <Button
-          variant="contained"
-          fullWidth
-          startIcon={<ForwardIcon sx={{ transform: 'rotate(180deg)' }} />}
-        >
-          Go back home
+      <NextLink href={Routes.Creator} passHref>
+        <Button variant="contained" fullWidth endIcon={<ForwardIcon />}>
+          Get Started Now
         </Button>
       </NextLink>
     </Box>

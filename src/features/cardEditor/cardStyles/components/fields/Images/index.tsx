@@ -1,10 +1,10 @@
-import { FC } from 'react';
-import { useCardOptions } from '@cardEditor/cardOptions';
+import { FC, memo } from 'react';
 import CroppedImg from '@components/CroppedImg';
+import { useCardOptions } from '@cardEditor/cardOptions';
 import { Wrapper } from './styles';
 
 const Images: FC = () => {
-  const { images } = useCardOptions();
+  const { images } = useCardOptions(['images']);
 
   if (!images?.length) return null;
 
@@ -21,4 +21,4 @@ const Images: FC = () => {
   );
 };
 
-export default Images;
+export default memo(Images);

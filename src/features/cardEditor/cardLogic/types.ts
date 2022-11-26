@@ -103,7 +103,7 @@ export interface CardLogic {
    * Whether the Pokémon has a special move (like GX)
    * @default false
    */
-  hasSpecialMove?: boolean;
+  hasSpecialMove: boolean;
   /**
    * Whether the card supports a badge icon on top of the frame
    * @default false

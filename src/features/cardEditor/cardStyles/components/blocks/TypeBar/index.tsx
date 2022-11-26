@@ -1,7 +1,7 @@
 import { useCardLogic } from '@cardEditor/cardLogic';
 import { useCardOptions } from '@cardEditor/cardOptions';
-import { useCardStyles } from '@cardEditor/cardStyles/hooks';
-import { FC } from 'react';
+import { useCardPlacements } from '@cardEditor/cardStyles/hooks';
+import { FC, memo } from 'react';
 import ResistanceAmount from './fields/ResistanceAmount';
 import ResistanceType from './fields/ResistanceType';
 import RetreatCost from './fields/RetreatCost';
@@ -10,16 +10,19 @@ import WeaknessType from './fields/WeaknessType';
 import { Block, TypeWrapper } from './styles';
 
 const TypeBar: FC = () => {
-  const { hasTypeBar } = useCardLogic();
+  const { hasTypeBar } = useCardLogic(['hasTypeBar']);
   const { weaknessTypeId, weaknessAmount, resistanceTypeId, resistanceAmount } =
-    useCardOptions();
+    useCardOptions([
+      'weaknessTypeId',
+      'weaknessAmount',
+      'resistanceTypeId',
+      'resistanceAmount',
+    ]);
   const {
-    positions: {
-      typeBar: placement,
-      weakness: weaknessPlacement,
-      resistance: resistancePlacement,
-    },
-  } = useCardStyles();
+    typeBar: placement,
+    weakness: weaknessPlacement,
+    resistance: resistancePlacement,
+  } = useCardPlacements(['typeBar', 'weakness', 'resistance']);
 
   if (!hasTypeBar) return null;
 
@@ -42,4 +45,4 @@ const TypeBar: FC = () => {
   );
 };
 
-export default TypeBar;
+export default memo(TypeBar);

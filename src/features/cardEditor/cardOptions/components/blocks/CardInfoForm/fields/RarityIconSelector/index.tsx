@@ -5,12 +5,12 @@ import Image from 'next/image';
 import { useRarityIcon } from '@cardEditor/cardOptions/rarityIcon';
 import { SelectorListItemIcon } from '@components/SelectorListItemIcon';
 import { SelectorMenuItem } from '@components/SelectorMenuItem';
-import { useSettings } from '@features/settings';
 import { CardCreatorAnalyticsEvent } from '@features/analytics';
 import CustomIconSelector from '@cardEditor/cardOptions/components/atoms/CustomIconSelector';
+import { useSettingsStore } from '@features/settings';
 
 const RarityIconSelector: FC = () => {
-  const { themeMode } = useSettings();
+  const themeMode = useSettingsStore(store => store.theme);
   const {
     rarityIcons,
     rarityIcon,

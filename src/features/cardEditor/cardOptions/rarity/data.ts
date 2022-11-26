@@ -109,6 +109,7 @@ export const goldStar: Rarity = {
   displayName: 'Gold Star',
   logic: {
     hasNameSymbol: true,
+    hasDexEntry: false,
   },
   styles: {
     nameSymbol: 'star',

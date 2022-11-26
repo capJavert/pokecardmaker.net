@@ -1,11 +1,11 @@
-import { CardOptionsContext } from '@cardEditor/cardOptions/Context';
 import { useStrippedCard } from '@cardEditor/cardOptions/hooks';
+import { useCardOptionsStore } from '@cardEditor/cardOptions';
 import { AssignmentTurnedIn, DataObject } from '@mui/icons-material';
 import { Button } from '@mui/material';
-import { FC, useCallback, useContext, useState } from 'react';
+import { FC, useCallback, useState } from 'react';
 
 const ExportButton: FC = () => {
-  const { state } = useContext(CardOptionsContext);
+  const { state } = useCardOptionsStore();
   const strippedCard = useStrippedCard(state);
   const [Icon, setIcon] = useState(<DataObject />);
 

@@ -2,11 +2,13 @@ import { useCardOptions } from '@cardEditor/cardOptions';
 import {
   baseEmphemeralUnit,
   cardImgWidth,
-  useCardStyles,
+  useCardPlacements,
+  useCardStylesStore,
 } from '@cardEditor/cardStyles';
+import { useCardStyles } from '@cardEditor/cardStyles/hooks';
 import { CSSProperties } from '@mui/styled-engine';
 import { Box } from '@mui/system';
-import { FC, useMemo, useRef } from 'react';
+import { FC, memo, useMemo, useRef } from 'react';
 import { useMeasure } from 'react-use';
 import { getNameSymbolSize } from '../NameSymbol/utils';
 import { NameText } from './styles';
@@ -15,14 +17,14 @@ import { NameText } from './styles';
 const DEFAULT_SCALE = 1;
 
 const Name: FC = () => {
-  const { name } = useCardOptions();
-  const {
-    nameOutline,
-    nameTextColor,
-    nameSymbol,
-    emphemeralUnit,
-    positions: { name: namePosition },
-  } = useCardStyles();
+  const emphemeralUnit = useCardStylesStore(store => store.emphemeralUnit);
+  const { name } = useCardOptions(['name']);
+  const { nameOutline, nameTextColor, nameSymbol } = useCardStyles([
+    'nameOutline',
+    'nameTextColor',
+    'nameSymbol',
+  ]);
+  const { name: namePosition } = useCardPlacements(['name']);
   const ref = useRef<HTMLDivElement | null>(null);
   const [invisibleRef, { width }] = useMeasure<HTMLDivElement>();
 
@@ -102,4 +104,4 @@ const Name: FC = () => {
   );
 };
 
-export default Name;
+export default memo(Name);

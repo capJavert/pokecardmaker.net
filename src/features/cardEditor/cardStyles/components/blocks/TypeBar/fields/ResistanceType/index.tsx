@@ -2,7 +2,7 @@ import { useBaseSet } from '@cardEditor/cardOptions/baseSet';
 import { useResistanceType } from '@cardEditor/cardOptions/type';
 import DisplayImg from '@cardEditor/cardStyles/components/atoms/DisplayImg';
 import Routes from '@routes';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import TypeImgWrapper from '../../atoms/TypeImgWrapper';
 
 const ResistanceType: FC = () => {
@@ -21,4 +21,4 @@ const ResistanceType: FC = () => {
   );
 };
 
-export default ResistanceType;
+export default memo(ResistanceType);

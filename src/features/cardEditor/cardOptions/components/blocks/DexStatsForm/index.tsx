@@ -4,7 +4,7 @@ import { FC } from 'react';
 import DexStatsInput from './fields/DexStatsInput';
 
 const DexStatsForm: FC = () => {
-  const { hasDexStats } = useCardLogic();
+  const { hasDexStats } = useCardLogic(['hasDexStats']);
   if (!hasDexStats) return null;
 
   return (

@@ -1,6 +1,5 @@
-import { RelationsInterface } from '@cardEditor';
 import { getCookie, hasCookie, setCookie } from 'cookies-next';
-import { ConsentCookie } from './types';
+import { ConsentCookie } from '../types';
 
 /**
  * Assign dataLayer to the global window scope
@@ -45,14 +44,4 @@ export const initializeCookieConsent = () => {
       analytics: !!getCookie(ConsentCookie.Analytics),
     });
   }
-};
-
-export const relationsToSlugs = (
-  relations: Omit<RelationsInterface, 'typeImgId'>,
-) => {
-  const slugs: Record<string, string | undefined> = {};
-  Object.entries(relations).forEach(([key, value]) => {
-    slugs[key] = value?.slug;
-  });
-  return slugs;
 };

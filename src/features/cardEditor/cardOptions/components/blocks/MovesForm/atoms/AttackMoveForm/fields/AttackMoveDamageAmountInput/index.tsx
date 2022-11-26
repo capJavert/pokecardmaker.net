@@ -1,6 +1,6 @@
 import { ButtonGroup, InputAdornment } from '@mui/material';
 import { FC } from 'react';
-import NumberInput from '@components/inputs/NumberInput';
+import TextInput from '@components/inputs/TextInput';
 import DamageModifierButton from './components/DamageModifierButton';
 import { AttackMoveFieldProps } from '../../types';
 
@@ -9,12 +9,14 @@ const AttackMoveDamageAmountInput: FC<AttackMoveFieldProps> = ({
   move,
   setMove,
 }) => (
-  <NumberInput
+  <TextInput
     slug={`${slug}DamageAmount`}
     label="Damage"
     value={move.damageAmount}
-    max={99999}
-    min={0}
+    inputProps={{
+      inputMode: 'numeric',
+      pattern: '[0-9]*',
+    }}
     endAdornment={
       <InputAdornment position="end">
         <ButtonGroup disableElevation>

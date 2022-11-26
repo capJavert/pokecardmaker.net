@@ -10,7 +10,7 @@ import { useBaseSet } from '@cardEditor/cardOptions/baseSet';
 import CustomIconSelector from '@cardEditor/cardOptions/components/atoms/CustomIconSelector';
 
 const TypeImgSelector: FC = () => {
-  const { hasTypeImage } = useCardLogic();
+  const { hasTypeImage } = useCardLogic(['hasTypeImage']);
   const { baseSet } = useBaseSet();
   const { pokemonTypes } = useType();
   const { typeImg, setTypeImg, customTypeImgSrc, setCustomTypeImgSrc } =

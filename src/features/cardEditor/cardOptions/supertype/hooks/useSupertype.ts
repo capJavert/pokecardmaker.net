@@ -1,15 +1,17 @@
-import { useCardOptions, useCardRelations } from '@cardEditor/cardOptions';
 import { CardInterface } from '@cardEditor';
-import { useMemo } from 'react';
+import { useCallback } from 'react';
+import { useCardOptionsStore, useCardRelations } from '@cardEditor/cardOptions';
 import { supertypes } from '../data';
 
 const useSupertype = () => {
-  const { stateSetter } = useCardOptions();
-  const { supertype } = useCardRelations();
+  const { setStateValues } = useCardOptionsStore();
+  const { supertype } = useCardRelations(['supertype']);
 
-  const setSupertype = useMemo(
-    () => stateSetter<CardInterface['supertypeId']>('supertypeId'),
-    [stateSetter],
+  const setSupertype = useCallback(
+    (supertypeId: CardInterface['supertypeId']) => {
+      setStateValues({ supertypeId });
+    },
+    [setStateValues],
   );
 
   return {

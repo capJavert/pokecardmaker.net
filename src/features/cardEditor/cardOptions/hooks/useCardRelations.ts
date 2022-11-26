@@ -1,10 +1,30 @@
-import { useContext } from 'react';
-import { CardOptionsContext } from '@cardEditor/cardOptions';
+import shallow from 'zustand/shallow';
+import { RelationsInterface } from '@cardEditor';
+import { useCardOptionsStore } from '../store';
 
-const useCardRelations = () => {
-  const { relations } = useContext(CardOptionsContext);
+const useCardRelationsNew = <
+  T extends Partial<RelationsInterface>,
+  // @ts-expect-error - This is right
+  V extends T = { [P in keyof T]: RelationsInterface[P] },
+>(
+  properties: (keyof T)[],
+): V => {
+  const relations = useCardOptionsStore(
+    store => ({
+      ...properties.reduce<Partial<RelationsInterface>>(
+        (obj, key) => ({
+          ...obj,
+          [key]: store.relations[key as keyof RelationsInterface],
+        }),
+        {},
+      ),
+    }),
+    shallow,
+  );
 
-  return relations;
+  return {
+    ...(relations as V),
+  };
 };
 
-export default useCardRelations;
+export default useCardRelationsNew;

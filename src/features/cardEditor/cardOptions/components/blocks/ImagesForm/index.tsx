@@ -1,4 +1,3 @@
-import { useCardOptions } from '@cardEditor/cardOptions/hooks';
 import AccordionForm from '@components/AccordionForm';
 import FileUploader from '@components/inputs/FileUploader';
 import { FC, useCallback, useEffect, useState } from 'react';
@@ -12,14 +11,14 @@ import {
 import { Box } from '@mui/system';
 import { Divider, Typography } from '@mui/material';
 import { DragIndicator } from '@mui/icons-material';
-import ControlledColorPicker from '@components/inputs/ControlledColorPicker';
+import { useCardOptions } from '@cardEditor/cardOptions';
 import ImgItem from './components/ImgItem';
 import { constructDroppableList, constructImageList, isCardImg } from './utils';
 import TooltipContent from './components/TooltipContent';
+import BackgroundColorPicker from './components/BackgroundColorPicker';
 
 const ImagesForm: FC = () => {
-  const { images, setImages, backgroundColor, setBackgroundColor } =
-    useCardOptions();
+  const { images, setState } = useCardOptions(['images']);
   const [windowReady, setWindowReady] = useState<boolean>(false);
   const [droppableList, setDroppableList] = useState(
     constructDroppableList(images),
@@ -48,21 +47,14 @@ const ImagesForm: FC = () => {
       newList.splice(newIndex, 0, reorderedItem);
 
       setDroppableList(newList);
-      setImages(constructImageList(newList));
+      setState({ images: constructImageList(newList) });
     },
-    [droppableList, setImages],
+    [droppableList, setState],
   );
 
   return (
     <AccordionForm slug="imagesForm" header="Images">
-      {windowReady && (
-        <ControlledColorPicker
-          label="Background Color"
-          slug="backgroundColor"
-          onChange={setBackgroundColor}
-          value={backgroundColor}
-        />
-      )}
+      <BackgroundColorPicker />
       <FileUploader
         label="Upload Image"
         slug="imgUpload"
@@ -79,19 +71,21 @@ const ImagesForm: FC = () => {
           children: <TooltipContent />,
         }}
         onChange={(name, src) =>
-          setImages([
-            {
-              id: nanoid(),
-              name,
-              src,
-              behindTemplate: true,
-              order: 1,
-            },
-            ...images.map(img => ({
-              ...img,
-              order: img.order + 1,
-            })),
-          ])
+          setState({
+            images: [
+              {
+                id: nanoid(),
+                name,
+                src,
+                behindTemplate: true,
+                order: 1,
+              },
+              ...images.map(img => ({
+                ...img,
+                order: img.order + 1,
+              })),
+            ],
+          })
         }
       />
       <DragDropContext onDragEnd={handleDrop}>

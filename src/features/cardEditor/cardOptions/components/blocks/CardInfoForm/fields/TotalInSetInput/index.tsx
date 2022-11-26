@@ -3,14 +3,14 @@ import { FC } from 'react';
 import { useCardOptions } from '@cardEditor/cardOptions';
 
 const TotalInSetInput: FC = () => {
-  const { totalInSet, setTotalInSet } = useCardOptions();
+  const { totalInSet, setState } = useCardOptions(['totalInSet']);
 
   return (
     <TextInput
       slug="totalInSet"
       label="Total in Set"
       value={totalInSet}
-      onChange={setTotalInSet}
+      onChange={value => setState({ totalInSet: value })}
     />
   );
 };

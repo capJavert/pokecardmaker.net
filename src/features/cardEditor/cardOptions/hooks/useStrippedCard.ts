@@ -1,4 +1,4 @@
-import { useCardLogic } from '@cardEditor/cardLogic';
+import { useCardLogicStore } from '@cardEditor/cardLogic';
 import { CardInterface } from '@cardEditor/types';
 import { useMemo } from 'react';
 
@@ -7,7 +7,7 @@ import { useMemo } from 'react';
  * Example: The property `move1` is never used when `supertype` is `trainer`
  */
 const useStrippedCard = (card: CardInterface): CardInterface => {
-  const cardLogic = useCardLogic();
+  const cardLogic = useCardLogicStore(store => store.state);
 
   const strippedCard = useMemo(() => {
     const clone = { ...card };

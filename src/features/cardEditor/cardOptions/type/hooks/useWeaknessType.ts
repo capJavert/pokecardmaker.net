@@ -1,14 +1,16 @@
 import { CardInterface } from '@cardEditor';
-import { useMemo } from 'react';
-import { useCardOptions, useCardRelations } from '@cardEditor/cardOptions';
+import { useCallback } from 'react';
+import { useCardOptionsStore, useCardRelations } from '@cardEditor/cardOptions';
 
 const useWeaknessType = () => {
-  const { weaknessType } = useCardRelations();
-  const { stateSetter } = useCardOptions();
+  const { setStateValues } = useCardOptionsStore();
+  const { weaknessType } = useCardRelations(['weaknessType']);
 
-  const setWeaknessType = useMemo(
-    () => stateSetter<CardInterface['weaknessTypeId']>('weaknessTypeId'),
-    [stateSetter],
+  const setWeaknessType = useCallback(
+    (weaknessTypeId: CardInterface['weaknessTypeId']) => {
+      setStateValues({ weaknessTypeId });
+    },
+    [setStateValues],
   );
 
   return {

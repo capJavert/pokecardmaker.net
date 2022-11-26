@@ -1,8 +1,8 @@
-import { useCardOptions } from '@cardEditor/cardOptions/hooks';
+import { useCardOptions } from '@cardEditor/cardOptions';
 import {
   cardImgHeight,
   cardImgWidth,
-  useCardStyles,
+  useCardStylesStore,
 } from '@cardEditor/cardStyles';
 import { CroppableCardImg } from '@cardEditor/types';
 import ImgCropper from '@components/ImgCropper';
@@ -26,8 +26,8 @@ export interface ImgItemProps {
 }
 
 const ImgItem: FC<ImgItemProps> = ({ img, provided }) => {
-  const { images, setImages } = useCardOptions();
-  const { cardImgSrc } = useCardStyles();
+  const { images, setState } = useCardOptions(['images']);
+  const cardImgSrc = useCardStylesStore(store => store.cardImgSrc);
   const [cropActive, toggleCropActive] = useBoolean(false);
   const [crop, setCrop] = useState<Area | undefined>(img.croppedArea);
   const throttledCrop = useThrottle(crop, 500);
@@ -37,8 +37,8 @@ const ImgItem: FC<ImgItemProps> = ({ img, provided }) => {
     const index = newImages.findIndex(image => image.id === img.id);
     if (index < 0) return;
     newImages.splice(index, 1);
-    setImages(newImages);
-  }, [img, images, setImages]);
+    setState({ images: newImages });
+  }, [img, images, setState]);
 
   useEffect(() => {
     if (!throttledCrop) return;
@@ -46,7 +46,7 @@ const ImgItem: FC<ImgItemProps> = ({ img, provided }) => {
     const index = newImages.findIndex(image => image.id === img.id);
     if (index < 0) return;
     newImages[index].croppedArea = throttledCrop;
-    setImages(newImages);
+    setState({ images: newImages });
     // Would result in infinite loop
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [throttledCrop]);

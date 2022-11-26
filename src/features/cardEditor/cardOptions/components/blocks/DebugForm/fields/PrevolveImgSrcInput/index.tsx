@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import TextInput from '@components/inputs/TextInput';
-import { useCardDebug } from '@cardEditor/cardDebug';
 import { useCardLogic } from '@cardEditor/cardLogic';
+import { useCardDebugStore } from '@cardEditor/cardDebug';
 
 const PrevolveImgSrcInput: FC = () => {
-  const { hasPrevolveImg: hasPrevolve } = useCardLogic();
-  const { prevolveImgSrc, setPrevolveImgSrc } = useCardDebug();
-
+  const prevolveImgSrc = useCardDebugStore(store => store.prevolveImgSrc);
+  const setPrevolveImgSrc = useCardDebugStore(store => store.setPrevolveImgSrc);
+  const { hasPrevolveImg: hasPrevolve } = useCardLogic(['hasPrevolveImg']);
   if (!hasPrevolve) return null;
 
   return (

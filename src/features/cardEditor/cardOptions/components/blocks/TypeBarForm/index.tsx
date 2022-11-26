@@ -8,7 +8,7 @@ import WeaknessAmountInput from './fields/WeaknessAmountInput';
 import WeaknessTypeSelector from './fields/WeaknessTypeSelector';
 
 const TypeBarForm: FC = () => {
-  const { hasTypeBar } = useCardLogic();
+  const { hasTypeBar } = useCardLogic(['hasTypeBar']);
 
   if (!hasTypeBar) return null;
 

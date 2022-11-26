@@ -1,17 +1,16 @@
-import { useCardDebug } from '@cardEditor/cardDebug';
+import { useCardDebugStore } from '@cardEditor/cardDebug';
 import { useCardLogic } from '@cardEditor/cardLogic';
 import { useCardOptions } from '@cardEditor/cardOptions';
-import { useCardStyles } from '@cardEditor/cardStyles/hooks';
-import { FC, useMemo } from 'react';
+import { useCardPlacements } from '@cardEditor/cardStyles/hooks';
+import { FC, memo, useMemo } from 'react';
 import { Img } from './styles';
 
 const PrevolveImg: FC = () => {
-  const {
-    positions: { prevolveImg: placement },
-  } = useCardStyles();
-  const { hasPrevolveImg } = useCardLogic();
-  const { prevolveImgSrc } = useCardOptions();
-  const { showDebug, prevolveImgSrc: debugImgSrc } = useCardDebug();
+  const showDebug = useCardDebugStore(store => store.showDebug);
+  const debugImgSrc = useCardDebugStore(store => store.prevolveImgSrc);
+  const { prevolveImg: placement } = useCardPlacements(['prevolveImg']);
+  const { hasPrevolveImg } = useCardLogic(['hasPrevolveImg']);
+  const { prevolveImgSrc } = useCardOptions(['prevolveImgSrc']);
 
   const imgSrc = useMemo<string | undefined>(
     () => (showDebug ? prevolveImgSrc ?? debugImgSrc : prevolveImgSrc),
@@ -23,4 +22,4 @@ const PrevolveImg: FC = () => {
   return <Img $url={imgSrc} placement={placement} />;
 };
 
-export default PrevolveImg;
+export default memo(PrevolveImg);

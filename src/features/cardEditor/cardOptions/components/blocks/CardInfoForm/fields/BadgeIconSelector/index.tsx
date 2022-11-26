@@ -11,21 +11,21 @@ import ControlledSelector from '@components/inputs/ControlledSelector';
 import {
   BadgeIcon,
   badgeIconTypes,
-  setLogo,
   useBadgeIcon,
 } from '@cardEditor/cardOptions/badgeIcon';
 import { SelectorListItemIcon } from '@components/SelectorListItemIcon';
 import { SelectorMenuItem } from '@components/SelectorMenuItem';
 import { useCardLogic } from '@cardEditor/cardLogic';
-import { CardCreatorAnalyticsEvent, useAnalytics } from '@features/analytics';
+import {
+  CardCreatorAnalyticsEvent,
+  trackCardCreatorEvent,
+} from '@features/analytics';
 import findById from '@utils/findById';
 import { baseSets } from '@cardEditor/cardOptions/baseSet';
 import { CropFree as EmptyIcon } from '@mui/icons-material';
-import NewFeatureHelpText from '@cardEditor/cardOptions/components/atoms/NewFeatureHelpText';
 
 const BadgeIconSelector: FC = () => {
-  const { trackCardCreatorEvent } = useAnalytics();
-  const { hasBadgeIcon } = useCardLogic();
+  const { hasBadgeIcon } = useCardLogic(['hasBadgeIcon']);
   const { badgeIcons, badgeIcon, setBadgeIcon } = useBadgeIcon();
 
   const handleChange = useCallback(
@@ -33,7 +33,7 @@ const BadgeIconSelector: FC = () => {
       setBadgeIcon(Number(event.target.value));
       trackCardCreatorEvent(CardCreatorAnalyticsEvent.BadgeIconChange);
     },
-    [setBadgeIcon, trackCardCreatorEvent],
+    [setBadgeIcon],
   );
 
   const badgeIconGroups = useMemo(
@@ -73,17 +73,6 @@ const BadgeIconSelector: FC = () => {
                 displayName={`${iconType.displayName} Badge Icon`}
                 slug={`badgeIcon${iconType.slug}`}
                 onChange={handleChange}
-                helpText={
-                  iconType.slug === setLogo.slug && (
-                    <NewFeatureHelpText>
-                      Try the new{' '}
-                      <b>
-                        <i>Set Logo</i>
-                      </b>{' '}
-                      badge icons!
-                    </NewFeatureHelpText>
-                  )
-                }
               >
                 <SelectorMenuItem value="">
                   <SelectorListItemIcon>

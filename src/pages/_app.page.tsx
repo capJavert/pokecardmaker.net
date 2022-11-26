@@ -1,4 +1,4 @@
-import { CacheProvider, EmotionCache } from '@emotion/react';
+import { CacheProvider, EmotionCache, ThemeProvider } from '@emotion/react';
 import { CssBaseline } from '@mui/material';
 import { AppProps as NextAppProps } from 'next/app';
 import { FC, useEffect } from 'react';
@@ -8,9 +8,9 @@ import CookieConsent from '@components/CookieConsent';
 import GoatCounter from '@features/analytics/components/GoatCounter';
 import { GoogleTagManagerScript } from '@features/analytics/components/GTM';
 import { useRouter } from 'next/router';
-import { SettingsProvider } from '@features/settings';
+import { useSettingsStore } from '@features/settings';
+import { getTheme } from '@utils/theme';
 import { Background, MainContainer } from './styles';
-import Providers from './Providers';
 
 interface AppProps extends NextAppProps {
   emotionCache: EmotionCache;
@@ -24,6 +24,7 @@ const App: FC<AppProps> = ({
   pageProps,
 }) => {
   const router = useRouter();
+  const theme = useSettingsStore(store => store.theme);
 
   useEffect(() => {
     const handleRouteChange = () => {
@@ -39,21 +40,19 @@ const App: FC<AppProps> = ({
 
   return (
     <CacheProvider value={emotionCache}>
-      <SettingsProvider>
-        <Providers>
-          <GoogleTagManagerScript />
-          <GoatCounter />
-          <CssBaseline />
-          <Background>
-            <CookieConsent />
-            <Header />
-            <MainContainer as="main">
-              <Component {...pageProps} />
-            </MainContainer>
-            <Footer />
-          </Background>
-        </Providers>
-      </SettingsProvider>
+      <ThemeProvider theme={getTheme(theme)}>
+        <GoogleTagManagerScript />
+        <GoatCounter />
+        <CssBaseline />
+        <Background>
+          <CookieConsent />
+          <Header />
+          <MainContainer as="main">
+            <Component {...pageProps} />
+          </MainContainer>
+          <Footer />
+        </Background>
+      </ThemeProvider>
     </CacheProvider>
   );
 };

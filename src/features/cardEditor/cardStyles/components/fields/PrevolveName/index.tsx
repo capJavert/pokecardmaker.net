@@ -1,16 +1,14 @@
 import { useCardLogic } from '@cardEditor/cardLogic';
 import { useCardOptions } from '@cardEditor/cardOptions';
-import { useCardStyles } from '@cardEditor/cardStyles/hooks';
-import { FC } from 'react';
+import { useCardPlacements, useCardStyles } from '@cardEditor/cardStyles/hooks';
+import { FC, memo } from 'react';
 import { StyledText } from './styles';
 
 const PrevolveName: FC = () => {
-  const { prevolveName } = useCardOptions();
-  const { hasPrevolveName } = useCardLogic();
-  const {
-    prevolveText,
-    positions: { prevolveName: placement },
-  } = useCardStyles();
+  const { prevolveName } = useCardOptions(['prevolveName']);
+  const { hasPrevolveName } = useCardLogic(['hasPrevolveName']);
+  const { prevolveText } = useCardStyles(['prevolveText']);
+  const { prevolveName: placement } = useCardPlacements(['prevolveName']);
 
   if (!hasPrevolveName || !prevolveName) return null;
 
@@ -21,4 +19,4 @@ const PrevolveName: FC = () => {
   );
 };
 
-export default PrevolveName;
+export default memo(PrevolveName);

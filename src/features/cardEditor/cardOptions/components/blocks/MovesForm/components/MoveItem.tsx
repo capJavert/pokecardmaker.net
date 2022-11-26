@@ -1,8 +1,7 @@
 import { useCardLogic } from '@cardEditor/cardLogic';
 import AttackMoveForm from '@cardEditor/cardOptions/components/blocks/MovesForm/atoms/AttackMoveForm';
-import { useCardOptions } from '@cardEditor/cardOptions/hooks';
+import { useCardOptions } from '@cardEditor/cardOptions';
 import { isAttackMove } from '@cardEditor/cardOptions/utils/isMove';
-import { useCardStyles } from '@cardEditor/cardStyles';
 import { AbilityMove, AttackMove } from '@cardEditor/types';
 import {
   Delete as DeleteIcon,
@@ -12,6 +11,7 @@ import { Button, IconButton, Paper, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { FC, useCallback, useMemo } from 'react';
 import { DraggableProvided } from 'react-beautiful-dnd';
+import { useCardStyles } from '@cardEditor/cardStyles/hooks';
 import AbilityMoveForm from '../atoms/AbilityMoveForm';
 
 interface MoveItemProps {
@@ -20,9 +20,9 @@ interface MoveItemProps {
 }
 
 const MoveItem: FC<MoveItemProps> = ({ move, provided }) => {
-  const { moves, setMoves } = useCardOptions();
-  const { hasSpecialMove } = useCardLogic();
-  const { specialMove } = useCardStyles();
+  const { moves, setState } = useCardOptions(['moves']);
+  const { hasSpecialMove } = useCardLogic(['hasSpecialMove']);
+  const { specialMove } = useCardStyles(['specialMove']);
 
   const label = useMemo<string>(
     () =>
@@ -39,8 +39,8 @@ const MoveItem: FC<MoveItemProps> = ({ move, provided }) => {
     const index = newMoves.findIndex(m => m.id === move.id);
     if (index < 0) return;
     newMoves.splice(index, 1);
-    setMoves(newMoves);
-  }, [move, moves, setMoves]);
+    setState({ moves: newMoves });
+  }, [move, moves, setState]);
 
   return (
     <Paper {...provided.draggableProps} ref={provided.innerRef} sx={{ mt: 2 }}>

@@ -1,10 +1,10 @@
 import { CardInterface } from '@cardEditor';
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect } from 'react';
 import {
   defaultSubtypeVariations,
   defaultTypeSubtypes,
   defaultTypeVariations,
-  useCardOptions,
+  useCardOptionsStore,
   useCardRelations,
 } from '@cardEditor/cardOptions';
 import { subtypes } from '@cardEditor/cardOptions/subtype';
@@ -13,12 +13,19 @@ import { variations } from '../data';
 import { Variation } from '../types';
 
 const useVariation = () => {
-  const { stateSetter } = useCardOptions();
-  const { baseSet, type, subtype, variation } = useCardRelations();
+  const { setStateValues } = useCardOptionsStore();
+  const { baseSet, type, subtype, variation } = useCardRelations([
+    'baseSet',
+    'type',
+    'subtype',
+    'variation',
+  ]);
 
-  const setVariation = useMemo(
-    () => stateSetter<CardInterface['variationId']>('variationId'),
-    [stateSetter],
+  const setVariation = useCallback(
+    (variationId: CardInterface['variationId']) => {
+      setStateValues({ variationId });
+    },
+    [setStateValues],
   );
 
   useEffect(() => {

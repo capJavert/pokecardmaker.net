@@ -100,6 +100,7 @@ export const fullArtNonPkm: Rarity = {
     cardInfoTextColor: 'black',
     cardInfoOutline: 'white',
     rarityIconColor: 'white',
+    alignMovesBottom: true,
   },
 };
 

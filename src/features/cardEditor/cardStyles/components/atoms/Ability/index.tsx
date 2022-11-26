@@ -4,7 +4,7 @@ import { Placement } from '@cardEditor/cardStyles/types';
 import keepDoubleSpaces from '@cardEditor/cardStyles/utils/keepDoubleSpaces';
 import Routes from '@routes';
 import { FC } from 'react';
-import DisplayImg from '../../atoms/DisplayImg';
+import DisplayImg from '../DisplayImg';
 import {
   AbilityDescriptionText,
   AbilityNameText,
@@ -20,10 +20,16 @@ const Ability: FC<AbilityProps> = ({ ability, placement }) => {
   const greatestEnergyCost = useCardLogicStore(
     store => store.greatestEnergyCost,
   );
-  const { abilitySymbol, movesTextColor, movesOutline } = useCardStyles([
+  const {
+    abilitySymbol,
+    movesTextColor,
+    movesOutline,
+    moveNameLeftPercentage,
+  } = useCardStyles([
     'abilitySymbol',
     'movesTextColor',
     'movesOutline',
+    'moveNameLeftPercentage',
   ]);
   const {
     ability: abilityPlacement,
@@ -55,6 +61,7 @@ const Ability: FC<AbilityProps> = ({ ability, placement }) => {
         <AbilityNameText
           textOutline={movesOutline}
           $energyCost={greatestEnergyCost}
+          $leftPercentage={moveNameLeftPercentage}
           unscale={NAME_SCALE}
           placement={abilityNamePlacement}
         >

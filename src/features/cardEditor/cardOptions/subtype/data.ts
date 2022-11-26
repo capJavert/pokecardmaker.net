@@ -224,10 +224,12 @@ export const vstar: Subtype = {
         top: '7.7%',
         left: '4.4%',
       },
-      movesWrapper: {
+      movesAndDescription: {
         top: 'unset',
         bottom: '14.5%',
         height: 'unset',
+      },
+      movesWrapper: {
         gap: '3em',
       },
       lastMove: {
@@ -254,10 +256,11 @@ export const tool: Subtype = {
   displayName: 'Tool',
   styles: {
     positions: {
-      description: {
+      movesAndDescription: {
         top: '61%',
         height: '20%',
       },
+      description: {},
     },
   },
   logic: {
@@ -310,10 +313,12 @@ const gxStyles: Partial<CardStyles> = {
     hitpoints: {
       top: '2.5%',
     },
-    movesWrapper: {
+    movesAndDescription: {
       top: 'unset',
       bottom: '15%',
       height: 'unset',
+    },
+    movesWrapper: {
       gap: '1.5em',
     },
   },

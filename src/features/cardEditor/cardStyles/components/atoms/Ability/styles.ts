@@ -1,7 +1,7 @@
 import { styled } from '@css';
 import { Font } from '@utils/fonts';
-import CardText from '../../atoms/CardText';
-import PlacementBlock from '../../atoms/PlacementBlock';
+import CardText from '../CardText';
+import PlacementBlock from '../PlacementBlock';
 
 export const NAME_SCALE = 0.88;
 export const DESCRIPTION_SCALE = 0.97;
@@ -22,14 +22,18 @@ export const TitleBar = styled(PlacementBlock)`
   display: flex;
 `;
 
-export const AbilityNameText = styled(CardText)<{ $energyCost: number }>`
+export const AbilityNameText = styled(CardText)<{
+  $energyCost: number;
+  $leftPercentage: number;
+}>`
   font-family: '${Font.GillSansStdBoldCondensed}', monospace;
   color: #a30000;
   font-size: 2.625em;
   transform: scaleX(${NAME_SCALE});
   transform-origin: left center;
   position: absolute;
-  left: ${({ $energyCost }) => `${Math.max(4, $energyCost) * 7.35}%`};
+  left: ${({ $energyCost, $leftPercentage }) =>
+    `${Math.max(4, $energyCost) * $leftPercentage}%`};
 `;
 
 export const AbilityDescriptionText = styled(CardText)`

@@ -23,6 +23,7 @@ export const defaultCardStyles: RequiredIsh<CardStyles> = {
   hasTypeImgBorder: true,
   hasSubnameBeforeName: false,
   prevolveText: 'Evolves from',
+  moveNameLeftPercentage: 7.35,
   positions: {},
   specialMove: {
     type: 'gx',

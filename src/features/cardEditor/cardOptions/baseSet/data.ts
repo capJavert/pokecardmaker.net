@@ -8,6 +8,7 @@ export const swordAndShield: BaseSet = {
   displayName: 'Sword & Shield',
   subText: 'V, VMAX, VSTAR',
   styles: {
+    abilitySymbol: 'swordAndShield',
     positions: {
       name: {
         height: '6%',
@@ -85,6 +86,7 @@ export const sunAndMoon: BaseSet = {
     hasRotationIcon: false,
   },
   styles: {
+    abilitySymbol: 'sunAndMoon',
     hasAttackCostBorder: false,
     hasTypeImgBorder: false,
     positions: {

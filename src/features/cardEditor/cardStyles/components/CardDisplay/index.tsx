@@ -10,19 +10,18 @@ import { useDebounce, useMeasure } from 'react-use';
 import shallow from 'zustand/shallow';
 import CardInfo from '../blocks/CardInfo';
 import Debug from '../blocks/Debug';
-import Moves from '../blocks/Moves';
 import NameBar from '../blocks/NameBar';
 import Hitpoints from '../blocks/NameBar/fields/Hitpoints';
 import TypeBar from '../blocks/TypeBar';
 import BadgeIcon from '../fields/BadgeIcon';
 import CardImage from '../fields/CardImage';
-import Description from '../fields/Description';
 import DexStats from '../fields/DexStats';
 import Images from '../fields/Images';
 import PrevolveImg from '../fields/PrevolveImg';
 import PrevolveName from '../fields/PrevolveName';
 import TypeImg from '../fields/TypeImg';
 import { CardContainer, CardContent } from './styles';
+import MovesAndDescription from '../blocks/MovesAndDescription';
 
 const CardDisplay: FC = () => {
   const { backgroundColor } = useCardOptions(['backgroundColor']);
@@ -62,8 +61,7 @@ const CardDisplay: FC = () => {
         <TypeImg />
         <DexStats />
         <BadgeIcon />
-        <Moves />
-        <Description />
+        <MovesAndDescription />
         <TypeBar />
         <CardInfo />
       </CardContent>

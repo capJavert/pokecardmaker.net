@@ -6,6 +6,8 @@ import PlacementBlock from '../../atoms/PlacementBlock';
 export const SCALE = 0.97;
 
 export const Wrapper = styled(PlacementBlock)`
+  position: relative;
+  height: 100%;
   display: flex;
   align-items: center;
 `;

@@ -33,6 +33,7 @@ export interface Positions {
   prevolveImg?: Placement;
   dexStats?: Placement;
   movesWrapper?: Placement;
+  movesAndDescription?: Placement;
   ability?: Placement;
   abilityTitleBar?: Placement;
   abilitySymbol?: Placement;
@@ -186,6 +187,11 @@ export interface CardStyles {
    * @default 'Evolves from'
    */
   prevolveText: string;
+  /**
+   * How much the move name should move for each overflowing energy cost amount
+   * @default 7.35
+   */
+  moveNameLeftPercentage: number;
   /**
    * Used to change position of items displayed on the card \
    * For example, `Name` is displayed differently on a Pokémon and a Trainer

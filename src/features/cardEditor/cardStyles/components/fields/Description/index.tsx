@@ -12,14 +12,12 @@ const Description: FC = () => {
     'movesOutline',
     'movesTextColor',
   ]);
-  const { description: descriptionPosition } = useCardPlacements([
-    'description',
-  ]);
+  const { description: placement } = useCardPlacements(['description']);
 
   if (!hasDescription || !description) return null;
 
   return (
-    <Wrapper placement={descriptionPosition}>
+    <Wrapper placement={placement}>
       <DescriptionText
         textOutline={movesOutline}
         textColor={movesTextColor}

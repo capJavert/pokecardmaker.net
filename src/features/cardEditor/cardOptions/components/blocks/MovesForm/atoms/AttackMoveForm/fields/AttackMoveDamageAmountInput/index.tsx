@@ -13,6 +13,10 @@ const AttackMoveDamageAmountInput: FC<AttackMoveFieldProps> = ({
     slug={`${slug}DamageAmount`}
     label="Damage"
     value={move.damageAmount}
+    inputProps={{
+      inputMode: 'numeric',
+      pattern: '[0-9]*',
+    }}
     endAdornment={
       <InputAdornment position="end">
         <ButtonGroup disableElevation>

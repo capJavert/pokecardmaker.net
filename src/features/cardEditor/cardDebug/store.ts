@@ -19,7 +19,7 @@ export const useCardDebugStore = create<CardDebugStore>()(
       showDebug: process.env.NODE_ENV === 'development',
       showCardOverlay: true,
       setShowCardOverlay: showCardOverlay => set({ showCardOverlay }),
-      overlayOpacity: 5,
+      overlayOpacity: 50,
       setOverlayOpacity: overlayOpacity => set({ overlayOpacity }),
       overlayImgSrc: 'https://images.pokemontcg.io/sm115/6_hires.png',
       setOverlayImgSrc: overlayImgSrc => set({ overlayImgSrc }),

@@ -1,17 +1,13 @@
-import { useCardDebug } from '@cardEditor/cardDebug';
+import { useCardDebugStore } from '@cardEditor/cardDebug';
 import { FC, memo } from 'react';
 import DebugImage from './fields/DebugImage';
 
 const Debug: FC = () => {
-  const { showDebug } = useCardDebug();
+  const showDebug = useCardDebugStore(store => store.showDebug);
 
   if (!showDebug) return null;
 
-  return (
-    <>
-      <DebugImage />
-    </>
-  );
+  return <DebugImage />;
 };
 
 export default memo(Debug);

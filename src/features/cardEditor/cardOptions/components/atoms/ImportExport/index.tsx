@@ -1,4 +1,4 @@
-import { useCardDebug } from '@cardEditor/cardDebug';
+import { useCardDebugStore } from '@cardEditor/cardDebug';
 import ControlledCheckbox from '@components/inputs/ControlledCheckbox';
 import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
@@ -7,7 +7,7 @@ import ExportButton from './atoms/ExportButton';
 import ImportButton from './atoms/ImportButton';
 
 const ImportExport: FC = () => {
-  const { showDebug } = useCardDebug();
+  const showDebug = useCardDebugStore(store => store.showDebug);
   const [active, setActive] = useState<boolean>(showDebug);
 
   return (

@@ -1,9 +1,11 @@
-import { useCardDebug } from '@cardEditor/cardDebug';
+import { useCardDebugStore } from '@cardEditor/cardDebug';
 import { FC, memo } from 'react';
 import { StyledImage } from './styles';
 
 const DebugImage: FC = () => {
-  const { showCardOverlay, overlayOpacity, overlayImgSrc } = useCardDebug();
+  const showCardOverlay = useCardDebugStore(store => store.showCardOverlay);
+  const overlayOpacity = useCardDebugStore(store => store.overlayOpacity);
+  const overlayImgSrc = useCardDebugStore(store => store.overlayImgSrc);
 
   if (!showCardOverlay || !overlayImgSrc) return null;
 

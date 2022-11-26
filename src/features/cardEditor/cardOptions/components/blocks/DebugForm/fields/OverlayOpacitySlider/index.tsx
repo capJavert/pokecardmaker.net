@@ -1,9 +1,10 @@
-import { useCardDebug } from '@cardEditor/cardDebug';
+import { useCardDebugStore } from '@cardEditor/cardDebug';
 import ControlledSlider from '@components/inputs/ControlledSlider';
 import { FC, useEffect, useState } from 'react';
 
 const OverlayOpacitySlider: FC = () => {
-  const { overlayOpacity, setOverlayOpacity } = useCardDebug();
+  const overlayOpacity = useCardDebugStore(store => store.overlayOpacity);
+  const setOverlayOpacity = useCardDebugStore(store => store.setOverlayOpacity);
   const [opacity, setOpacity] = useState(overlayOpacity);
 
   useEffect(() => {

@@ -28,7 +28,7 @@ export interface MoveType {
 
 export interface AttackMove extends BaseMove {
   type: AttackMoveType;
-  damageAmount: number | '';
+  damageAmount: string;
   damageModifier?: DamageModifier;
   energyCost: MoveType[];
   energyCostModifier?: EnergyCostModifier;

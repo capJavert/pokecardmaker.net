@@ -1,6 +1,6 @@
 import React, { createContext, useCallback, useEffect, useRef } from 'react';
-import { useCardOptions, useCardRelations } from '@cardEditor/cardOptions';
-import { useSettings } from '@features/settings';
+import { useCardOptionsStore } from '@cardEditor/cardOptions';
+import { useSettingsStore } from '@features/settings';
 import { pushToDataLayer, relationsToSlugs } from './utils';
 import { AnalyticsEvent, CardCreatorAnalyticsEvent } from './types';
 
@@ -18,32 +18,16 @@ export const AnalyticsContext = createContext<AnalyticsContextInterface>({
 });
 
 export const AnalyticsProvider: React.FC = ({ children }) => {
-  const { themeMode } = useSettings();
+  const themeMode = useSettingsStore(store => store.theme);
   const {
-    retreatCost,
-    customRarityIconImgSrc,
-    customRotationIconImgSrc,
-    customSetIconImgSrc: customSetIconSrc,
-  } = useCardOptions([
-    'retreatCost',
-    'customRarityIconImgSrc',
-    'customRotationIconImgSrc',
-    'customSetIconImgSrc',
-  ]);
-  const relations = useCardRelations([
-    'baseSet',
-    'supertype',
-    'type',
-    'subtype',
-    'rarity',
-    'variation',
-    'weaknessType',
-    'resistanceType',
-    'setIcon',
-    'rotationIcon',
-    'rarityIcon',
-    'badgeIcon',
-  ]);
+    state: {
+      retreatCost,
+      customRotationIconImgSrc,
+      customSetIconImgSrc,
+      customRarityIconImgSrc,
+    },
+    relations: { typeImg: _, ...relations },
+  } = useCardOptionsStore.getState();
   const cardDataRef = useRef<Record<string, string | number | undefined>>({
     retreatCost,
     ...relationsToSlugs(relations),
@@ -58,14 +42,14 @@ export const AnalyticsProvider: React.FC = ({ children }) => {
       rotationIcon: customRotationIconImgSrc
         ? 'custom'
         : relationSlugs.rotationIcon,
-      setIcon: customSetIconSrc ? 'custom' : relationSlugs.setIcon,
+      setIcon: customSetIconImgSrc ? 'custom' : relationSlugs.setIcon,
     };
   }, [
     retreatCost,
     relations,
     customRarityIconImgSrc,
     customRotationIconImgSrc,
-    customSetIconSrc,
+    customSetIconImgSrc,
   ]);
 
   const trackCardCreatorEvent = useCallback(

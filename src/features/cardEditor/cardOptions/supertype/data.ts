@@ -14,6 +14,7 @@ export const pokemon: Supertype = {
     hasSubname: true,
   },
   styles: {
+    moveNameLeftPercentage: 7.35,
     hasSubnameBeforeName: true,
     positions: {
       name: {
@@ -50,15 +51,17 @@ export const trainer: Supertype = {
   slug: 'trainer',
   displayName: 'Trainer',
   styles: {
+    moveNameLeftPercentage: 8.25,
     positions: {
       name: {
         width: '87.3%',
       },
-      description: {
+      movesAndDescription: {
         top: '54%',
         left: '11.9%',
         height: '31.7%',
-        width: '77%',
+      },
+      description: {
         lineHeight: '2.2em',
       },
     },
@@ -71,6 +74,9 @@ export const trainer: Supertype = {
             top: '6.7%',
             left: '6.3%',
           },
+          movesAndDescription: {
+            width: '76%',
+          },
         },
       },
     },
@@ -80,6 +86,9 @@ export const trainer: Supertype = {
           name: {
             top: '7.2%',
             left: '6.6%',
+          },
+          movesAndDescription: {
+            width: '75%',
           },
         },
       },
@@ -98,11 +107,13 @@ export const energy: Supertype = {
         left: '6.3%',
         width: '62.5%',
       },
-      description: {
+      movesAndDescription: {
         top: '65.6%',
         left: '8.9%',
         height: '25.1%',
         width: '83%',
+      },
+      description: {
         lineHeight: '1.66em',
       },
     },
@@ -111,9 +122,11 @@ export const energy: Supertype = {
     [sunAndMoon.id]: {
       styles: {
         positions: {
-          description: {
+          movesAndDescription: {
             top: '66.4%',
             height: '23.5%',
+          },
+          description: {
             lineHeight: '1.86em',
           },
         },

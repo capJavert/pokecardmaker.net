@@ -7,16 +7,13 @@ import {
 import { useCardPlacements, useCardStyles } from '@cardEditor/cardStyles/hooks';
 import { AbilityMove, AttackMove as AttackMoveType } from '@cardEditor/types';
 import { FC, memo, useCallback, useMemo } from 'react';
-import Ability from '../Ability';
+import Ability from '../../atoms/Ability';
 import AttackMoveWrapper from './components/AttackMoveWrapper';
 import { CenteredAttacksWrapper, Wrapper } from './styles';
 import { AttackMoveStyleProps } from './types';
 
 const Moves: FC = () => {
-  const { hasMoves, hasSpecialMove } = useCardLogic([
-    'hasMoves',
-    'hasSpecialMove',
-  ]);
+  const { hasSpecialMove } = useCardLogic(['hasSpecialMove']);
   const {
     alignMovesBottom,
     movesTextColor,
@@ -119,7 +116,7 @@ const Moves: FC = () => {
     ],
   );
 
-  if (!hasMoves) return null;
+  if (!sortedMoves.length) return null;
 
   return (
     <Wrapper

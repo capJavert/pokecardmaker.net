@@ -13,12 +13,16 @@ const AttackMoveName: FC<AttackMoveDisplayProps> = ({
     store => store.greatestEnergyCost,
   );
   const { hasSpecialMove } = useCardLogic(['hasSpecialMove']);
-  const { specialMove } = useCardStyles(['specialMove']);
+  const { specialMove, moveNameLeftPercentage } = useCardStyles([
+    'specialMove',
+    'moveNameLeftPercentage',
+  ]);
   const { nameAddition } = specialMove || {};
 
   return (
     <MoveNameText
       $energyCost={greatestEnergyCost}
+      $leftPercentage={moveNameLeftPercentage}
       textOutline={outline}
       textColor={color}
       unscale={SCALE}

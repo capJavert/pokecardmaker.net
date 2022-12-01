@@ -16,6 +16,7 @@ const GeneralInput: FC<GeneralInputProps> = ({
   forceUpdate,
   skipDebounce,
   inputProps,
+  InputProps,
   ...rest
 }) => {
   const [tempValue, setTempValue] = useState(value);
@@ -44,6 +45,7 @@ const GeneralInput: FC<GeneralInputProps> = ({
         InputProps={{
           startAdornment,
           endAdornment,
+          ...InputProps,
         }}
         inputProps={{
           sx: {

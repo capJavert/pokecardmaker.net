@@ -7,7 +7,7 @@ import { nanoid } from 'nanoid';
 import { FC, useCallback } from 'react';
 
 const ImportButton: FC = () => {
-  const { setState } = useCardOptionsStore();
+  const { setStateValues } = useCardOptionsStore();
 
   const handleImport = useCallback(() => {
     if (!navigator?.clipboard) return;
@@ -51,11 +51,11 @@ const ImportButton: FC = () => {
             delete legacyImport.hasAbility;
             delete legacyImport.hasMove2;
           }
-          setState(card);
+          setStateValues(card);
         }
       })
       .catch(console.error);
-  }, [setState]);
+  }, [setStateValues]);
 
   return (
     <Button

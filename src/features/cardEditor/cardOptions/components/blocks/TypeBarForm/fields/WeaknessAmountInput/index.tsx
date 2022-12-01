@@ -1,13 +1,12 @@
 import { FC } from 'react';
 import NumberInput from '@components/inputs/NumberInput';
-import { InputAdornment } from '@mui/material';
+import { ButtonGroup, InputAdornment } from '@mui/material';
 import { useCardOptions } from '@cardEditor/cardOptions';
+import DamageModifierButton from '@cardEditor/cardOptions/components/atoms/DamageModifierButton';
 
 const WeaknessAmountInput: FC = () => {
-  const { weaknessTypeId, weaknessAmount, setState } = useCardOptions([
-    'weaknessTypeId',
-    'weaknessAmount',
-  ]);
+  const { weaknessTypeId, weaknessModifier, weaknessAmount, setState } =
+    useCardOptions(['weaknessTypeId', 'weaknessModifier', 'weaknessAmount']);
 
   if (!weaknessTypeId) return null;
 
@@ -16,10 +15,49 @@ const WeaknessAmountInput: FC = () => {
       slug="weaknessAmount"
       label="Weakness Amount"
       value={weaknessAmount}
-      startAdornment={<InputAdornment position="start">×</InputAdornment>}
       onChange={value => setState({ weaknessAmount: value })}
       max={99}
       min={1}
+      InputProps={{ sx: { pl: 0 } }}
+      startAdornment={
+        <InputAdornment position="start">
+          <ButtonGroup disableElevation>
+            <DamageModifierButton
+              isActive={weaknessModifier === '×'}
+              onChange={() =>
+                setState({
+                  weaknessModifier: '×',
+                })
+              }
+            >
+              ×
+            </DamageModifierButton>
+            <DamageModifierButton
+              isActive={weaknessModifier === '+'}
+              onChange={() =>
+                setState({
+                  weaknessModifier: '+',
+                })
+              }
+              noBorderRadius
+            >
+              +
+            </DamageModifierButton>
+            <DamageModifierButton
+              isActive={weaknessModifier === '-'}
+              onChange={() =>
+                setState({
+                  weaknessModifier: '-',
+                })
+              }
+              noBorderRadius
+              borderRight
+            >
+              -
+            </DamageModifierButton>
+          </ButtonGroup>
+        </InputAdornment>
+      }
     />
   );
 };

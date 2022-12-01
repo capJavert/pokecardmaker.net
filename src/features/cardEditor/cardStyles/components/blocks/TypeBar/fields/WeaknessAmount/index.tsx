@@ -1,10 +1,14 @@
 import { useCardOptions } from '@cardEditor/cardOptions';
 import { useCardStyles } from '@cardEditor/cardStyles/hooks';
 import { FC, memo } from 'react';
-import { ModifierText, WeaknessText, Wrapper } from './styles';
+import { Wrapper } from './styles';
+import { ModifierText, TypeText } from '../../styles';
 
 const WeaknessAmount: FC = () => {
-  const { weaknessAmount } = useCardOptions(['weaknessAmount']);
+  const { weaknessAmount, weaknessModifier } = useCardOptions([
+    'weaknessAmount',
+    'weaknessModifier',
+  ]);
   const { typeBarTextColor, typeBarOutline } = useCardStyles([
     'typeBarTextColor',
     'typeBarOutline',
@@ -12,8 +16,10 @@ const WeaknessAmount: FC = () => {
 
   return (
     <Wrapper textColor={typeBarTextColor} textOutline={typeBarOutline}>
-      <ModifierText>×</ModifierText>
-      <WeaknessText>{weaknessAmount}</WeaknessText>
+      <ModifierText $modifier={weaknessModifier}>
+        {weaknessModifier}
+      </ModifierText>
+      <TypeText>{weaknessAmount}</TypeText>
     </Wrapper>
   );
 };

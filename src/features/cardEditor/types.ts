@@ -66,7 +66,9 @@ export interface CardInterface {
   hitpoints?: number | '';
   illustrator?: string;
   weaknessAmount?: number | '';
+  weaknessModifier: DamageModifier;
   resistanceAmount?: number | '';
+  resistanceModifier: DamageModifier;
   retreatCost?: number;
   prevolveName?: string;
   prevolveImgSrc?: string;

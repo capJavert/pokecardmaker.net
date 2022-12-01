@@ -1,4 +1,4 @@
-import { InputBaseProps } from '@mui/material';
+import { InputBaseProps, StandardTextFieldProps } from '@mui/material';
 import { PropsWithChildren, ReactNode } from 'react';
 import { TooltipProps } from '../Tooltip/types';
 
@@ -13,6 +13,7 @@ export interface InputProps {
   tooltipProps?: PropsWithChildren<TooltipProps>;
   skipDebounce?: boolean;
   inputProps?: InputBaseProps['inputProps'];
+  InputProps?: StandardTextFieldProps['InputProps'];
 }
 
 export interface GeneralInputProps extends InputProps {

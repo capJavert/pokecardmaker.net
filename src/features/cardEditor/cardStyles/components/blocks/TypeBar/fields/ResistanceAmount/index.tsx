@@ -1,10 +1,14 @@
 import { useCardOptions } from '@cardEditor/cardOptions';
 import { useCardStyles } from '@cardEditor/cardStyles/hooks';
 import { FC, memo } from 'react';
-import { ModifierText, ResistanceText, Wrapper } from './styles';
+import { ModifierText, TypeText } from '../../styles';
+import { Wrapper } from './styles';
 
 const ResistanceAmount: FC = () => {
-  const { resistanceAmount } = useCardOptions(['resistanceAmount']);
+  const { resistanceAmount, resistanceModifier } = useCardOptions([
+    'resistanceAmount',
+    'resistanceModifier',
+  ]);
   const { typeBarTextColor, typeBarOutline } = useCardStyles([
     'typeBarTextColor',
     'typeBarOutline',
@@ -12,8 +16,10 @@ const ResistanceAmount: FC = () => {
 
   return (
     <Wrapper textColor={typeBarTextColor} textOutline={typeBarOutline}>
-      <ModifierText>-</ModifierText>
-      <ResistanceText>{resistanceAmount}</ResistanceText>
+      <ModifierText $modifier={resistanceModifier}>
+        {resistanceModifier}
+      </ModifierText>
+      <TypeText>{resistanceAmount}</TypeText>
     </Wrapper>
   );
 };

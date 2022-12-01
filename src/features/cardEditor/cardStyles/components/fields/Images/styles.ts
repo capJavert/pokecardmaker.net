@@ -9,5 +9,5 @@ export const Wrapper = styled('div')<{ $isBehindTemplate: boolean }>`
   top: 0;
   left: 0;
   overflow: hidden;
-  border-radius: 35px;
+  border-radius: 40px;
 `;

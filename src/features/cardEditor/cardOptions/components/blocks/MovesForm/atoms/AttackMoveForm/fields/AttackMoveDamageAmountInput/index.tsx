@@ -1,7 +1,7 @@
 import { ButtonGroup, InputAdornment } from '@mui/material';
 import { FC } from 'react';
 import TextInput from '@components/inputs/TextInput';
-import DamageModifierButton from './components/DamageModifierButton';
+import DamageModifierButton from '@cardEditor/cardOptions/components/atoms/DamageModifierButton';
 import { AttackMoveFieldProps } from '../../types';
 
 const AttackMoveDamageAmountInput: FC<AttackMoveFieldProps> = ({
@@ -21,22 +21,38 @@ const AttackMoveDamageAmountInput: FC<AttackMoveFieldProps> = ({
       <InputAdornment position="end">
         <ButtonGroup disableElevation>
           <DamageModifierButton
-            move={move}
-            setMove={setMove}
-            modifier="×"
+            isActive={move.damageModifier === '×'}
+            onChange={active =>
+              setMove({
+                ...move,
+                damageModifier: active ? '×' : undefined,
+              })
+            }
             noBorderRadius
           >
             ×
           </DamageModifierButton>
           <DamageModifierButton
-            move={move}
-            setMove={setMove}
-            modifier="+"
+            isActive={move.damageModifier === '+'}
+            onChange={active =>
+              setMove({
+                ...move,
+                damageModifier: active ? '+' : undefined,
+              })
+            }
             noBorderRadius
           >
             +
           </DamageModifierButton>
-          <DamageModifierButton move={move} setMove={setMove} modifier="-">
+          <DamageModifierButton
+            isActive={move.damageModifier === '-'}
+            onChange={active =>
+              setMove({
+                ...move,
+                damageModifier: active ? '-' : undefined,
+              })
+            }
+          >
             -
           </DamageModifierButton>
         </ButtonGroup>

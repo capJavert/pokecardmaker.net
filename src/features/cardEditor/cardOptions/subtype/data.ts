@@ -229,10 +229,8 @@ export const vstar: Subtype = {
         bottom: '14.5%',
         height: 'unset',
       },
-      movesWrapper: {
-        gap: '3em',
-      },
       lastMove: {
+        marginTop: '2em',
         height: '10.8em',
       },
     },

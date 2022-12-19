@@ -448,6 +448,7 @@ export default [
   'baseSets/swordAndShield/supertypes/pokemon/types/dark/subtypes/vmax/variations/gigantamax',
   'baseSets/swordAndShield/supertypes/pokemon/types/dark/subtypes/vstar',
   'baseSets/swordAndShield/supertypes/pokemon/types/dragon/subtypes/basic/rarities/characterRare',
+  'baseSets/swordAndShield/supertypes/pokemon/types/dragon/subtypes/basic/rarities/goldStar',
   'baseSets/swordAndShield/supertypes/pokemon/types/dragon/subtypes/basic/variations/dark',
   'baseSets/swordAndShield/supertypes/pokemon/types/dragon/subtypes/basic/variations/ex',
   'baseSets/swordAndShield/supertypes/pokemon/types/dragon/subtypes/basic/variations/light',

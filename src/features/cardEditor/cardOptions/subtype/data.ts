@@ -62,7 +62,7 @@ export const basic: Subtype = {
       })),
       {
         type: dragon.id,
-        rarities: [characterRare.id],
+        rarities: [goldStar.id, characterRare.id],
       },
       {
         type: fairy.id,

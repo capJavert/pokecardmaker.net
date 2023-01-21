@@ -66,7 +66,7 @@ export const basic: Subtype = {
       },
       {
         type: fairy.id,
-        rarities: [gilded.id, characterRare.id],
+        rarities: [goldStar.id, gilded.id, characterRare.id],
       },
     ],
     [sunAndMoon.id]: allPokemonTypes.map(t => ({

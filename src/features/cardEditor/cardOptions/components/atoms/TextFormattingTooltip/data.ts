@@ -25,4 +25,7 @@ export const specialCharacters: string[] = [
   'W',
   'X',
   'Y',
+  '+',
+  '>',
+  '*',
 ];

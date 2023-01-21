@@ -21,7 +21,6 @@ export const promo: Rarity = {
     movesTextColor: 'black',
     cardInfoOutline: 'white',
     cardInfoTextColor: 'black',
-    alignMovesBottom: true,
   },
 };
 

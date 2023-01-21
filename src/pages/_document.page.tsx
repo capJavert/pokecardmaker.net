@@ -9,7 +9,7 @@ import { GoogleTagManagerNoScript } from '@features/analytics/components/GTM';
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html lang="nl">
+      <Html lang="en">
         <Head>
           <meta charSet="utf-8" />
           <link

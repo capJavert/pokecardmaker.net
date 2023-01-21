@@ -474,6 +474,7 @@ export default [
   'baseSets/swordAndShield/supertypes/pokemon/types/dragon/subtypes/vstar',
   'baseSets/swordAndShield/supertypes/pokemon/types/fairy/subtypes/basic/rarities/characterRare',
   'baseSets/swordAndShield/supertypes/pokemon/types/fairy/subtypes/basic/rarities/gilded',
+  'baseSets/swordAndShield/supertypes/pokemon/types/fairy/subtypes/basic/rarities/goldStar',
   'baseSets/swordAndShield/supertypes/pokemon/types/fairy/subtypes/basic/variations/dark',
   'baseSets/swordAndShield/supertypes/pokemon/types/fairy/subtypes/basic/variations/ex',
   'baseSets/swordAndShield/supertypes/pokemon/types/fairy/subtypes/basic/variations/light',

@@ -46,19 +46,19 @@ const TextFormattingTooltip: FC = () => {
           <figcaption>Available modifiers:</figcaption>
           <StyledList>
             <li>
-              <b>*Bold*</b>
+              <b>**Bold**</b>
             </li>
             <li>
-              <i>_Italic_</i>
+              <i>__Italic__</i>
             </li>
             <li>
-              <s>~Strikethrough~</s>
+              <s>~~Strikethrough~~</s>
             </li>
             <li>
               <u>--Underlined--</u>
             </li>
             <li>
-              <SmallText>=Small=</SmallText>
+              <SmallText>==Small==</SmallText>
             </li>
           </StyledList>
         </StyledFigure>

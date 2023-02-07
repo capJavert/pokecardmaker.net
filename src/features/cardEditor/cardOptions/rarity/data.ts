@@ -1,10 +1,8 @@
 import { Rarity } from '@cardEditor/cardOptions/rarity';
 import { sunAndMoon } from '../baseSet';
 
-let id = 1;
-
 export const promo: Rarity = {
-  id: id++,
+  id: 1,
   slug: 'promo',
   displayName: 'Promo',
   logic: {
@@ -25,7 +23,7 @@ export const promo: Rarity = {
 };
 
 export const fullArt: Rarity = {
-  id: id++,
+  id: 2,
   slug: 'fullArt',
   displayName: 'Full Art',
   styles: {
@@ -34,11 +32,13 @@ export const fullArt: Rarity = {
     cardInfoTextColor: 'black',
     cardInfoOutline: 'white',
     rarityIconColor: 'white',
+    movesTextColor: 'black',
+    movesOutline: 'white',
   },
 };
 
 export const goldenFullArtPokemon: Rarity = {
-  id: id++,
+  id: 3,
   slug: 'goldenFullArtPokemon',
   displayName: 'Golden Full Art',
   styles: {
@@ -63,7 +63,7 @@ export const goldenFullArtPokemon: Rarity = {
 };
 
 export const rainbow: Rarity = {
-  id: id++,
+  id: 4,
   slug: 'rainbow',
   displayName: 'Rainbow',
   baseSetOverwrites: {
@@ -90,7 +90,7 @@ export const rainbow: Rarity = {
 };
 
 export const fullArtNonPkm: Rarity = {
-  id: id++,
+  id: 5,
   slug: 'fullArtNonPkm',
   displayName: 'Full Art',
   styles: {
@@ -103,27 +103,14 @@ export const fullArtNonPkm: Rarity = {
   },
 };
 
-export const goldStar: Rarity = {
-  id: id++,
-  slug: 'goldStar',
-  displayName: 'Gold Star',
-  logic: {
-    hasNameSymbol: true,
-    hasDexEntry: false,
-  },
-  styles: {
-    nameSymbol: 'star',
-  },
-};
-
 export const gilded: Rarity = {
-  id: id++,
+  id: 7,
   slug: 'gilded',
   displayName: 'Gilded',
 };
 
 export const characterRare: Rarity = {
-  id: id++,
+  id: 8,
   slug: 'characterRare',
   displayName: 'Character Rare',
   logic: {
@@ -144,7 +131,7 @@ export const characterRare: Rarity = {
 };
 
 export const goldenFullArtEnergy: Rarity = {
-  id: id++,
+  id: 9,
   slug: 'goldenFullArtEnergy',
   displayName: 'Golden Full Art',
   styles: {
@@ -154,10 +141,29 @@ export const goldenFullArtEnergy: Rarity = {
 };
 
 export const goldenFullArtTrainer: Rarity = {
-  id: id++,
+  id: 10,
   slug: 'goldenFullArtTrainer',
   displayName: 'Golden Full Art',
   styles: fullArtNonPkm.styles,
+};
+
+export const goldStarFullArt: Rarity = {
+  id: 11,
+  slug: 'goldStarFullArt',
+  displayName: 'Full Art',
+  logic: {
+    hasDexEntry: true,
+  },
+  styles: {
+    nameOutline: 'white',
+    nameTextColor: 'black',
+    hpOutline: 'white',
+    hpTextColor: 'black',
+    movesOutline: 'white',
+    movesTextColor: 'black',
+    cardInfoOutline: 'white',
+    cardInfoTextColor: 'black',
+  },
 };
 
 export const rarities: Rarity[] = [
@@ -166,9 +172,9 @@ export const rarities: Rarity[] = [
   goldenFullArtPokemon,
   rainbow,
   fullArtNonPkm,
-  goldStar,
   goldenFullArtEnergy,
   goldenFullArtTrainer,
   gilded,
   characterRare,
+  goldStarFullArt,
 ];

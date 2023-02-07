@@ -1,10 +1,13 @@
 import { useCardOptionsStore } from '@cardEditor/cardOptions';
 import { isCardInterface } from '@cardEditor/cardOptions/utils';
+import { goldStar } from '@cardEditor/cardOptions/variation';
 import { CardInterface } from '@cardEditor/types';
 import { DataObject } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import { nanoid } from 'nanoid';
 import { FC, useCallback } from 'react';
+
+const legacyGoldStarId = 6;
 
 const ImportButton: FC = () => {
   const { setStateValues } = useCardOptionsStore();
@@ -17,6 +20,10 @@ const ImportButton: FC = () => {
       .then((value: string) => {
         const card = JSON.parse(value);
         if (isCardInterface(card)) {
+          if (card.rarityId === legacyGoldStarId) {
+            card.rarityId = undefined;
+            card.variationId = goldStar.id;
+          }
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const legacyImport = card as any;
           if (

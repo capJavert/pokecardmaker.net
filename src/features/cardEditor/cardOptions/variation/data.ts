@@ -1,6 +1,6 @@
 import { Variation } from '@cardEditor/cardOptions/variation';
 import { sunAndMoon, swordAndShield } from '../baseSet';
-import { fullArt, fullArtNonPkm, rainbow } from '../rarity';
+import { fullArt, fullArtNonPkm, goldStarFullArt, rainbow } from '../rarity';
 import {
   basic,
   gxBasic,
@@ -227,9 +227,33 @@ export const tagTeam: Variation = {
   },
 };
 
+export const goldStar: Variation = {
+  id: id++,
+  slug: 'goldStar',
+  displayName: 'Gold Star',
+  logic: {
+    hasNameSymbol: true,
+    hasDexEntry: false,
+    hasDexStats: false,
+  },
+  styles: {
+    nameSymbol: 'star',
+  },
+  baseSetDependencies: {
+    [swordAndShield.id]: {
+      subtypes: {
+        [basic.id]: {
+          rarities: [goldStarFullArt.id],
+        },
+      },
+    },
+  },
+};
+
 export const variations: Variation[] = [
   dynamax,
   gigantamax,
+  goldStar,
   light,
   dark,
   ex,

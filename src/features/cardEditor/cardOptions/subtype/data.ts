@@ -6,7 +6,6 @@ import {
   characterRare,
   fullArt,
   gilded,
-  goldStar,
   goldenFullArtPokemon,
   goldenFullArtTrainer,
   promo,
@@ -56,17 +55,13 @@ export const basic: Subtype = {
   },
   baseSetDependencies: {
     [swordAndShield.id]: [
-      ...defaultPokemonTypes.map(t => ({
+      ...[...defaultPokemonTypes, dragon.id].map(t => ({
         type: t,
-        rarities: [promo.id, goldStar.id, characterRare.id],
+        rarities: [promo.id, characterRare.id],
       })),
       {
-        type: dragon.id,
-        rarities: [goldStar.id, characterRare.id],
-      },
-      {
         type: fairy.id,
-        rarities: [goldStar.id, gilded.id, characterRare.id],
+        rarities: [gilded.id, promo.id, characterRare.id],
       },
     ],
     [sunAndMoon.id]: allPokemonTypes.map(t => ({

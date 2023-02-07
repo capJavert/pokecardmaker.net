@@ -46,18 +46,21 @@ const CardText: FC<CardTextProps> = ({
         if (typeof child !== 'string') return child;
         const contentString = child
           // Bold
-          .replace(/(?:\*)(?:(?!\s))((?:(?!\*|\n).)+)(?:\*)/g, '<b>$1</b>')
+          .replace(
+            /(?:\*\*)(?:(?!\s))((?:(?!\*\*|\n).)+)(?:\*\*)/g,
+            '<b>$1</b>',
+          )
           // Italic
-          .replace(/(?:_)(?:(?!\s))((?:(?!\n|_).)+)(?:_)/g, '<i>$1</i>')
+          .replace(/(?:__)(?:(?!\s))((?:(?!\n|__).)+)(?:__)/g, '<i>$1</i>')
           // Strikethrough
-          .replace(/(?:~)(?:(?!\s))((?:(?!\n|~).)+)(?:~)/g, '<s>$1</s>')
+          .replace(/(?:~~)(?:(?!\s))((?:(?!\n|~~).)+)(?:~~)/g, '<s>$1</s>')
           // Underline
           .replace(/(?:--)(?:(?!\s))((?:(?!\n|--).)+)(?:--)/g, '<u>$1</u>')
           // Special Character
           .replace(/(?:\[)(?:(?!\s))((?:(?!\n|\[).)+)(?:\])/g, '<pkm>$1</pkm>')
           // Small text
           .replace(
-            /(?:=)(?:(?!\s))((?:(?!\n|=).)+)(?:=)/g,
+            /(?:==)(?:(?!\s))((?:(?!\n|==).)+)(?:==)/g,
             '<small>$1</small>',
           );
         return (

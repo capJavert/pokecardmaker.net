@@ -153,6 +153,7 @@ export const goldStarFullArt: Rarity = {
   displayName: 'Full Art',
   logic: {
     hasDexEntry: true,
+    hasDexStats: false,
   },
   styles: {
     nameOutline: 'white',

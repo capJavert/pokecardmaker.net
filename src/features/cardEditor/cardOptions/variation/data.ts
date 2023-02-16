@@ -234,7 +234,7 @@ export const goldStar: Variation = {
   logic: {
     hasNameSymbol: true,
     hasDexEntry: false,
-    hasDexStats: false,
+    hasDexStats: true,
   },
   styles: {
     nameSymbol: 'star',

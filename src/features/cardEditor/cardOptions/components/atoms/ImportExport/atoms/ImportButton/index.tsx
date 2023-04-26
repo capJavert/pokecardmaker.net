@@ -5,19 +5,18 @@ import { CardInterface } from '@cardEditor/types';
 import { DataObject } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import { nanoid } from 'nanoid';
-import { FC, useCallback } from 'react';
+import { useRouter } from 'next/router';
+import { FC, useCallback, useEffect } from 'react';
 
 const legacyGoldStarId = 6;
 
 const ImportButton: FC = () => {
   const { setStateValues } = useCardOptionsStore();
+  const router = useRouter();
 
-  const handleImport = useCallback(() => {
-    if (!navigator?.clipboard) return;
-
-    navigator.clipboard
-      .readText()
-      .then((value: string) => {
+  const handleImport = useCallback(
+    (data?: string) => {
+      const loadConfig = (value: string) => {
         const card = JSON.parse(value);
         if (isCardInterface(card)) {
           if (card.rarityId === legacyGoldStarId) {
@@ -42,13 +41,25 @@ const ImportButton: FC = () => {
               });
             }
             if (legacyImport.move1?.name) {
-              newMoves.push({ ...legacyImport.move1, order: 1, id: nanoid() });
+              newMoves.push({
+                ...legacyImport.move1,
+                order: 1,
+                id: nanoid(),
+              });
             }
             if (legacyImport.move2?.name) {
-              newMoves.push({ ...legacyImport.move2, order: 2, id: nanoid() });
+              newMoves.push({
+                ...legacyImport.move2,
+                order: 2,
+                id: nanoid(),
+              });
             }
             if (legacyImport.move3?.name) {
-              newMoves.push({ ...legacyImport.move3, order: 3, id: nanoid() });
+              newMoves.push({
+                ...legacyImport.move3,
+                order: 3,
+                id: nanoid(),
+              });
             }
             card.moves = newMoves;
             delete legacyImport.move1;
@@ -60,9 +71,34 @@ const ImportButton: FC = () => {
           }
           setStateValues(card);
         }
-      })
-      .catch(console.error);
-  }, [setStateValues]);
+      };
+
+      if (data) {
+        loadConfig(data);
+
+        return;
+      }
+
+      if (navigator?.clipboard) {
+        navigator.clipboard.readText().then(loadConfig).catch(console.error);
+      }
+    },
+    [setStateValues],
+  );
+
+  useEffect(() => {
+    const importJsonFromUrl = async ({ url }: { url: string }) => {
+      const result = await fetch(url);
+      const data = await result.json();
+
+      handleImport(JSON.stringify(data));
+    };
+
+    if (router.query.url) {
+      importJsonFromUrl({ url: router.query.url as string });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.query.url]);
 
   return (
     <Button
@@ -70,7 +106,9 @@ const ImportButton: FC = () => {
       fullWidth
       variant="outlined"
       startIcon={<DataObject />}
-      onClick={handleImport}
+      onClick={() => {
+        handleImport();
+      }}
     >
       Import object
     </Button>

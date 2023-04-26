@@ -7,7 +7,7 @@
     "optimize:images": "node ./scripts/optimizeImages.js",
     "prestart": "npm run create:data",
     "start": "next start",
-    "dev": "npm run start",
+    "dev": "next dev",
     "prebuild": "npm run create:data",
     "build": "next build",
     "lint": "eslint --ext .ts,.tsx src",

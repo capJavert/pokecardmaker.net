@@ -6,11 +6,10 @@
     "create:data": "node ./scripts/createCardImgPathArray.js",
     "optimize:images": "node ./scripts/optimizeImages.js",
     "prestart": "npm run create:data",
-    "start": "next dev",
+    "start": "next start",
     "dev": "npm run start",
     "prebuild": "npm run create:data",
     "build": "next build",
-    "postbuild": "next-sitemap && next export",
     "lint": "eslint --ext .ts,.tsx src",
     "lint:fix": "eslint --ext .ts,.tsx src --fix",
     "typecheck": "npx tsc"

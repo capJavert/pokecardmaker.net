@@ -2,6 +2,7 @@ import { useCardOptionsStore } from '@cardEditor/cardOptions';
 import { isCardInterface } from '@cardEditor/cardOptions/utils';
 import { goldStar } from '@cardEditor/cardOptions/variation';
 import { CardInterface } from '@cardEditor/types';
+import { getBase64Img } from '@hooks/useBase64Image';
 import { DataObject } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import { nanoid } from 'nanoid';
@@ -16,7 +17,7 @@ const ImportButton: FC = () => {
 
   const handleImport = useCallback(
     (data?: string) => {
-      const loadConfig = (value: string) => {
+      const loadConfig = async (value: string) => {
         const card = JSON.parse(value);
         if (isCardInterface(card)) {
           if (card.rarityId === legacyGoldStarId) {
@@ -69,6 +70,16 @@ const ImportButton: FC = () => {
             delete legacyImport.hasAbility;
             delete legacyImport.hasMove2;
           }
+
+          if (card.images) {
+            card.images = await Promise.all(
+              card.images.map(async image => ({
+                ...image,
+                src: await getBase64Img(image.src).catch(() => image.src),
+              })),
+            );
+          }
+
           setStateValues(card);
         }
       };
